@@ -105,7 +105,6 @@ namespace PortableApps.Repo
             return appinfo;
         }
 
-
         public IList<appinfo> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, appinfo whareClause = null)
         {
             throw new NotImplementedException();

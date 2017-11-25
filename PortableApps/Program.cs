@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortableApps.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,9 +14,34 @@ namespace PortableApps
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SettingForm());
+
+            ProcessFirst();
+
+            Application.Run(new VariableSettingForm());
+        }
+
+        private static void ProcessFirst()
+        {
+            ISqLiteBaseRepository sqlRepo = new SqLiteBaseRepository();
+            using (var cnn = sqlRepo.MySQLiteConnection())
+            {
+                cnn.Open();
+                //sqlRepo.ResetDefault(cnn);
+                //sqlRepo.SetupAppInfo(cnn);
+                //sqlRepo.SetupDun(cnn);
+                //sqlRepo.SetupMakkebun(cnn);
+                //sqlRepo.SetupParlimen(cnn);
+                //sqlRepo.SetupVariables(cnn);
+                //sqlRepo.SetupDaerah(cnn);
+                //sqlRepo.SetupVariableSetting(cnn);
+                //sqlRepo.SetupTBangsa(cnn);
+            }
+
+            IBangsaRepo BangsaRepo = new BangsaRepo();
+            BangsaRepo.SyncBangsaFromAppInfoMySQL();
         }
     }
 }

@@ -18,6 +18,11 @@ namespace PortableApps.Repo
         int SetupMakkebun(SQLiteConnection cnn);
         int SetupParlimen(SQLiteConnection cnn);
         int SetupVariables(SQLiteConnection cnn);
+        int SetupDaerah(SQLiteConnection cnn);
+
+        int SetupVariableSetting(SQLiteConnection cnn);
+        int SetupTBangsa(SQLiteConnection cnn);
+
         bool CheckExistingDB(string DbFile);
 
         int ResetDefault(SQLiteConnection cnn);
@@ -1172,6 +1177,311 @@ namespace PortableApps.Repo
                                     DROP TABLE parlimen;
                                     DROP TABLE variables;
                                     ";
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+        public int SetupDaerah(SQLiteConnection cnn)
+        {
+            int i = 0;
+            using (SQLiteCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                #region Create & Insert
+                string qry = @"
+                            -- --------------------------------------------------------
+                            -- Host:                         127.0.0.1
+                            -- Server version:               5.6.25 - MySQL Community Server (GPL)
+                            -- Server OS:                    Win32
+                            -- HeidiSQL Version:             9.2.0.4947
+                            -- --------------------------------------------------------
+
+                            -- Dumping structure for table tsspk1511.daerah
+                            CREATE TABLE IF NOT EXISTS `daerah` (
+                                `id` int(11) NOT NULL PRIMARY KEY,
+                                `kod_negeri` varchar(10)   NULL,
+                                `kod_daerah` varchar(10)  NULL,
+                                `daerah` varchar(100)   NULL,
+                                `daerah_spe` varchar(100)  NULL
+                            );
+                            --,
+                                --PRIMARY KEY (`id`),
+                                --KEY `kod_negeri` (`kod_negeri`),
+                                --KEY `kod_daerah` (`kod_daerah`),
+                                --KEY `kod_daerah_2` (`kod_daerah`)
+                            --) ENGINE=MyISAM AUTO_INCREMENT=208 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+                            DELETE FROM daerah;
+                            
+                            -- Dumping data for table tsspk1511.daerah: 207 rows
+                            INSERT INTO `daerah` (`id`, `kod_negeri`, `kod_daerah`, `daerah`, `daerah_spe`) VALUES
+	                            (1, 'JHR', 'BPT', 'BATU PAHAT', 'BATU PAHAT'),
+	                            (2, 'JHR', 'JBU', 'JOHOR BAHRU', 'JOHOR BAHRU'),
+	                            (3, 'JHR', 'KLG', 'KLUANG', 'KLUANG'),
+	                            (4, 'JHR', 'KTI', 'KOTA TINGGI', 'KOTA TINGGI'),
+	                            (5, 'JHR', 'MSG', 'MERSING', 'MERSING'),
+	                            (6, 'JHR', 'MUA', 'MUAR', 'MUAR'),
+	                            (7, 'JHR', 'PTN', 'PONTIAN', 'PONTIAN'),
+	                            (8, 'JHR', 'SGT', 'SEGAMAT', 'SEGAMAT'),
+	                            (9, 'JHR', 'KJY', 'KULAIJAYA', 'KULAI JAYA'),
+	                            (10, 'JHR', 'LDG', 'LEDANG', 'LEDANG'),
+	                            (11, 'KDH', 'BLG', 'BALING', 'BALING'),
+	                            (12, 'KDH', 'BBU', 'BANDAR BAHARU', 'BANDAR BAHARU'),
+	                            (13, 'KDH', 'KSR', 'KOTA SETAR', 'KOTA SETAR'),
+	                            (14, 'KDH', 'KMA', 'KUALA MUDA', 'KUALA MUDA'),
+	                            (15, 'KDH', 'KPU', 'KUBANG PASU', 'KUBANG PASU'),
+	                            (16, 'KDH', 'KLM', 'KULIM', 'KULIM'),
+	                            (17, 'KDH', 'LKI', 'LANGKAWI', 'PULAU LANGKAWI'),
+	                            (18, 'KDH', 'PTP', 'PADANG TERAP', 'PADANG TERAP'),
+	                            (19, 'KDH', 'PDG', 'PENDANG', 'PENDANG'),
+	                            (20, 'KDH', 'PSA', 'POKOK SENA', 'POKOK SENA'),
+	                            (21, 'KDH', 'SIK', 'SIK', 'SIK'),
+	                            (22, 'KDH', 'YAN', 'YAN', 'YAN'),
+	                            (23, 'KEL', 'BCK', 'BACHOK', 'BACHOK'),
+	                            (24, 'KEL', 'KBU', 'KOTA BHARU', 'KOTA BHARU'),
+	                            (25, 'KEL', 'MCG', 'MACHANG', 'MACHANG'),
+	                            (26, 'KEL', 'PMS', 'PASIR MAS', 'PASIR MAS'),
+	                            (27, 'KEL', 'PPH', 'PASIR PUTEH', 'PASIR PUTEH'),
+	                            (28, 'KEL', 'TMH', 'TANAH MERAH', 'TANAH MERAH'),
+	                            (29, 'KEL', 'TMT', 'TUMPAT', 'TUMPAT'),
+	                            (30, 'KEL', 'GMG', 'GUA MUSANG', 'GUA MUSANG'),
+	                            (31, 'KEL', 'KKI', 'KUALA KRAI', 'KUALA KRAI'),
+	                            (32, 'KEL', 'JEL', 'JELI', 'JELI'),
+	                            (33, 'MLK', 'AGH', 'ALOR GAJAH', 'ALOR GAJAH'),
+	                            (34, 'MLK', 'JSN', 'JASIN', 'JASIN'),
+	                            (35, 'MLK', 'MTH', 'MELAKA TENGAH', 'MELAKA TENGAH'),
+	                            (36, 'NS', 'JEB', 'JELEBU', 'JELEBU'),
+	                            (37, 'NS', 'KPH', 'KUALA PILAH', 'KUALA PILAH'),
+	                            (38, 'NS', 'PDN', 'PORT DICKSON', 'PORT DICKSON'),
+	                            (39, 'NS', 'RBU', 'REMBAU', 'REMBAU'),
+	                            (40, 'NS', 'SRM', 'SEREMBAN', 'SEREMBAN'),
+	                            (41, 'NS', 'TPN', 'TAMPIN', 'TAMPIN'),
+	                            (42, 'NS', 'JPL', 'JEMPOL', 'JEMPOL'),
+	                            (43, 'NS', 'GMS', 'GEMAS', 'GEMAS'),
+	                            (44, 'PHG', 'BTG', 'BENTONG', 'BENTONG'),
+	                            (45, 'PHG', 'CHS', 'CAMERON HIGLANDS', 'CAMERON HIGHLANDS'),
+	                            (46, 'PHG', 'JRT', 'JERANTUT', 'JERANTUT'),
+	                            (47, 'PHG', 'KTN', 'KUANTAN', 'KUANTAN'),
+	                            (48, 'PHG', 'KLS', 'KUALA LIPIS', 'LIPIS'),
+	                            (49, 'PHG', 'PKN', 'PEKAN', 'PEKAN'),
+	                            (50, 'PHG', 'RAU', 'RAUB', 'RAUB'),
+	                            (51, 'PHG', 'TML', 'TEMERLOH', 'TEMERLOH'),
+	                            (52, 'PHG', 'RMN', 'ROMPIN', 'ROMPIN'),
+	                            (53, 'PHG', 'MRN', 'MARAN', 'MARAN'),
+	                            (54, 'PHG', 'BER', 'BERA', 'BERA'),
+	                            (55, 'PL', 'PRS', 'PERLIS', 'PERLIS'),
+	                            (56, 'PP', 'BMM', 'SEBERANG PERAI TENGAH', 'SEBERANG PERAI TENGAH'),
+	                            (57, 'PP', 'BWH', 'SEBERANG PERAI UTARA', 'SEBERANG PERAI UTARA'),
+	                            (58, 'PP', 'NTL', 'SEBERANG PERAI SELATAN', 'SEBERANG PERAI SELATAN'),
+	                            (59, 'PP', 'DTL', 'TIMUR LAUT PULAU PINANG', 'TIMUR LAUT PULAU PINANG'),
+	                            (60, 'PP', 'DBD', 'BARAT DAYA PULAU PINANG', 'BARAT DAYA PULAU PINANG'),
+	                            (61, 'PRK', 'BPG', 'BATANG PADANG', 'BATANG PADANG'),
+	                            (62, 'PRK', 'MJG', 'MANJUNG', 'MANJUNG'),
+	                            (63, 'PRK', 'KNA', 'KINTA', 'KINTA'),
+	                            (64, 'PRK', 'KRN', 'KERIAN', 'KERIAN'),
+	                            (65, 'PRK', 'KKR', 'KUALA KANGSAR', 'KUALA KANGSAR'),
+	                            (66, 'PRK', 'LDM', 'LARUT, MATANG DAN SELAMA', 'LARUT, MATANG DAN SELAMA'),
+	                            (67, 'PRK', 'HRP', 'HILIR PERAK', 'HILIR PERAK'),
+	                            (68, 'PRK', 'HUP', 'HULU PERAK', 'HULU PERAK'),
+	                            (69, 'PRK', 'PTG', 'PERAK TENGAH', 'PERAK TENGAH'),
+	                            (70, 'PRK', 'SLM', 'SELAMA', 'LARUT, MATANG DAN SELAMA'),
+	                            (71, 'SBH', 'TWU', 'TAWAU', 'TAWAU'),
+	                            (72, 'SBH', 'LDU', 'LAHAD DATU', 'LAHAD DATU'),
+	                            (73, 'SBH', 'SMA', 'SEMPORNA', 'SEMPORNA'),
+	                            (74, 'SBH', 'SDN', 'SANDAKAN', 'SANDAKAN'),
+	                            (75, 'SBH', 'TGD', 'TONGOD', 'TONGOD'),
+	                            (76, 'SBH', 'LDS', 'LABUK DAN SUGUT', 'LABUK & SUGUT'),
+	                            (77, 'SBH', 'KKU', 'KOTA KINABALU', 'KOTA KINABALU'),
+	                            (78, 'SBH', 'RNU', 'RANAU', 'RANAU'),
+	                            (79, 'SBH', 'KBD', 'KOTA BELUD', 'KOTA BELUD'),
+	                            (80, 'SBH', 'TRI', 'TAMPARULI', 'TAMPARULI'),
+	                            (81, 'SBH', 'PMG', 'PENAMPANG', 'PENAMPANG'),
+	                            (82, 'SBH', 'PAR', 'PAPAR', 'PAPAR'),
+	                            (83, 'SBH', 'KDT', 'KUDAT', 'KUDAT'),
+	                            (84, 'SBH', 'KMU', 'KOTA MARUDU', 'KOTA MARUDU'),
+	                            (85, 'SBH', 'PTS', 'PITAS', 'PITAS'),
+	                            (86, 'SBH', 'BFT', 'BEAUFORT', 'BEAUFORT'),
+	                            (87, 'SBH', 'MNK', 'MENUMBUK', 'MENUMBUK'),
+	                            (88, 'SBH', 'STG', 'SIPITANG', 'SIPITANG'),
+	                            (89, 'SBH', 'TNM', 'TENOM', 'TENOM'),
+	                            (90, 'SBH', 'NBM', 'NABAWAN', 'NABAWAN'),
+	                            (91, 'SBH', 'KGU', 'KENINGAU', 'KENINGAU'),
+	                            (92, 'SBH', 'TBN', 'TAMBUNAN', 'TAMBUNAN'),
+	                            (93, 'SBH', 'KNK', 'KUNAK', 'KUNAK'),
+	                            (94, 'SBH', 'BRN', 'BELURAN', 'BELURAN'),
+	                            (95, 'SBH', 'THN', 'TENGHILAN', 'TENGHILAN'),
+	                            (96, 'SBH', 'BTN', 'BUNDU TUHAN', 'BUNDU TUHAN'),
+	                            (97, 'SBH', 'MGL', 'MENGGATAL/ INANAM', 'MENGGATAL/ INANAM'),
+	                            (98, 'SBH', 'KBN', 'KINABATANGAN', 'KINABATANGAN'),
+	                            (99, 'SBH', 'BGG', 'BANGGI', 'BANGGI'),
+	                            (100, 'SBH', 'TUR', 'TUARAN', 'TUARAN'),
+	                            (101, 'SBH', 'KYU', 'KUALA PENYU', 'KUALA PENYU'),
+	                            (102, 'SBH', 'TPD', 'TELUPID', 'TELUPID'),
+	                            (103, 'SEL', 'GMK', 'GOMBAK', 'GOMBAK'),
+	                            (104, 'SEL', 'KNG', 'KLANG', 'KLANG'),
+	                            (105, 'SEL', 'KLT', 'KUALA LANGAT', 'KUALA LANGAT'),
+	                            (106, 'SEL', 'KSG', 'KUALA SELANGOR', 'KUALA SELANGOR'),
+	                            (107, 'SEL', 'PLG', 'PETALING', 'PETALING'),
+	                            (108, 'SEL', 'SBM', 'SABAK BERNAM', 'SABAK BERNAM'),
+	                            (109, 'SEL', 'SPG', 'SEPANG', 'SEPANG'),
+	                            (110, 'SEL', 'HUL', 'HULU LANGAT', 'HULU LANGAT'),
+	                            (111, 'SEL', 'HUS', 'HULU SELANGOR', 'HULU SELANGOR'),
+	                            (112, 'SEL', 'AJY', 'AMPANG JAYA', 'AMPANG JAYA'),
+	                            (113, 'SWK', 'KCG', 'KUCHING', 'KUCHING'),
+	                            (114, 'SWK', 'BAU', 'BAU', 'BAU'),
+	                            (115, 'SWK', 'SRN', 'SERIAN', 'SERIAN'),
+	                            (116, 'SWK', 'SMJ', 'SIMUNJAN', 'SIMUNJAN'),
+	                            (117, 'SWK', 'LND', 'LUNDU', 'LUNDU'),
+	                            (118, 'SWK', 'SGG', 'SIMANGGANG', 'SRI AMAN/SIMANGGANG'),
+	                            (119, 'SWK', 'LAU', 'LUBOK ANTU', 'LUBOK ANTU'),
+	                            (120, 'SWK', 'SRS', 'SARIBAS', 'SARIBAS'),
+	                            (121, 'SWK', 'KLK', 'KALAKA', 'KALAKA'),
+	                            (122, 'SWK', 'SIB', 'SIBU', 'SIBU'),
+	                            (123, 'SWK', 'MKH', 'MUKAH', 'MUKAH'),
+	                            (124, 'SWK', 'KWT', 'KANOWIT', 'KANOWIT'),
+	                            (125, 'SWK', 'OYA', 'OYA/ DALAT', 'DALAT'),
+	                            (126, 'SWK', 'MIR', 'MIRI', 'MIRI'),
+	                            (127, 'SWK', 'BTL', 'BINTULU', 'BINTULU'),
+	                            (128, 'SWK', 'BRM', 'BARAM/MARUDI', 'BARAM'),
+	                            (129, 'SWK', 'LBG', 'LIMBANG', 'LIMBANG'),
+	                            (130, 'SWK', 'LWS', 'LAWAS', 'LAWAS'),
+	                            (131, 'SWK', 'SRI', 'SARIKEI', 'SARIKEI'),
+	                            (132, 'SWK', 'BTR', 'BINTANGGOR', 'BINTANGGOR'),
+	                            (133, 'SWK', 'MAT', 'MATU', 'MATU'),
+	                            (134, 'SWK', 'JLU', 'JULAU', 'JULAU'),
+	                            (135, 'SWK', 'KPT', 'KAPIT', 'KAPIT'),
+	                            (136, 'SWK', 'SON', 'SONG', 'SONG'),
+	                            (137, 'SWK', 'SHN', 'SAMARAHAN', 'SAMARAHAN'),
+	                            (138, 'SWK', 'MDG', 'MERADONG', 'MERADONG'),
+	                            (139, 'SWK', 'SAN', 'SRI AMAN/SIMANGGANG', 'SRI AMAN/SIMANGGANG'),
+	                            (140, 'SWK', 'DBK', 'DEBAK', 'DEBAK'),
+	                            (141, 'SWK', 'SBN', 'SIBURAN', 'SIBURAN'),
+	                            (142, 'SWK', 'BUD', 'BUDU(DK)', 'BUDU'),
+	                            (143, 'SWK', 'GDG', 'GEDUNG', 'GEDUNG'),
+	                            (144, 'SWK', 'MLD', 'MELUDANG', 'MELUDANG'),
+	                            (145, 'SWK', 'NMD', 'NANGA MEDAMIT', 'NANGA MEDAMIT'),
+	                            (146, 'SWK', 'NMR', 'NANGA MERIT', 'NANGA MERIT'),
+	                            (147, 'SWK', 'PNT', 'PANTU', 'PANTU'),
+	                            (148, 'SWK', 'PEM', 'PENDAM', 'PENDAM'),
+	                            (149, 'SWK', 'SJY', 'SADONG JAYA', 'SADONG JAYA'),
+	                            (150, 'SWK', 'TBD', 'TABEDU', 'TABEDU'),
+	                            (151, 'TRG', 'BST', 'BESUT', 'BESUT'),
+	                            (152, 'TRG', 'DGN', 'DUNGUN', 'DUNGUN'),
+	                            (153, 'TRG', 'KMM', 'KEMAMAN', 'KEMAMAN'),
+	                            (154, 'TRG', 'KTU', 'KUALA TERENGGANU', 'KUALA TERENGGANU'),
+	                            (155, 'TRG', 'MRG', 'MARANG', 'MARANG'),
+	                            (156, 'TRG', 'HUT', 'HULU TERENGGANU', 'HULU TERENGGANU'),
+	                            (157, 'TRG', 'STU', 'SETIU', 'SETIU'),
+	                            (158, 'WKL', 'KLR', 'KUALA LUMPUR', 'KUALA LUMPUR'),
+	                            (159, 'WPL', 'LBN', 'LABUAN', 'LABUAN'),
+	                            (160, 'WPP', 'PTR', 'PUTRAJAYA', 'PUTRAJAYA'),
+	                            (161, 'SWK', 'SRT', 'SARATOK', 'SARATOK'),
+	                            (162, 'KEL', 'LJG', 'LOJING', 'LOJING'),
+	                            (163, 'KDH', 'ASR', 'ALOR SETAR', 'ALOR SETAR'),
+	                            (164, 'KDH', 'SPI', 'SUNGAI PETANI', 'SUNGAI PETANI'),
+	                            (165, 'PHG', 'LPS', 'LIPIS', 'LIPIS'),
+	                            (166, 'PRK', 'KPR', 'KAMPAR', 'KAMPAR'),
+	                            (167, 'SBH', 'PNS', 'PENSIANGAN', 'PENSIANGAN'),
+	                            (168, 'SBH', 'LBA', 'LABUAN', 'LABUAN'),
+	                            (169, 'SWK', 'ASJ', '	\r\nASAJAYA', '	\r\nASAJAYA'),
+	                            (170, 'SWK', 'BLM', 'BALINGAN MUKAH', 'BALINGAN MUKAH'),
+	                            (171, 'SWK', 'BAR', 'BARAM', 'BARAM'),
+	                            (172, 'SWK', 'BKN', 'BEKENU', 'BEKENU'),
+	                            (173, 'SWK', 'BLA', 'BELAGA', 'BELAGA'),
+	                            (174, 'SWK', 'BTO', 'BETONG', 'BETONG'),
+	                            (175, 'SWK', 'DLT', 'DALAT', 'DALAT'),
+	                            (176, 'SWK', 'DRO', 'DARO', 'DARO'),
+	                            (177, 'SWK', 'ENL', 'ENGKILI', 'ENGKILI'),
+	                            (178, 'SWK', 'KBG', 'KABONG', 'KABONG'),
+	                            (179, 'SWK', 'KKS', 'KECIL KABONG SARATOK', 'KECIL KABONG SARATOK'),
+	                            (180, 'SWK', 'KNB', 'KECIL NIAH BINTULU', 'KECIL NIAH BINTULU'),
+	                            (181, 'SWK', 'KSB', 'KECIL SADONG BATANG SADONG', 'KECIL SADONG BATANG SADONG'),
+	                            (182, 'SWK', 'KTS', 'KOTA SAMARAHAN', 'KOTA SAMARAHAN'),
+	                            (183, 'SWK', 'KRI', 'KRIAN', 'KRIAN'),
+	                            (184, 'SWK', 'LMB', 'LAMBIR', 'LAMBIR'),
+	                            (185, 'SWK', 'LOL', 'LONG LAMA BARAM', 'LONG LAMA BARAM'),
+	                            (186, 'SWK', 'MAL', 'MALUDAM', 'MALUDAM'),
+	                            (187, 'SWK', 'MRD', 'MARUDI', 'MARUDI'),
+	                            (188, 'SWK', 'MUK', 'MUKAH', 'MUKAH'),
+	                            (189, 'SWK', 'NNM', 'NANGA MEDAMIT', 'NANGA MEDAMIT'),
+	                            (190, 'SWK', 'NGM', 'NANGA MERIT', 'NANGA MERIT'),
+	                            (191, 'SWK', 'NIA', 'NIAH', 'NIAH'),
+	                            (192, 'SWK', 'PDW', 'PADAWAN', 'PADAWAN'),
+	                            (193, 'SWK', 'PKA', 'PAKAN', 'PAKAN'),
+	                            (194, 'SWK', 'PUS', 'PUSA', 'PUSA'),
+	                            (195, 'SWK', 'RBN', 'ROBAN', 'ROBAN'),
+	                            (196, 'SWK', 'SEB', 'SEBAUH', 'SEBAUH'),
+	                            (197, 'SWK', 'SBY', 'SEBUYAU', 'SEBUYAU'),
+	                            (198, 'SWK', 'SEL', 'SELANGAU', 'SELANGAU'),
+	                            (199, 'SWK', 'SMT', 'SEMANTAN', 'SEMANTAN'),
+	                            (200, 'SWK', 'SRA', 'SRI AMAN', 'SRI AMAN'),
+	                            (201, 'SWK', 'SPA', 'SPAOH', 'SPAOH'),
+	                            (202, 'SWK', 'SUA', 'SUAI', 'SUAI'),
+	                            (203, 'SWK', 'SUB', 'SUBIS', 'SUBIS'),
+	                            (204, 'SWK', 'TAT', 'TATAU', 'TATAU'),
+	                            (205, 'SWK', 'TEB', 'TEBAKANG', 'TEBAKANG'),
+	                            (206, 'SWK', 'TIN', 'TINJAR', 'TINJAR'),
+	(207, 'SWK', 'ULN', 'ULU NIAH', 'ULU NIAH');
+                            ";
+                #endregion
+                cmd.CommandText = qry;
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+        public int SetupVariableSetting(SQLiteConnection cnn)
+        {
+            int i = 0;
+            using (SQLiteCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                #region Create & Insert
+                string qry = @"
+                            CREATE TABLE IF NOT EXISTS VariableSetting
+                            (
+                                Key varchar(50) NOT NULL PRIMARY KEY,
+                                Value varchar(250) NOT NULL,
+                                Description varchar(250),
+                                CanModify int NOT NULL,
+                                IsEncrypt bit NOT NULL
+                            );
+                            
+                             DELETE FROM VariableSetting;
+
+                            INSERT INTO VariableSetting (Key, Value, Description, CanModify, IsEncrypt) VALUES 
+                                ('passPhrase', '#1UWLyP1','', 0, 0)
+                            , ('saltValue', 's@1tValue','', 0, 0)
+                            , ('hashAlgorithm', 'SHA1','', 0, 0)
+                            , ('passwordIterations', '2','', 0, 0)
+                            , ('initVector', '@1B2c3D4e5F6g7H8','', 0, 0)
+                            , ('keySize', '256','', 0, 0)
+                            , ('Status', 'Development','', 0, 0)
+                    ";
+                #endregion
+                cmd.CommandText = qry;
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+
+        public int SetupTBangsa(SQLiteConnection cnn)
+        {
+            int i = 0;
+            using (SQLiteCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandType = CommandType.Text;
+                #region Create & Insert
+                string qry = @"
+                            CREATE TABLE IF NOT EXISTS TBANGSA
+                            (
+                                BANGSA varchar(100)
+                            );
+                    ";
+                #endregion
+                cmd.CommandText = qry;
                 i = cmd.ExecuteNonQuery();
             }
             return i;

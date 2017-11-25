@@ -50,14 +50,13 @@ namespace PortableApps.Repo
             return ent;
         }
 
-
         public IList<CSToDB> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, CSToDB whareClause = null)
         {
-            int PageSize = page * rows;
-            string qry = @"SELECT * FROM CSToDB LIMIT @PageSize ";
+            //int PageSize = page * rows;
+            string qry = @"SELECT * FROM CSToDB LIMIT @page, @PageSize ";
             string cntQry = @"SELECT COUNT(*) FROM CSToDB";
             rowCount = sqliteCon.Query<int>(cntQry, null).FirstOrDefault();
-            IList<CSToDB> lstEnt = sqliteCon.Query<CSToDB>(qry, new { PageSize }).ToList();
+            IList<CSToDB> lstEnt = sqliteCon.Query<CSToDB>(qry, new { page = page - 1, PageSize = rows }).ToList();
             return lstEnt;
         }
     }

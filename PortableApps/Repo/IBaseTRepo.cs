@@ -12,6 +12,6 @@ namespace PortableApps.Repo
         int Delete(TID ID);
         IList<T> GetAll();
         T GetBy(TID ID);
-        IList<T> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, T whareClause);
+        IList<T> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, T oWhereClause);
     }
 }

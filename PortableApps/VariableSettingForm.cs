@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using PortableApps.Common;
+using PortableApps.Model;
 using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
@@ -11,17 +12,14 @@ using System.Windows.Forms;
 
 namespace PortableApps
 {
-    public partial class SettingForm : Form
+    public partial class VariableSettingForm : Form
     {
-        ICSToDBRepo CSToDBRepo = new CSToDBRepo();
-        private int currentIndex;
-        private bool isLastPage;
-        private int totalRecords;
-        private int currentPageStartRecord;
-        private int currentPageEndRecord;
+        IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
         int PageSize = 2;
 
-        public SettingForm()
+        int totalRecords = 0;
+
+        public VariableSettingForm()
         {
             InitializeComponent();
         }
@@ -34,10 +32,12 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CSToDB CSToDB = new CSToDB();
-            CSToDB.CSName = txtCSName.Text;
-            CSToDB.ConnString = txtConnString.Text;
-            CSToDBRepo.Create(CSToDB);
+            VariableSetting VariableSetting = new VariableSetting();
+            VariableSetting.Key = txtKey.Text;
+            VariableSetting.Value = cbEncrypt.Checked ? WFUtils.Encrypt(txtValue.Text) : txtValue.Text;
+            VariableSetting.Description = txtDescription.Text;
+            VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
+            VariableSettingRepo.Create(VariableSetting);
             BindGrid(1);
         }
 
@@ -142,7 +142,7 @@ namespace PortableApps
 
         private void BindGrid(int pageIndex)
         {
-            IList<CSToDB> lstEnt = CSToDBRepo.PagedList(pageIndex, PageSize, "Id", "Asc", out totalRecords, null);
+            IList<VariableSetting> lstEnt = VariableSettingRepo.PagedList(pageIndex, PageSize, "Key", "Asc", out totalRecords, null);
             dgvCS.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
