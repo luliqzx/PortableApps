@@ -1,0 +1,121 @@
+code,value,type,parent
+PP,PULAU PINANG,NEGERI,UTR
+KDH,KEDAH,NEGERI,UTR
+KL,TANAH KEBUN LAIN YANG DITUAI,,
+PRK,PERAK,NEGERI,UTR
+KS,KEBUN SENDIRI,,
+SEL ,SELANGOR,NEGERI,TGH
+G,FELCRA,,
+WKL,WILAYAH PERSEKUTUAN KUALA LUMPUR,NEGERI,TGH
+F,FELDA,,
+WPP,WILAYAH PERSEKUTUAN PUTRAJAYA,NEGERI,TGH
+MLK,MELAKA,NEGERI,TGH
+E ,SYARIKAT SDN BHD,,
+JHR,JOHOR,NEGERI,SEL
+D,PERSEORANGAN,,
+PHG,PAHANG,NEGERI,TMR
+C,KOPERASI,,
+TRG,TERENGGANU,NEGERI,TMR
+KEL,KELANTAN,NEGERI,TMR
+SWK,SARAWAK,NEGERI,SWK
+B,PERNIAGAAN PERKONGSIAN,,
+SBH,SABAH,NEGERI,SBH
+A,INDIVIDU,,
+WPL,WILAYAH PERSEKUTUAN LABUAN,NEGERI,SBH
+R2,Pegawai TUNAS Kawasan,,
+R1,Admin,,
+SA,AKTIF,,
+SB,TAK AKTIF,,
+UTR,UTARA,WILAYAH,
+TMR,TIMUR,WILAYAH,
+SEL,SELATAN,WILAYAH,
+TGH,TENGAH,WILAYAH,
+NS,NEGERI SEMBILAN,NEGERI,TGH
+PL,PERLIS,NEGERI,UTR
+SBH,SABAH,WILAYAH,
+SWK,SARAWAK,WILAYAH,
+WPL,LABUAN,WILAYAH,
+ALL,SEMUA WILAYAH,WILAYAH,
+32,"AFFIN BANK BERHAD ",,
+12,"ALLIANCE BANK MALAYSIA BERHAD ",,
+8,"AMBANK/AMFINANCE ",,
+45,"BANK ISLAM MALAYSIA BERHAD ",,
+2,"BANK KERJASAMA RAKYAT MALAYSIA BERHAD ",,
+41,"BANK MUAMALAT MALAYSIA BERHAD ",,
+7,"BANK OF AMERICA ",,
+49,"BANK PERTANIAN MALAYSIA BERHAD (AGROBANK) ",,
+10,"BANK SIMPANAN NASIONAL BERHAD ",,
+17,"CITIBANK BERHAD ",,
+19,"DEUTSCHE BANK (MALAYSIA) BERHAD ",,
+23,"EON BANK/EON FINANCE ",,
+24,"HONG LEONG BANK ",,
+22,"HSBC BANK MALAYSIA BERHAD ",,
+48,"J.P. MORGAN CHASE BANK BHD ",,
+47,"KUWAIT FINANCE HOUSE (MALAYSIA) BERHAD ",,
+27,"MAYBANK ",,
+29,"OCBC BANK (MALAYSIA) BERHAD ",,
+33,"PUBLIC BANK BERHAD/PUBLIC FINANCE BERHAD ",,
+50,CIMB BANK,,
+18,RHB BANK,,
+R3,Pelawat,,
+R4,Pegawai Kewangan,,
+B_PK,Penyediaan Kawasan,,
+B_BPK,BPK,,
+B_BAJA,Bekalan Baja Fosfat ,,
+B_BENIH,Bekalan Anak Benih,,
+B_KIMIA,Bekalan Bahan Kimia/Racun ,,
+B_THN1,Bekalan Baja Tahun 1 ,,
+B_THN2,Bekalan Baja Tahun 2,,
+2,Belum Terima PR,,
+1,Dalam Cadangan,,
+b_benih,Anak Benih,,
+b_baja,Baja Bantuan Fosfat,,
+b_racun1,Racun Tahun 1,,
+b_racun2,Racun Tahun 2,,
+26,UNITED OVERSEAS BANK BERHAD,,
+b_sebatian1,Baja Sebatian Tahun 1,,
+b_lain,Lain - Lain (Isikan maklumat di bahagian catatan),,
+mpob,Dibekalkan oleh MPOB,,
+sendiri,Beli Sendiri,,
+jb_serangg,Racun serangga,,
+jb_rumpaib,Racun Rumpai (Basta 15),,
+jb_rumpaig,Racun Rumpai (Glyphosate),,
+jb_f1,Baja Sebatian MPOB F1,,
+jb_f2,Baja Sebatian MPOB F2,,
+jb_f3,Baja Sebatian MPOB F3,,
+jb_f4,Baja Sebatian MPOB F4,,
+jb_lain,Lain-lain (Isikan di bahagian catatan),,
+Unit,Unit,,
+Beg,Beg,,
+Botol,Botol,,
+Pokok,Pokok,,
+103,Komitmen,,
+102,Belanja Sebenar,,
+101,Unjuran EPP01,,
+b_sebatian2,Baja Sebatian Tahun 2,,
+cadangan,Dalam Cadangan,,
+3,Telah keluar PO,,
+belum_terima,Belum Terima PR,,
+keluar_po,Telah keluar PO,,
+bayaran_lulus,Bayaran Telah Diluluskan,,
+4,Bayaran Telah Diluluskan,,
+51,LEMBAGA TABUNG HAJI,,
+52,AMANAH SAHAM BUMIPUTRA (ASB),,
+TB,Telah Bayar,,
+DP,Dalam Proses Pembayaran,,
+TK,Telah keluar PO,,
+DC,Dalam Cadangan,,
+14,STANDARD CHARTERED BANK MALAYSIA BERHAD,,
+46,THE ROYAL BANK OF SCOTLAND BERHAD,,
+R6,Pegawai Penyelia,,
+R7,Ketua Unit,,
+KUPON_BAJA_SEBATIAN,Kupon Baja Sebatian,,
+tanah_ukur_warta,Tanah Yang Diukur Dan Diwarta,,
+tanah_ukur_belum_warta,Tanah Yang Diukur Dan Belum Diwarta,,
+tanah_geran,Tanah Geran,,
+tanah_luar_kategori,"Tanah Diluar Kategori 1,2 Dan 3",,
+GK,Geran Kekal,HAKMILIKTANAH,
+TNCR,Tanah NCR,HAKMILIKTANAH,
+TPT,Tanah PT,HAKMILIKTANAH,
+ROA,Rizab Orang Asli,HAKMILIKTANAH,
+LL,Lain-Lain,HAKMILIKTANAH,

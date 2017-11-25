@@ -1,0 +1,1 @@
+CREATE TABLE "dun" ("id" int(11) DEFAULT (null) ,"kod_negeri" varchar(10) DEFAULT (null) ,"kod_dun" varchar(10) DEFAULT (null) ,"dun_desc" varchar(100) DEFAULT (null) )

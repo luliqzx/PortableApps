@@ -1,0 +1,35 @@
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.6.25 - MySQL Community Server (GPL)
+-- Server OS:                    Win32
+-- HeidiSQL Version:             9.2.0.4947
+-- --------------------------------------------------------
+
+-- Dumping structure for table a1_tsspk1511.makkebun
+CREATE TABLE IF NOT EXISTS `makkebun` (
+  `id_makkebun` int(11) NOT NULL AUTO_INCREMENT,
+  `appinfo_id` int(11) NULL,
+  `addr1` varchar(100) DEFAULT NULL,
+  `addr2` varchar(100) DEFAULT NULL,
+  `addr3` varchar(100) DEFAULT NULL,
+  `daerah` varchar(30)   NULL,
+  `dun` varchar(100)   NULL,
+  `parlimen` int(11) DEFAULT NULL,
+  `poskod` varchar(5) DEFAULT NULL,
+  `negeri` varchar(20)   DEFAULT NULL,
+  `nolot` varchar(20) DEFAULT NULL,
+  `hakmiliktanah` varchar(30) NULL,
+  `tncr` varchar(30) NULL,
+  `luasmatang` double DEFAULT NULL,
+  `tebang` varchar(5) DEFAULT NULL,
+  `tarikhtebang` varchar(20) DEFAULT NULL,
+  `nolesen` varchar(50) DEFAULT NULL,
+  `syarattanah` varchar(22) NULL,
+  `pemilikan` varchar(10) DEFAULT NULL,
+  `pengurusan` varchar(20) DEFAULT NULL,
+  `luaslesen` double DEFAULT NULL,
+  `catatan` text,
+  `created` datetime DEFAULT NULL,
+  `createdby` varchar(100) DEFAULT NULL
+)
+-- Data exporting was unselected.
