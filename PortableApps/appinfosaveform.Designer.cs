@@ -31,7 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtnama = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -62,29 +62,29 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbbangsa = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -113,12 +113,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Nama Pemohon ";
             // 
-            // textBox1
+            // txtnama
             // 
-            this.textBox1.Location = new System.Drawing.Point(220, 44);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtnama.Location = new System.Drawing.Point(220, 44);
+            this.txtnama.Name = "txtnama";
+            this.txtnama.Size = new System.Drawing.Size(200, 20);
+            this.txtnama.TabIndex = 3;
             // 
             // textBox2
             // 
@@ -364,7 +364,7 @@
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.comboBox3);
             this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbbangsa);
             this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label36);
@@ -389,7 +389,7 @@
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBox17);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtnama);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox2);
@@ -423,75 +423,97 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "A. MAKLUMAT PERMOHON";
             // 
-            // label18
+            // checkBox1
             // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(203, 28);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(11, 13);
-            this.label18.TabIndex = 42;
-            this.label18.Text = "*";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(220, 487);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(168, 17);
+            this.checkBox1.TabIndex = 65;
+            this.checkBox1.Text = "Tick jika pemohon tanpa SOP";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
-            // label19
+            // comboBox4
             // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(203, 51);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(11, 13);
-            this.label19.TabIndex = 43;
-            this.label19.Text = "*";
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Location = new System.Drawing.Point(220, 354);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(121, 21);
+            this.comboBox4.TabIndex = 64;
             // 
-            // label20
+            // comboBox3
             // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.Red;
-            this.label20.Location = new System.Drawing.Point(203, 76);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(11, 13);
-            this.label20.TabIndex = 44;
-            this.label20.Text = "*";
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(220, 302);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 21);
+            this.comboBox3.TabIndex = 63;
             // 
-            // label21
+            // comboBox2
             // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(203, 154);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(11, 13);
-            this.label21.TabIndex = 47;
-            this.label21.Text = "*";
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(220, 327);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 62;
             // 
-            // label22
+            // cbbangsa
             // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(203, 128);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(11, 13);
-            this.label22.TabIndex = 46;
-            this.label22.Text = "*";
+            this.cbbangsa.FormattingEnabled = true;
+            this.cbbangsa.Location = new System.Drawing.Point(220, 120);
+            this.cbbangsa.Name = "cbbangsa";
+            this.cbbangsa.Size = new System.Drawing.Size(121, 21);
+            this.cbbangsa.TabIndex = 61;
             // 
-            // label23
+            // label34
             // 
-            this.label23.AutoSize = true;
-            this.label23.ForeColor = System.Drawing.Color.Red;
-            this.label23.Location = new System.Drawing.Point(203, 102);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(11, 13);
-            this.label23.TabIndex = 45;
-            this.label23.Text = "*";
+            this.label34.AutoSize = true;
+            this.label34.ForeColor = System.Drawing.Color.Red;
+            this.label34.Location = new System.Drawing.Point(203, 488);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(11, 13);
+            this.label34.TabIndex = 60;
+            this.label34.Text = "*";
             // 
-            // label24
+            // label35
             // 
-            this.label24.AutoSize = true;
-            this.label24.ForeColor = System.Drawing.Color.Red;
-            this.label24.Location = new System.Drawing.Point(203, 180);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(11, 13);
-            this.label24.TabIndex = 48;
-            this.label24.Text = "*";
+            this.label35.AutoSize = true;
+            this.label35.ForeColor = System.Drawing.Color.Red;
+            this.label35.Location = new System.Drawing.Point(203, 462);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(11, 13);
+            this.label35.TabIndex = 59;
+            this.label35.Text = "*";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.ForeColor = System.Drawing.Color.Red;
+            this.label36.Location = new System.Drawing.Point(203, 436);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(11, 13);
+            this.label36.TabIndex = 58;
+            this.label36.Text = "*";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.ForeColor = System.Drawing.Color.Red;
+            this.label37.Location = new System.Drawing.Point(203, 411);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(11, 13);
+            this.label37.TabIndex = 57;
+            this.label37.Text = "*";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.ForeColor = System.Drawing.Color.Red;
+            this.label38.Location = new System.Drawing.Point(203, 388);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(11, 13);
+            this.label38.TabIndex = 56;
+            this.label38.Text = "*";
             // 
             // label25
             // 
@@ -553,97 +575,75 @@
             this.label30.TabIndex = 50;
             this.label30.Text = "*";
             // 
-            // label38
+            // label24
             // 
-            this.label38.AutoSize = true;
-            this.label38.ForeColor = System.Drawing.Color.Red;
-            this.label38.Location = new System.Drawing.Point(203, 388);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(11, 13);
-            this.label38.TabIndex = 56;
-            this.label38.Text = "*";
+            this.label24.AutoSize = true;
+            this.label24.ForeColor = System.Drawing.Color.Red;
+            this.label24.Location = new System.Drawing.Point(203, 180);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(11, 13);
+            this.label24.TabIndex = 48;
+            this.label24.Text = "*";
             // 
-            // label37
+            // label21
             // 
-            this.label37.AutoSize = true;
-            this.label37.ForeColor = System.Drawing.Color.Red;
-            this.label37.Location = new System.Drawing.Point(203, 411);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(11, 13);
-            this.label37.TabIndex = 57;
-            this.label37.Text = "*";
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.Red;
+            this.label21.Location = new System.Drawing.Point(203, 154);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(11, 13);
+            this.label21.TabIndex = 47;
+            this.label21.Text = "*";
             // 
-            // label36
+            // label22
             // 
-            this.label36.AutoSize = true;
-            this.label36.ForeColor = System.Drawing.Color.Red;
-            this.label36.Location = new System.Drawing.Point(203, 436);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(11, 13);
-            this.label36.TabIndex = 58;
-            this.label36.Text = "*";
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(203, 128);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(11, 13);
+            this.label22.TabIndex = 46;
+            this.label22.Text = "*";
             // 
-            // label35
+            // label23
             // 
-            this.label35.AutoSize = true;
-            this.label35.ForeColor = System.Drawing.Color.Red;
-            this.label35.Location = new System.Drawing.Point(203, 462);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(11, 13);
-            this.label35.TabIndex = 59;
-            this.label35.Text = "*";
+            this.label23.AutoSize = true;
+            this.label23.ForeColor = System.Drawing.Color.Red;
+            this.label23.Location = new System.Drawing.Point(203, 102);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(11, 13);
+            this.label23.TabIndex = 45;
+            this.label23.Text = "*";
             // 
-            // label34
+            // label20
             // 
-            this.label34.AutoSize = true;
-            this.label34.ForeColor = System.Drawing.Color.Red;
-            this.label34.Location = new System.Drawing.Point(203, 488);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(11, 13);
-            this.label34.TabIndex = 60;
-            this.label34.Text = "*";
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.Red;
+            this.label20.Location = new System.Drawing.Point(203, 76);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(11, 13);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "*";
             // 
-            // comboBox1
+            // label19
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(220, 120);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 61;
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.Red;
+            this.label19.Location = new System.Drawing.Point(203, 51);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(11, 13);
+            this.label19.TabIndex = 43;
+            this.label19.Text = "*";
             // 
-            // comboBox2
+            // label18
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(220, 327);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 62;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(220, 302);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 63;
-            // 
-            // comboBox4
-            // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(220, 354);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 64;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(220, 487);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(168, 17);
-            this.checkBox1.TabIndex = 65;
-            this.checkBox1.Text = "Tick jika pemohon tanpa SOP";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.Red;
+            this.label18.Location = new System.Drawing.Point(203, 28);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(11, 13);
+            this.label18.TabIndex = 42;
+            this.label18.Text = "*";
             // 
             // appinfosaveform
             // 
@@ -667,7 +667,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtnama;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox3;
@@ -719,7 +719,7 @@
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbbangsa;
         private System.Windows.Forms.CheckBox checkBox1;
     }
 }

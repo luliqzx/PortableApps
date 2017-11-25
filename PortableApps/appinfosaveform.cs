@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PortableApps.Model;
+using PortableApps.Repo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +13,7 @@ namespace PortableApps
 {
     public partial class appinfosaveform : Form
     {
+        IBangsaRepo BangsaRepo = new BangsaRepo();
         public appinfosaveform()
         {
             InitializeComponent();
@@ -18,7 +21,32 @@ namespace PortableApps
 
         private void appinfosaveform_Load(object sender, EventArgs e)
         {
+            LoadTBangsa();
+            LoadParlimen();
+            LoadDaerah();
+            LoadDun();
+        }
 
+        private void LoadTBangsa()
+        {
+            IList<TBangsa> lstBangsa = BangsaRepo.GetAll();
+            cbbangsa.Items.Clear();
+            cbbangsa.DataSource = lstBangsa;
+            cbbangsa.DisplayMember = "Bangsa";
+            cbbangsa.ValueMember = "Bangsa";
+            cbbangsa.SelectedIndex = -1;
+        }
+
+        private void LoadParlimen()
+        {
+        }
+
+        private void LoadDaerah()
+        {
+        }
+
+        private void LoadDun()
+        {
         }
     }
 }

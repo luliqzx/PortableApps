@@ -20,7 +20,7 @@ namespace PortableApps
 
             ProcessFirst();
 
-            Application.Run(new VariableSettingForm());
+            Application.Run(new appinfosaveform());
         }
 
         private static void ProcessFirst()
