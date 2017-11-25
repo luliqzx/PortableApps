@@ -5,6 +5,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using Dapper;
+using PortableApps.Common;
 
 namespace PortableApps.Repo
 {
@@ -29,10 +30,11 @@ namespace PortableApps.Repo
             VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
             if (VariableSetting != null)
             {
-                if (VariableSetting.Key == "Production")
+                if (VariableSetting.Value == "Production")
                 {
                     VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
-                    MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
+                    //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
+                    MySqlConnection = new MySqlConnection(WFUtils.Decrypt(VariableSettingConStr.Value));
                 }
                 else
                 {
