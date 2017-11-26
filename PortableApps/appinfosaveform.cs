@@ -18,6 +18,7 @@ namespace PortableApps
         IDaerahRepo DaerahRepo = new DaerahRepo();
         IDunRepo DunRepo = new DunRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
+        IAppInfoRepo AppInfoRepo = new AppInfoRepo();
 
         public appinfosaveform()
         {
@@ -33,6 +34,7 @@ namespace PortableApps
             LoadNegeri();
             LoadTBangsa();
             LoadParlimen();
+            txtappdate.CustomFormat = "dd-MM-yyyy";
         }
 
         private void LoadTBangsa()
@@ -163,6 +165,39 @@ namespace PortableApps
             {
                 DateTimePicker dp = sender as DateTimePicker;
                 this.ttpGeneral.SetToolTip(dp, dp.Text);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            appinfo appinfo = new appinfo();
+            appinfo.id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
+            appinfo.appdate = txtappdate.Text;
+            appinfo.nama = txtnama.Text;
+            //appinfo.type_id = txttype_id.Text;
+            appinfo.icno = txticno.Text;
+            appinfo.nolesen = txtnolesen.Text;
+            appinfo.bangsa = cbbangsa.SelectedValue.ToString();
+            appinfo.addr1 = txtaddr1.Text;
+            appinfo.addr2 = txtaddr2.Text;
+            appinfo.addr3 = txtaddr3.Text;
+            appinfo.bandar = txtbandar.Text;
+            appinfo.daerah = cbdaerah.SelectedValue.ToString();
+            appinfo.dun = cbdun.SelectedValue.ToString();
+            appinfo.parlimen = cbparlimen.SelectedValue.ToString();
+            appinfo.poskod = txtposkod.Text;
+            appinfo.negeri = cbnegeri.SelectedValue.ToString();
+            appinfo.hometel = txthometel.Text;
+            appinfo.officetel = txtofficetel.Text;
+            appinfo.hptel = txthptel.Text;
+            //appinfo.faks = txtfaks.Text;
+            appinfo.email = txtemail.Text;
+            //appinfo.kelompok = txtkelompok.Text;
+
+            int i = AppInfoRepo.Create(appinfo);
+            if (i > 0)
+            {
+                MessageBox.Show("Data berhasil disimpan [" + appinfo.id + "]");
             }
         }
 

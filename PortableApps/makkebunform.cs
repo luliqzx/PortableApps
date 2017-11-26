@@ -18,7 +18,9 @@ namespace PortableApps
 
         private void makkebunform_Load(object sender, EventArgs e)
         {
-
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
         }
     }
 }

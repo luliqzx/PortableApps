@@ -30,33 +30,33 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtappdate = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.txtnama = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txthptel = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtofficetel = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txthometel = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtposkod = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtbandar = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtaddr3 = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtaddr2 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtaddr1 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.txtnolesen = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.txticno = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.txtemail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -102,13 +102,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tarikh Permohonan ";
             // 
-            // dateTimePicker1
+            // txtappdate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(220, 18);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 1;
-            this.dateTimePicker1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtappdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txtappdate.Location = new System.Drawing.Point(220, 18);
+            this.txtappdate.Name = "txtappdate";
+            this.txtappdate.Size = new System.Drawing.Size(200, 20);
+            this.txtappdate.TabIndex = 1;
+            this.txtappdate.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label2
             // 
@@ -127,13 +128,13 @@
             this.txtnama.TabIndex = 2;
             this.txtnama.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
-            // textBox2
+            // txthptel
             // 
-            this.textBox2.Location = new System.Drawing.Point(220, 433);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 17;
-            this.textBox2.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txthptel.Location = new System.Drawing.Point(220, 433);
+            this.txthptel.Name = "txthptel";
+            this.txthptel.Size = new System.Drawing.Size(200, 20);
+            this.txthptel.TabIndex = 17;
+            this.txthptel.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label3
             // 
@@ -144,13 +145,13 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Tel (H/P)";
             // 
-            // textBox3
+            // txtofficetel
             // 
-            this.textBox3.Location = new System.Drawing.Point(220, 407);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 20);
-            this.textBox3.TabIndex = 16;
-            this.textBox3.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtofficetel.Location = new System.Drawing.Point(220, 407);
+            this.txtofficetel.Name = "txtofficetel";
+            this.txtofficetel.Size = new System.Drawing.Size(200, 20);
+            this.txtofficetel.TabIndex = 16;
+            this.txtofficetel.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label4
             // 
@@ -161,13 +162,13 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Tel (Pej)";
             // 
-            // textBox4
+            // txthometel
             // 
-            this.textBox4.Location = new System.Drawing.Point(220, 381);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(200, 20);
-            this.textBox4.TabIndex = 15;
-            this.textBox4.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txthometel.Location = new System.Drawing.Point(220, 381);
+            this.txthometel.Name = "txthometel";
+            this.txthometel.Size = new System.Drawing.Size(200, 20);
+            this.txthometel.TabIndex = 15;
+            this.txthometel.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label5
             // 
@@ -196,13 +197,13 @@
             this.label9.TabIndex = 16;
             this.label9.Text = "Negeri";
             // 
-            // textBox9
+            // txtposkod
             // 
-            this.textBox9.Location = new System.Drawing.Point(220, 251);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(200, 20);
-            this.textBox9.TabIndex = 10;
-            this.textBox9.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtposkod.Location = new System.Drawing.Point(220, 251);
+            this.txtposkod.Name = "txtposkod";
+            this.txtposkod.Size = new System.Drawing.Size(200, 20);
+            this.txtposkod.TabIndex = 10;
+            this.txtposkod.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label10
             // 
@@ -213,13 +214,13 @@
             this.label10.TabIndex = 18;
             this.label10.Text = "Poskod";
             // 
-            // textBox10
+            // txtbandar
             // 
-            this.textBox10.Location = new System.Drawing.Point(220, 225);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(200, 20);
-            this.textBox10.TabIndex = 9;
-            this.textBox10.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtbandar.Location = new System.Drawing.Point(220, 225);
+            this.txtbandar.Name = "txtbandar";
+            this.txtbandar.Size = new System.Drawing.Size(200, 20);
+            this.txtbandar.TabIndex = 9;
+            this.txtbandar.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label11
             // 
@@ -230,13 +231,13 @@
             this.label11.TabIndex = 20;
             this.label11.Text = "Bandar ";
             // 
-            // textBox11
+            // txtaddr3
             // 
-            this.textBox11.Location = new System.Drawing.Point(220, 199);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(200, 20);
-            this.textBox11.TabIndex = 8;
-            this.textBox11.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtaddr3.Location = new System.Drawing.Point(220, 199);
+            this.txtaddr3.Name = "txtaddr3";
+            this.txtaddr3.Size = new System.Drawing.Size(200, 20);
+            this.txtaddr3.TabIndex = 8;
+            this.txtaddr3.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label12
             // 
@@ -247,13 +248,13 @@
             this.label12.TabIndex = 22;
             this.label12.Text = "Alamat (Baris 3) ";
             // 
-            // textBox12
+            // txtaddr2
             // 
-            this.textBox12.Location = new System.Drawing.Point(220, 173);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(200, 20);
-            this.textBox12.TabIndex = 7;
-            this.textBox12.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtaddr2.Location = new System.Drawing.Point(220, 173);
+            this.txtaddr2.Name = "txtaddr2";
+            this.txtaddr2.Size = new System.Drawing.Size(200, 20);
+            this.txtaddr2.TabIndex = 7;
+            this.txtaddr2.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label13
             // 
@@ -264,13 +265,13 @@
             this.label13.TabIndex = 24;
             this.label13.Text = "Alamat (Baris 2) ";
             // 
-            // textBox13
+            // txtaddr1
             // 
-            this.textBox13.Location = new System.Drawing.Point(220, 147);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(200, 20);
-            this.textBox13.TabIndex = 6;
-            this.textBox13.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtaddr1.Location = new System.Drawing.Point(220, 147);
+            this.txtaddr1.Name = "txtaddr1";
+            this.txtaddr1.Size = new System.Drawing.Size(200, 20);
+            this.txtaddr1.TabIndex = 6;
+            this.txtaddr1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label14
             // 
@@ -290,13 +291,13 @@
             this.label15.TabIndex = 28;
             this.label15.Text = "Bangsa";
             // 
-            // textBox15
+            // txtnolesen
             // 
-            this.textBox15.Location = new System.Drawing.Point(220, 95);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(200, 20);
-            this.textBox15.TabIndex = 4;
-            this.textBox15.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtnolesen.Location = new System.Drawing.Point(220, 95);
+            this.txtnolesen.Name = "txtnolesen";
+            this.txtnolesen.Size = new System.Drawing.Size(200, 20);
+            this.txtnolesen.TabIndex = 4;
+            this.txtnolesen.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label16
             // 
@@ -307,13 +308,13 @@
             this.label16.TabIndex = 30;
             this.label16.Text = "No Lesen";
             // 
-            // textBox16
+            // txticno
             // 
-            this.textBox16.Location = new System.Drawing.Point(220, 69);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.Size = new System.Drawing.Size(200, 20);
-            this.textBox16.TabIndex = 3;
-            this.textBox16.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txticno.Location = new System.Drawing.Point(220, 69);
+            this.txticno.Name = "txticno";
+            this.txticno.Size = new System.Drawing.Size(200, 20);
+            this.txticno.TabIndex = 3;
+            this.txticno.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label17
             // 
@@ -324,13 +325,13 @@
             this.label17.TabIndex = 32;
             this.label17.Text = "No KP";
             // 
-            // textBox17
+            // txtemail
             // 
-            this.textBox17.Location = new System.Drawing.Point(220, 459);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(200, 20);
-            this.textBox17.TabIndex = 18;
-            this.textBox17.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.txtemail.Location = new System.Drawing.Point(220, 459);
+            this.txtemail.Name = "txtemail";
+            this.txtemail.Size = new System.Drawing.Size(200, 20);
+            this.txtemail.TabIndex = 18;
+            this.txtemail.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label6
             // 
@@ -359,6 +360,7 @@
             this.button1.TabIndex = 20;
             this.button1.Text = "Seterusnya";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
@@ -405,36 +407,36 @@
             this.groupBox1.Controls.Add(this.label18);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.txtappdate);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox17);
+            this.groupBox1.Controls.Add(this.txtemail);
             this.groupBox1.Controls.Add(this.txtnama);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.txthptel);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.textBox16);
-            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.txticno);
+            this.groupBox1.Controls.Add(this.txtofficetel);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox15);
-            this.groupBox1.Controls.Add(this.textBox4);
+            this.groupBox1.Controls.Add(this.txtnolesen);
+            this.groupBox1.Controls.Add(this.txthometel);
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox13);
+            this.groupBox1.Controls.Add(this.txtaddr1);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.txtaddr2);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBox11);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.txtaddr3);
+            this.groupBox1.Controls.Add(this.txtposkod);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.txtbandar);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(491, 572);
@@ -743,33 +745,33 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker txtappdate;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtnama;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txthptel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtofficetel;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txthometel;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtposkod;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtbandar;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox txtaddr3;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox txtaddr2;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox txtaddr1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox txtnolesen;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox16;
+        private System.Windows.Forms.TextBox txticno;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;

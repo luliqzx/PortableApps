@@ -19,14 +19,14 @@ namespace PortableApps.Repo
         public int Create(appinfo ent)
         {
             int i = 0;
-            using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
-            {
-                string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
+            //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
+            //{
+            string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
                                 VALUES
-                            (@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
+                            (@id,	@refno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
                         ";
-                i = cnn.Execute(qry, ent);
-            }
+            i = sqliteCon.Execute(qry, ent);
+            //}
             return i;
         }
 
@@ -163,7 +163,7 @@ namespace PortableApps.Repo
                 }
             }
 
-            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
+            string qry = string.Format(@"SELECT id, nama, cast(icno as varchar(100)) icno, negeri, cast(nolesen as varchar(100)) nolesen, refno, appdate, keputusan FROM appinfo 
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 

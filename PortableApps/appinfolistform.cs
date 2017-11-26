@@ -37,6 +37,9 @@ namespace PortableApps
 
         private void appinfolistform_Load(object sender, EventArgs e)
         {
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
             xcurrentPage = 1;
             BindGrid(xcurrentPage);
         }
@@ -169,6 +172,25 @@ namespace PortableApps
             dgvMakPer.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
+        }
+
+        private void dgvMakPer_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+
+            var centerFormat = new StringFormat()
+            {
+                // right alignment might actually make more sense for numbers
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            string snumber = ((PageSize * (xcurrentPage - 1)) + Convert.ToInt32(rowIdx)).ToString();
+
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+
         }
 
     }

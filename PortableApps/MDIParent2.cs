@@ -79,5 +79,22 @@ namespace PortableApps
             form.MdiParent = this;
             form.Show();
         }
+
+        private void MDIParent2_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+        }
+
+        private void roobClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ribbonButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

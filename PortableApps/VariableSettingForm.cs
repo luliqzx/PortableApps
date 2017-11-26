@@ -22,6 +22,11 @@ namespace PortableApps
         public VariableSettingForm()
         {
             InitializeComponent();
+        }
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+            //LoadGrid();
             VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
             if (varPageSize == null)
             {
@@ -31,12 +36,9 @@ namespace PortableApps
             {
                 PageSize = Convert.ToInt32(varPageSize.Value);
             }
-
-        }
-
-        private void SettingForm_Load(object sender, EventArgs e)
-        {
-            //LoadGrid();
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
             xcurrentPage = 1;
             BindGrid(xcurrentPage);
         }

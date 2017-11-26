@@ -61,17 +61,20 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.gbFilter);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(840, 120);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(851, 110);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(873, 120);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // gbFilter
             // 
             this.gbFilter.Controls.Add(this.panel1);
             this.gbFilter.Location = new System.Drawing.Point(3, 3);
+            this.gbFilter.MinimumSize = new System.Drawing.Size(840, 102);
             this.gbFilter.Name = "gbFilter";
             this.gbFilter.Size = new System.Drawing.Size(840, 102);
             this.gbFilter.TabIndex = 0;
@@ -97,6 +100,7 @@
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.MinimumSize = new System.Drawing.Size(826, 72);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(826, 72);
             this.panel1.TabIndex = 0;
@@ -229,50 +233,58 @@
             // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.AutoScroll = true;
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.dgvMakPer, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.pnlPager, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 110);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 120);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.995544F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.96436F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.0401F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(851, 322);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 359);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // dgvMakPer
             // 
             this.dgvMakPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMakPer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMakPer.Location = new System.Drawing.Point(3, 35);
+            this.dgvMakPer.Location = new System.Drawing.Point(3, 38);
+            this.dgvMakPer.MinimumSize = new System.Drawing.Size(845, 259);
             this.dgvMakPer.Name = "dgvMakPer";
-            this.dgvMakPer.Size = new System.Drawing.Size(845, 251);
+            this.dgvMakPer.Size = new System.Drawing.Size(867, 281);
             this.dgvMakPer.TabIndex = 0;
+            this.dgvMakPer.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMakPer_RowPostPaint);
             // 
             // pnlPager
             // 
+            this.pnlPager.AutoScroll = true;
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPager.Location = new System.Drawing.Point(3, 292);
+            this.pnlPager.Location = new System.Drawing.Point(3, 325);
+            this.pnlPager.MinimumSize = new System.Drawing.Size(845, 30);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(845, 27);
+            this.pnlPager.Size = new System.Drawing.Size(867, 31);
             this.pnlPager.TabIndex = 1;
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.button2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.MinimumSize = new System.Drawing.Size(845, 27);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(845, 26);
+            this.panel2.Size = new System.Drawing.Size(867, 29);
             this.panel2.TabIndex = 2;
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(3, 0);
+            this.button2.MinimumSize = new System.Drawing.Size(75, 23);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 0;
@@ -284,7 +296,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(851, 432);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(873, 479);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "appinfolistform";
