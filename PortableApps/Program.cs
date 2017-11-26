@@ -1,4 +1,5 @@
 ﻿using PortableApps.Repo;
+using PortableApps;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace PortableApps
 
             ProcessFirst();
 
-            Application.Run(new appinfosaveform());
+            Application.Run(new MDIParent2());
         }
 
         private static void ProcessFirst()
@@ -40,8 +41,8 @@ namespace PortableApps
                 //sqlRepo.SetupTBangsa(cnn);
             }
 
-            IBangsaRepo BangsaRepo = new BangsaRepo();
-            BangsaRepo.SyncBangsaFromAppInfoMySQL();
+            //IBangsaRepo BangsaRepo = new BangsaRepo();
+            //BangsaRepo.SyncBangsaFromAppInfoMySQL();
         }
     }
 }

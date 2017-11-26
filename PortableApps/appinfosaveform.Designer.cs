@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -62,10 +62,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.cbnegeri = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cbparlimen = new System.Windows.Forms.ComboBox();
+            this.cbdaerah = new System.Windows.Forms.ComboBox();
+            this.cbdun = new System.Windows.Forms.ComboBox();
             this.cbbangsa = new System.Windows.Forms.ComboBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
@@ -85,6 +89,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.ttpGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +108,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 1;
+            this.dateTimePicker1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label2
             // 
@@ -118,14 +124,16 @@
             this.txtnama.Location = new System.Drawing.Point(220, 44);
             this.txtnama.Name = "txtnama";
             this.txtnama.Size = new System.Drawing.Size(200, 20);
-            this.txtnama.TabIndex = 3;
+            this.txtnama.TabIndex = 2;
+            this.txtnama.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(220, 433);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 5;
+            this.textBox2.TabIndex = 17;
+            this.textBox2.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label3
             // 
@@ -141,7 +149,8 @@
             this.textBox3.Location = new System.Drawing.Point(220, 407);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(200, 20);
-            this.textBox3.TabIndex = 7;
+            this.textBox3.TabIndex = 16;
+            this.textBox3.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label4
             // 
@@ -157,7 +166,8 @@
             this.textBox4.Location = new System.Drawing.Point(220, 381);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(200, 20);
-            this.textBox4.TabIndex = 9;
+            this.textBox4.TabIndex = 15;
+            this.textBox4.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label5
             // 
@@ -177,13 +187,6 @@
             this.label8.TabIndex = 14;
             this.label8.Text = "Daerah dan kawasan parlimen";
             // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(220, 277);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(200, 20);
-            this.textBox8.TabIndex = 17;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -198,7 +201,8 @@
             this.textBox9.Location = new System.Drawing.Point(220, 251);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(200, 20);
-            this.textBox9.TabIndex = 19;
+            this.textBox9.TabIndex = 10;
+            this.textBox9.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label10
             // 
@@ -214,7 +218,8 @@
             this.textBox10.Location = new System.Drawing.Point(220, 225);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(200, 20);
-            this.textBox10.TabIndex = 21;
+            this.textBox10.TabIndex = 9;
+            this.textBox10.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label11
             // 
@@ -230,7 +235,8 @@
             this.textBox11.Location = new System.Drawing.Point(220, 199);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(200, 20);
-            this.textBox11.TabIndex = 23;
+            this.textBox11.TabIndex = 8;
+            this.textBox11.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label12
             // 
@@ -246,7 +252,8 @@
             this.textBox12.Location = new System.Drawing.Point(220, 173);
             this.textBox12.Name = "textBox12";
             this.textBox12.Size = new System.Drawing.Size(200, 20);
-            this.textBox12.TabIndex = 25;
+            this.textBox12.TabIndex = 7;
+            this.textBox12.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label13
             // 
@@ -262,7 +269,8 @@
             this.textBox13.Location = new System.Drawing.Point(220, 147);
             this.textBox13.Name = "textBox13";
             this.textBox13.Size = new System.Drawing.Size(200, 20);
-            this.textBox13.TabIndex = 27;
+            this.textBox13.TabIndex = 6;
+            this.textBox13.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label14
             // 
@@ -287,7 +295,8 @@
             this.textBox15.Location = new System.Drawing.Point(220, 95);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(200, 20);
-            this.textBox15.TabIndex = 31;
+            this.textBox15.TabIndex = 4;
+            this.textBox15.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label16
             // 
@@ -303,7 +312,8 @@
             this.textBox16.Location = new System.Drawing.Point(220, 69);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(200, 20);
-            this.textBox16.TabIndex = 33;
+            this.textBox16.TabIndex = 3;
+            this.textBox16.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label17
             // 
@@ -319,7 +329,8 @@
             this.textBox17.Location = new System.Drawing.Point(220, 459);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(200, 20);
-            this.textBox17.TabIndex = 39;
+            this.textBox17.TabIndex = 18;
+            this.textBox17.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label6
             // 
@@ -338,32 +349,41 @@
             this.label7.Size = new System.Drawing.Size(79, 13);
             this.label7.TabIndex = 36;
             this.label7.Text = "Tidak Lengkap";
+            this.label7.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(139, 530);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 40;
+            this.button1.TabIndex = 20;
             this.button1.Text = "Seterusnya";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(266, 530);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 41;
+            this.button2.TabIndex = 21;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.button2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.label33);
+            this.groupBox1.Controls.Add(this.label32);
+            this.groupBox1.Controls.Add(this.label31);
+            this.groupBox1.Controls.Add(this.cbnegeri);
             this.groupBox1.Controls.Add(this.checkBox1);
-            this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.cbparlimen);
+            this.groupBox1.Controls.Add(this.cbdaerah);
+            this.groupBox1.Controls.Add(this.cbdun);
             this.groupBox1.Controls.Add(this.cbbangsa);
             this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label35);
@@ -408,7 +428,6 @@
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.textBox12);
-            this.groupBox1.Controls.Add(this.textBox8);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.textBox11);
@@ -418,10 +437,51 @@
             this.groupBox1.Controls.Add(this.textBox10);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(565, 572);
+            this.groupBox1.Size = new System.Drawing.Size(491, 572);
             this.groupBox1.TabIndex = 42;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "A. MAKLUMAT PERMOHON";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(347, 362);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(59, 13);
+            this.label33.TabIndex = 69;
+            this.label33.Text = "( Parlimen )";
+            this.label33.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(347, 335);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(39, 13);
+            this.label32.TabIndex = 68;
+            this.label32.Text = "( Dun )";
+            this.label32.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(347, 310);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(54, 13);
+            this.label31.TabIndex = 67;
+            this.label31.Text = "( Daerah )";
+            this.label31.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            // 
+            // cbnegeri
+            // 
+            this.cbnegeri.FormattingEnabled = true;
+            this.cbnegeri.Location = new System.Drawing.Point(220, 276);
+            this.cbnegeri.Name = "cbnegeri";
+            this.cbnegeri.Size = new System.Drawing.Size(121, 21);
+            this.cbnegeri.TabIndex = 11;
+            this.cbnegeri.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cbnegeri.SelectedIndexChanged += new System.EventHandler(this.cbparlimen_SelectedIndexChanged);
+            this.cbnegeri.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // checkBox1
             // 
@@ -429,33 +489,41 @@
             this.checkBox1.Location = new System.Drawing.Point(220, 487);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(168, 17);
-            this.checkBox1.TabIndex = 65;
+            this.checkBox1.TabIndex = 19;
             this.checkBox1.Text = "Tick jika pemohon tanpa SOP";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.checkBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
-            // comboBox4
+            // cbparlimen
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(220, 354);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 64;
+            this.cbparlimen.FormattingEnabled = true;
+            this.cbparlimen.Location = new System.Drawing.Point(220, 354);
+            this.cbparlimen.Name = "cbparlimen";
+            this.cbparlimen.Size = new System.Drawing.Size(121, 21);
+            this.cbparlimen.TabIndex = 14;
+            this.cbparlimen.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cbparlimen.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
-            // comboBox3
+            // cbdaerah
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(220, 302);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 63;
+            this.cbdaerah.FormattingEnabled = true;
+            this.cbdaerah.Location = new System.Drawing.Point(220, 302);
+            this.cbdaerah.Name = "cbdaerah";
+            this.cbdaerah.Size = new System.Drawing.Size(121, 21);
+            this.cbdaerah.TabIndex = 12;
+            this.cbdaerah.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cbdaerah.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
-            // comboBox2
+            // cbdun
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(220, 327);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 62;
+            this.cbdun.FormattingEnabled = true;
+            this.cbdun.Location = new System.Drawing.Point(220, 327);
+            this.cbdun.Name = "cbdun";
+            this.cbdun.Size = new System.Drawing.Size(121, 21);
+            this.cbdun.TabIndex = 13;
+            this.cbdun.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cbdun.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // cbbangsa
             // 
@@ -463,7 +531,9 @@
             this.cbbangsa.Location = new System.Drawing.Point(220, 120);
             this.cbbangsa.Name = "cbbangsa";
             this.cbbangsa.Size = new System.Drawing.Size(121, 21);
-            this.cbbangsa.TabIndex = 61;
+            this.cbbangsa.TabIndex = 5;
+            this.cbbangsa.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
+            this.cbbangsa.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label34
             // 
@@ -474,6 +544,8 @@
             this.label34.Size = new System.Drawing.Size(11, 13);
             this.label34.TabIndex = 60;
             this.label34.Text = "*";
+            this.label34.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
+            this.label34.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label35
             // 
@@ -484,6 +556,7 @@
             this.label35.Size = new System.Drawing.Size(11, 13);
             this.label35.TabIndex = 59;
             this.label35.Text = "*";
+            this.label35.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label36
             // 
@@ -494,6 +567,7 @@
             this.label36.Size = new System.Drawing.Size(11, 13);
             this.label36.TabIndex = 58;
             this.label36.Text = "*";
+            this.label36.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label37
             // 
@@ -504,6 +578,7 @@
             this.label37.Size = new System.Drawing.Size(11, 13);
             this.label37.TabIndex = 57;
             this.label37.Text = "*";
+            this.label37.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label38
             // 
@@ -514,6 +589,7 @@
             this.label38.Size = new System.Drawing.Size(11, 13);
             this.label38.TabIndex = 56;
             this.label38.Text = "*";
+            this.label38.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label25
             // 
@@ -524,6 +600,7 @@
             this.label25.Size = new System.Drawing.Size(11, 13);
             this.label25.TabIndex = 55;
             this.label25.Text = "*";
+            this.label25.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label26
             // 
@@ -534,6 +611,7 @@
             this.label26.Size = new System.Drawing.Size(11, 13);
             this.label26.TabIndex = 54;
             this.label26.Text = "*";
+            this.label26.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label27
             // 
@@ -675,7 +753,6 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label10;
@@ -716,10 +793,15 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cbparlimen;
+        private System.Windows.Forms.ComboBox cbdaerah;
+        private System.Windows.Forms.ComboBox cbdun;
         private System.Windows.Forms.ComboBox cbbangsa;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox cbnegeri;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.ToolTip ttpGeneral;
     }
 }

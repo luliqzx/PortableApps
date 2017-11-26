@@ -10,6 +10,7 @@ namespace PortableApps.Repo
     public interface IDunRepo : IBaseTRepo<dun, int>
     {
 
+        IList<dun> GetDunBy(string negeri);
     }
     public class DunRepo : CommonRepo, IDunRepo
     {
@@ -57,6 +58,13 @@ namespace PortableApps.Repo
         public IList<dun> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, dun whareClause = null)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<dun> GetDunBy(string negeri)
+        {
+            string qry = @"SELECT * FROM dun WHERE kod_negeri=@negeri";
+            IList<dun> ent = sqliteCon.Query<dun>(qry, new { negeri }).ToList();
+            return ent;
         }
     }
 }

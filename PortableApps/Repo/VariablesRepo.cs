@@ -10,11 +10,10 @@ namespace PortableApps.Repo
     public interface IVariablesRepo : IBaseTRepo<variables, string>
     {
 
+        IList<variables> GetVariableNegeri(string type);
     }
     public class VariablesRepo : CommonRepo, IVariablesRepo
     {
-
-
         public int Create(variables ent)
         {
             int i = 0;
@@ -53,10 +52,16 @@ namespace PortableApps.Repo
             return ent;
         }
 
-
         public IList<variables> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, variables whareClause = null)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<variables> GetVariableNegeri(string type)
+        {
+            string qry = @"SELECT * FROM variables WHERE type=@type COLLATE NOCASE";
+            IList<variables> lstEnt = sqliteCon.Query<variables>(qry, new { type }).ToList();
+            return lstEnt;
         }
     }
 }
