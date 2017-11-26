@@ -15,19 +15,30 @@ namespace PortableApps
     public partial class VariableSettingForm : Form
     {
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
-        int PageSize = 2;
-
-        int totalRecords = 0;
+        private int PageSize { get; set; }
+        private int xcurrentPage { get; set; }
+        int totalRecords;
 
         public VariableSettingForm()
         {
             InitializeComponent();
+            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
+            if (varPageSize == null)
+            {
+                PageSize = 2;
+            }
+            else
+            {
+                PageSize = Convert.ToInt32(varPageSize.Value);
+            }
+
         }
 
         private void SettingForm_Load(object sender, EventArgs e)
         {
             //LoadGrid();
-            BindGrid(1);
+            xcurrentPage = 1;
+            BindGrid(xcurrentPage);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -38,7 +49,7 @@ namespace PortableApps
             VariableSetting.Description = txtDescription.Text;
             VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
             VariableSettingRepo.Create(VariableSetting);
-            BindGrid(1);
+            BindGrid(xcurrentPage);
         }
 
         private void PopulatePager(int recordCount, int currentPage)
@@ -113,11 +124,17 @@ namespace PortableApps
 
             //Loop and add Buttons for Pager.
             int count = 0;
+            Label lblPage = new Label();
+            lblPage.Location = new System.Drawing.Point(0, 5);
+            lblPage.Size = new System.Drawing.Size(60, 20);
+            lblPage.Name = "lblPage";
+            lblPage.Text = "Halaman";
+            pnlPager.Controls.Add(lblPage);
             foreach (Page page in pages)
             {
                 Button btnPage = new Button();
-                btnPage.Location = new System.Drawing.Point(38 * count, 5);
-                btnPage.Size = new System.Drawing.Size(35, 20);
+                btnPage.Location = new System.Drawing.Point(60 + (40 * count), 5);
+                btnPage.Size = new System.Drawing.Size(40, 20);
                 btnPage.Name = page.Value;
                 btnPage.Text = page.Text;
                 btnPage.Enabled = !page.Selected;
@@ -130,7 +147,8 @@ namespace PortableApps
         private void Page_Click(object sender, EventArgs e)
         {
             Button btnPager = (sender as Button);
-            this.BindGrid(int.Parse(btnPager.Name));
+            xcurrentPage = int.Parse(btnPager.Name);
+            this.BindGrid(xcurrentPage);
         }
 
         public class Page
@@ -146,6 +164,25 @@ namespace PortableApps
             dgvCS.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
+        }
+
+        private void dgvCS_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+
+            var centerFormat = new StringFormat()
+            {
+                // right alignment might actually make more sense for numbers
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            string snumber = ((PageSize * (xcurrentPage - 1)) + Convert.ToInt32(rowIdx)).ToString();
+
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+
         }
     }
 }

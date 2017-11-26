@@ -47,7 +47,6 @@ namespace PortableApps.Repo
 
         public IList<VariableSetting> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, VariableSetting oWhereClause)
         {
-
             string whereClause = "";
             string operators = "";
             if (!object.Equals(null, oWhereClause))
@@ -74,7 +73,7 @@ namespace PortableApps.Repo
                 }
             }
 
-            string qry = string.Format(@"SELECT * FROM VariableSetting {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, page - 1, rows);
+            string qry = string.Format(@"SELECT * FROM VariableSetting {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM VariableSetting {0}", whereClause);
 
             IList<VariableSetting> lstVariableSetting = sqliteCon.Query<VariableSetting>(qry, null).ToList();

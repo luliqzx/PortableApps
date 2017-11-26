@@ -82,11 +82,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appinfolistform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="appinfolistform.Designer.cs">
+      <DependentUpon>appinfolistform.cs</DependentUpon>
+    </Compile>
     <Compile Include="appinfosaveform.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="appinfosaveform.Designer.cs">
       <DependentUpon>appinfosaveform.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\RijndaelSimple.cs" />
     <Compile Include="Common\WFUtils.cs" />
@@ -101,6 +113,12 @@
     </Compile>
     <Compile Include="InitializeForm.Designer.cs">
       <DependentUpon>InitializeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="makkebunform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="makkebunform.Designer.cs">
+      <DependentUpon>makkebunform.cs</DependentUpon>
     </Compile>
     <Compile Include="MDIForm.cs">
       <SubType>Form</SubType>
@@ -143,6 +161,9 @@
     <Compile Include="VariableSettingForm.Designer.cs">
       <DependentUpon>VariableSettingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="appinfolistform.resx">
+      <DependentUpon>appinfolistform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="appinfosaveform.resx">
       <DependentUpon>appinfosaveform.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InitializeForm.resx">
       <DependentUpon>InitializeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="makkebunform.resx">
+      <DependentUpon>makkebunform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MDIForm.resx">
       <DependentUpon>MDIForm.cs</DependentUpon>

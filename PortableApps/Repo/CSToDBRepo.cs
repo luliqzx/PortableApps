@@ -56,7 +56,7 @@ namespace PortableApps.Repo
             string qry = @"SELECT * FROM CSToDB LIMIT @page, @PageSize ";
             string cntQry = @"SELECT COUNT(*) FROM CSToDB";
             rowCount = sqliteCon.Query<int>(cntQry, null).FirstOrDefault();
-            IList<CSToDB> lstEnt = sqliteCon.Query<CSToDB>(qry, new { page = page - 1, PageSize = rows }).ToList();
+            IList<CSToDB> lstEnt = sqliteCon.Query<CSToDB>(qry, new { page = (page - 1) * rows, PageSize = rows }).ToList();
             return lstEnt;
         }
     }

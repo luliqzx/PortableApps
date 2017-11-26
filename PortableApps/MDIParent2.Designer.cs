@@ -35,6 +35,9 @@
             this.rbMaklumatPemohon = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
+            this.rbmakkebun = new System.Windows.Forms.RibbonButton();
+            this.rbSetting = new System.Windows.Forms.RibbonButton();
+            this.rbDaftarMaklumatPermohonan = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -68,7 +71,9 @@
             // 
             // rbPanelPemohon
             // 
+            this.rbPanelPemohon.Items.Add(this.rbDaftarMaklumatPermohonan);
             this.rbPanelPemohon.Items.Add(this.rbMaklumatPemohon);
+            this.rbPanelPemohon.Items.Add(this.rbmakkebun);
             this.rbPanelPemohon.Name = "rbPanelPemohon";
             this.rbPanelPemohon.Text = "";
             // 
@@ -91,8 +96,38 @@
             // 
             // ribbonPanel2
             // 
+            this.ribbonPanel2.Items.Add(this.rbSetting);
             this.ribbonPanel2.Name = "ribbonPanel2";
-            this.ribbonPanel2.Text = "ribbonPanel2";
+            this.ribbonPanel2.Text = "";
+            // 
+            // rbmakkebun
+            // 
+            this.rbmakkebun.Image = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.Image")));
+            this.rbmakkebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.LargeImage")));
+            this.rbmakkebun.Name = "rbmakkebun";
+            this.rbmakkebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.SmallImage")));
+            this.rbmakkebun.Text = "Maklumat Kebun";
+            this.rbmakkebun.Click += new System.EventHandler(this.rbmakkebun_Click);
+            // 
+            // rbSetting
+            // 
+            this.rbSetting.Image = ((System.Drawing.Image)(resources.GetObject("rbSetting.Image")));
+            this.rbSetting.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbSetting.LargeImage")));
+            this.rbSetting.Name = "rbSetting";
+            this.rbSetting.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbSetting.SmallImage")));
+            this.rbSetting.Text = "Setting";
+            this.rbSetting.Click += new System.EventHandler(this.rbSetting_Click);
+            // 
+            // rbDaftarMaklumatPermohonan
+            // 
+            this.rbDaftarMaklumatPermohonan.Image = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.Image")));
+            this.rbDaftarMaklumatPermohonan.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.LargeImage")));
+            this.rbDaftarMaklumatPermohonan.Name = "rbDaftarMaklumatPermohonan";
+            this.rbDaftarMaklumatPermohonan.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.SmallImage")));
+            this.rbDaftarMaklumatPermohonan.Text = "Daftar Maklumat";
+            this.rbDaftarMaklumatPermohonan.ToolTip = "Daftar Maklumat Permohonan";
+            this.rbDaftarMaklumatPermohonan.ToolTipTitle = "Daftar Maklumat Permohonan";
+            this.rbDaftarMaklumatPermohonan.Click += new System.EventHandler(this.rbDaftarMaklumatPermohonan_Click);
             // 
             // MDIParent2
             // 
@@ -116,6 +151,9 @@
         private System.Windows.Forms.RibbonButton rbMaklumatPemohon;
         private System.Windows.Forms.RibbonTab ribbonTab2;
         private System.Windows.Forms.RibbonPanel ribbonPanel2;
+        private System.Windows.Forms.RibbonButton rbmakkebun;
+        private System.Windows.Forms.RibbonButton rbSetting;
+        private System.Windows.Forms.RibbonButton rbDaftarMaklumatPermohonan;
 
     }
 }

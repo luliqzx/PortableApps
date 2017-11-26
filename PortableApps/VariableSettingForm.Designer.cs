@@ -39,21 +39,27 @@
             this.txtDescription = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbEncrypt = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCS)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCS
             // 
             this.dgvCS.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCS.Location = new System.Drawing.Point(12, 138);
+            this.dgvCS.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvCS.Location = new System.Drawing.Point(3, 224);
             this.dgvCS.Name = "dgvCS";
-            this.dgvCS.Size = new System.Drawing.Size(581, 115);
+            this.dgvCS.Size = new System.Drawing.Size(716, 270);
             this.dgvCS.TabIndex = 0;
+            this.dgvCS.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCS_RowPostPaint);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(25, 13);
             this.label1.TabIndex = 1;
@@ -62,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 37);
+            this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 2;
@@ -70,14 +76,14 @@
             // 
             // txtKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(83, 6);
+            this.txtKey.Location = new System.Drawing.Point(83, 9);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(355, 20);
             this.txtKey.TabIndex = 3;
             // 
             // txtValue
             // 
-            this.txtValue.Location = new System.Drawing.Point(83, 32);
+            this.txtValue.Location = new System.Drawing.Point(83, 35);
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(355, 45);
             this.txtValue.TabIndex = 4;
@@ -85,7 +91,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(518, 12);
+            this.btnSave.Location = new System.Drawing.Point(15, 152);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -95,7 +101,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(518, 45);
+            this.btnDelete.Location = new System.Drawing.Point(105, 152);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 11;
@@ -104,14 +110,15 @@
             // 
             // pnlPager
             // 
-            this.pnlPager.Location = new System.Drawing.Point(12, 266);
+            this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlPager.Location = new System.Drawing.Point(3, 500);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(581, 25);
+            this.pnlPager.Size = new System.Drawing.Size(716, 50);
             this.pnlPager.TabIndex = 13;
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(83, 83);
+            this.txtDescription.Location = new System.Drawing.Point(83, 86);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(355, 45);
             this.txtDescription.TabIndex = 15;
@@ -120,7 +127,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 88);
+            this.label3.Location = new System.Drawing.Point(12, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 13);
             this.label3.TabIndex = 14;
@@ -129,7 +136,7 @@
             // cbEncrypt
             // 
             this.cbEncrypt.AutoSize = true;
-            this.cbEncrypt.Location = new System.Drawing.Point(444, 43);
+            this.cbEncrypt.Location = new System.Drawing.Point(444, 46);
             this.cbEncrypt.Name = "cbEncrypt";
             this.cbEncrypt.Size = new System.Drawing.Size(61, 17);
             this.cbEncrypt.TabIndex = 16;
@@ -137,28 +144,55 @@
             this.cbEncrypt.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.cbEncrypt.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnlPager, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dgvCS, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.05935F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.95054F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.990108F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(722, 553);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.cbEncrypt);
+            this.panel1.Controls.Add(this.txtKey);
+            this.panel1.Controls.Add(this.txtDescription);
+            this.panel1.Controls.Add(this.txtValue);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.btnSave);
+            this.panel1.Controls.Add(this.btnDelete);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(716, 215);
+            this.panel1.TabIndex = 17;
+            // 
             // VariableSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(605, 303);
-            this.Controls.Add(this.cbEncrypt);
-            this.Controls.Add(this.txtDescription);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.pnlPager);
-            this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.txtValue);
-            this.Controls.Add(this.txtKey);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvCS);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(722, 553);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "VariableSettingForm";
             this.Text = "SettingForm";
             this.Load += new System.EventHandler(this.SettingForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCS)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -175,5 +209,7 @@
         private System.Windows.Forms.RichTextBox txtDescription;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox cbEncrypt;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
     }
 }

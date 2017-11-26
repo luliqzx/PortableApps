@@ -58,7 +58,7 @@ namespace PortableApps.Repo
             string qry = @"SELECT * FROM daerah LIMIT @page, @PageSize ";
             string cntQry = @"SELECT COUNT(*) FROM daerah";
             rowCount = sqliteCon.Query<int>(cntQry, null).FirstOrDefault();
-            IList<tdaerah> lstEnt = sqliteCon.Query<tdaerah>(qry, new { page = page - 1, PageSize = rows }).ToList();
+            IList<tdaerah> lstEnt = sqliteCon.Query<tdaerah>(qry, new { page = page, PageSize = rows }).ToList();
             return lstEnt;
         }
 
