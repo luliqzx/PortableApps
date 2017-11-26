@@ -372,6 +372,7 @@
             this.button2.TabIndex = 21;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             this.button2.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             this.button2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
