@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
+using PortableApps.Model.DTO;
 
 namespace PortableApps.Repo
 {
     public interface IAppInfoRepo : IBaseTRepo<appinfo, int>
     {
+        IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null);
     }
-    public class AppInfoRepo : IAppInfoRepo
+    public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
         ISqLiteBaseRepository SqLiteBaseRepository = new SqLiteBaseRepository();
 
@@ -105,9 +107,69 @@ namespace PortableApps.Repo
             return appinfo;
         }
 
-        public IList<appinfo> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, appinfo whareClause = null)
+        public IList<appinfo> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null)
         {
-            throw new NotImplementedException();
+            string whereClause = "";
+            string operators = "";
+            if (!object.Equals(null, oWhereClause))
+            {
+                if (oWhereClause.id > 0)
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " id=@id ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.bangsa))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " bangsa like '%'+@bangsa+'%'  ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.negeri))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " negeri like '%'+@negeri+'%'   ";
+                }
+            }
+
+            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
+                                            {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
+            string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
+
+            IList<appinfo> lstEnt = sqliteCon.Query<appinfo>(qry, null).ToList();
+            rowCount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
+            return lstEnt;
+        }
+
+
+        public IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null)
+        {
+            string whereClause = "";
+            string operators = "";
+            if (!object.Equals(null, oWhereClause))
+            {
+                if (oWhereClause.id > 0)
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " id=@id ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.bangsa))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " bangsa like '%'+@bangsa+'%'  ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.negeri))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " negeri like '%'+@negeri+'%'   ";
+                }
+            }
+
+            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
+                                            {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
+            string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
+
+            IList<appinfoDTO> lstEnt = sqliteCon.Query<appinfoDTO>(qry, null).ToList();
+            rowCount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
+            return lstEnt;
         }
     }
 }

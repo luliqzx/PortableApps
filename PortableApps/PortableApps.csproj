@@ -133,6 +133,7 @@
       <DependentUpon>MDIParent2.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\appinfo.cs" />
+    <Compile Include="Model\DTO\appinfoDTO.cs" />
     <Compile Include="Model\tdaerah.cs" />
     <Compile Include="Model\TBangsa.cs" />
     <Compile Include="Model\dun.cs" />
