@@ -258,6 +258,7 @@
             this.dgvMakPer.Name = "dgvMakPer";
             this.dgvMakPer.Size = new System.Drawing.Size(867, 281);
             this.dgvMakPer.TabIndex = 0;
+            this.dgvMakPer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellDoubleClick);
             this.dgvMakPer.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMakPer_RowPostPaint);
             // 
             // pnlPager

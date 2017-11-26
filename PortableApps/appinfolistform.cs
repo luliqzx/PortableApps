@@ -193,5 +193,20 @@ namespace PortableApps
 
         }
 
+        private void dgvMakPer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Form f in ParentForm.MdiChildren)
+            {
+                if (f.GetType() == typeof(makkebunform))
+                {
+                    f.Activate();
+                    return;
+                }
+            }
+            Form form = new makkebunform();
+            form.MdiParent = ParentForm;
+            form.Show();
+        }
+
     }
 }
