@@ -32,7 +32,7 @@
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSimpan = new System.Windows.Forms.Button();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox8 = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
@@ -133,7 +133,7 @@
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnSimpan);
             this.groupBox1.Controls.Add(this.comboBox4);
             this.groupBox1.Controls.Add(this.comboBox8);
             this.groupBox1.Controls.Add(this.comboBox7);
@@ -224,14 +224,14 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 9;
             // 
-            // button1
+            // btnSimpan
             // 
-            this.button1.Location = new System.Drawing.Point(246, 472);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Simpan";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSimpan.Location = new System.Drawing.Point(246, 472);
+            this.btnSimpan.Name = "btnSimpan";
+            this.btnSimpan.Size = new System.Drawing.Size(75, 23);
+            this.btnSimpan.TabIndex = 8;
+            this.btnSimpan.Text = "Simpan";
+            this.btnSimpan.UseVisualStyleBackColor = true;
             // 
             // comboBox4
             // 
@@ -787,7 +787,7 @@
             // lblwilayah
             // 
             this.lblwilayah.AutoSize = true;
-            this.lblwilayah.Location = new System.Drawing.Point(412, 155);
+            this.lblwilayah.Location = new System.Drawing.Point(411, 158);
             this.lblwilayah.Name = "lblwilayah";
             this.lblwilayah.Size = new System.Drawing.Size(45, 13);
             this.lblwilayah.TabIndex = 53;
@@ -904,7 +904,7 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(338, 155);
+            this.label50.Location = new System.Drawing.Point(337, 158);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(45, 13);
             this.label50.TabIndex = 40;
@@ -1175,7 +1175,7 @@
         private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSimpan;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

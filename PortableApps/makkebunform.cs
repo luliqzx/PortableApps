@@ -54,5 +54,7 @@ namespace PortableApps
             lblposkod.Text = appinfo.poskod;
             lblwilayah.Text = "KOSONG DULU";// appinfo.wilayah;
         }
+
+
     }
 }
