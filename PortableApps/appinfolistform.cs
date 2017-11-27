@@ -56,8 +56,9 @@ namespace PortableApps
             {
                 if (f.GetType() == typeof(appinfosaveform))
                 {
-                    f.Activate();
-                    return;
+                    //f.Activate();
+                    //return;
+                    f.Close();
                 }
             }
             Form form = new appinfosaveform();

@@ -19,6 +19,7 @@ namespace PortableApps
         IDunRepo DunRepo = new DunRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+        IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
 
         public appinfosaveform()
         {
@@ -35,6 +36,13 @@ namespace PortableApps
             LoadTBangsa();
             LoadParlimen();
             txtappdate.CustomFormat = "dd-MM-yyyy";
+            VariableSetting vs = VariableSettingRepo.GetBy("UserKeyIn");
+
+            txtcreatedby.Text = "System";
+            if (vs != null)
+            {
+                txtcreatedby.Text = vs.Value;
+            }
         }
 
         private void LoadTBangsa()

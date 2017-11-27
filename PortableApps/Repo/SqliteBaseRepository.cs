@@ -21,13 +21,14 @@ namespace PortableApps.Repo
         int SetupDaerah(SQLiteConnection cnn);
 
         int SetupVariableSetting(SQLiteConnection cnn);
+
         int SetupTBangsa(SQLiteConnection cnn);
 
         bool CheckExistingDB(string DbFile);
 
         int ResetDefault(SQLiteConnection cnn);
     }
-    public class SqLiteBaseRepository : ISqLiteBaseRepository
+    public class SqLiteBaseRepository : CommonRepo, ISqLiteBaseRepository
     {
         public string DbFile
         {
@@ -44,41 +45,44 @@ namespace PortableApps.Repo
             int i = 0;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
-                cmd.CommandText = @"
-                            CREATE TABLE IF NOT EXISTS `appinfo` (
-                              `id` int(11) NULL PRIMARY KEY,
-                              `refno` varchar(100)  DEFAULT NULL,
-                              `nama` varchar(100)  NULL,
-                              `type_id` int(11) NULL,
-                              `icno` varchar(100)  NULL,
-                              `nolesen` varchar(30)  DEFAULT NULL,
-                              `bangsa` varchar(30)  DEFAULT NULL,
-                              `addr1` varchar(100)  DEFAULT NULL,
-                              `addr2` varchar(100)  DEFAULT NULL,
-                              `addr3` varchar(100)  DEFAULT NULL,
-                              `bandar` varchar(100)  NULL,
-                              `daerah` varchar(30)  NULL,
-                              `dun` varchar(100)  NULL,
-                              `parlimen` int(11) DEFAULT NULL,
-                              `poskod` varchar(5)  DEFAULT NULL,
-                              `negeri` varchar(20)  DEFAULT NULL,
-                              `hometel` varchar(20)  DEFAULT NULL,
-                              `officetel` varchar(20)  DEFAULT NULL,
-                              `hptel` varchar(20)  DEFAULT NULL,
-                              `faks` varchar(20)  DEFAULT NULL,
-                              `email` varchar(50)  DEFAULT NULL,
-                              `kelompok` varchar(5)  DEFAULT NULL,
-                              `created` datetime DEFAULT NULL,
-                              `createdby` varchar(100)  DEFAULT NULL,
-                              `appdate` varchar(50)  DEFAULT NULL,
-                              `semak_tapak` varchar(1)  DEFAULT NULL,
-                              `keputusan` varchar(20)  DEFAULT NULL,
-                              `sts_bck` int(11) NULL,
-                              `status` int(11) NULL,
-                              `date_approved` datetime NULL,
-                              `approved_by` varchar(255)  NULL,
-                              `sop` tinyint(4) NULL
-                            )";
+                #region Query
+                cmd.CommandText = @"-- Dumping structure for table a1_tsspk1511.appinfo
+CREATE TABLE IF NOT EXISTS `appinfo` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `refno` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `nama` varchar(100) COLLATE NOCASE NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `icno` varchar(100) COLLATE NOCASE NOT NULL,
+  `nolesen` varchar(30) COLLATE NOCASE DEFAULT NULL,
+  `bangsa` varchar(30) COLLATE NOCASE DEFAULT NULL,
+  `addr1` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `addr2` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `addr3` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `bandar` varchar(100) COLLATE NOCASE NOT NULL,
+  `daerah` varchar(30) COLLATE NOCASE NOT NULL,
+  `dun` varchar(100) COLLATE NOCASE NOT NULL,
+  `parlimen` int(11) DEFAULT NULL,
+  `poskod` varchar(5) COLLATE NOCASE DEFAULT NULL,
+  `negeri` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `hometel` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `officetel` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `hptel` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `faks` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `email` varchar(50) COLLATE NOCASE DEFAULT NULL,
+  `kelompok` varchar(5) COLLATE NOCASE DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `createdby` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `appdate` varchar(50) COLLATE NOCASE DEFAULT NULL,
+  `semak_tapak` varchar(1) COLLATE NOCASE DEFAULT NULL,
+  `keputusan` varchar(20) COLLATE NOCASE DEFAULT NULL,
+  `sts_bck` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `date_approved` datetime NOT NULL,
+  `approved_by` varchar(255) COLLATE NOCASE NOT NULL,
+  `sop` tinyint(4) NOT NULL
+);";
+                #endregion
+
                 cmd.CommandType = CommandType.Text;
                 i = cmd.ExecuteNonQuery();
             }
@@ -103,12 +107,15 @@ namespace PortableApps.Repo
                                         -- HeidiSQL Version:             9.2.0.4947
                                         -- --------------------------------------------------------
                                         -- Dumping structure for table a1_tsspk1511.dun
-                                        CREATE TABLE IF NOT EXISTS `dun` (
-                                            `id` int(10) NULL PRIMARY KEY,
-                                            `kod_negeri` varchar(10)  NULL,
-                                            `kod_dun` varchar(10)  NULL,
-                                            `dun_desc` varchar(100)  NULL
-                                        );
+                                        -- Dumping structure for table a1_tsspk1511.dun
+CREATE TABLE IF NOT EXISTS `dun` (
+  `id` int(10) NOT NULL PRIMARY KEY,
+  `kod_negeri` varchar(10) COLLATE NOCASE NOT NULL,
+  `kod_dun` varchar(10) COLLATE NOCASE NOT NULL,
+  `dun_desc` varchar(100) COLLATE NOCASE NOT NULL
+);
+
+DELETE from dun;
 
                                         -- Dumping data for table a1_tsspk1511.dun: 590 rows
                                         INSERT INTO `dun` (`id`, `kod_negeri`, `kod_dun`, `dun_desc`) VALUES
@@ -716,32 +723,33 @@ namespace PortableApps.Repo
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
+                                    -- Dumping structure for table a1_tsspk1511.makkebun
                                     CREATE TABLE IF NOT EXISTS `makkebun` (
-                                        `id_makkebun` int(11) NULL PRIMARY KEY,
-                                        `appinfo_id` int(11) NULL,
-                                        `addr1` varchar(100) DEFAULT NULL,
-                                        `addr2` varchar(100) DEFAULT NULL,
-                                        `addr3` varchar(100) DEFAULT NULL,
-                                        `daerah` varchar(30)   NULL,
-                                        `dun` varchar(100)   NULL,
-                                        `parlimen` int(11) DEFAULT NULL,
-                                        `poskod` varchar(5) DEFAULT NULL,
-                                        `negeri` varchar(20)   DEFAULT NULL,
-                                        `nolot` varchar(20) DEFAULT NULL,
-                                        `hakmiliktanah` varchar(30) NULL,
-                                        `tncr` varchar(30) NULL,
-                                        `luasmatang` double DEFAULT NULL,
-                                        `tebang` varchar(5) DEFAULT NULL,
-                                        `tarikhtebang` varchar(20) DEFAULT NULL,
-                                        `nolesen` varchar(50) DEFAULT NULL,
-                                        `syarattanah` varchar(22) NULL,
-                                        `pemilikan` varchar(10) DEFAULT NULL,
-                                        `pengurusan` varchar(20) DEFAULT NULL,
-                                        `luaslesen` double DEFAULT NULL,
-                                        `catatan` text,
-                                        `created` datetime DEFAULT NULL,
-                                        `createdby` varchar(100) DEFAULT NULL
-                                    )
+                                      `id_makkebun` int(11) NOT NULL PRIMARY KEY,
+                                      `appinfo_id` int(11) NOT NULL,
+                                      `addr1` varchar(100) DEFAULT NULL,
+                                      `addr2` varchar(100) DEFAULT NULL,
+                                      `addr3` varchar(100) DEFAULT NULL,
+                                      `daerah` varchar(30) COLLATE NOCASE NOT NULL,
+                                      `dun` varchar(100) COLLATE NOCASE NOT NULL,
+                                      `parlimen` int(11) DEFAULT NULL,
+                                      `poskod` varchar(5) DEFAULT NULL,
+                                      `negeri` varchar(20) COLLATE NOCASE DEFAULT NULL,
+                                      `nolot` varchar(20) DEFAULT NULL,
+                                      `hakmiliktanah` varchar(30) NOT NULL,
+                                      `tncr` varchar(30) NOT NULL,
+                                      `luasmatang` double DEFAULT NULL,
+                                      `tebang` varchar(5) DEFAULT NULL,
+                                      `tarikhtebang` varchar(20) DEFAULT NULL,
+                                      `nolesen` varchar(50) DEFAULT NULL,
+                                      `syarattanah` varchar(22) NOT NULL,
+                                      `pemilikan` varchar(10) DEFAULT NULL,
+                                      `pengurusan` varchar(20) DEFAULT NULL,
+                                      `luaslesen` double DEFAULT NULL,
+                                      `catatan` text,
+                                      `created` datetime DEFAULT NULL,
+                                      `createdby` varchar(100) DEFAULT NULL
+                                    );
                            ";
                 cmd.CommandType = CommandType.Text;
                 i = cmd.ExecuteNonQuery();
@@ -765,8 +773,8 @@ namespace PortableApps.Repo
                                 -- Dumping structure for table a1_tsspk1511.parlimen
                                 CREATE TABLE IF NOT EXISTS `parlimen` (
                                   `id` int(11) NULL PRIMARY KEY,
-                                  `negeri` varchar(100) NULL,
-                                  `kawasan` varchar(100) NULL
+                                  `negeri` varchar(100) COLLATE NOCASE NULL,
+                                  `kawasan` varchar(100) COLLATE NOCASE NULL
                                 );
 
                                 DELETE FROM parlimen;
@@ -1019,11 +1027,11 @@ namespace PortableApps.Repo
                                 -- --------------------------------------------------------
                                 -- Dumping structure for table a1_tsspk1511.variables
                                 CREATE TABLE IF NOT EXISTS `variables` (
-                                    `code` varchar(30)  NULL,
-                                    `value` varchar(50)  NULL,
-                                    `type` varchar(50)  DEFAULT NULL,
-                                    `parent` varchar(5)  DEFAULT NULL
-                                );
+  `code` varchar(30) COLLATE NOCASE NOT NULL,
+  `value` varchar(50) COLLATE NOCASE NOT NULL,
+  `type` varchar(50) COLLATE NOCASE DEFAULT NULL,
+  `parent` varchar(5) COLLATE NOCASE DEFAULT NULL
+);
 
                                 DELETE FROM variables;
 
@@ -1200,18 +1208,12 @@ namespace PortableApps.Repo
                             -- Dumping structure for table tsspk1511.daerah
                             CREATE TABLE IF NOT EXISTS `daerah` (
                                 `id` int(11) NOT NULL PRIMARY KEY,
-                                `kod_negeri` varchar(10)   NULL,
-                                `kod_daerah` varchar(10)  NULL,
-                                `daerah` varchar(100)   NULL,
-                                `daerah_spe` varchar(100)  NULL
+                                `kod_negeri` varchar(10) COLLATE NOCASE  NULL,
+                                `kod_daerah` varchar(10) COLLATE NOCASE NULL,
+                                `daerah` varchar(100)  COLLATE NOCASE NULL,
+                                `daerah_spe` varchar(100) COLLATE NOCASE NULL
                             );
-                            --,
-                                --PRIMARY KEY (`id`),
-                                --KEY `kod_negeri` (`kod_negeri`),
-                                --KEY `kod_daerah` (`kod_daerah`),
-                                --KEY `kod_daerah_2` (`kod_daerah`)
-                            --) ENGINE=MyISAM AUTO_INCREMENT=208 DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
-
+                            
                             DELETE FROM daerah;
                             
                             -- Dumping data for table tsspk1511.daerah: 207 rows
@@ -1442,8 +1444,8 @@ namespace PortableApps.Repo
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (
                                 Key varchar(50) NOT NULL PRIMARY KEY,
-                                Value varchar(250) NOT NULL,
-                                Description varchar(250),
+                                Value varchar(250) COLLATE NOCASE NOT NULL,
+                                Description varchar(250) COLLATE NOCASE,
                                 CanModify int NOT NULL,
                                 IsEncrypt bit NOT NULL
                             );
@@ -1466,7 +1468,6 @@ namespace PortableApps.Repo
             return i;
         }
 
-
         public int SetupTBangsa(SQLiteConnection cnn)
         {
             int i = 0;
@@ -1477,7 +1478,7 @@ namespace PortableApps.Repo
                 string qry = @"
                             CREATE TABLE IF NOT EXISTS TBANGSA
                             (
-                                BANGSA varchar(100)
+                                BANGSA varchar(100) COLLATE NOCASE
                             );
                     ";
                 #endregion

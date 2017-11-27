@@ -33,6 +33,9 @@
             this.btnCreateMakkebun = new System.Windows.Forms.Button();
             this.btnCreateDun = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnCreateAppInfo
@@ -53,6 +56,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Create Parlimen";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnCreateMakkebun
             // 
@@ -62,6 +66,7 @@
             this.btnCreateMakkebun.TabIndex = 2;
             this.btnCreateMakkebun.Text = "Create MakKebun";
             this.btnCreateMakkebun.UseVisualStyleBackColor = true;
+            this.btnCreateMakkebun.Click += new System.EventHandler(this.btnCreateMakkebun_Click);
             // 
             // btnCreateDun
             // 
@@ -71,6 +76,7 @@
             this.btnCreateDun.TabIndex = 3;
             this.btnCreateDun.Text = "Create Dun";
             this.btnCreateDun.UseVisualStyleBackColor = true;
+            this.btnCreateDun.Click += new System.EventHandler(this.btnCreateDun_Click);
             // 
             // button5
             // 
@@ -80,12 +86,46 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Create Variables";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(260, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Sync Bangsa";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(12, 197);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(260, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Setup Setting";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(12, 226);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(260, 23);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Create Daerah";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // InitializeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 183);
+            this.ClientSize = new System.Drawing.Size(284, 272);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.btnCreateDun);
             this.Controls.Add(this.btnCreateMakkebun);
@@ -104,5 +144,8 @@
         private System.Windows.Forms.Button btnCreateMakkebun;
         private System.Windows.Forms.Button btnCreateDun;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

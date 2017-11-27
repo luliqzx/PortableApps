@@ -36,13 +36,14 @@
             this.rbDaftarMaklumatPermohonan = new System.Windows.Forms.RibbonButton();
             this.rbMaklumatPemohon = new System.Windows.Forms.RibbonButton();
             this.rbmakkebun = new System.Windows.Forms.RibbonButton();
+            this.rbLawatanPengesahanKebun = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
             this.rbSetting = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.rbLawatanPengesahanKebun = new System.Windows.Forms.RibbonButton();
+            this.rbInitData = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -127,6 +128,16 @@
             this.rbmakkebun.Text = "Maklumat Kebun";
             this.rbmakkebun.Click += new System.EventHandler(this.rbmakkebun_Click);
             // 
+            // rbLawatanPengesahanKebun
+            // 
+            this.rbLawatanPengesahanKebun.Image = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.Image")));
+            this.rbLawatanPengesahanKebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.LargeImage")));
+            this.rbLawatanPengesahanKebun.MinimumSize = new System.Drawing.Size(120, 0);
+            this.rbLawatanPengesahanKebun.Name = "rbLawatanPengesahanKebun";
+            this.rbLawatanPengesahanKebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.SmallImage")));
+            this.rbLawatanPengesahanKebun.Text = "Lawatan Pengesahan Kebun";
+            this.rbLawatanPengesahanKebun.Click += new System.EventHandler(this.rbLawatanPengesahanKebun_Click);
+            // 
             // ribbonTab2
             // 
             this.ribbonTab2.Name = "ribbonTab2";
@@ -135,6 +146,7 @@
             // 
             // ribbonPanel2
             // 
+            this.ribbonPanel2.Items.Add(this.rbInitData);
             this.ribbonPanel2.Items.Add(this.rbSetting);
             this.ribbonPanel2.Name = "ribbonPanel2";
             this.ribbonPanel2.Text = "";
@@ -170,15 +182,14 @@
             this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
-            // rbLawatanPengesahanKebun
+            // rbInitData
             // 
-            this.rbLawatanPengesahanKebun.Image = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.Image")));
-            this.rbLawatanPengesahanKebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.LargeImage")));
-            this.rbLawatanPengesahanKebun.MinimumSize = new System.Drawing.Size(120, 0);
-            this.rbLawatanPengesahanKebun.Name = "rbLawatanPengesahanKebun";
-            this.rbLawatanPengesahanKebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.SmallImage")));
-            this.rbLawatanPengesahanKebun.Text = "Lawatan Pengesahan Kebun";
-            this.rbLawatanPengesahanKebun.Click += new System.EventHandler(this.rbLawatanPengesahanKebun_Click);
+            this.rbInitData.Image = ((System.Drawing.Image)(resources.GetObject("rbInitData.Image")));
+            this.rbInitData.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.LargeImage")));
+            this.rbInitData.Name = "rbInitData";
+            this.rbInitData.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.SmallImage")));
+            this.rbInitData.Text = "InitializeData";
+            this.rbInitData.Click += new System.EventHandler(this.rbInitData_Click);
             // 
             // MDIParent2
             // 
@@ -211,6 +222,7 @@
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonButton rbLawatanPengesahanKebun;
+        private System.Windows.Forms.RibbonButton rbInitData;
     }
 }
 

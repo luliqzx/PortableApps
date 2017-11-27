@@ -58,7 +58,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtemail = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -66,12 +65,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.cbnegeri = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.cbparlimen = new System.Windows.Forms.ComboBox();
             this.cbdaerah = new System.Windows.Forms.ComboBox();
             this.cbdun = new System.Windows.Forms.ComboBox();
             this.cbbangsa = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -90,6 +87,9 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.ttpGeneral = new System.Windows.Forms.ToolTip(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtcreatedby = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -342,16 +342,6 @@
             this.label6.TabIndex = 38;
             this.label6.Text = "Email";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 492);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(79, 13);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Tidak Lengkap";
-            this.label7.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(139, 530);
@@ -379,16 +369,17 @@
             // groupBox1
             // 
             this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtcreatedby);
+            this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label33);
             this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.label31);
             this.groupBox1.Controls.Add(this.cbnegeri);
-            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.cbparlimen);
             this.groupBox1.Controls.Add(this.cbdaerah);
             this.groupBox1.Controls.Add(this.cbdun);
             this.groupBox1.Controls.Add(this.cbbangsa);
-            this.groupBox1.Controls.Add(this.label34);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label36);
             this.groupBox1.Controls.Add(this.label37);
@@ -416,7 +407,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txthptel);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txticno);
             this.groupBox1.Controls.Add(this.txtofficetel);
@@ -486,18 +476,6 @@
             this.cbnegeri.SelectedIndexChanged += new System.EventHandler(this.cbparlimen_SelectedIndexChanged);
             this.cbnegeri.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(220, 487);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(168, 17);
-            this.checkBox1.TabIndex = 19;
-            this.checkBox1.Text = "Tick jika pemohon tanpa SOP";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
-            this.checkBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
-            // 
             // cbparlimen
             // 
             this.cbparlimen.FormattingEnabled = true;
@@ -537,18 +515,6 @@
             this.cbbangsa.TabIndex = 5;
             this.cbbangsa.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
             this.cbbangsa.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.ForeColor = System.Drawing.Color.Red;
-            this.label34.Location = new System.Drawing.Point(203, 488);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(11, 13);
-            this.label34.TabIndex = 60;
-            this.label34.Text = "*";
-            this.label34.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
-            this.label34.MouseUp += new System.Windows.Forms.MouseEventHandler(this.GeneralTooltip_MouseUp);
             // 
             // label35
             // 
@@ -726,6 +692,32 @@
             this.label18.TabIndex = 42;
             this.label18.Text = "*";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(203, 488);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(11, 13);
+            this.label7.TabIndex = 72;
+            this.label7.Text = "*";
+            // 
+            // txtcreatedby
+            // 
+            this.txtcreatedby.Location = new System.Drawing.Point(220, 485);
+            this.txtcreatedby.Name = "txtcreatedby";
+            this.txtcreatedby.Size = new System.Drawing.Size(200, 20);
+            this.txtcreatedby.TabIndex = 70;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 492);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(49, 13);
+            this.label34.TabIndex = 71;
+            this.label34.Text = "Pembuat";
+            // 
             // appinfosaveform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -774,7 +766,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtemail;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -785,7 +776,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
@@ -800,11 +790,13 @@
         private System.Windows.Forms.ComboBox cbdaerah;
         private System.Windows.Forms.ComboBox cbdun;
         private System.Windows.Forms.ComboBox cbbangsa;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.ComboBox cbnegeri;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ToolTip ttpGeneral;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtcreatedby;
+        private System.Windows.Forms.Label label34;
     }
 }

@@ -112,5 +112,21 @@ namespace PortableApps
             form.MdiParent = this;
             form.Show();
         }
+
+        private void rbInitData_Click(object sender, EventArgs e)
+        {
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.GetType() == typeof(InitializeForm))
+                {
+                    f.Close();
+                    //f.Activate();
+                    //return;
+                }
+            }
+            Form form = new InitializeForm();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }
