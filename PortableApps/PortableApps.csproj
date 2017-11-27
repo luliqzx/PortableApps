@@ -180,6 +180,9 @@
     <EmbeddedResource Include="InitializeForm.resx">
       <DependentUpon>InitializeForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="lawatanpengesahankebunform.resx">
+      <DependentUpon>lawatanpengesahankebunform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="makkebunform.resx">
       <DependentUpon>makkebunform.cs</DependentUpon>
     </EmbeddedResource>
