@@ -102,7 +102,7 @@ namespace PortableApps.Repo
             appinfo appinfo = null;
             using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
             {
-                appinfo = cnn.Query<appinfo>(qry, ID).FirstOrDefault();
+                appinfo = cnn.Query<appinfo>(qry, new { ID }).FirstOrDefault();
             }
             return appinfo;
         }

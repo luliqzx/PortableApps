@@ -106,6 +106,19 @@
             this.pnlPager = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
+            this.lblwilayah = new System.Windows.Forms.Label();
+            this.lbldaerah = new System.Windows.Forms.Label();
+            this.lblposkod = new System.Windows.Forms.Label();
+            this.lblbandar = new System.Windows.Forms.Label();
+            this.lblnokp = new System.Windows.Forms.Label();
+            this.lblnolesen = new System.Windows.Forms.Label();
+            this.lblnama = new System.Windows.Forms.Label();
+            this.lblbangsa = new System.Windows.Forms.Label();
+            this.lbladdr1 = new System.Windows.Forms.Label();
+            this.lblnegeri = new System.Windows.Forms.Label();
+            this.lbladdr2 = new System.Windows.Forms.Label();
+            this.lbladdr3 = new System.Windows.Forms.Label();
+            this.lblappdate = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -735,6 +748,19 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblwilayah);
+            this.groupBox2.Controls.Add(this.lbldaerah);
+            this.groupBox2.Controls.Add(this.lblposkod);
+            this.groupBox2.Controls.Add(this.lblbandar);
+            this.groupBox2.Controls.Add(this.lblnokp);
+            this.groupBox2.Controls.Add(this.lblnolesen);
+            this.groupBox2.Controls.Add(this.lblnama);
+            this.groupBox2.Controls.Add(this.lblbangsa);
+            this.groupBox2.Controls.Add(this.lbladdr1);
+            this.groupBox2.Controls.Add(this.lblnegeri);
+            this.groupBox2.Controls.Add(this.lbladdr2);
+            this.groupBox2.Controls.Add(this.lbladdr3);
+            this.groupBox2.Controls.Add(this.lblappdate);
             this.groupBox2.Controls.Add(this.label50);
             this.groupBox2.Controls.Add(this.label49);
             this.groupBox2.Controls.Add(this.label47);
@@ -952,6 +978,123 @@
             this.button2.Text = "Tambah Kebun";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // lblwilayah
+            // 
+            this.lblwilayah.AutoSize = true;
+            this.lblwilayah.Location = new System.Drawing.Point(412, 155);
+            this.lblwilayah.Name = "lblwilayah";
+            this.lblwilayah.Size = new System.Drawing.Size(45, 13);
+            this.lblwilayah.TabIndex = 53;
+            this.lblwilayah.Text = "Wilayah";
+            // 
+            // lbldaerah
+            // 
+            this.lbldaerah.AutoSize = true;
+            this.lbldaerah.Location = new System.Drawing.Point(166, 163);
+            this.lbldaerah.Name = "lbldaerah";
+            this.lbldaerah.Size = new System.Drawing.Size(151, 13);
+            this.lbldaerah.TabIndex = 52;
+            this.lbldaerah.Text = "Daerah dan kawasan parlimen";
+            // 
+            // lblposkod
+            // 
+            this.lblposkod.AutoSize = true;
+            this.lblposkod.Location = new System.Drawing.Point(412, 142);
+            this.lblposkod.Name = "lblposkod";
+            this.lblposkod.Size = new System.Drawing.Size(43, 13);
+            this.lblposkod.TabIndex = 50;
+            this.lblposkod.Text = "Poskod";
+            // 
+            // lblbandar
+            // 
+            this.lblbandar.AutoSize = true;
+            this.lblbandar.Location = new System.Drawing.Point(412, 127);
+            this.lblbandar.Name = "lblbandar";
+            this.lblbandar.Size = new System.Drawing.Size(44, 13);
+            this.lblbandar.TabIndex = 51;
+            this.lblbandar.Text = "Bandar ";
+            // 
+            // lblnokp
+            // 
+            this.lblnokp.AutoSize = true;
+            this.lblnokp.Location = new System.Drawing.Point(412, 40);
+            this.lblnokp.Name = "lblnokp";
+            this.lblnokp.Size = new System.Drawing.Size(38, 13);
+            this.lblnokp.TabIndex = 49;
+            this.lblnokp.Text = "No KP";
+            // 
+            // lblnolesen
+            // 
+            this.lblnolesen.AutoSize = true;
+            this.lblnolesen.Location = new System.Drawing.Point(412, 58);
+            this.lblnolesen.Name = "lblnolesen";
+            this.lblnolesen.Size = new System.Drawing.Size(53, 13);
+            this.lblnolesen.TabIndex = 48;
+            this.lblnolesen.Text = "No Lesen";
+            // 
+            // lblnama
+            // 
+            this.lblnama.AutoSize = true;
+            this.lblnama.Location = new System.Drawing.Point(166, 58);
+            this.lblnama.Name = "lblnama";
+            this.lblnama.Size = new System.Drawing.Size(86, 13);
+            this.lblnama.TabIndex = 42;
+            this.lblnama.Text = "Nama Pemohon ";
+            // 
+            // lblbangsa
+            // 
+            this.lblbangsa.AutoSize = true;
+            this.lblbangsa.Location = new System.Drawing.Point(167, 76);
+            this.lblbangsa.Name = "lblbangsa";
+            this.lblbangsa.Size = new System.Drawing.Size(43, 13);
+            this.lblbangsa.TabIndex = 47;
+            this.lblbangsa.Text = "Bangsa";
+            // 
+            // lbladdr1
+            // 
+            this.lbladdr1.AutoSize = true;
+            this.lbladdr1.Location = new System.Drawing.Point(166, 93);
+            this.lbladdr1.Name = "lbladdr1";
+            this.lbladdr1.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr1.TabIndex = 46;
+            this.lbladdr1.Text = "Alamat (Baris 1) ";
+            // 
+            // lblnegeri
+            // 
+            this.lblnegeri.AutoSize = true;
+            this.lblnegeri.Location = new System.Drawing.Point(166, 145);
+            this.lblnegeri.Name = "lblnegeri";
+            this.lblnegeri.Size = new System.Drawing.Size(38, 13);
+            this.lblnegeri.TabIndex = 43;
+            this.lblnegeri.Text = "Negeri";
+            // 
+            // lbladdr2
+            // 
+            this.lbladdr2.AutoSize = true;
+            this.lbladdr2.Location = new System.Drawing.Point(166, 110);
+            this.lbladdr2.Name = "lbladdr2";
+            this.lbladdr2.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr2.TabIndex = 45;
+            this.lbladdr2.Text = "Alamat (Baris 2) ";
+            // 
+            // lbladdr3
+            // 
+            this.lbladdr3.AutoSize = true;
+            this.lbladdr3.Location = new System.Drawing.Point(166, 127);
+            this.lbladdr3.Name = "lbladdr3";
+            this.lbladdr3.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr3.TabIndex = 44;
+            this.lbladdr3.Text = "Alamat (Baris 3) ";
+            // 
+            // lblappdate
+            // 
+            this.lblappdate.AutoSize = true;
+            this.lblappdate.Location = new System.Drawing.Point(166, 40);
+            this.lblappdate.Name = "lblappdate";
+            this.lblappdate.Size = new System.Drawing.Size(103, 13);
+            this.lblappdate.TabIndex = 41;
+            this.lblappdate.Text = "Tarikh Permohonan ";
+            // 
             // makkebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1056,5 +1199,18 @@
         private System.Windows.Forms.Panel pnlPager;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblwilayah;
+        private System.Windows.Forms.Label lbldaerah;
+        private System.Windows.Forms.Label lblposkod;
+        private System.Windows.Forms.Label lblbandar;
+        private System.Windows.Forms.Label lblnokp;
+        private System.Windows.Forms.Label lblnolesen;
+        private System.Windows.Forms.Label lblnama;
+        private System.Windows.Forms.Label lblbangsa;
+        private System.Windows.Forms.Label lbladdr1;
+        private System.Windows.Forms.Label lblnegeri;
+        private System.Windows.Forms.Label lbladdr2;
+        private System.Windows.Forms.Label lbladdr3;
+        private System.Windows.Forms.Label lblappdate;
     }
 }

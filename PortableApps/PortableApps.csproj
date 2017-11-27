@@ -114,6 +114,12 @@
     <Compile Include="InitializeForm.Designer.cs">
       <DependentUpon>InitializeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="lawatanpengesahankebunform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="lawatanpengesahankebunform.Designer.cs">
+      <DependentUpon>lawatanpengesahankebunform.cs</DependentUpon>
+    </Compile>
     <Compile Include="makkebunform.cs">
       <SubType>Form</SubType>
     </Compile>
