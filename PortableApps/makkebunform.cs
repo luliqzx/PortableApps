@@ -28,12 +28,18 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
 
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+
             BindMaklumatPemohon(appinfo_id);
         }
 
         private void BindMaklumatPemohon(int appinfo_id)
         {
             appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
+            if (appinfo == null)
+            {
+                appinfo = new appinfo();
+            }
             lblappdate.Text = appinfo.appdate;
             lblnama.Text = appinfo.nama;
             lblbangsa.Text = appinfo.bangsa;

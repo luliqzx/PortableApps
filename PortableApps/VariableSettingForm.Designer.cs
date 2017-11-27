@@ -43,7 +43,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.cbxCanModify = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCS)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -113,6 +113,7 @@
             this.btnDelete.TabIndex = 11;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // pnlPager
             // 
@@ -173,7 +174,7 @@
             this.panel1.Controls.Add(this.cbxCanModify);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cbEncrypt);
             this.panel1.Controls.Add(this.txtKey);
@@ -207,14 +208,15 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Can Modify";
             // 
-            // button1
+            // btnReset
             // 
-            this.button1.Location = new System.Drawing.Point(202, 175);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 18;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnReset.Location = new System.Drawing.Point(202, 175);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 18;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // VariableSettingForm
             // 
@@ -251,6 +253,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox cbxCanModify;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReset;
     }
 }

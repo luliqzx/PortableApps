@@ -22,7 +22,11 @@ namespace PortableApps.Repo
 
         public int Edit(VariableSetting ent)
         {
-            throw new NotImplementedException();
+            int i = 0;
+            string qry = @"UPDATE VariableSetting SET Value=@Value, Description=@Description, CanModify=@CanModify, IsEncrypt=@IsEncrypt
+                                        WHERE Key=@Key";
+            i = sqliteCon.Execute(qry, ent);
+            return i;
         }
 
         public int Delete(string ID)

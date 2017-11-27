@@ -42,6 +42,7 @@
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.rbLawatanPengesahanKebun = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -90,6 +91,7 @@
             this.rbPanelPemohon.Items.Add(this.rbDaftarMaklumatPermohonan);
             this.rbPanelPemohon.Items.Add(this.rbMaklumatPemohon);
             this.rbPanelPemohon.Items.Add(this.rbmakkebun);
+            this.rbPanelPemohon.Items.Add(this.rbLawatanPengesahanKebun);
             this.rbPanelPemohon.Name = "rbPanelPemohon";
             this.rbPanelPemohon.Text = "";
             // 
@@ -107,6 +109,8 @@
             // 
             // rbMaklumatPemohon
             // 
+            this.rbMaklumatPemohon.Image = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.Image")));
+            this.rbMaklumatPemohon.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.LargeImage")));
             this.rbMaklumatPemohon.Name = "rbMaklumatPemohon";
             this.rbMaklumatPemohon.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.SmallImage")));
             this.rbMaklumatPemohon.Text = "Maklumat Pemohon";
@@ -166,6 +170,16 @@
             this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
+            // rbLawatanPengesahanKebun
+            // 
+            this.rbLawatanPengesahanKebun.Image = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.Image")));
+            this.rbLawatanPengesahanKebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.LargeImage")));
+            this.rbLawatanPengesahanKebun.MinimumSize = new System.Drawing.Size(120, 0);
+            this.rbLawatanPengesahanKebun.Name = "rbLawatanPengesahanKebun";
+            this.rbLawatanPengesahanKebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.SmallImage")));
+            this.rbLawatanPengesahanKebun.Text = "Lawatan Pengesahan Kebun";
+            this.rbLawatanPengesahanKebun.Click += new System.EventHandler(this.rbLawatanPengesahanKebun_Click);
+            // 
             // MDIParent2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -176,7 +190,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MDIParent2";
-            this.Text = "MDIParent2";
+            this.Text = "TSSPK";
             this.Load += new System.EventHandler(this.MDIParent2_Load);
             this.ResumeLayout(false);
 
@@ -196,7 +210,7 @@
         private System.Windows.Forms.RibbonTab ribbonTab3;
         private System.Windows.Forms.RibbonPanel ribbonPanel1;
         private System.Windows.Forms.RibbonButton ribbonButton1;
-
+        private System.Windows.Forms.RibbonButton rbLawatanPengesahanKebun;
     }
 }
 

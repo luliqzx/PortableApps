@@ -65,7 +65,38 @@
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblwilayah = new System.Windows.Forms.Label();
+            this.lbldaerah = new System.Windows.Forms.Label();
+            this.lblposkod = new System.Windows.Forms.Label();
+            this.lblbandar = new System.Windows.Forms.Label();
+            this.lblnokp = new System.Windows.Forms.Label();
+            this.lblnolesen = new System.Windows.Forms.Label();
+            this.lblnama = new System.Windows.Forms.Label();
+            this.lblbangsa = new System.Windows.Forms.Label();
+            this.lbladdr1 = new System.Windows.Forms.Label();
+            this.lblnegeri = new System.Windows.Forms.Label();
+            this.lbladdr2 = new System.Windows.Forms.Label();
+            this.lbladdr3 = new System.Windows.Forms.Label();
+            this.lblappdate = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -106,13 +137,12 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(443, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(867, 470);
+            this.groupBox1.Size = new System.Drawing.Size(545, 470);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Lawatan Penge";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Text = "Lawatan Pengesahan Kebun";
             // 
             // label12
             // 
@@ -430,16 +460,314 @@
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.44444F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.55556F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(991, 508);
+            this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblwilayah);
+            this.groupBox2.Controls.Add(this.lbldaerah);
+            this.groupBox2.Controls.Add(this.lblposkod);
+            this.groupBox2.Controls.Add(this.lblbandar);
+            this.groupBox2.Controls.Add(this.lblnokp);
+            this.groupBox2.Controls.Add(this.lblnolesen);
+            this.groupBox2.Controls.Add(this.lblnama);
+            this.groupBox2.Controls.Add(this.lblbangsa);
+            this.groupBox2.Controls.Add(this.lbladdr1);
+            this.groupBox2.Controls.Add(this.lblnegeri);
+            this.groupBox2.Controls.Add(this.lbladdr2);
+            this.groupBox2.Controls.Add(this.lbladdr3);
+            this.groupBox2.Controls.Add(this.lblappdate);
+            this.groupBox2.Controls.Add(this.label50);
+            this.groupBox2.Controls.Add(this.label49);
+            this.groupBox2.Controls.Add(this.label47);
+            this.groupBox2.Controls.Add(this.label48);
+            this.groupBox2.Controls.Add(this.label45);
+            this.groupBox2.Controls.Add(this.label46);
+            this.groupBox2.Controls.Add(this.label39);
+            this.groupBox2.Controls.Add(this.label40);
+            this.groupBox2.Controls.Add(this.label41);
+            this.groupBox2.Controls.Add(this.label42);
+            this.groupBox2.Controls.Add(this.label43);
+            this.groupBox2.Controls.Add(this.label44);
+            this.groupBox2.Controls.Add(this.label38);
+            this.groupBox2.Controls.Add(this.label34);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(434, 502);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Maklumat Kebun";
+            // 
+            // lblwilayah
+            // 
+            this.lblwilayah.AutoSize = true;
+            this.lblwilayah.Location = new System.Drawing.Point(412, 155);
+            this.lblwilayah.Name = "lblwilayah";
+            this.lblwilayah.Size = new System.Drawing.Size(45, 13);
+            this.lblwilayah.TabIndex = 53;
+            this.lblwilayah.Text = "Wilayah";
+            // 
+            // lbldaerah
+            // 
+            this.lbldaerah.AutoSize = true;
+            this.lbldaerah.Location = new System.Drawing.Point(166, 163);
+            this.lbldaerah.Name = "lbldaerah";
+            this.lbldaerah.Size = new System.Drawing.Size(151, 13);
+            this.lbldaerah.TabIndex = 52;
+            this.lbldaerah.Text = "Daerah dan kawasan parlimen";
+            // 
+            // lblposkod
+            // 
+            this.lblposkod.AutoSize = true;
+            this.lblposkod.Location = new System.Drawing.Point(412, 142);
+            this.lblposkod.Name = "lblposkod";
+            this.lblposkod.Size = new System.Drawing.Size(43, 13);
+            this.lblposkod.TabIndex = 50;
+            this.lblposkod.Text = "Poskod";
+            // 
+            // lblbandar
+            // 
+            this.lblbandar.AutoSize = true;
+            this.lblbandar.Location = new System.Drawing.Point(412, 127);
+            this.lblbandar.Name = "lblbandar";
+            this.lblbandar.Size = new System.Drawing.Size(44, 13);
+            this.lblbandar.TabIndex = 51;
+            this.lblbandar.Text = "Bandar ";
+            // 
+            // lblnokp
+            // 
+            this.lblnokp.AutoSize = true;
+            this.lblnokp.Location = new System.Drawing.Point(412, 40);
+            this.lblnokp.Name = "lblnokp";
+            this.lblnokp.Size = new System.Drawing.Size(38, 13);
+            this.lblnokp.TabIndex = 49;
+            this.lblnokp.Text = "No KP";
+            // 
+            // lblnolesen
+            // 
+            this.lblnolesen.AutoSize = true;
+            this.lblnolesen.Location = new System.Drawing.Point(412, 58);
+            this.lblnolesen.Name = "lblnolesen";
+            this.lblnolesen.Size = new System.Drawing.Size(53, 13);
+            this.lblnolesen.TabIndex = 48;
+            this.lblnolesen.Text = "No Lesen";
+            // 
+            // lblnama
+            // 
+            this.lblnama.AutoSize = true;
+            this.lblnama.Location = new System.Drawing.Point(166, 58);
+            this.lblnama.Name = "lblnama";
+            this.lblnama.Size = new System.Drawing.Size(86, 13);
+            this.lblnama.TabIndex = 42;
+            this.lblnama.Text = "Nama Pemohon ";
+            // 
+            // lblbangsa
+            // 
+            this.lblbangsa.AutoSize = true;
+            this.lblbangsa.Location = new System.Drawing.Point(167, 76);
+            this.lblbangsa.Name = "lblbangsa";
+            this.lblbangsa.Size = new System.Drawing.Size(43, 13);
+            this.lblbangsa.TabIndex = 47;
+            this.lblbangsa.Text = "Bangsa";
+            // 
+            // lbladdr1
+            // 
+            this.lbladdr1.AutoSize = true;
+            this.lbladdr1.Location = new System.Drawing.Point(166, 93);
+            this.lbladdr1.Name = "lbladdr1";
+            this.lbladdr1.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr1.TabIndex = 46;
+            this.lbladdr1.Text = "Alamat (Baris 1) ";
+            // 
+            // lblnegeri
+            // 
+            this.lblnegeri.AutoSize = true;
+            this.lblnegeri.Location = new System.Drawing.Point(166, 145);
+            this.lblnegeri.Name = "lblnegeri";
+            this.lblnegeri.Size = new System.Drawing.Size(38, 13);
+            this.lblnegeri.TabIndex = 43;
+            this.lblnegeri.Text = "Negeri";
+            // 
+            // lbladdr2
+            // 
+            this.lbladdr2.AutoSize = true;
+            this.lbladdr2.Location = new System.Drawing.Point(166, 110);
+            this.lbladdr2.Name = "lbladdr2";
+            this.lbladdr2.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr2.TabIndex = 45;
+            this.lbladdr2.Text = "Alamat (Baris 2) ";
+            // 
+            // lbladdr3
+            // 
+            this.lbladdr3.AutoSize = true;
+            this.lbladdr3.Location = new System.Drawing.Point(166, 127);
+            this.lbladdr3.Name = "lbladdr3";
+            this.lbladdr3.Size = new System.Drawing.Size(83, 13);
+            this.lbladdr3.TabIndex = 44;
+            this.lbladdr3.Text = "Alamat (Baris 3) ";
+            // 
+            // lblappdate
+            // 
+            this.lblappdate.AutoSize = true;
+            this.lblappdate.Location = new System.Drawing.Point(166, 40);
+            this.lblappdate.Name = "lblappdate";
+            this.lblappdate.Size = new System.Drawing.Size(103, 13);
+            this.lblappdate.TabIndex = 41;
+            this.lblappdate.Text = "Tarikh Permohonan ";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(338, 155);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(45, 13);
+            this.label50.TabIndex = 40;
+            this.label50.Text = "Wilayah";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(6, 163);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(151, 13);
+            this.label49.TabIndex = 39;
+            this.label49.Text = "Daerah dan kawasan parlimen";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(338, 142);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(43, 13);
+            this.label47.TabIndex = 37;
+            this.label47.Text = "Poskod";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(338, 127);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(44, 13);
+            this.label48.TabIndex = 38;
+            this.label48.Text = "Bandar ";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(338, 40);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(38, 13);
+            this.label45.TabIndex = 36;
+            this.label45.Text = "No KP";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(338, 58);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(53, 13);
+            this.label46.TabIndex = 35;
+            this.label46.Text = "No Lesen";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(6, 58);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(86, 13);
+            this.label39.TabIndex = 29;
+            this.label39.Text = "Nama Pemohon ";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(7, 76);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(43, 13);
+            this.label40.TabIndex = 34;
+            this.label40.Text = "Bangsa";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(6, 93);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(83, 13);
+            this.label41.TabIndex = 33;
+            this.label41.Text = "Alamat (Baris 1) ";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(6, 145);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(38, 13);
+            this.label42.TabIndex = 30;
+            this.label42.Text = "Negeri";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(6, 110);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(83, 13);
+            this.label43.TabIndex = 32;
+            this.label43.Text = "Alamat (Baris 2) ";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(6, 127);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(83, 13);
+            this.label44.TabIndex = 31;
+            this.label44.Text = "Alamat (Baris 3) ";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(6, 40);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(103, 13);
+            this.label38.TabIndex = 1;
+            this.label38.Text = "Tarikh Permohonan ";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 20);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(142, 13);
+            this.label34.TabIndex = 0;
+            this.label34.Text = "INFO PERKEBUNAN KECIL";
+            // 
             // lawatanpengesahankebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 508);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(991, 508);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "lawatanpengesahankebunform";
             this.Text = "Lawatan Pengesahan Kebun";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -483,5 +811,34 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblwilayah;
+        private System.Windows.Forms.Label lbldaerah;
+        private System.Windows.Forms.Label lblposkod;
+        private System.Windows.Forms.Label lblbandar;
+        private System.Windows.Forms.Label lblnokp;
+        private System.Windows.Forms.Label lblnolesen;
+        private System.Windows.Forms.Label lblnama;
+        private System.Windows.Forms.Label lblbangsa;
+        private System.Windows.Forms.Label lbladdr1;
+        private System.Windows.Forms.Label lblnegeri;
+        private System.Windows.Forms.Label lbladdr2;
+        private System.Windows.Forms.Label lbladdr3;
+        private System.Windows.Forms.Label lblappdate;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label34;
     }
 }

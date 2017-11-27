@@ -96,5 +96,21 @@ namespace PortableApps
         {
             this.Close();
         }
+
+        private void rbLawatanPengesahanKebun_Click(object sender, EventArgs e)
+        {
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.GetType() == typeof(lawatanpengesahankebunform))
+                {
+                    f.Close();
+                    //f.Activate();
+                    //return;
+                }
+            }
+            Form form = new lawatanpengesahankebunform();
+            form.MdiParent = this;
+            form.Show();
+        }
     }
 }

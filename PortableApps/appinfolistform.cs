@@ -41,6 +41,9 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
             xcurrentPage = 1;
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+
             BindGrid(xcurrentPage);
         }
 
