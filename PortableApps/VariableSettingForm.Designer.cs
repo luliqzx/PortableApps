@@ -60,6 +60,7 @@
             this.dgvCS.Size = new System.Drawing.Size(716, 262);
             this.dgvCS.TabIndex = 0;
             this.dgvCS.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCS_CellDoubleClick);
+            this.dgvCS.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCS_ColumnHeaderMouseClick);
             this.dgvCS.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCS_RowPostPaint);
             // 
             // label1

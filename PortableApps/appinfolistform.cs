@@ -17,6 +17,8 @@ namespace PortableApps
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         private int PageSize { get; set; }
+        private string sidx { get; set; }
+        private string sord { get; set; }
         private int xcurrentPage { get; set; }
         int totalRecords;
 
@@ -43,7 +45,8 @@ namespace PortableApps
             xcurrentPage = 1;
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
-
+            sidx = "ID";
+            sord = "ASC";
             BindGrid(xcurrentPage);
         }
 
@@ -171,7 +174,7 @@ namespace PortableApps
 
         private void BindGrid(int pageIndex)
         {
-            IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, PageSize, "id", "Asc", out totalRecords, null);
+            IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, null);
             dgvMakPer.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
@@ -204,8 +207,9 @@ namespace PortableApps
             {
                 if (f.GetType() == typeof(makkebunform))
                 {
-                    f.Activate();
-                    return;
+                    //f.Activate();
+                    //return;
+                    f.Close();
                 }
             }
             makkebunform form = new makkebunform();
@@ -214,5 +218,19 @@ namespace PortableApps
             form.Show();
         }
 
+        private void dgvMakPer_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            sidx = dgv.Columns[e.ColumnIndex].Name;
+            if (sord == "ASC")
+            {
+                sord = "DESC";
+            }
+            else
+            {
+                sord = "ASC";
+            }
+            BindGrid(xcurrentPage);
+        }
     }
 }

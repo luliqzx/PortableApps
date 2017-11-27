@@ -16,6 +16,8 @@ namespace PortableApps
     {
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
         private int PageSize { get; set; }
+        private string sidx { get; set; }
+        private string sord { get; set; }
         private int xcurrentPage { get; set; }
         int totalRecords;
 
@@ -40,6 +42,10 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
             xcurrentPage = 1;
+
+
+            sidx = "KEY";
+            sidx = "ASC";
             BindGrid(xcurrentPage);
         }
 
@@ -271,6 +277,22 @@ namespace PortableApps
         private void btnReset_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
+        }
+
+
+        private void dgvCS_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            sidx = dgv.Columns[e.ColumnIndex].Name;
+            if (sord == "ASC")
+            {
+                sord = "DESC";
+            }
+            else
+            {
+                sord = "ASC";
+            }
+            BindGrid(xcurrentPage);
         }
     }
 }
