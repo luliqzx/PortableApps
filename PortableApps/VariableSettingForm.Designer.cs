@@ -41,6 +41,8 @@
             this.cbEncrypt = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbxCanModify = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCS)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -52,8 +54,11 @@
             this.dgvCS.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCS.Location = new System.Drawing.Point(3, 224);
             this.dgvCS.Name = "dgvCS";
+            this.dgvCS.ReadOnly = true;
+            this.dgvCS.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCS.Size = new System.Drawing.Size(716, 270);
             this.dgvCS.TabIndex = 0;
+            this.dgvCS.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCS_CellDoubleClick);
             this.dgvCS.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvCS_RowPostPaint);
             // 
             // label1
@@ -91,7 +96,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(15, 152);
+            this.btnSave.Location = new System.Drawing.Point(15, 175);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -101,7 +106,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(105, 152);
+            this.btnDelete.Location = new System.Drawing.Point(105, 175);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 11;
@@ -163,6 +168,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cbxCanModify);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.cbEncrypt);
@@ -177,6 +184,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(716, 215);
             this.panel1.TabIndex = 17;
+            // 
+            // cbxCanModify
+            // 
+            this.cbxCanModify.AutoSize = true;
+            this.cbxCanModify.Location = new System.Drawing.Point(83, 144);
+            this.cbxCanModify.Name = "cbxCanModify";
+            this.cbxCanModify.Size = new System.Drawing.Size(74, 17);
+            this.cbxCanModify.TabIndex = 19;
+            this.cbxCanModify.Text = "Tick if yes";
+            this.cbxCanModify.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 145);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(60, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Can Modify";
             // 
             // VariableSettingForm
             // 
@@ -211,5 +237,7 @@
         private System.Windows.Forms.CheckBox cbEncrypt;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox cbxCanModify;
+        private System.Windows.Forms.Label label7;
     }
 }
