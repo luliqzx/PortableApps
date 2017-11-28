@@ -17,6 +17,12 @@ namespace PortableApps
 
         public int appinfo_id { get; set; }
 
+        public class KeyValue
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+
         public makkebunform()
         {
             InitializeComponent();
@@ -31,6 +37,54 @@ namespace PortableApps
             txttarikhtebang.CustomFormat = "dd-MM-yyyy";
 
             BindMaklumatPemohon(appinfo_id);
+
+            BindSyaratTanah();
+
+            BindPemilikan();
+
+            BindJenisHakMilikTanah();
+
+            BindPengurusan();
+        }
+
+        private void BindPengurusan()
+        {
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue() { Key = "Sendiri", Value = "Sendiri" });
+            lstKV.Add(new KeyValue() { Key = "MPOB", Value = "MPOB" });
+            cbpengurusan.DataSource = lstKV;
+            cbpengurusan.ValueMember = "Key";
+            cbpengurusan.DisplayMember = "Value";
+        }
+
+        private void BindJenisHakMilikTanah()
+        {
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue() { Key = "GK", Value = "Geran Kekal" });
+            lstKV.Add(new KeyValue() { Key = "TNCR", Value = "Tanah NCR" });
+            lstKV.Add(new KeyValue() { Key = "TPT", Value = "Tanah PT" });
+            lstKV.Add(new KeyValue() { Key = "ROA", Value = "Rizab Orang Asli" });
+            lstKV.Add(new KeyValue() { Key = "LL", Value = "Lain-Lain" });
+            cbjenishakmiliktanah.DataSource = lstKV;
+            cbjenishakmiliktanah.ValueMember = "Key";
+            cbjenishakmiliktanah.DisplayMember = "Value";
+        }
+
+        private void BindPemilikan()
+        {
+            cbpemilikan.Items.Clear();
+            cbpemilikan.Items.Add("Berkongsi");
+            cbpemilikan.Items.Add("Kekal");
+            cbpemilikan.Items.Add("Sementara");
+            cbpemilikan.Items.Add("Pajakans");
+        }
+
+        private void BindSyaratTanah()
+        {
+            cbsyarattanah.Items.Clear();
+            cbsyarattanah.Items.Add("SAWIT");
+            cbsyarattanah.Items.Add("PERTANIAN");
+            cbsyarattanah.Items.Add("TIADA SEKATAN");
         }
 
         private void BindMaklumatPemohon(int appinfo_id)
@@ -54,5 +108,7 @@ namespace PortableApps
             lblposkod.Text = appinfo.poskod;
             lblwilayah.Text = "KOSONG DULU";// appinfo.wilayah;
         }
+
+
     }
 }

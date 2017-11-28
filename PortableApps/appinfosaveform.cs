@@ -202,11 +202,25 @@ namespace PortableApps
             appinfo.email = txtemail.Text;
             //appinfo.kelompok = txtkelompok.Text;
 
+            appinfo.refno = GenerateRefNo(appinfo.negeri);
+
             int i = AppInfoRepo.Create(appinfo);
             if (i > 0)
             {
                 MessageBox.Show("Data berhasil disimpan [" + appinfo.id + "]");
             }
+        }
+
+        private string GenerateRefNo(string negeri)
+        {
+            string refno = "";
+
+            variables variables = VariablesRepo.GetBy(negeri);
+            refno = @"TSSPK/" + variables.Parent + "/";
+
+            int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno);
+
+            return refno;
         }
 
         private void ClearTextBoxes()

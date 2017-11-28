@@ -47,9 +47,9 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbjenis_tanah = new System.Windows.Forms.ComboBox();
+            this.cbkaedah = new System.Windows.Forms.ComboBox();
+            this.cbnolot = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -66,6 +66,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblwilayah = new System.Windows.Forms.Label();
@@ -95,12 +96,11 @@
             this.label44 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -124,9 +124,9 @@
             this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.cbjenis_tanah);
+            this.groupBox1.Controls.Add(this.cbkaedah);
+            this.groupBox1.Controls.Add(this.cbnolot);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label17);
@@ -156,7 +156,7 @@
             this.button2.Location = new System.Drawing.Point(397, 425);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 7;
+            this.button2.TabIndex = 20;
             this.button2.Text = "Reset";
             this.button2.UseVisualStyleBackColor = true;
             // 
@@ -165,7 +165,7 @@
             this.button1.Location = new System.Drawing.Point(300, 425);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
+            this.button1.TabIndex = 19;
             this.button1.Text = "Simpan";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -174,7 +174,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(299, 282);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 5;
+            this.dateTimePicker1.TabIndex = 15;
             // 
             // label15
             // 
@@ -191,7 +191,7 @@
             this.radioButton6.Location = new System.Drawing.Point(348, 160);
             this.radioButton6.Name = "radioButton6";
             this.radioButton6.Size = new System.Drawing.Size(52, 17);
-            this.radioButton6.TabIndex = 3;
+            this.radioButton6.TabIndex = 10;
             this.radioButton6.TabStop = true;
             this.radioButton6.Text = "Tidak";
             this.radioButton6.UseVisualStyleBackColor = true;
@@ -202,7 +202,7 @@
             this.radioButton5.Location = new System.Drawing.Point(304, 160);
             this.radioButton5.Name = "radioButton5";
             this.radioButton5.Size = new System.Drawing.Size(38, 17);
-            this.radioButton5.TabIndex = 3;
+            this.radioButton5.TabIndex = 9;
             this.radioButton5.TabStop = true;
             this.radioButton5.Text = "Ya";
             this.radioButton5.UseVisualStyleBackColor = true;
@@ -213,7 +213,7 @@
             this.radioButton4.Location = new System.Drawing.Point(348, 139);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(52, 17);
-            this.radioButton4.TabIndex = 3;
+            this.radioButton4.TabIndex = 8;
             this.radioButton4.TabStop = true;
             this.radioButton4.Text = "Tidak";
             this.radioButton4.UseVisualStyleBackColor = true;
@@ -224,7 +224,7 @@
             this.radioButton3.Location = new System.Drawing.Point(304, 139);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(38, 17);
-            this.radioButton3.TabIndex = 3;
+            this.radioButton3.TabIndex = 7;
             this.radioButton3.TabStop = true;
             this.radioButton3.Text = "Ya";
             this.radioButton3.UseVisualStyleBackColor = true;
@@ -235,7 +235,7 @@
             this.radioButton2.Location = new System.Drawing.Point(408, 116);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(106, 17);
-            this.radioButton2.TabIndex = 3;
+            this.radioButton2.TabIndex = 6;
             this.radioButton2.TabStop = true;
             this.radioButton2.Text = "Kurang 30 darjah";
             this.radioButton2.UseVisualStyleBackColor = true;
@@ -246,7 +246,7 @@
             this.radioButton1.Location = new System.Drawing.Point(304, 116);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(98, 17);
-            this.radioButton1.TabIndex = 3;
+            this.radioButton1.TabIndex = 5;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Lebih 30 darjah";
             this.radioButton1.UseVisualStyleBackColor = true;
@@ -257,80 +257,80 @@
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(239, 63);
-            this.textBox8.TabIndex = 2;
+            this.textBox8.TabIndex = 18;
             // 
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(300, 330);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 2;
+            this.textBox6.TabIndex = 17;
             // 
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(300, 305);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 2;
+            this.textBox7.TabIndex = 16;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(300, 257);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 2;
+            this.textBox5.TabIndex = 14;
             // 
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(300, 235);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 2;
+            this.textBox4.TabIndex = 13;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(300, 209);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
+            this.textBox3.TabIndex = 12;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(300, 185);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 2;
+            this.textBox2.TabIndex = 11;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(304, 65);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBox1.TabIndex = 3;
             // 
-            // comboBox3
+            // cbjenis_tanah
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(304, 88);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 21);
-            this.comboBox3.TabIndex = 1;
+            this.cbjenis_tanah.FormattingEnabled = true;
+            this.cbjenis_tanah.Location = new System.Drawing.Point(304, 88);
+            this.cbjenis_tanah.Name = "cbjenis_tanah";
+            this.cbjenis_tanah.Size = new System.Drawing.Size(121, 21);
+            this.cbjenis_tanah.TabIndex = 4;
             // 
-            // comboBox2
+            // cbkaedah
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(304, 41);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 1;
+            this.cbkaedah.FormattingEnabled = true;
+            this.cbkaedah.Location = new System.Drawing.Point(304, 41);
+            this.cbkaedah.Name = "cbkaedah";
+            this.cbkaedah.Size = new System.Drawing.Size(121, 21);
+            this.cbkaedah.TabIndex = 2;
             // 
-            // comboBox1
+            // cbnolot
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(304, 17);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbnolot.FormattingEnabled = true;
+            this.cbnolot.Location = new System.Drawing.Point(304, 17);
+            this.cbnolot.Name = "cbnolot";
+            this.cbnolot.Size = new System.Drawing.Size(121, 21);
+            this.cbnolot.TabIndex = 1;
             // 
             // label12
             // 
@@ -481,6 +481,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1001, 669);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(453, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(545, 663);
+            this.panel2.TabIndex = 2;
             // 
             // panel1
             // 
@@ -774,16 +784,6 @@
             this.label34.TabIndex = 0;
             this.label34.Text = "INFO PERKEBUNAN KECIL";
             // 
-            // panel2
-            // 
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(453, 3);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(545, 663);
-            this.panel2.TabIndex = 2;
-            // 
             // lawatanpengesahankebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -797,11 +797,11 @@
             this.groupBox1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -827,9 +827,9 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbjenis_tanah;
+        private System.Windows.Forms.ComboBox cbkaedah;
+        private System.Windows.Forms.ComboBox cbnolot;
         private System.Windows.Forms.RadioButton radioButton4;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton6;

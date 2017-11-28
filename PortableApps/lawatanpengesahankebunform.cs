@@ -21,6 +21,12 @@ namespace PortableApps
             InitializeComponent();
         }
 
+        public class KeyValue
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -31,6 +37,31 @@ namespace PortableApps
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd-MM-yyyy";
 
+            BindKaedah();
+
+            BindJenisTanah();
+        }
+
+        private void BindJenisTanah()
+        {
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue { Key = "Pedalaman", Value = "Pedalaman" });
+            lstKV.Add(new KeyValue { Key = "Gambut", Value = "Gambut" });
+            lstKV.Add(new KeyValue { Key = "Lanar Pantai", Value = "Lanar Pantai" });
+            cbjenis_tanah.DataSource = lstKV;
+            cbjenis_tanah.ValueMember = "Key";
+            cbjenis_tanah.DisplayMember = "Value";
+        }
+
+        private void BindKaedah()
+        {
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue { Key = "Alat GPS", Value = "Alat GPS" });
+            lstKV.Add(new KeyValue { Key = "Kompas & Tali Ukur", Value = "Kompas & Tali Ukur" });
+            lstKV.Add(new KeyValue { Key = "Batu sepadan", Value = "Batu sepadan" });
+            cbkaedah.DataSource = lstKV;
+            cbkaedah.ValueMember = "Key";
+            cbkaedah.DisplayMember = "Value";
         }
 
         private void BindMaklumatPemohon(int appinfo_id)

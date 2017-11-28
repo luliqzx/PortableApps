@@ -11,6 +11,7 @@ namespace PortableApps.Repo
     public interface IAppInfoRepo : IBaseTRepo<appinfo, int>
     {
         IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null);
+        int GetMaxAppInfoBy(string refno);
     }
     public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
@@ -170,6 +171,11 @@ namespace PortableApps.Repo
             IList<appinfoDTO> lstEnt = sqliteCon.Query<appinfoDTO>(qry, null).ToList();
             rowCount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
             return lstEnt;
+        }
+
+        public int GetMaxAppInfoBy(string refno)
+        {
+            throw new NotImplementedException();
         }
     }
 }

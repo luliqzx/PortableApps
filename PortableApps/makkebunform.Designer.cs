@@ -35,7 +35,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.cbsyarattanah = new System.Windows.Forms.ComboBox();
             this.cbpengurusan = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.cbjenishakmiliktanah = new System.Windows.Forms.ComboBox();
             this.cbparlimen = new System.Windows.Forms.ComboBox();
             this.cbpemilikan = new System.Windows.Forms.ComboBox();
             this.cbdun = new System.Windows.Forms.ComboBox();
@@ -149,7 +149,7 @@
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.cbsyarattanah);
             this.groupBox1.Controls.Add(this.cbpengurusan);
-            this.groupBox1.Controls.Add(this.comboBox7);
+            this.groupBox1.Controls.Add(this.cbjenishakmiliktanah);
             this.groupBox1.Controls.Add(this.cbparlimen);
             this.groupBox1.Controls.Add(this.cbpemilikan);
             this.groupBox1.Controls.Add(this.cbdun);
@@ -266,14 +266,14 @@
             this.cbpengurusan.Size = new System.Drawing.Size(121, 21);
             this.cbpengurusan.TabIndex = 17;
             // 
-            // comboBox7
+            // cbjenishakmiliktanah
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(246, 336);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(10);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(121, 21);
-            this.comboBox7.TabIndex = 16;
+            this.cbjenishakmiliktanah.FormattingEnabled = true;
+            this.cbjenishakmiliktanah.Location = new System.Drawing.Point(246, 336);
+            this.cbjenishakmiliktanah.Margin = new System.Windows.Forms.Padding(10);
+            this.cbjenishakmiliktanah.Name = "cbjenishakmiliktanah";
+            this.cbjenishakmiliktanah.Size = new System.Drawing.Size(121, 21);
+            this.cbjenishakmiliktanah.TabIndex = 16;
             // 
             // cbparlimen
             // 
@@ -1264,7 +1264,7 @@
         private System.Windows.Forms.TextBox txtluasmatang;
         private System.Windows.Forms.ComboBox cbparlimen;
         private System.Windows.Forms.ComboBox cbpengurusan;
-        private System.Windows.Forms.ComboBox comboBox7;
+        private System.Windows.Forms.ComboBox cbjenishakmiliktanah;
         private System.Windows.Forms.ComboBox cbpemilikan;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.RadioButton radioButton2;
