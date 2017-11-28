@@ -31,13 +31,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.btnSimpan = new System.Windows.Forms.Button();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
+            this.txttarikhtebang = new System.Windows.Forms.DateTimePicker();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.cbsyarattanah = new System.Windows.Forms.ComboBox();
+            this.cbpengurusan = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.cbparlimen = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cbpemilikan = new System.Windows.Forms.ComboBox();
             this.cbdun = new System.Windows.Forms.ComboBox();
             this.cbdaerah = new System.Windows.Forms.ComboBox();
             this.cbnegeri = new System.Windows.Forms.ComboBox();
@@ -59,10 +59,10 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtcatatan = new System.Windows.Forms.TextBox();
+            this.txtluaslesen = new System.Windows.Forms.TextBox();
+            this.txtnolesen = new System.Windows.Forms.TextBox();
+            this.txtluasmatang = new System.Windows.Forms.TextBox();
             this.txtnolot = new System.Windows.Forms.TextBox();
             this.txtaddr3 = new System.Windows.Forms.TextBox();
             this.txtaddr2 = new System.Windows.Forms.TextBox();
@@ -121,6 +121,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -133,15 +138,20 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label55);
+            this.groupBox1.Controls.Add(this.label54);
+            this.groupBox1.Controls.Add(this.label53);
+            this.groupBox1.Controls.Add(this.label52);
+            this.groupBox1.Controls.Add(this.label51);
             this.groupBox1.Controls.Add(this.radioButton2);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.btnSimpan);
-            this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.comboBox8);
+            this.groupBox1.Controls.Add(this.txttarikhtebang);
+            this.groupBox1.Controls.Add(this.btnSave);
+            this.groupBox1.Controls.Add(this.cbsyarattanah);
+            this.groupBox1.Controls.Add(this.cbpengurusan);
             this.groupBox1.Controls.Add(this.comboBox7);
             this.groupBox1.Controls.Add(this.cbparlimen);
-            this.groupBox1.Controls.Add(this.comboBox6);
+            this.groupBox1.Controls.Add(this.cbpemilikan);
             this.groupBox1.Controls.Add(this.cbdun);
             this.groupBox1.Controls.Add(this.cbdaerah);
             this.groupBox1.Controls.Add(this.cbnegeri);
@@ -163,10 +173,10 @@
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
-            this.groupBox1.Controls.Add(this.textBox15);
-            this.groupBox1.Controls.Add(this.textBox14);
-            this.groupBox1.Controls.Add(this.textBox10);
-            this.groupBox1.Controls.Add(this.textBox6);
+            this.groupBox1.Controls.Add(this.txtcatatan);
+            this.groupBox1.Controls.Add(this.txtluaslesen);
+            this.groupBox1.Controls.Add(this.txtnolesen);
+            this.groupBox1.Controls.Add(this.txtluasmatang);
             this.groupBox1.Controls.Add(this.txtnolot);
             this.groupBox1.Controls.Add(this.txtaddr3);
             this.groupBox1.Controls.Add(this.txtaddr2);
@@ -221,40 +231,40 @@
             this.radioButton1.Text = "Sudah";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
-            // dateTimePicker1
+            // txttarikhtebang
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(246, 268);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 13;
+            this.txttarikhtebang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.txttarikhtebang.Location = new System.Drawing.Point(246, 268);
+            this.txttarikhtebang.Name = "txttarikhtebang";
+            this.txttarikhtebang.Size = new System.Drawing.Size(200, 20);
+            this.txttarikhtebang.TabIndex = 13;
             // 
-            // btnSimpan
+            // btnSave
             // 
-            this.btnSimpan.Location = new System.Drawing.Point(246, 472);
-            this.btnSimpan.Name = "btnSimpan";
-            this.btnSimpan.Size = new System.Drawing.Size(75, 23);
-            this.btnSimpan.TabIndex = 20;
-            this.btnSimpan.Text = "Simpan";
-            this.btnSimpan.UseVisualStyleBackColor = true;
+            this.btnSave.Location = new System.Drawing.Point(246, 472);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 20;
+            this.btnSave.Text = "Simpan";
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
-            // comboBox4
+            // cbsyarattanah
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(246, 224);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(10);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(121, 21);
-            this.comboBox4.TabIndex = 10;
+            this.cbsyarattanah.FormattingEnabled = true;
+            this.cbsyarattanah.Location = new System.Drawing.Point(246, 224);
+            this.cbsyarattanah.Margin = new System.Windows.Forms.Padding(10);
+            this.cbsyarattanah.Name = "cbsyarattanah";
+            this.cbsyarattanah.Size = new System.Drawing.Size(121, 21);
+            this.cbsyarattanah.TabIndex = 10;
             // 
-            // comboBox8
+            // cbpengurusan
             // 
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(246, 360);
-            this.comboBox8.Margin = new System.Windows.Forms.Padding(10);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(121, 21);
-            this.comboBox8.TabIndex = 17;
+            this.cbpengurusan.FormattingEnabled = true;
+            this.cbpengurusan.Location = new System.Drawing.Point(246, 360);
+            this.cbpengurusan.Margin = new System.Windows.Forms.Padding(10);
+            this.cbpengurusan.Name = "cbpengurusan";
+            this.cbpengurusan.Size = new System.Drawing.Size(121, 21);
+            this.cbpengurusan.TabIndex = 17;
             // 
             // comboBox7
             // 
@@ -274,14 +284,14 @@
             this.cbparlimen.Size = new System.Drawing.Size(121, 21);
             this.cbparlimen.TabIndex = 7;
             // 
-            // comboBox6
+            // cbpemilikan
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(246, 312);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(10);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(121, 21);
-            this.comboBox6.TabIndex = 15;
+            this.cbpemilikan.FormattingEnabled = true;
+            this.cbpemilikan.Location = new System.Drawing.Point(246, 312);
+            this.cbpemilikan.Margin = new System.Windows.Forms.Padding(10);
+            this.cbpemilikan.Name = "cbpemilikan";
+            this.cbpemilikan.Size = new System.Drawing.Size(121, 21);
+            this.cbpemilikan.TabIndex = 15;
             // 
             // cbdun
             // 
@@ -508,39 +518,39 @@
             this.label19.TabIndex = 6;
             this.label19.Text = "*";
             // 
-            // textBox15
+            // txtcatatan
             // 
-            this.textBox15.Location = new System.Drawing.Point(246, 406);
-            this.textBox15.Margin = new System.Windows.Forms.Padding(10);
-            this.textBox15.Multiline = true;
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox15.Size = new System.Drawing.Size(208, 53);
-            this.textBox15.TabIndex = 19;
+            this.txtcatatan.Location = new System.Drawing.Point(246, 406);
+            this.txtcatatan.Margin = new System.Windows.Forms.Padding(10);
+            this.txtcatatan.Multiline = true;
+            this.txtcatatan.Name = "txtcatatan";
+            this.txtcatatan.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.txtcatatan.Size = new System.Drawing.Size(208, 53);
+            this.txtcatatan.TabIndex = 19;
             // 
-            // textBox14
+            // txtluaslesen
             // 
-            this.textBox14.Location = new System.Drawing.Point(246, 384);
-            this.textBox14.Margin = new System.Windows.Forms.Padding(10);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(208, 20);
-            this.textBox14.TabIndex = 18;
+            this.txtluaslesen.Location = new System.Drawing.Point(246, 384);
+            this.txtluaslesen.Margin = new System.Windows.Forms.Padding(10);
+            this.txtluaslesen.Name = "txtluaslesen";
+            this.txtluaslesen.Size = new System.Drawing.Size(208, 20);
+            this.txtluaslesen.TabIndex = 18;
             // 
-            // textBox10
+            // txtnolesen
             // 
-            this.textBox10.Location = new System.Drawing.Point(246, 290);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(10);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(208, 20);
-            this.textBox10.TabIndex = 14;
+            this.txtnolesen.Location = new System.Drawing.Point(246, 290);
+            this.txtnolesen.Margin = new System.Windows.Forms.Padding(10);
+            this.txtnolesen.Name = "txtnolesen";
+            this.txtnolesen.Size = new System.Drawing.Size(208, 20);
+            this.txtnolesen.TabIndex = 14;
             // 
-            // textBox6
+            // txtluasmatang
             // 
-            this.textBox6.Location = new System.Drawing.Point(246, 203);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(10);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(208, 20);
-            this.textBox6.TabIndex = 9;
+            this.txtluasmatang.Location = new System.Drawing.Point(246, 203);
+            this.txtluasmatang.Margin = new System.Windows.Forms.Padding(10);
+            this.txtluasmatang.Name = "txtluasmatang";
+            this.txtluasmatang.Size = new System.Drawing.Size(208, 20);
+            this.txtluasmatang.TabIndex = 9;
             // 
             // txtnolot
             // 
@@ -1123,6 +1133,56 @@
             this.panel1.Size = new System.Drawing.Size(1020, 520);
             this.panel1.TabIndex = 3;
             // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(460, 206);
+            this.label51.Margin = new System.Windows.Forms.Padding(10);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(19, 13);
+            this.label51.TabIndex = 21;
+            this.label51.Text = "ha";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(372, 113);
+            this.label52.Margin = new System.Windows.Forms.Padding(10);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(48, 13);
+            this.label52.TabIndex = 22;
+            this.label52.Text = "(Daerah)";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(372, 135);
+            this.label53.Margin = new System.Windows.Forms.Padding(10);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(33, 13);
+            this.label53.TabIndex = 23;
+            this.label53.Text = "(Dun)";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(372, 161);
+            this.label54.Margin = new System.Windows.Forms.Padding(10);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(53, 13);
+            this.label54.TabIndex = 24;
+            this.label54.Text = "(Parlimen)";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(460, 391);
+            this.label55.Margin = new System.Windows.Forms.Padding(10);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(19, 13);
+            this.label55.TabIndex = 25;
+            this.label55.Text = "ha";
+            // 
             // makkebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1181,7 +1241,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cbsyarattanah;
         private System.Windows.Forms.ComboBox cbdun;
         private System.Windows.Forms.ComboBox cbdaerah;
         private System.Windows.Forms.ComboBox cbnegeri;
@@ -1198,18 +1258,18 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox textBox15;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtcatatan;
+        private System.Windows.Forms.TextBox txtluaslesen;
+        private System.Windows.Forms.TextBox txtnolesen;
+        private System.Windows.Forms.TextBox txtluasmatang;
         private System.Windows.Forms.ComboBox cbparlimen;
-        private System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.ComboBox cbpengurusan;
         private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.Button btnSimpan;
+        private System.Windows.Forms.ComboBox cbpemilikan;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker txttarikhtebang;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label38;
@@ -1246,5 +1306,10 @@
         private System.Windows.Forms.Label lblappdate;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label55;
     }
 }

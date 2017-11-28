@@ -28,7 +28,7 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
 
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            txttarikhtebang.CustomFormat = "dd-MM-yyyy";
 
             BindMaklumatPemohon(appinfo_id);
         }
