@@ -215,6 +215,7 @@ namespace PortableApps
             }
             makkebunform form = new makkebunform();
             form.appinfo_id = Convert.ToInt32(dgv[0, e.RowIndex].Value);
+            form.refno = Convert.ToString(dgv["refno", e.RowIndex].Value);
             form.MdiParent = ParentForm;
             form.Show();
         }

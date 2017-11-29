@@ -18,6 +18,7 @@ namespace PortableApps
         IMakkebunRepo MakkebunRepo = new MakkebunRepo();
 
         public int appinfo_id { get; set; }
+        public string refno { get; set; }
         public int id_makkebun { get; set; }
 
         public class KeyValue
@@ -39,6 +40,8 @@ namespace PortableApps
 
             txttarikhtebang.CustomFormat = "dd-MM-yyyy";
 
+            groupBox2.Text = groupBox2.Text + " " + refno;
+
             BindMaklumatPemohon(appinfo_id);
 
             BindSyaratTanah();
@@ -58,6 +61,7 @@ namespace PortableApps
             cbpengurusan.DataSource = lstKV;
             cbpengurusan.ValueMember = "Key";
             cbpengurusan.DisplayMember = "Value";
+            cbpengurusan.SelectedIndex = -1;
         }
 
         private void BindJenisHakMilikTanah()
@@ -71,23 +75,40 @@ namespace PortableApps
             cbjenishakmiliktanah.DataSource = lstKV;
             cbjenishakmiliktanah.ValueMember = "Key";
             cbjenishakmiliktanah.DisplayMember = "Value";
+            cbjenishakmiliktanah.SelectedIndex = -1;
         }
 
         private void BindPemilikan()
         {
-            cbpemilikan.Items.Clear();
-            cbpemilikan.Items.Add("Berkongsi");
-            cbpemilikan.Items.Add("Kekal");
-            cbpemilikan.Items.Add("Sementara");
-            cbpemilikan.Items.Add("Pajakans");
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue() { Key = "Berkongsi", Value = "Berkongsi" });
+            lstKV.Add(new KeyValue() { Key = "Kekal", Value = "Kekal" });
+            lstKV.Add(new KeyValue() { Key = "Sementara", Value = "Sementara" });
+            lstKV.Add(new KeyValue() { Key = "Pajakans", Value = "Pajakans" });
+            cbpemilikan.DataSource = lstKV;
+            cbpemilikan.ValueMember = "Key";
+            cbpemilikan.DisplayMember = "Value";
+            cbpemilikan.SelectedIndex = -1;
+            //cbpemilikan.Items.Add("Berkongsi");
+            //cbpemilikan.Items.Add("Kekal");
+            //cbpemilikan.Items.Add("Sementara");
+            //cbpemilikan.Items.Add("Pajakans");
         }
 
         private void BindSyaratTanah()
         {
-            cbsyarattanah.Items.Clear();
-            cbsyarattanah.Items.Add("SAWIT");
-            cbsyarattanah.Items.Add("PERTANIAN");
-            cbsyarattanah.Items.Add("TIADA SEKATAN");
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue() { Key = "SAWIT", Value = "SAWIT" });
+            lstKV.Add(new KeyValue() { Key = "PERTANIAN", Value = "PERTANIAN" });
+            lstKV.Add(new KeyValue() { Key = "TIADA SEKATAN", Value = "TIADA SEKATAN" });
+            cbsyarattanah.DataSource = lstKV;
+            cbsyarattanah.ValueMember = "Key";
+            cbsyarattanah.DisplayMember = "Value";
+            cbsyarattanah.SelectedIndex = -1;
+            //cbsyarattanah.Items.Clear();
+            //cbsyarattanah.Items.Add("SAWIT");
+            //cbsyarattanah.Items.Add("PERTANIAN");
+            //cbsyarattanah.Items.Add("TIADA SEKATAN");
         }
 
         private void BindMaklumatPemohon(int appinfo_id)
@@ -169,7 +190,7 @@ namespace PortableApps
             {
                 MakkebunRepo.Edit(makkebun);
             }
-            MessageBox.Show("Data berhasil disimpan [" + txtnolot + "]");
+            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
         }
     }
 }
