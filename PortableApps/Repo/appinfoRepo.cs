@@ -175,7 +175,22 @@ namespace PortableApps.Repo
 
         public int GetMaxAppInfoBy(string refno)
         {
-            throw new NotImplementedException();
+            int i = 0;
+            string qry = @"SELECT MAX(refno) refno from appinfo where refno like @refno || '%' COLLATE NOCASE";
+            appinfo appinfo = sqliteCon.Query<appinfo>(qry, new { refno }).FirstOrDefault();
+            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
+            {
+                string[] nowrefno = appinfo.refno.Split('/');
+                try
+                {
+                    i = Convert.ToInt32(nowrefno[2]);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return i + 1;
         }
     }
 }

@@ -220,6 +220,8 @@ namespace PortableApps
 
             int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno);
 
+            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
+
             return refno;
         }
 
