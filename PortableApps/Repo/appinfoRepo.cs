@@ -164,7 +164,10 @@ namespace PortableApps.Repo
                 }
             }
 
-            string qry = string.Format(@"SELECT id, nama, cast(icno as varchar(100)) icno, negeri, cast(nolesen as varchar(100)) nolesen, refno, appdate, keputusan FROM appinfo 
+            string qry = string.Format(@"SELECT id, nama, icno, value negeri, nolesen, refno, appdate
+                                            -- , keputusan 
+                                            FROM appinfo join variables
+                                            ON negeri = code
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 

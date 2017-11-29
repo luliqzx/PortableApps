@@ -36,8 +36,8 @@ namespace PortableApps.Model.DTO
         public string keputusan { get; set; }
         //public string sts_bck { get; set; }
         //public string status { get; set; }
-        public string date_approved { get; set; }
-        public string approved_by { get; set; }
+        //public string date_approved { get; set; }
+        //public string approved_by { get; set; }
         //public string sop { get; set; }
     }
 }
