@@ -126,6 +126,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbtncr = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbtncr);
             this.groupBox1.Controls.Add(this.label55);
             this.groupBox1.Controls.Add(this.label54);
             this.groupBox1.Controls.Add(this.label53);
@@ -212,7 +214,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(460, 391);
+            this.label55.Location = new System.Drawing.Point(460, 417);
             this.label55.Margin = new System.Windows.Forms.Padding(10);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(19, 13);
@@ -291,7 +293,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(246, 472);
+            this.btnSave.Location = new System.Drawing.Point(246, 498);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 20;
@@ -311,7 +313,7 @@
             // cbpengurusan
             // 
             this.cbpengurusan.FormattingEnabled = true;
-            this.cbpengurusan.Location = new System.Drawing.Point(246, 360);
+            this.cbpengurusan.Location = new System.Drawing.Point(246, 386);
             this.cbpengurusan.Margin = new System.Windows.Forms.Padding(10);
             this.cbpengurusan.Name = "cbpengurusan";
             this.cbpengurusan.Size = new System.Drawing.Size(121, 21);
@@ -325,6 +327,7 @@
             this.cbjenishakmiliktanah.Name = "cbjenishakmiliktanah";
             this.cbjenishakmiliktanah.Size = new System.Drawing.Size(121, 21);
             this.cbjenishakmiliktanah.TabIndex = 16;
+            this.cbjenishakmiliktanah.SelectedIndexChanged += new System.EventHandler(this.cbjenishakmiliktanah_SelectedIndexChanged);
             // 
             // cbparlimen
             // 
@@ -376,7 +379,7 @@
             // 
             this.label33.AutoSize = true;
             this.label33.ForeColor = System.Drawing.Color.Red;
-            this.label33.Location = new System.Drawing.Point(229, 413);
+            this.label33.Location = new System.Drawing.Point(229, 439);
             this.label33.Margin = new System.Windows.Forms.Padding(10);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(11, 13);
@@ -387,7 +390,7 @@
             // 
             this.label32.AutoSize = true;
             this.label32.ForeColor = System.Drawing.Color.Red;
-            this.label32.Location = new System.Drawing.Point(229, 391);
+            this.label32.Location = new System.Drawing.Point(229, 417);
             this.label32.Margin = new System.Windows.Forms.Padding(10);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(11, 13);
@@ -398,7 +401,7 @@
             // 
             this.label31.AutoSize = true;
             this.label31.ForeColor = System.Drawing.Color.Red;
-            this.label31.Location = new System.Drawing.Point(229, 364);
+            this.label31.Location = new System.Drawing.Point(229, 390);
             this.label31.Margin = new System.Windows.Forms.Padding(10);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(11, 13);
@@ -572,7 +575,7 @@
             // 
             // txtcatatan
             // 
-            this.txtcatatan.Location = new System.Drawing.Point(246, 406);
+            this.txtcatatan.Location = new System.Drawing.Point(246, 432);
             this.txtcatatan.Margin = new System.Windows.Forms.Padding(10);
             this.txtcatatan.Multiline = true;
             this.txtcatatan.Name = "txtcatatan";
@@ -582,7 +585,7 @@
             // 
             // txtluaslesen
             // 
-            this.txtluaslesen.Location = new System.Drawing.Point(246, 384);
+            this.txtluaslesen.Location = new System.Drawing.Point(246, 410);
             this.txtluaslesen.Margin = new System.Windows.Forms.Padding(10);
             this.txtluaslesen.Name = "txtluaslesen";
             this.txtluaslesen.Size = new System.Drawing.Size(208, 20);
@@ -639,7 +642,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(13, 363);
+            this.label18.Location = new System.Drawing.Point(13, 389);
             this.label18.Margin = new System.Windows.Forms.Padding(10);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(64, 13);
@@ -689,7 +692,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(13, 391);
+            this.label17.Location = new System.Drawing.Point(13, 417);
             this.label17.Margin = new System.Windows.Forms.Padding(10);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(86, 13);
@@ -739,7 +742,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(13, 413);
+            this.label16.Location = new System.Drawing.Point(13, 439);
             this.label16.Margin = new System.Windows.Forms.Padding(10);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(44, 13);
@@ -1185,15 +1188,24 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1020, 520);
+            this.panel1.Size = new System.Drawing.Size(1133, 556);
             this.panel1.TabIndex = 3;
+            // 
+            // cbtncr
+            // 
+            this.cbtncr.FormattingEnabled = true;
+            this.cbtncr.Location = new System.Drawing.Point(246, 361);
+            this.cbtncr.Margin = new System.Windows.Forms.Padding(10);
+            this.cbtncr.Name = "cbtncr";
+            this.cbtncr.Size = new System.Drawing.Size(208, 21);
+            this.cbtncr.TabIndex = 17;
             // 
             // makkebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1020, 520);
+            this.ClientSize = new System.Drawing.Size(1133, 556);
             this.Controls.Add(this.panel1);
             this.Name = "makkebunform";
             this.Text = "Maklumat Kebun Form";
@@ -1316,5 +1328,6 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.ComboBox cbtncr;
     }
 }

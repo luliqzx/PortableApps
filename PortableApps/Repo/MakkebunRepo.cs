@@ -33,11 +33,13 @@ namespace PortableApps.Repo
         public int Edit(makkebun ent)
         {
             int i = 0;
-            string qry = @"UPDATE id_makkebun=@id_makkebun,	appinfo_id=@appinfo_id,	addr1=@addr1,	addr2=@addr2,	addr3=@addr3,	daerah=@daerah,	dun=@dun
+            string qry = @"UPDATE makkebun SET 
+                                    id_makkebun=@id_makkebun,	
+                                    appinfo_id=@appinfo_id,	addr1=@addr1,	addr2=@addr2,	addr3=@addr3,	daerah=@daerah,	dun=@dun
                                 ,	parlimen=@parlimen,	poskod=@poskod,	negeri=@negeri,	nolot=@nolot,	hakmiliktanah=@hakmiliktanah,	tncr=@tncr,	luasmatang=@luasmatang
                                 ,	tebang=@tebang,	tarikhtebang=@tarikhtebang,	nolesen=@nolesen,	syarattanah=@syarattanah,	pemilikan=@pemilikan,	pengurusan=@pengurusan
                                 ,	luaslesen=@luaslesen,	catatan=@catatan,	created=@created,	createdby=@createdby
-                                 WHERE id_makkebun=@id_makkebun";
+                                 WHERE id_makkebun=@id_makkebun and appinfo_id=@appinfo_id";
             i = sqliteCon.Execute(qry, ent);
             return i;
         }

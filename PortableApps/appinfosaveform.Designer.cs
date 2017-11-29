@@ -61,6 +61,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblWilayah = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtcreatedby = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
@@ -89,9 +90,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.ttpGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.label39 = new System.Windows.Forms.Label();
-            this.lblWilayah = new System.Windows.Forms.Label();
+            this.ttpGeneral = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -439,6 +439,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "A. MAKLUMAT PERMOHON";
             // 
+            // lblWilayah
+            // 
+            this.lblWilayah.AutoSize = true;
+            this.lblWilayah.Location = new System.Drawing.Point(217, 308);
+            this.lblWilayah.Name = "lblWilayah";
+            this.lblWilayah.Size = new System.Drawing.Size(10, 13);
+            this.lblWilayah.TabIndex = 73;
+            this.lblWilayah.Text = " ";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -731,21 +740,12 @@
             this.label39.TabIndex = 16;
             this.label39.Text = "Wilayah";
             // 
-            // lblWilayah
-            // 
-            this.lblWilayah.AutoSize = true;
-            this.lblWilayah.Location = new System.Drawing.Point(217, 308);
-            this.lblWilayah.Name = "lblWilayah";
-            this.lblWilayah.Size = new System.Drawing.Size(10, 13);
-            this.lblWilayah.TabIndex = 73;
-            this.lblWilayah.Text = " ";
-            // 
             // appinfosaveform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(594, 593);
+            this.ClientSize = new System.Drawing.Size(594, 620);
             this.Controls.Add(this.groupBox1);
             this.Name = "appinfosaveform";
             this.Text = "PERMOHONAN BARU";

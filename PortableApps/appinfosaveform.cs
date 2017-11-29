@@ -208,7 +208,7 @@ namespace PortableApps
             appinfo.id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
             appinfo.appdate = txtappdate.Text;
             appinfo.nama = txtnama.Text;
-            //appinfo.type_id = txttype_id.Text;
+            appinfo.type_id = 0;//txttype_id.Text;
             appinfo.icno = txticno.Text;
             appinfo.nolesen = txtnolesen.Text;
             appinfo.bangsa = cbbangsa.SelectedValue.ToString();
@@ -218,16 +218,21 @@ namespace PortableApps
             appinfo.bandar = txtbandar.Text;
             appinfo.daerah = cbdaerah.SelectedValue.ToString();
             appinfo.dun = cbdun.SelectedValue.ToString();
-            appinfo.parlimen = cbparlimen.SelectedValue.ToString();
+            appinfo.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
             appinfo.poskod = txtposkod.Text;
             appinfo.negeri = cbnegeri.SelectedValue.ToString();
             appinfo.hometel = txthometel.Text;
             appinfo.officetel = txtofficetel.Text;
             appinfo.hptel = txthptel.Text;
+            appinfo.sts_bck = 0;
+            appinfo.status = 0;
+            appinfo.sop = 0;
+            appinfo.date_approved = DateTime.MinValue;
+            appinfo.approved_by = "";
             //appinfo.faks = txtfaks.Text;
             appinfo.email = txtemail.Text;
             //appinfo.kelompok = txtkelompok.Text;
-            appinfo.created = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+            appinfo.created = DateTime.Now;
             appinfo.createdby = txtcreatedby.Text;
 
             appinfo.refno = GenerateRefNo(appinfo.negeri);

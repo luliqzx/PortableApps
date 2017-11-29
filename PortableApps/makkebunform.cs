@@ -260,7 +260,7 @@ namespace PortableApps
             makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
             makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
             makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
-            makkebun.tncr = "tanah_ukur_warta";
+            makkebun.tncr = cbtncr.SelectedValue.ToString();
 
             if (IsNew)
             {
@@ -390,6 +390,11 @@ namespace PortableApps
             //dgvMakKebun.Columns.Add("Edit", "Edit");
             //dgvMakKebun.Columns.Add("Delete", "Delete");
 
+            for (int i = 0; i < dgvMakKebun.Columns.Count; i++)
+            {
+                dgvMakKebun.Columns[i].Visible = false;
+            }
+
             DataGridViewButtonColumn Edit = new DataGridViewButtonColumn();
             Edit.Name = "Edit";
             Edit.Text = "Edit";
@@ -410,6 +415,38 @@ namespace PortableApps
             {
                 dgvMakKebun.Columns.Insert(1, Delete);
             }
+
+            //dgvMakKebun.Columns["id_makkebun"].Visible = false;
+            //dgvMakKebun.Columns["appinfo_id"].Visible = false;
+
+            dgvMakKebun.Columns["addr1"].DisplayIndex = 2;
+            dgvMakKebun.Columns["addr2"].DisplayIndex = 3;
+            dgvMakKebun.Columns["addr3"].DisplayIndex = 4;
+            dgvMakKebun.Columns["nolot"].DisplayIndex = 5;
+            dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
+            dgvMakKebun.Columns["luaslesen"].DisplayIndex = 6;
+            dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
+            dgvMakKebun.Columns["nolesen"].DisplayIndex = 7;
+            dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
+            dgvMakKebun.Columns["pemilikan"].DisplayIndex = 8;
+            dgvMakKebun.Columns["pemilikan"].HeaderText = "Taraf Pemilikan";
+
+            DataGridViewLinkColumn dgvLink = new DataGridViewLinkColumn();
+            dgvLink.Text = "";
+            dgvLink.Name = "";
+            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
+            dgvMakKebun.Columns["tarikhtebang"].HeaderText = "Lawatan Pengesahan Kebun";
+            dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
+            dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
+
+            dgvMakKebun.Columns["addr1"].Visible = true;
+            dgvMakKebun.Columns["addr2"].Visible = true;
+            dgvMakKebun.Columns["addr3"].Visible = true;
+            dgvMakKebun.Columns["nolot"].Visible = true;
+            dgvMakKebun.Columns["luaslesen"].Visible = true;
+            dgvMakKebun.Columns["nolesen"].Visible = true;
+            dgvMakKebun.Columns["pemilikan"].Visible = true;
+            dgvMakKebun.Columns["pengurusan"].Visible = true;
 
         }
 
@@ -457,6 +494,8 @@ namespace PortableApps
 
         private void SetupFormMakKebun(int appinfo_id, int id_makkebun)
         {
+            this.appinfo_id = appinfo_id;
+            this.id_makkebun = id_makkebun;
             makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
 
             txtaddr1.Text = makkebun.addr1;
@@ -482,6 +521,34 @@ namespace PortableApps
         private void button2_Click(object sender, EventArgs e)
         {
             ClearMakKebunForm();
+            id_makkebun = 0;
+        }
+
+        private void cbjenishakmiliktanah_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbjenishakmiliktanah.SelectedValue != null && cbjenishakmiliktanah.SelectedValue.ToString() == "TNCR")
+            {
+                List<KeyValue> lstKV = new List<KeyValue>();
+                lstKV.Add(new KeyValue() { Key = "tanah_ukur_warta", Value = "Tanah Yang Diukur Dan Diwarta" });
+                lstKV.Add(new KeyValue() { Key = "tanah_ukur_belum_warta", Value = "Tanah Yang Diukur Dan Belum Diwarta" });
+                lstKV.Add(new KeyValue() { Key = "tanah_geran", Value = "Tanah Geran" });
+                lstKV.Add(new KeyValue() { Key = "tanah_luar_kategori", Value = "Tanah Diluar Kategori 1,2 Dan 3" });
+                cbtncr.DataSource = lstKV;
+                cbtncr.ValueMember = "Key";
+                cbtncr.DisplayMember = "Value";
+                cbtncr.SelectedIndex = -1;
+                cbtncr.Enabled = true;
+            }
+            else
+            {
+                List<KeyValue> lstKV = new List<KeyValue>();
+                lstKV.Add(new KeyValue() { Key = "", Value = "" });
+                cbtncr.DataSource = lstKV;
+                cbtncr.ValueMember = "Key";
+                cbtncr.DisplayMember = "Value";
+                cbtncr.SelectedIndex = 0;
+                cbtncr.Enabled = false;
+            }
         }
     }
 }

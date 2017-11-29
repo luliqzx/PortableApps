@@ -26,7 +26,7 @@ namespace PortableApps
         public appinfolistform()
         {
             InitializeComponent();
-           
+
         }
 
         private void appinfolistform_Load(object sender, EventArgs e)
@@ -180,6 +180,18 @@ namespace PortableApps
             dgvMakPer.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
+
+            dgvMakPer.Columns[0].HeaderText = "Nama Pemohon";
+            dgvMakPer.Columns[1].HeaderText = "No Kad. Pengenalan";
+            dgvMakPer.Columns[2].HeaderText = "Negeri";
+            dgvMakPer.Columns[3].HeaderText = "No. Lesen";
+            dgvMakPer.Columns[4].HeaderText = "No. Rujukan";
+            dgvMakPer.Columns[5].HeaderText = "Tarikh Permohonan";
+            dgvMakPer.Columns[6].HeaderText = "Dibuat Oleh";
+            dgvMakPer.Columns[7].HeaderText = "Dibuat Tanggal";
+            dgvMakPer.Columns[7].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
+            dgvMakPer.Columns[8].HeaderText = "Id";
+            dgvMakPer.Columns[8].Visible = false;
         }
 
         private void dgvMakPer_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -215,7 +227,7 @@ namespace PortableApps
                 }
             }
             makkebunform form = new makkebunform();
-            form.appinfo_id = Convert.ToInt32(dgv[0, e.RowIndex].Value);
+            form.appinfo_id = Convert.ToInt32(dgv["id", e.RowIndex].Value);
             form.refno = Convert.ToString(dgv["refno", e.RowIndex].Value);
             form.MdiParent = ParentForm;
             form.Show();

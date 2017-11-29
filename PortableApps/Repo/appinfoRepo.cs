@@ -164,7 +164,7 @@ namespace PortableApps.Repo
                 }
             }
 
-            string qry = string.Format(@"SELECT id, nama, icno, value negeri, nolesen, refno, appdate
+            string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id
                                             -- , keputusan 
                                             FROM appinfo join variables
                                             ON negeri = code
