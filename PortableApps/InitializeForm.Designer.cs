@@ -44,7 +44,7 @@
             this.btnCreateAppInfo.Name = "btnCreateAppInfo";
             this.btnCreateAppInfo.Size = new System.Drawing.Size(260, 23);
             this.btnCreateAppInfo.TabIndex = 0;
-            this.btnCreateAppInfo.Text = "Create AppInfo";
+            this.btnCreateAppInfo.Text = "Re-Create AppInfo";
             this.btnCreateAppInfo.UseVisualStyleBackColor = true;
             this.btnCreateAppInfo.Click += new System.EventHandler(this.btnCreateAppInfo_Click);
             // 
@@ -54,7 +54,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(260, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Create Parlimen";
+            this.button2.Text = "Re-Create Parlimen";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -64,7 +64,7 @@
             this.btnCreateMakkebun.Name = "btnCreateMakkebun";
             this.btnCreateMakkebun.Size = new System.Drawing.Size(260, 23);
             this.btnCreateMakkebun.TabIndex = 2;
-            this.btnCreateMakkebun.Text = "Create MakKebun";
+            this.btnCreateMakkebun.Text = "Re-Create MakKebun";
             this.btnCreateMakkebun.UseVisualStyleBackColor = true;
             this.btnCreateMakkebun.Click += new System.EventHandler(this.btnCreateMakkebun_Click);
             // 
@@ -74,7 +74,7 @@
             this.btnCreateDun.Name = "btnCreateDun";
             this.btnCreateDun.Size = new System.Drawing.Size(260, 23);
             this.btnCreateDun.TabIndex = 3;
-            this.btnCreateDun.Text = "Create Dun";
+            this.btnCreateDun.Text = "Re-Create Dun";
             this.btnCreateDun.UseVisualStyleBackColor = true;
             this.btnCreateDun.Click += new System.EventHandler(this.btnCreateDun_Click);
             // 
@@ -84,7 +84,7 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(260, 23);
             this.button5.TabIndex = 4;
-            this.button5.Text = "Create Variables";
+            this.button5.Text = "Re-Create Variables";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -114,7 +114,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(260, 23);
             this.button4.TabIndex = 7;
-            this.button4.Text = "Create Daerah";
+            this.button4.Text = "Re-Create Daerah";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

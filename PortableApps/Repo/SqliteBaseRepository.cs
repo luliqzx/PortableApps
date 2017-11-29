@@ -30,11 +30,6 @@ namespace PortableApps.Repo
     }
     public class SqLiteBaseRepository : CommonRepo, ISqLiteBaseRepository
     {
-        public string DbFile
-        {
-            get { return Environment.CurrentDirectory + "\\PortableAppDB.sqlite"; }
-        }
-
         public SQLiteConnection MySQLiteConnection()
         {
             return new SQLiteConnection("Data Source=" + DbFile);
@@ -46,7 +41,9 @@ namespace PortableApps.Repo
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 #region Query
-                cmd.CommandText = @"-- Dumping structure for table a1_tsspk1511.appinfo
+                cmd.CommandText = @"
+DROP TABLE IF NOT EXISTS `appinfo`
+-- Dumping structure for table a1_tsspk1511.appinfo
 CREATE TABLE IF NOT EXISTS `appinfo` (
   `id` int(11) NOT NULL PRIMARY KEY,
   `refno` varchar(100) COLLATE NOCASE DEFAULT NULL,
@@ -100,6 +97,8 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 //                           ";
                 #region Create & Insert Dun
                 cmd.CommandText = @"
+DROP TABLE IF NOT EXISTS `dun`
+
                                         -- --------------------------------------------------------
                                         -- Host:                         127.0.0.1
                                         -- Server version:               5.6.25 - MySQL Community Server (GPL)
@@ -723,6 +722,8 @@ DELETE from dun;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
+DROP TABLE IF NOT EXISTS `makkebun`
+
                                     -- Dumping structure for table a1_tsspk1511.makkebun
                                     CREATE TABLE IF NOT EXISTS `makkebun` (
                                       `id_makkebun` int(11) NOT NULL PRIMARY KEY,
@@ -764,6 +765,8 @@ DELETE from dun;
             {
                 #region Query Create & Insert
                 cmd.CommandText = @"
+DROP TABLE IF NOT EXISTS `parlimen`
+
                                     -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
                                 -- Server version:               5.6.25 - MySQL Community Server (GPL)
@@ -1019,6 +1022,8 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Query Create & Insert
                 cmd.CommandText = @"
+DROP TABLE IF NOT EXISTS `variables`
+
                                 -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
                                 -- Server version:               5.6.25 - MySQL Community Server (GPL)
@@ -1198,6 +1203,8 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
+DROP TABLE IF NOT EXISTS `daerah`
+
                             -- --------------------------------------------------------
                             -- Host:                         127.0.0.1
                             -- Server version:               5.6.25 - MySQL Community Server (GPL)
@@ -1441,6 +1448,8 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
+DROP TABLE IF NOT EXISTS `VariableSetting`
+
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (
                                 Key varchar(50) NOT NULL PRIMARY KEY,
