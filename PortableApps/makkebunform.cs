@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -251,9 +252,9 @@ namespace PortableApps
             makkebun.nolesen = txtnolesen.Text;
             makkebun.nolot = txtnolot.Text;
             makkebun.tarikhtebang = txttarikhtebang.Text;
-            makkebun.negeri = cbdaerah.SelectedValue.ToString();
+            makkebun.negeri = cbnegeri.SelectedValue.ToString();
             makkebun.daerah = cbdaerah.SelectedValue.ToString();
-            makkebun.dun = cbdaerah.SelectedValue.ToString();
+            makkebun.dun = cbdun.SelectedValue.ToString();
             makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
             makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
             makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
@@ -385,6 +386,31 @@ namespace PortableApps
             dgvMakKebun.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
+
+            //dgvMakKebun.Columns.Add("Edit", "Edit");
+            //dgvMakKebun.Columns.Add("Delete", "Delete");
+
+            DataGridViewButtonColumn Edit = new DataGridViewButtonColumn();
+            Edit.Name = "Edit";
+            Edit.Text = "Edit";
+            Edit.HeaderText = "";
+            Edit.UseColumnTextForButtonValue = true;
+            if (dgvMakKebun.Columns["Edit"] == null)
+            {
+                dgvMakKebun.Columns.Insert(0, Edit);
+            }
+
+
+            DataGridViewButtonColumn Delete = new DataGridViewButtonColumn();
+            Delete.Name = "Delete";
+            Delete.Text = "Delete";
+            Delete.HeaderText = "";
+            Delete.UseColumnTextForButtonValue = true;
+            if (dgvMakKebun.Columns["Delete"] == null)
+            {
+                dgvMakKebun.Columns.Insert(1, Delete);
+            }
+
         }
 
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
@@ -395,6 +421,41 @@ namespace PortableApps
                 LoadDaerah(cbx.SelectedValue.ToString());
                 LoadDun(cbx.SelectedValue.ToString());
             }
+        }
+
+        private void dgvMakKebun_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            if (e.ColumnIndex == dgvMakKebun.Columns["Edit"].Index)
+            {
+
+                SetupFormMakKebun(Convert.ToInt32(dgv["appinfo_id", e.RowIndex].Value), Convert.ToInt32(dgv["id_makkebun", e.RowIndex].Value));
+                //Do something with your button.
+            }
+        }
+
+        private void SetupFormMakKebun(int appinfo_id, int id_makkebun)
+        {
+            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
+
+            txtaddr1.Text = makkebun.addr1;
+            txtaddr2.Text = makkebun.addr2;
+            txtaddr3.Text = makkebun.addr3;
+            txtcatatan.Text = makkebun.catatan;
+            txtluaslesen.Text = makkebun.luaslesen.ToString("#.##");
+            txtluasmatang.Text = makkebun.luasmatang.ToString("#.##");
+            txtnolesen.Text = makkebun.nolesen;
+            txtnolot.Text = makkebun.nolot;
+            DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            txttarikhtebang.Text = dttarikhtebang.ToString();
+            cbnegeri.SelectedValue = makkebun.negeri;
+            cbdaerah.SelectedValue = makkebun.daerah;
+            cbdun.SelectedValue = makkebun.dun;
+            cbparlimen.SelectedValue = ParlimenRepo.GetBy(makkebun.parlimen).Negeri;
+            cbsyarattanah.SelectedValue = makkebun.syarattanah;
+            cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
+            cbpemilikan.SelectedValue = makkebun.pemilikan;
+            cbpengurusan.SelectedValue = makkebun.pengurusan;
         }
     }
 }

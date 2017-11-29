@@ -1133,12 +1133,14 @@
             // 
             // dgvMakKebun
             // 
+            this.dgvMakKebun.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMakKebun.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMakKebun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMakKebun.Location = new System.Drawing.Point(3, 243);
             this.dgvMakKebun.Name = "dgvMakKebun";
             this.dgvMakKebun.Size = new System.Drawing.Size(533, 242);
             this.dgvMakKebun.TabIndex = 2;
+            this.dgvMakKebun.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakKebun_CellClick);
             // 
             // pnlPager
             // 
