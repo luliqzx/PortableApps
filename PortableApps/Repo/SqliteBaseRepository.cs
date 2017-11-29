@@ -42,7 +42,7 @@ namespace PortableApps.Repo
             {
                 #region Query
                 cmd.CommandText = @"
-DROP TABLE IF NOT EXISTS `appinfo`
+DROP TABLE IF  EXISTS `appinfo`;
 -- Dumping structure for table a1_tsspk1511.appinfo
 CREATE TABLE IF NOT EXISTS `appinfo` (
   `id` int(11) NOT NULL PRIMARY KEY,
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 //                           ";
                 #region Create & Insert Dun
                 cmd.CommandText = @"
-DROP TABLE IF NOT EXISTS `dun`
+DROP TABLE IF  EXISTS `dun`;
 
                                         -- --------------------------------------------------------
                                         -- Host:                         127.0.0.1
@@ -722,11 +722,11 @@ DELETE from dun;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-DROP TABLE IF NOT EXISTS `makkebun`
+                                    DROP TABLE IF  EXISTS `makkebun`;
 
                                     -- Dumping structure for table a1_tsspk1511.makkebun
                                     CREATE TABLE IF NOT EXISTS `makkebun` (
-                                      `id_makkebun` int(11) NOT NULL PRIMARY KEY,
+                                      `id_makkebun` INTEGER PRIMARY KEY AUTOINCREMENT,
                                       `appinfo_id` int(11) NOT NULL,
                                       `addr1` varchar(100) DEFAULT NULL,
                                       `addr2` varchar(100) DEFAULT NULL,
@@ -765,7 +765,7 @@ DROP TABLE IF NOT EXISTS `makkebun`
             {
                 #region Query Create & Insert
                 cmd.CommandText = @"
-DROP TABLE IF NOT EXISTS `parlimen`
+DROP TABLE IF  EXISTS `parlimen`;
 
                                     -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1022,7 +1022,7 @@ DROP TABLE IF NOT EXISTS `parlimen`
                 cmd.CommandType = CommandType.Text;
                 #region Query Create & Insert
                 cmd.CommandText = @"
-DROP TABLE IF NOT EXISTS `variables`
+DROP TABLE IF  EXISTS `variables`;
 
                                 -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1203,7 +1203,7 @@ DROP TABLE IF NOT EXISTS `variables`
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-DROP TABLE IF NOT EXISTS `daerah`
+DROP TABLE IF  EXISTS `daerah`;
 
                             -- --------------------------------------------------------
                             -- Host:                         127.0.0.1
@@ -1448,7 +1448,7 @@ DROP TABLE IF NOT EXISTS `daerah`
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-DROP TABLE IF NOT EXISTS `VariableSetting`
+DROP TABLE IF  EXISTS `VariableSetting`;
 
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (

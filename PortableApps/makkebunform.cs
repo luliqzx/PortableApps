@@ -15,8 +15,10 @@ namespace PortableApps
     {
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
+        IMakkebunRepo MakkebunRepo = new MakkebunRepo();
 
         public int appinfo_id { get; set; }
+        public int id_makkebun { get; set; }
 
         public class KeyValue
         {
@@ -142,7 +144,32 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool IsNew = false;
+            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
+            if (makkebun == null)
+            {
+                makkebun = new makkebun();
+                IsNew = true;
+            }
+            makkebun.addr1 = txtaddr1.Text;
+            makkebun.addr2 = txtaddr2.Text;
+            makkebun.addr3 = txtaddr3.Text;
+            makkebun.catatan = txtcatatan.Text;
+            makkebun.luaslesen = Convert.ToDouble(txtluaslesen.Text);
+            makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
+            makkebun.nolesen = txtnolesen.Text;
+            makkebun.nolot = txtnolot.Text;
+            makkebun.tarikhtebang = txttarikhtebang.Text;
 
+            if (IsNew)
+            {
+                MakkebunRepo.Create(makkebun);
+            }
+            else
+            {
+                MakkebunRepo.Edit(makkebun);
+            }
+            MessageBox.Show("Data berhasil disimpan [" + txtnolot + "]");
         }
     }
 }
