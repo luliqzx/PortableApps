@@ -9,7 +9,7 @@ namespace PortableApps.Repo
 {
     public interface IParlimenRepo : IBaseTRepo<parlimen, int>
     {
-
+        int GetParlimenIDBy(string negeri);
     }
     public class ParlimenRepo : CommonRepo, IParlimenRepo
     {
@@ -57,6 +57,18 @@ namespace PortableApps.Repo
         public IList<parlimen> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, parlimen whareClause = null)
         {
             throw new NotImplementedException();
+        }
+
+        public int GetParlimenIDBy(string negeri)
+        {
+            int i = 0;
+            string qry = @"SELECT * FROM parlimen where negeri=@negeri";
+            parlimen parlimen = sqliteCon.Query<parlimen>(qry, new { negeri }).FirstOrDefault();
+            if (parlimen != null)
+            {
+                i = parlimen.Id;
+            }
+            return i;
         }
     }
 }

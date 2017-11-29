@@ -95,7 +95,7 @@ namespace PortableApps
             cbnegeri.SelectedIndex = -1;
         }
 
-        private void cbparlimen_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbx = (ComboBox)sender;
             if (cbx.SelectedValue != null)

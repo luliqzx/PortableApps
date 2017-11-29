@@ -26,6 +26,16 @@ namespace PortableApps
         public appinfolistform()
         {
             InitializeComponent();
+           
+        }
+
+        private void appinfolistform_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
             if (varPageSize == null)
             {
@@ -35,16 +45,7 @@ namespace PortableApps
             {
                 PageSize = Convert.ToInt32(varPageSize.Value);
             }
-        }
-
-        private void appinfolistform_Load(object sender, EventArgs e)
-        {
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
             xcurrentPage = 1;
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
             sidx = "ID";
             sord = "ASC";
             BindGrid(xcurrentPage);

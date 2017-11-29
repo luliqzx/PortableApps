@@ -4,23 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
+using PortableApps.Model.DTO;
 
 namespace PortableApps.Repo
 {
     public interface IMakkebunRepo : IBaseTRepo<makkebun, int>
     {
-
+        IList<makkebunDTO> PagedListDTO(int pageIndex, int pageSize, string sidx, string sord, out int totalRecords, makkebun oWhereClause);
     }
     public class MakkebunRepo : CommonRepo, IMakkebunRepo
     {
-
-
         public int Create(makkebun ent)
         {
             int i = 0;
-            string qry = @"INSERT INTO makkebun (id_makkebun,	appinfo_id,	addr1,	addr2,	addr3,	daerah,	dun,	parlimen,	poskod,	negeri,	nolot,	hakmiliktanah,	tncr
+            string qry = @"INSERT INTO makkebun (
+                                --id_makkebun,	
+                                appinfo_id,	addr1,	addr2,	addr3,	daerah,	dun,	parlimen,	poskod,	negeri,	nolot,	hakmiliktanah,	tncr
                             ,	luasmatang,	tebang,	tarikhtebang,	nolesen,	syarattanah,	pemilikan,	pengurusan,	luaslesen,	catatan,	created,	createdby) 
-                            VALUES (@id_makkebun,	@appinfo_id,	@addr1,	@addr2,	@addr3,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@nolot,	@hakmiliktanah,	@tncr
+                            VALUES (
+                                -- @id_makkebun,	
+                                @appinfo_id,	@addr1,	@addr2,	@addr3,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@nolot,	@hakmiliktanah,	@tncr
                             ,	@luasmatang,	@tebang,	@tarikhtebang,	@nolesen,	@syarattanah,	@pemilikan,	@pengurusan,	@luaslesen,	@catatan,	@created
                             ,	@createdby) ";
             i = sqliteCon.Execute(qry, ent);
@@ -61,10 +64,31 @@ namespace PortableApps.Repo
             return ent;
         }
 
-
         public IList<makkebun> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, makkebun whareClause = null)
         {
             throw new NotImplementedException();
+        }
+
+        public IList<makkebunDTO> PagedListDTO(int pageIndex, int pageSize, string sidx, string sord, out int totalRecords, makkebun oWhereClause)
+        {
+            string whereClause = "";
+            string operators = "";
+            if (!object.Equals(null, oWhereClause))
+            {
+                if (oWhereClause.appinfo_id > 0)
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " appinfo_id=@appinfo_id ";
+                }
+            }
+
+            string qry = string.Format(@"SELECT * FROM MAKKEBUN
+                                            {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (pageIndex - 1) * pageSize, pageSize);
+            string qryCtn = string.Format(@"SELECT COUNT(*) FROM MAKKEBUN {0}", whereClause);
+
+            IList<makkebunDTO> lstEnt = sqliteCon.Query<makkebunDTO>(qry, oWhereClause).ToList();
+            totalRecords = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
+            return lstEnt;
         }
     }
 }

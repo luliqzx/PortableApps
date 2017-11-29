@@ -503,7 +503,7 @@
             this.cbnegeri.Size = new System.Drawing.Size(121, 21);
             this.cbnegeri.TabIndex = 11;
             this.cbnegeri.DropDown += new System.EventHandler(this.AdjustWidthComboBox_DropDown);
-            this.cbnegeri.SelectedIndexChanged += new System.EventHandler(this.cbparlimen_SelectedIndexChanged);
+            this.cbnegeri.SelectedIndexChanged += new System.EventHandler(this.cbnegeri_SelectedIndexChanged);
             this.cbnegeri.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // cbparlimen

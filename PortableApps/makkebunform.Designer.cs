@@ -120,7 +120,7 @@
             this.label34 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvMakKebun = new System.Windows.Forms.DataGridView();
             this.pnlPager = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
@@ -130,7 +130,7 @@
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMakKebun)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -370,6 +370,7 @@
             this.cbnegeri.Name = "cbnegeri";
             this.cbnegeri.Size = new System.Drawing.Size(121, 21);
             this.cbnegeri.TabIndex = 4;
+            this.cbnegeri.SelectedIndexChanged += new System.EventHandler(this.cbnegeri_SelectedIndexChanged);
             // 
             // label33
             // 
@@ -1116,7 +1117,7 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.dgvMakKebun, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.pnlPager, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1130,14 +1131,14 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 528);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
-            // dataGridView1
+            // dgvMakKebun
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 243);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(533, 242);
-            this.dataGridView1.TabIndex = 2;
+            this.dgvMakKebun.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMakKebun.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMakKebun.Location = new System.Drawing.Point(3, 243);
+            this.dgvMakKebun.Name = "dgvMakKebun";
+            this.dgvMakKebun.Size = new System.Drawing.Size(533, 242);
+            this.dgvMakKebun.TabIndex = 2;
             // 
             // pnlPager
             // 
@@ -1202,7 +1203,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMakKebun)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1288,7 +1289,7 @@
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvMakKebun;
         private System.Windows.Forms.Panel pnlPager;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button button2;
