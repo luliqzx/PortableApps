@@ -434,6 +434,27 @@ namespace PortableApps
             }
         }
 
+        private void ClearMakKebunForm()
+
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                    {
+                        (control as ComboBox).SelectedIndex = -1;
+                    }
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+
         private void SetupFormMakKebun(int appinfo_id, int id_makkebun)
         {
             makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
@@ -456,6 +477,11 @@ namespace PortableApps
             cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
             cbpemilikan.SelectedValue = makkebun.pemilikan;
             cbpengurusan.SelectedValue = makkebun.pengurusan;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClearMakKebunForm();
         }
     }
 }
