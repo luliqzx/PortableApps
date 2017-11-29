@@ -14,6 +14,7 @@ namespace PortableApps
     public partial class makkebunform : Form
     {
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+        IVariablesRepo VariablesRepo = new VariablesRepo();
 
         public int appinfo_id { get; set; }
 
@@ -106,9 +107,42 @@ namespace PortableApps
             lblnolesen.Text = appinfo.nolesen;
             lblbandar.Text = appinfo.bandar;
             lblposkod.Text = appinfo.poskod;
-            lblwilayah.Text = "KOSONG DULU";// appinfo.wilayah;
+            LoadWilayah(appinfo.negeri);
         }
 
+        private void LoadWilayah(string negeri)
+        {
+            variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == negeri);
+            if (variables != null)
+            {
+                lblwilayah.Text = GetAliasesParent(variables.Parent);
+            }
+        }
 
+        private string GetAliasesParent(string parent)
+        {
+            if (parent == "UTR")
+            {
+                parent = "UTARA";
+            }
+            else if (parent == "TMR")
+            {
+                parent = "TIMUR";
+            }
+            else if (parent == "TGH")
+            {
+                parent = "TENGAH";
+            }
+            else if (parent == "SEL")
+            {
+                parent = "SELATAN";
+            }
+            return parent;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

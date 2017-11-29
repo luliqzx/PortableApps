@@ -102,7 +102,33 @@ namespace PortableApps
             {
                 LoadDaerah(cbx.SelectedValue.ToString());
                 LoadDun(cbx.SelectedValue.ToString());
+                variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
+                if (variables != null)
+                {
+                    lblWilayah.Text = GetAliasesParent(variables.Parent);
+                }
             }
+        }
+
+        private string GetAliasesParent(string parent)
+        {
+            if (parent == "UTR")
+            {
+                parent = "UTARA";
+            }
+            else if (parent == "TMR")
+            {
+                parent = "TIMUR";
+            }
+            else if (parent == "TGH")
+            {
+                parent = "TENGAH";
+            }
+            else if (parent == "SEL")
+            {
+                parent = "SELATAN";
+            }
+            return parent;
         }
 
         private void AdjustWidthComboBox_DropDown(object sender, System.EventArgs e)
@@ -201,6 +227,8 @@ namespace PortableApps
             //appinfo.faks = txtfaks.Text;
             appinfo.email = txtemail.Text;
             //appinfo.kelompok = txtkelompok.Text;
+            appinfo.created = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+            appinfo.createdby = txtcreatedby.Text;
 
             appinfo.refno = GenerateRefNo(appinfo.negeri);
 

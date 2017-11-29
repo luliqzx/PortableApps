@@ -71,7 +71,7 @@ namespace PortableApps
             {
                 i = VariableSettingRepo.Edit(VariableSetting);
             }
-            MessageBox.Show("[" + txtKey.Text + "] berhasil disimpan.");
+            MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
             BindGrid(xcurrentPage);
         }
 

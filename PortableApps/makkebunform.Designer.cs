@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.txttarikhtebang = new System.Windows.Forms.DateTimePicker();
@@ -121,11 +126,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label51 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label55 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -207,7 +207,57 @@
             this.groupBox1.Size = new System.Drawing.Size(540, 528);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Maklumat Kebun";
+            this.groupBox1.Text = "Form";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(460, 391);
+            this.label55.Margin = new System.Windows.Forms.Padding(10);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(19, 13);
+            this.label55.TabIndex = 25;
+            this.label55.Text = "ha";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(372, 161);
+            this.label54.Margin = new System.Windows.Forms.Padding(10);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(53, 13);
+            this.label54.TabIndex = 24;
+            this.label54.Text = "(Parlimen)";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(372, 135);
+            this.label53.Margin = new System.Windows.Forms.Padding(10);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(33, 13);
+            this.label53.TabIndex = 23;
+            this.label53.Text = "(Dun)";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Location = new System.Drawing.Point(372, 113);
+            this.label52.Margin = new System.Windows.Forms.Padding(10);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(48, 13);
+            this.label52.TabIndex = 22;
+            this.label52.Text = "(Daerah)";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(460, 206);
+            this.label51.Margin = new System.Windows.Forms.Padding(10);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(19, 13);
+            this.label51.TabIndex = 21;
+            this.label51.Text = "ha";
             // 
             // radioButton2
             // 
@@ -247,6 +297,7 @@
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "Simpan";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbsyarattanah
             // 
@@ -1132,56 +1183,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1020, 520);
             this.panel1.TabIndex = 3;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(460, 206);
-            this.label51.Margin = new System.Windows.Forms.Padding(10);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(19, 13);
-            this.label51.TabIndex = 21;
-            this.label51.Text = "ha";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(372, 113);
-            this.label52.Margin = new System.Windows.Forms.Padding(10);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(48, 13);
-            this.label52.TabIndex = 22;
-            this.label52.Text = "(Daerah)";
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(372, 135);
-            this.label53.Margin = new System.Windows.Forms.Padding(10);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(33, 13);
-            this.label53.TabIndex = 23;
-            this.label53.Text = "(Dun)";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(372, 161);
-            this.label54.Margin = new System.Windows.Forms.Padding(10);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(53, 13);
-            this.label54.TabIndex = 24;
-            this.label54.Text = "(Parlimen)";
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(460, 391);
-            this.label55.Margin = new System.Windows.Forms.Padding(10);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(19, 13);
-            this.label55.TabIndex = 25;
-            this.label55.Text = "ha";
             // 
             // makkebunform
             // 
