@@ -445,6 +445,7 @@ namespace PortableApps
             dgvMakKebun.Columns["luaslesen"].Visible = true;
             dgvMakKebun.Columns["nolesen"].Visible = true;
             dgvMakKebun.Columns["pemilikan"].Visible = true;
+            dgvMakKebun.Columns["tarikhtebang"].Visible = true;
             dgvMakKebun.Columns["pengurusan"].Visible = true;
 
         }
