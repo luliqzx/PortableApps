@@ -39,11 +39,11 @@
             this.rbLawatanPengesahanKebun = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
+            this.rbInitData = new System.Windows.Forms.RibbonButton();
             this.rbSetting = new System.Windows.Forms.RibbonButton();
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.rbInitData = new System.Windows.Forms.RibbonButton();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -63,6 +63,7 @@
             this.ribbon1.OrbDropDown.OptionItems.Add(this.roobClose);
             this.ribbon1.OrbDropDown.Size = new System.Drawing.Size(527, 72);
             this.ribbon1.OrbDropDown.TabIndex = 0;
+            this.ribbon1.PanelCaptionHeight = 5;
             this.ribbon1.RibbonTabFont = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ribbon1.Size = new System.Drawing.Size(737, 115);
             this.ribbon1.TabIndex = 4;
@@ -151,6 +152,15 @@
             this.ribbonPanel2.Name = "ribbonPanel2";
             this.ribbonPanel2.Text = "";
             // 
+            // rbInitData
+            // 
+            this.rbInitData.Image = ((System.Drawing.Image)(resources.GetObject("rbInitData.Image")));
+            this.rbInitData.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.LargeImage")));
+            this.rbInitData.Name = "rbInitData";
+            this.rbInitData.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.SmallImage")));
+            this.rbInitData.Text = "InitializeData";
+            this.rbInitData.Click += new System.EventHandler(this.rbInitData_Click);
+            // 
             // rbSetting
             // 
             this.rbSetting.Image = ((System.Drawing.Image)(resources.GetObject("rbSetting.Image")));
@@ -181,15 +191,6 @@
             this.ribbonButton1.Text = "Close";
             this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
-            // 
-            // rbInitData
-            // 
-            this.rbInitData.Image = ((System.Drawing.Image)(resources.GetObject("rbInitData.Image")));
-            this.rbInitData.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.LargeImage")));
-            this.rbInitData.Name = "rbInitData";
-            this.rbInitData.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.SmallImage")));
-            this.rbInitData.Text = "InitializeData";
-            this.rbInitData.Click += new System.EventHandler(this.rbInitData_Click);
             // 
             // MDIParent2
             // 

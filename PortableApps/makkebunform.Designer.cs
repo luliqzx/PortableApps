@@ -1154,6 +1154,7 @@
             this.dgvMakKebun.TabIndex = 2;
             this.dgvMakKebun.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakKebun_CellClick);
             this.dgvMakKebun.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMakKebun_DataBindingComplete);
+            this.dgvMakKebun.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMakKebun_RowPostPaint);
             // 
             // pnlPager
             // 

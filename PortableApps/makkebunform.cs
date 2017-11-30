@@ -390,64 +390,6 @@ namespace PortableApps
             //dgvMakKebun.Columns.Add("Edit", "Edit");
             //dgvMakKebun.Columns.Add("Delete", "Delete");
 
-            for (int i = 0; i < dgvMakKebun.Columns.Count; i++)
-            {
-                dgvMakKebun.Columns[i].Visible = false;
-            }
-
-            DataGridViewButtonColumn Edit = new DataGridViewButtonColumn();
-            Edit.Name = "Edit";
-            Edit.Text = "Edit";
-            Edit.HeaderText = "";
-            Edit.UseColumnTextForButtonValue = true;
-            if (dgvMakKebun.Columns["Edit"] == null)
-            {
-                dgvMakKebun.Columns.Insert(0, Edit);
-            }
-
-            DataGridViewButtonColumn Delete = new DataGridViewButtonColumn();
-            Delete.Name = "Delete";
-            Delete.Text = "Delete";
-            Delete.HeaderText = "";
-            Delete.UseColumnTextForButtonValue = true;
-            if (dgvMakKebun.Columns["Delete"] == null)
-            {
-                dgvMakKebun.Columns.Insert(1, Delete);
-            }
-
-            //dgvMakKebun.Columns["id_makkebun"].Visible = false;
-            //dgvMakKebun.Columns["appinfo_id"].Visible = false;
-
-            dgvMakKebun.Columns["addr1"].DisplayIndex = 2;
-            dgvMakKebun.Columns["addr2"].DisplayIndex = 3;
-            dgvMakKebun.Columns["addr3"].DisplayIndex = 4;
-            dgvMakKebun.Columns["nolot"].DisplayIndex = 5;
-            dgvMakKebun.Columns["luaslesen"].DisplayIndex = 6;
-            dgvMakKebun.Columns["nolesen"].DisplayIndex = 7;
-            dgvMakKebun.Columns["pemilikan"].DisplayIndex = 8;
-            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
-            dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
-
-            dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
-            dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
-            dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
-            dgvMakKebun.Columns["pemilikan"].HeaderText = "Taraf Pemilikan";
-
-            dgvMakKebun.Columns["tarikhtebang"].HeaderText = "Lawatan Pengesahan Kebun";
-            dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
-
-            dgvMakKebun.Columns[0].Visible = true;
-            dgvMakKebun.Columns[1].Visible = true;
-            dgvMakKebun.Columns["addr1"].Visible = true;
-            dgvMakKebun.Columns["addr2"].Visible = true;
-            dgvMakKebun.Columns["addr3"].Visible = true;
-            dgvMakKebun.Columns["nolot"].Visible = true;
-            dgvMakKebun.Columns["luaslesen"].Visible = true;
-            dgvMakKebun.Columns["nolesen"].Visible = true;
-            dgvMakKebun.Columns["pemilikan"].Visible = true;
-            dgvMakKebun.Columns["tarikhtebang"].Visible = true;
-            dgvMakKebun.Columns["pengurusan"].Visible = true;
-
         }
 
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
@@ -516,6 +458,7 @@ namespace PortableApps
             cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
             cbpemilikan.SelectedValue = makkebun.pemilikan;
             cbpengurusan.SelectedValue = makkebun.pengurusan;
+            cbtncr.SelectedValue = makkebun.tncr;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -557,6 +500,91 @@ namespace PortableApps
             {
                 row.Cells["tarikhtebang"] = new DataGridViewLinkCell();
             }
+
+
+            for (int i = 0; i < dgvMakKebun.Columns.Count; i++)
+            {
+                dgvMakKebun.Columns[i].Visible = false;
+            }
+
+            DataGridViewImageColumn Edit = new DataGridViewImageColumn();
+            Edit.Name = "Edit";
+            Edit.Frozen = true;
+            Edit.Image = Properties.Resources.b_edit;
+            Edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //Edit.Text = "Edit";
+            Edit.HeaderText = "";
+            //Edit.UseColumnTextForButtonValue = true;
+            if (dgvMakKebun.Columns["Edit"] == null)
+            {
+                dgvMakKebun.Columns.Insert(0, Edit);
+            }
+
+            DataGridViewImageColumn Delete = new DataGridViewImageColumn();
+            Delete.Name = "Delete";
+            Delete.Frozen = true;
+            //Delete.Text = "Delete";
+            Delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Delete.Image = Properties.Resources.b_drop;
+            Delete.HeaderText = "";
+            //Delete.UseColumnTextForButtonValue = true;
+            if (dgvMakKebun.Columns["Delete"] == null)
+            {
+                dgvMakKebun.Columns.Insert(1, Delete);
+            }
+
+            //dgvMakKebun.Columns["id_makkebun"].Visible = false;
+            //dgvMakKebun.Columns["appinfo_id"].Visible = false;
+
+            dgvMakKebun.Columns["addr1"].DisplayIndex = 2;
+            dgvMakKebun.Columns["addr2"].DisplayIndex = 3;
+            dgvMakKebun.Columns["addr3"].DisplayIndex = 4;
+            dgvMakKebun.Columns["nolot"].DisplayIndex = 5;
+            dgvMakKebun.Columns["luaslesen"].DisplayIndex = 6;
+            dgvMakKebun.Columns["nolesen"].DisplayIndex = 7;
+            dgvMakKebun.Columns["pemilikan"].DisplayIndex = 8;
+            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
+            dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
+
+            dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
+            dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
+            dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
+            dgvMakKebun.Columns["pemilikan"].HeaderText = "Taraf Pemilikan";
+
+            dgvMakKebun.Columns["tarikhtebang"].HeaderText = "Lawatan Pengesahan Kebun";
+            dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
+
+            dgvMakKebun.Columns[0].Visible = true;
+            dgvMakKebun.Columns[1].Visible = true;
+            dgvMakKebun.Columns["addr1"].Visible = true;
+            dgvMakKebun.Columns["addr2"].Visible = true;
+            dgvMakKebun.Columns["addr3"].Visible = true;
+            dgvMakKebun.Columns["nolot"].Visible = true;
+            dgvMakKebun.Columns["luaslesen"].Visible = true;
+            dgvMakKebun.Columns["nolesen"].Visible = true;
+            dgvMakKebun.Columns["pemilikan"].Visible = true;
+            dgvMakKebun.Columns["tarikhtebang"].Visible = true;
+            dgvMakKebun.Columns["pengurusan"].Visible = true;
+
+        }
+
+        private void dgvMakKebun_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            var grid = sender as DataGridView;
+            var rowIdx = (e.RowIndex + 1).ToString();
+
+            var centerFormat = new StringFormat()
+            {
+                // right alignment might actually make more sense for numbers
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            string snumber = ((PageSize * (xcurrentPage - 1)) + Convert.ToInt32(rowIdx)).ToString();
+
+            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+            e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
+
         }
     }
 }
