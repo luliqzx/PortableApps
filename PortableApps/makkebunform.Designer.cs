@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbtncr = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label53 = new System.Windows.Forms.Label();
@@ -126,7 +127,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cbtncr = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -210,6 +210,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Form";
+            // 
+            // cbtncr
+            // 
+            this.cbtncr.FormattingEnabled = true;
+            this.cbtncr.Location = new System.Drawing.Point(246, 361);
+            this.cbtncr.Margin = new System.Windows.Forms.Padding(10);
+            this.cbtncr.Name = "cbtncr";
+            this.cbtncr.Size = new System.Drawing.Size(208, 21);
+            this.cbtncr.TabIndex = 17;
             // 
             // label55
             // 
@@ -1144,6 +1153,7 @@
             this.dgvMakKebun.Size = new System.Drawing.Size(533, 242);
             this.dgvMakKebun.TabIndex = 2;
             this.dgvMakKebun.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakKebun_CellClick);
+            this.dgvMakKebun.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMakKebun_DataBindingComplete);
             // 
             // pnlPager
             // 
@@ -1190,15 +1200,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1133, 556);
             this.panel1.TabIndex = 3;
-            // 
-            // cbtncr
-            // 
-            this.cbtncr.FormattingEnabled = true;
-            this.cbtncr.Location = new System.Drawing.Point(246, 361);
-            this.cbtncr.Margin = new System.Windows.Forms.Padding(10);
-            this.cbtncr.Name = "cbtncr";
-            this.cbtncr.Size = new System.Drawing.Size(208, 21);
-            this.cbtncr.TabIndex = 17;
             // 
             // makkebunform
             // 

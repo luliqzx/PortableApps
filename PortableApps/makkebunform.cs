@@ -405,7 +405,6 @@ namespace PortableApps
                 dgvMakKebun.Columns.Insert(0, Edit);
             }
 
-
             DataGridViewButtonColumn Delete = new DataGridViewButtonColumn();
             Delete.Name = "Delete";
             Delete.Text = "Delete";
@@ -423,22 +422,22 @@ namespace PortableApps
             dgvMakKebun.Columns["addr2"].DisplayIndex = 3;
             dgvMakKebun.Columns["addr3"].DisplayIndex = 4;
             dgvMakKebun.Columns["nolot"].DisplayIndex = 5;
-            dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
             dgvMakKebun.Columns["luaslesen"].DisplayIndex = 6;
-            dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
             dgvMakKebun.Columns["nolesen"].DisplayIndex = 7;
-            dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
             dgvMakKebun.Columns["pemilikan"].DisplayIndex = 8;
+            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
+            dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
+
+            dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
+            dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
+            dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
             dgvMakKebun.Columns["pemilikan"].HeaderText = "Taraf Pemilikan";
 
-            DataGridViewLinkColumn dgvLink = new DataGridViewLinkColumn();
-            dgvLink.Text = "";
-            dgvLink.Name = "";
-            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
             dgvMakKebun.Columns["tarikhtebang"].HeaderText = "Lawatan Pengesahan Kebun";
-            dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
             dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
 
+            dgvMakKebun.Columns[0].Visible = true;
+            dgvMakKebun.Columns[1].Visible = true;
             dgvMakKebun.Columns["addr1"].Visible = true;
             dgvMakKebun.Columns["addr2"].Visible = true;
             dgvMakKebun.Columns["addr3"].Visible = true;
@@ -548,6 +547,14 @@ namespace PortableApps
                 cbtncr.DisplayMember = "Value";
                 cbtncr.SelectedIndex = 0;
                 cbtncr.Enabled = false;
+            }
+        }
+
+        private void dgvMakKebun_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvMakKebun.Rows)
+            {
+                row.Cells["tarikhtebang"] = new DataGridViewLinkCell();
             }
         }
     }
