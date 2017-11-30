@@ -181,17 +181,6 @@ namespace PortableApps
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
 
-            dgvMakPer.Columns[0].HeaderText = "Nama Pemohon";
-            dgvMakPer.Columns[1].HeaderText = "No Kad. Pengenalan";
-            dgvMakPer.Columns[2].HeaderText = "Negeri";
-            dgvMakPer.Columns[3].HeaderText = "No. Lesen";
-            dgvMakPer.Columns[4].HeaderText = "No. Rujukan";
-            dgvMakPer.Columns[5].HeaderText = "Tarikh Permohonan";
-            dgvMakPer.Columns[6].HeaderText = "Dibuat Oleh";
-            dgvMakPer.Columns[7].HeaderText = "Dibuat Tanggal";
-            dgvMakPer.Columns[7].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
-            dgvMakPer.Columns[8].HeaderText = "Id";
-            dgvMakPer.Columns[8].Visible = false;
         }
 
         private void dgvMakPer_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -246,6 +235,22 @@ namespace PortableApps
                 sord = "ASC";
             }
             BindGrid(xcurrentPage);
+        }
+
+        private void dgvMakPer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+
+            dgvMakPer.Columns[0].HeaderText = "Nama Pemohon";
+            dgvMakPer.Columns[1].HeaderText = "No Kad. Pengenalan";
+            dgvMakPer.Columns[2].HeaderText = "Negeri";
+            dgvMakPer.Columns[3].HeaderText = "No. Lesen";
+            dgvMakPer.Columns[4].HeaderText = "No. Rujukan";
+            dgvMakPer.Columns[5].HeaderText = "Tarikh Permohonan";
+            dgvMakPer.Columns[6].HeaderText = "Dibuat Oleh";
+            dgvMakPer.Columns[7].HeaderText = "Dibuat Tanggal";
+            dgvMakPer.Columns[7].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
+            dgvMakPer.Columns[8].HeaderText = "Id";
+            dgvMakPer.Columns[8].Visible = false;
         }
     }
 }
