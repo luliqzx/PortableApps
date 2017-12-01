@@ -14,7 +14,11 @@ namespace PortableApps
     public partial class lawatanpengesahankebunform : Form
     {
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+        IVariablesRepo VariablesRepo = new VariablesRepo();
+
         public int appinfo_id { get; set; }
+        public string refno { get; set; }
+        public int id_makkebun { get; set; }
 
         public lawatanpengesahankebunform()
         {
@@ -40,6 +44,8 @@ namespace PortableApps
             BindKaedah();
 
             BindJenisTanah();
+
+            groupBox2.Text = groupBox2.Text + " " + refno;
         }
 
         private void BindJenisTanah()
@@ -51,6 +57,7 @@ namespace PortableApps
             cbjenis_tanah.DataSource = lstKV;
             cbjenis_tanah.ValueMember = "Key";
             cbjenis_tanah.DisplayMember = "Value";
+            cbjenis_tanah.SelectedIndex = -1;
         }
 
         private void BindKaedah()
@@ -62,6 +69,7 @@ namespace PortableApps
             cbkaedah.DataSource = lstKV;
             cbkaedah.ValueMember = "Key";
             cbkaedah.DisplayMember = "Value";
+            cbkaedah.SelectedIndex = -1;
         }
 
         private void BindMaklumatPemohon(int appinfo_id)
@@ -83,7 +91,39 @@ namespace PortableApps
             lblnolesen.Text = appinfo.nolesen;
             lblbandar.Text = appinfo.bandar;
             lblposkod.Text = appinfo.poskod;
-            lblwilayah.Text = "KOSONG DULU";// appinfo.wilayah;
+            LoadWilayah(appinfo.negeri);
+        }
+
+
+        private void LoadWilayah(string negeri)
+        {
+            variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == negeri);
+            if (variables != null)
+            {
+                lblwilayah.Text = GetAliasesParent(variables.Parent);
+            }
+        }
+
+
+        private string GetAliasesParent(string parent)
+        {
+            if (parent == "UTR")
+            {
+                parent = "UTARA";
+            }
+            else if (parent == "TMR")
+            {
+                parent = "TIMUR";
+            }
+            else if (parent == "TGH")
+            {
+                parent = "TENGAH";
+            }
+            else if (parent == "SEL")
+            {
+                parent = "SELATAN";
+            }
+            return parent;
         }
     }
 }

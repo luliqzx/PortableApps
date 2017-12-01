@@ -26,6 +26,6 @@ namespace PortableApps.Model.DTO
         public string catatan { get; set; }
         public DateTime created { get; set; }
         public string createdby { get; set; }
-
+        public string tarikh_lawat { get; set; }
     }
 }

@@ -99,5 +99,14 @@ namespace PortableApps
 
             }
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
+            {
+                cnn.Open();
+                SqLiteBaseRepository.SetupSemakTapak(cnn);
+            }
+        }
     }
 }

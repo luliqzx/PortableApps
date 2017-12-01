@@ -19,6 +19,7 @@ namespace PortableApps.Repo
         int SetupParlimen(SQLiteConnection cnn);
         int SetupVariables(SQLiteConnection cnn);
         int SetupDaerah(SQLiteConnection cnn);
+        int SetupSemakTapak(SQLiteConnection cnn);
 
         int SetupVariableSetting(SQLiteConnection cnn);
 
@@ -1492,6 +1493,44 @@ DROP TABLE IF  EXISTS `VariableSetting`;
                     ";
                 #endregion
                 cmd.CommandText = qry;
+                i = cmd.ExecuteNonQuery();
+            }
+            return i;
+        }
+
+        public int SetupSemakTapak(SQLiteConnection cnn)
+        {
+            int i = 0;
+            using (SQLiteCommand cmd = cnn.CreateCommand())
+            {
+                cmd.CommandText = @"
+                                    DROP TABLE IF  EXISTS `semak_tapak`;
+
+                                -- Dumping structure for table tsspk1511.semak_tapak
+                                CREATE TABLE IF NOT EXISTS `semak_tapak` (
+                                  `id` integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                                  `makkebun_id` int(11) NOT NULL,
+                                  `appinfo_id` int(11) DEFAULT NULL,
+                                  `kaedah` varchar(150) DEFAULT NULL,
+                                  `bantuan` varchar(150) DEFAULT NULL,
+                                  `jenis_tanah` varchar(150) DEFAULT NULL,
+                                  `kecerunan` varchar(40) DEFAULT NULL,
+                                  `jentera` char(5) DEFAULT NULL,
+                                  `ganoderma` char(5) DEFAULT NULL,
+                                  `peratusan_serangan` double DEFAULT NULL,
+                                  `umr_pokok_tua` varchar(100) DEFAULT NULL,
+                                  `hasil` varchar(50) DEFAULT NULL,
+                                  `bil_pokok_tua` varchar(10) DEFAULT NULL,
+                                  `tarikh_lawat` varchar(15) DEFAULT NULL,
+                                  `ptk_lawat` varchar(150) DEFAULT NULL,
+                                  `luas` double DEFAULT NULL,
+                                  `catatan` text,
+                                  `created` datetime DEFAULT NULL,
+                                  `createdby` varchar(100) DEFAULT NULL,
+                                  `lampiran` varchar(100) NOT NULL
+                                );
+                           ";
+                cmd.CommandType = CommandType.Text;
                 i = cmd.ExecuteNonQuery();
             }
             return i;

@@ -405,12 +405,36 @@ namespace PortableApps
         private void dgvMakKebun_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = sender as DataGridView;
+            int pappinfo_id = Convert.ToInt32(dgv["appinfo_id", e.RowIndex].Value);
+            int pid_makkebun = Convert.ToInt32(dgv["id_makkebun", e.RowIndex].Value);
             if (e.ColumnIndex == dgvMakKebun.Columns["Edit"].Index)
             {
 
-                SetupFormMakKebun(Convert.ToInt32(dgv["appinfo_id", e.RowIndex].Value), Convert.ToInt32(dgv["id_makkebun", e.RowIndex].Value));
+                SetupFormMakKebun(pappinfo_id, pid_makkebun);
                 //Do something with your button.
             }
+            else if (e.ColumnIndex == dgvMakKebun.Columns["tarikh_lawat"].Index)
+            {
+                foreach (Form f in ParentForm.MdiChildren)
+                {
+                    if (f.GetType() == typeof(lawatanpengesahankebunform))
+                    {
+                        //f.Activate();
+                        //return;
+                        f.Close();
+                    }
+                }
+                lawatanpengesahankebunform form = new lawatanpengesahankebunform();
+                form.appinfo_id = pappinfo_id;
+                form.refno = refno;
+                form.id_makkebun = pid_makkebun;
+                form.MdiParent = ParentForm;
+                form.Show();
+                //SetupFormMakKebun(pappinfo_id, pid_makkebun);
+                //Do something with your button.
+            }
+
+
         }
 
         private void ClearMakKebunForm()
@@ -498,7 +522,7 @@ namespace PortableApps
         {
             foreach (DataGridViewRow row in dgvMakKebun.Rows)
             {
-                row.Cells["tarikhtebang"] = new DataGridViewLinkCell();
+                row.Cells["tarikh_lawat"] = new DataGridViewLinkCell();
             }
 
 
@@ -543,7 +567,7 @@ namespace PortableApps
             dgvMakKebun.Columns["luaslesen"].DisplayIndex = 6;
             dgvMakKebun.Columns["nolesen"].DisplayIndex = 7;
             dgvMakKebun.Columns["pemilikan"].DisplayIndex = 8;
-            dgvMakKebun.Columns["tarikhtebang"].DisplayIndex = 9;
+            dgvMakKebun.Columns["tarikh_lawat"].DisplayIndex = 9;
             dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
 
             dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
@@ -551,7 +575,7 @@ namespace PortableApps
             dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
             dgvMakKebun.Columns["pemilikan"].HeaderText = "Taraf Pemilikan";
 
-            dgvMakKebun.Columns["tarikhtebang"].HeaderText = "Lawatan Pengesahan Kebun";
+            dgvMakKebun.Columns["tarikh_lawat"].HeaderText = "Lawatan Pengesahan Kebun";
             dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
 
             dgvMakKebun.Columns[0].Visible = true;
@@ -563,9 +587,8 @@ namespace PortableApps
             dgvMakKebun.Columns["luaslesen"].Visible = true;
             dgvMakKebun.Columns["nolesen"].Visible = true;
             dgvMakKebun.Columns["pemilikan"].Visible = true;
-            dgvMakKebun.Columns["tarikhtebang"].Visible = true;
+            dgvMakKebun.Columns["tarikh_lawat"].Visible = true;
             dgvMakKebun.Columns["pengurusan"].Visible = true;
-
         }
 
         private void dgvMakKebun_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

@@ -80,13 +80,15 @@ namespace PortableApps.Repo
                 if (oWhereClause.appinfo_id > 0)
                 {
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
-                    whereClause = whereClause + operators + " appinfo_id=@appinfo_id ";
+                    whereClause = whereClause + operators + " a.appinfo_id=@appinfo_id ";
                 }
             }
 
-            string qry = string.Format(@"SELECT * FROM MAKKEBUN
+            string qry = string.Format(@"SELECT a.*, IFNULL(b.tarikh_lawat, 'BELUM LAWAT') tarikh_lawat FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
+                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (pageIndex - 1) * pageSize, pageSize);
-            string qryCtn = string.Format(@"SELECT COUNT(*) FROM MAKKEBUN {0}", whereClause);
+            string qryCtn = string.Format(@"SELECT COUNT(a.id_makkebun)  FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
+                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id {0}", whereClause);
 
             IList<makkebunDTO> lstEnt = sqliteCon.Query<makkebunDTO>(qry, oWhereClause).ToList();
             totalRecords = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
