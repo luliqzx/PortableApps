@@ -141,6 +141,7 @@
     <Compile Include="Model\appinfo.cs" />
     <Compile Include="Model\DTO\appinfoDTO.cs" />
     <Compile Include="Model\DTO\makkebunDTO.cs" />
+    <Compile Include="Model\semak_tapak.cs" />
     <Compile Include="Model\tdaerah.cs" />
     <Compile Include="Model\TBangsa.cs" />
     <Compile Include="Model\dun.cs" />
@@ -158,6 +159,7 @@
     <Compile Include="Repo\CommonRepo.cs" />
     <Compile Include="Repo\MakkebunRepo.cs" />
     <Compile Include="Repo\ParlimenRepo.cs" />
+    <Compile Include="Repo\SemakTapakRepo.cs" />
     <Compile Include="Repo\VariableSetting.cs" />
     <Compile Include="Repo\VariableSettingRepo.cs" />
     <Compile Include="Repo\VariablesRepo.cs" />
@@ -253,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\add.png" />
+    <None Include="Resources\b_add.png" />
     <Content Include="Resources\b_drop.png" />
     <Content Include="Resources\b_edit.png" />
   </ItemGroup>

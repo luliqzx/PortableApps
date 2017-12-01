@@ -206,7 +206,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(10);
             this.groupBox1.MinimumSize = new System.Drawing.Size(490, 500);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(540, 528);
+            this.groupBox1.Size = new System.Drawing.Size(540, 538);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Form";
@@ -1120,7 +1120,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1091, 534);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1091, 544);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // tableLayoutPanel2
@@ -1137,10 +1137,10 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 528);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(539, 538);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // dgvMakKebun
@@ -1148,7 +1148,7 @@
             this.dgvMakKebun.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvMakKebun.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMakKebun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMakKebun.Location = new System.Drawing.Point(3, 243);
+            this.dgvMakKebun.Location = new System.Drawing.Point(3, 253);
             this.dgvMakKebun.Name = "dgvMakKebun";
             this.dgvMakKebun.Size = new System.Drawing.Size(533, 242);
             this.dgvMakKebun.TabIndex = 2;
@@ -1159,26 +1159,31 @@
             // pnlPager
             // 
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPager.Location = new System.Drawing.Point(3, 491);
+            this.pnlPager.Location = new System.Drawing.Point(3, 501);
             this.pnlPager.Name = "pnlPager";
             this.pnlPager.Size = new System.Drawing.Size(533, 34);
             this.pnlPager.TabIndex = 3;
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.Controls.Add(this.button2);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 203);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(424, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(533, 44);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // button2
             // 
+            this.button2.Image = global::PortableApps.Properties.Resources.b_add;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 23);
+            this.button2.Size = new System.Drawing.Size(114, 39);
             this.button2.TabIndex = 0;
             this.button2.Text = "Tambah Kebun";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -1188,7 +1193,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(548, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(540, 528);
+            this.panel2.Size = new System.Drawing.Size(540, 538);
             this.panel2.TabIndex = 2;
             // 
             // panel1
@@ -1220,6 +1225,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMakKebun)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

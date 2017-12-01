@@ -428,6 +428,9 @@ namespace PortableApps
                 form.appinfo_id = pappinfo_id;
                 form.refno = refno;
                 form.id_makkebun = pid_makkebun;
+                int? semak_tapak_id = Convert.ToInt32(dgv["semak_tapak_id", e.RowIndex].Value);
+                form.semak_tapak_id = semak_tapak_id;
+
                 form.MdiParent = ParentForm;
                 form.Show();
                 //SetupFormMakKebun(pappinfo_id, pid_makkebun);

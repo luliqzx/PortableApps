@@ -26,6 +26,9 @@ namespace PortableApps.Model.DTO
         public string catatan { get; set; }
         public DateTime created { get; set; }
         public string createdby { get; set; }
+        #region semak_tapak
         public string tarikh_lawat { get; set; }
+        public int? semak_tapak_id { get; set; }
+        #endregion semak_tapak
     }
 }

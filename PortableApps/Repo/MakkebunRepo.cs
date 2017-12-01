@@ -11,6 +11,7 @@ namespace PortableApps.Repo
     public interface IMakkebunRepo : IBaseTRepo<makkebun, int>
     {
         IList<makkebunDTO> PagedListDTO(int pageIndex, int pageSize, string sidx, string sord, out int totalRecords, makkebun oWhereClause);
+        IList<makkebunDTO> GetAllAppInfoBy(int appinfo_id);
     }
     public class MakkebunRepo : CommonRepo, IMakkebunRepo
     {
@@ -84,7 +85,7 @@ namespace PortableApps.Repo
                 }
             }
 
-            string qry = string.Format(@"SELECT a.*, IFNULL(b.tarikh_lawat, 'BELUM LAWAT') tarikh_lawat FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
+            string qry = string.Format(@"SELECT a.*, IFNULL(b.tarikh_lawat, 'BELUM LAWAT') tarikh_lawat, b.id semak_tapak_id FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
                                             ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (pageIndex - 1) * pageSize, pageSize);
             string qryCtn = string.Format(@"SELECT COUNT(a.id_makkebun)  FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
@@ -93,6 +94,14 @@ namespace PortableApps.Repo
             IList<makkebunDTO> lstEnt = sqliteCon.Query<makkebunDTO>(qry, oWhereClause).ToList();
             totalRecords = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
             return lstEnt;
+        }
+
+        public IList<makkebunDTO> GetAllAppInfoBy(int appinfo_id)
+        {
+            string qry = @"SELECT a.*, IFNULL(b.tarikh_lawat, 'BELUM LAWAT') tarikh_lawat, b.id semak_tapak_id FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
+                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id WHERE a.appinfo_id=@appinfo_id";
+            IList<makkebunDTO> ent = sqliteCon.Query<makkebunDTO>(qry, new { appinfo_id }).ToList();
+            return ent;
         }
     }
 }

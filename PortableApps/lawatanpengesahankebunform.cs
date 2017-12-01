@@ -1,4 +1,5 @@
 ﻿using PortableApps.Model;
+using PortableApps.Model.DTO;
 using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,13 @@ namespace PortableApps
     {
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
+        ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
+        IMakkebunRepo MakkebunRepo = new MakkebunRepo();
 
         public int appinfo_id { get; set; }
         public string refno { get; set; }
         public int id_makkebun { get; set; }
+        public int? semak_tapak_id;
 
         public lawatanpengesahankebunform()
         {
@@ -38,14 +42,69 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
             BindMaklumatPemohon(appinfo_id);
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            txttarikh_lawat.Format = DateTimePickerFormat.Custom;
+            txttarikh_lawat.CustomFormat = "dd-MM-yyyy";
 
             BindKaedah();
 
             BindJenisTanah();
 
             groupBox2.Text = groupBox2.Text + " " + refno;
+
+            cbnolot.SelectedIndexChanged -= cbnolot_SelectedIndexChanged;
+            BindNoLot();
+            cbnolot.SelectedIndexChanged += cbnolot_SelectedIndexChanged;
+            BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
+
+        }
+
+        private void BindNoLot()
+        {
+            IList<makkebunDTO> lstmakkebun = MakkebunRepo.GetAllAppInfoBy(appinfo_id);
+            cbnolot.DataSource = lstmakkebun;
+            cbnolot.DisplayMember = "nolot";
+            cbnolot.ValueMember = "id_makkebun";
+            cbnolot.SelectedIndex = -1;
+        }
+
+        private void BindFormLawatanPengesahanKebun(int appinfo_id, int id_makkebun, int? semak_tapak_id)
+        {
+            semak_tapak semak_tapak = null;
+            if (semak_tapak_id == null || semak_tapak_id < 1)
+            {
+                semak_tapak = new semak_tapak();
+            }
+            else
+            {
+                semak_tapak = SemakTapakRepo.GetBy(appinfo_id, id_makkebun, semak_tapak_id);
+            }
+
+            if (id_makkebun > 0)
+            {
+                cbnolot.SelectedValue = id_makkebun;
+            }
+
+            if (!string.IsNullOrEmpty(semak_tapak.jenis_tanah))
+            {
+                cbjenis_tanah.SelectedValue = semak_tapak.jenis_tanah;
+            }
+            txtbantuan.Text = semak_tapak.bantuan;
+            txtbil_pokok_tua.Text = semak_tapak.bil_pokok_tua;
+            txtcatatan.Text = semak_tapak.catatan;
+            //cbjenis_tanah.SelectedValue = semak_tapak.ganoderma;
+            txthasil.Text = semak_tapak.hasil;
+            //cbjenis_tanah.SelectedValue = semak_tapak.jentera;
+            if (!string.IsNullOrEmpty(semak_tapak.kaedah))
+            {
+                cbkaedah.SelectedValue = semak_tapak.kaedah;
+            }
+            //txtker.SelectedValue = semak_tapak.kecerunan;
+            //cbjenis_tanah.SelectedValue = semak_tapak.lampiran;
+            txtluas.Text = semak_tapak.luas.ToString("#.##");
+            txtperatusan_serangan.Text = semak_tapak.peratusan_serangan.ToString("#.##");
+            txtptk_lawat.Text = semak_tapak.ptk_lawat;
+            txttarikh_lawat.Text = semak_tapak.tarikh_lawat;
+            txtumr_pokok_tua.Text = semak_tapak.umr_pokok_tua;
         }
 
         private void BindJenisTanah()
@@ -94,7 +153,6 @@ namespace PortableApps
             LoadWilayah(appinfo.negeri);
         }
 
-
         private void LoadWilayah(string negeri)
         {
             variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == negeri);
@@ -103,7 +161,6 @@ namespace PortableApps
                 lblwilayah.Text = GetAliasesParent(variables.Parent);
             }
         }
-
 
         private string GetAliasesParent(string parent)
         {
@@ -124,6 +181,57 @@ namespace PortableApps
                 parent = "SELATAN";
             }
             return parent;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            bool IsNew = false;
+            semak_tapak semak_tapak = SemakTapakRepo.GetBy((int)semak_tapak_id);
+            if (semak_tapak == null)
+            {
+                semak_tapak = new semak_tapak();
+                IsNew = true;
+            }
+            semak_tapak.id = (int)semak_tapak_id;
+            semak_tapak.makkebun_id = id_makkebun;
+            semak_tapak.appinfo_id = appinfo_id;
+            semak_tapak.kaedah = cbkaedah.SelectedValue.ToString();
+            semak_tapak.bantuan = txtbantuan.Text;
+            semak_tapak.jenis_tanah = cbjenis_tanah.SelectedValue.ToString();
+            ////semak_tapak.kecerunan = txtkecerunan.Text;
+            //semak_tapak.jentera = txtjentera.Text;
+            //semak_tapak.ganoderma = txtganoderma.Text;
+            semak_tapak.peratusan_serangan = Convert.ToDouble(txtperatusan_serangan.Text);
+            semak_tapak.umr_pokok_tua = txtumr_pokok_tua.Text;
+            semak_tapak.hasil = txthasil.Text;
+            semak_tapak.bil_pokok_tua = txtbil_pokok_tua.Text;
+            semak_tapak.tarikh_lawat = txttarikh_lawat.Text;
+            semak_tapak.ptk_lawat = txtptk_lawat.Text;
+            semak_tapak.luas = Convert.ToDouble(txtluas.Text);
+            semak_tapak.catatan = txtcatatan.Text;
+            //semak_tapak.created = txtcreated.Text;
+            //semak_tapak.createdby = txtcreatedby.Text;
+            //semak_tapak.lampiran = txtlampiran.Text;
+
+            if (IsNew)
+            {
+                SemakTapakRepo.Create(semak_tapak);
+            }
+            else
+            {
+                SemakTapakRepo.Edit(semak_tapak);
+            }
+
+            MessageBox.Show("Data berhasil disimpan [" + semak_tapak_id + "]");
+        }
+
+        private void cbnolot_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbx = sender as ComboBox;
+            id_makkebun = Convert.ToInt32(cbx.SelectedValue);
+            semak_tapak semak_tapak = SemakTapakRepo.GetBy(appinfo_id, id_makkebun);
+            semak_tapak_id = semak_tapak == null ? 0 : semak_tapak.id;
+            BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
         }
     }
 }
