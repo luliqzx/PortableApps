@@ -204,22 +204,26 @@ namespace PortableApps
 
         private void dgvMakPer_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
-
-            foreach (Form f in ParentForm.MdiChildren)
+            if (e.RowIndex >= 0)
             {
-                if (f.GetType() == typeof(makkebunform))
+
+                DataGridView dgv = sender as DataGridView;
+
+                foreach (Form f in ParentForm.MdiChildren)
                 {
-                    //f.Activate();
-                    //return;
-                    f.Close();
+                    if (f.GetType() == typeof(makkebunform))
+                    {
+                        //f.Activate();
+                        //return;
+                        f.Close();
+                    }
                 }
+                makkebunform form = new makkebunform();
+                form.appinfo_id = Convert.ToInt32(dgv["id", e.RowIndex].Value);
+                form.refno = Convert.ToString(dgv["refno", e.RowIndex].Value);
+                form.MdiParent = ParentForm;
+                form.Show();
             }
-            makkebunform form = new makkebunform();
-            form.appinfo_id = Convert.ToInt32(dgv["id", e.RowIndex].Value);
-            form.refno = Convert.ToString(dgv["refno", e.RowIndex].Value);
-            form.MdiParent = ParentForm;
-            form.Show();
         }
 
         private void dgvMakPer_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)

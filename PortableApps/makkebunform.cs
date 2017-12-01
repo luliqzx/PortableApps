@@ -406,39 +406,39 @@ namespace PortableApps
         private void dgvMakKebun_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = sender as DataGridView;
-            int pappinfo_id = Convert.ToInt32(dgv["appinfo_id", e.RowIndex].Value);
-            int pid_makkebun = Convert.ToInt32(dgv["id_makkebun", e.RowIndex].Value);
-            if (e.ColumnIndex == dgvMakKebun.Columns["Edit"].Index)
+            if (e.RowIndex >= 0)
             {
-
-                SetupFormMakKebun(pappinfo_id, pid_makkebun);
-                //Do something with your button.
-            }
-            else if (e.ColumnIndex == dgvMakKebun.Columns["tarikh_lawat"].Index)
-            {
-                foreach (Form f in ParentForm.MdiChildren)
+                int pappinfo_id = Convert.ToInt32(dgv["appinfo_id", e.RowIndex].Value);
+                int pid_makkebun = Convert.ToInt32(dgv["id_makkebun", e.RowIndex].Value);
+                if (e.ColumnIndex == dgvMakKebun.Columns["Edit"].Index)
                 {
-                    if (f.GetType() == typeof(lawatanpengesahankebunform))
-                    {
-                        //f.Activate();
-                        //return;
-                        f.Close();
-                    }
+                    SetupFormMakKebun(pappinfo_id, pid_makkebun);
+                    //Do something with your button.
                 }
-                lawatanpengesahankebunform form = new lawatanpengesahankebunform();
-                form.appinfo_id = pappinfo_id;
-                form.refno = refno;
-                form.id_makkebun = pid_makkebun;
-                int? semak_tapak_id = Convert.ToInt32(dgv["semak_tapak_id", e.RowIndex].Value);
-                form.semak_tapak_id = semak_tapak_id;
+                else if (e.ColumnIndex == dgvMakKebun.Columns["tarikh_lawat"].Index)
+                {
+                    foreach (Form f in ParentForm.MdiChildren)
+                    {
+                        if (f.GetType() == typeof(lawatanpengesahankebunform))
+                        {
+                            //f.Activate();
+                            //return;
+                            f.Close();
+                        }
+                    }
+                    lawatanpengesahankebunform form = new lawatanpengesahankebunform();
+                    form.appinfo_id = pappinfo_id;
+                    form.refno = refno;
+                    form.id_makkebun = pid_makkebun;
+                    int? semak_tapak_id = Convert.ToInt32(dgv["semak_tapak_id", e.RowIndex].Value);
+                    form.semak_tapak_id = semak_tapak_id;
 
-                form.MdiParent = ParentForm;
-                form.Show();
-                //SetupFormMakKebun(pappinfo_id, pid_makkebun);
-                //Do something with your button.
+                    form.MdiParent = ParentForm;
+                    form.Show();
+                    //SetupFormMakKebun(pappinfo_id, pid_makkebun);
+                    //Do something with your button.
+                }
             }
-
-
         }
 
         private void ClearMakKebunForm()

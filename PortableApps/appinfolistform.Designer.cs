@@ -67,7 +67,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(840, 120);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1022, 120);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(928, 120);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // gbFilter
@@ -77,7 +77,7 @@
             this.gbFilter.Location = new System.Drawing.Point(3, 3);
             this.gbFilter.MinimumSize = new System.Drawing.Size(840, 102);
             this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(840, 102);
+            this.gbFilter.Size = new System.Drawing.Size(900, 102);
             this.gbFilter.TabIndex = 0;
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "Filter";
@@ -103,7 +103,7 @@
             this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.MinimumSize = new System.Drawing.Size(826, 72);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(826, 72);
+            this.panel1.Size = new System.Drawing.Size(888, 72);
             this.panel1.TabIndex = 0;
             // 
             // button1
@@ -144,7 +144,7 @@
             // comboBox4
             // 
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(693, 14);
+            this.comboBox4.Location = new System.Drawing.Point(734, 14);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(121, 21);
             this.comboBox4.TabIndex = 4;
@@ -152,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(640, 18);
+            this.label5.Location = new System.Drawing.Point(681, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 3;
@@ -161,7 +161,7 @@
             // comboBox3
             // 
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(513, 13);
+            this.comboBox3.Location = new System.Drawing.Point(554, 13);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(121, 21);
             this.comboBox3.TabIndex = 2;
@@ -177,7 +177,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(480, 17);
+            this.label4.Location = new System.Drawing.Point(521, 17);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(27, 13);
             this.label4.TabIndex = 0;
@@ -186,7 +186,7 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(353, 13);
+            this.comboBox2.Location = new System.Drawing.Point(394, 13);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 2;
@@ -194,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(305, 17);
+            this.label3.Location = new System.Drawing.Point(346, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 13);
             this.label3.TabIndex = 0;
@@ -203,7 +203,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(178, 13);
+            this.comboBox1.Location = new System.Drawing.Point(219, 13);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
@@ -211,7 +211,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(134, 17);
+            this.label2.Location = new System.Drawing.Point(175, 17);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 0;
@@ -219,7 +219,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(28, 14);
+            this.textBox1.Location = new System.Drawing.Point(69, 14);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 1;
@@ -229,9 +229,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 13);
+            this.label1.Size = new System.Drawing.Size(64, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "ID";
+            this.label1.Text = "No Rujukan";
             // 
             // tableLayoutPanel1
             // 
@@ -249,19 +249,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.84489F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.15511F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1022, 417);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(928, 456);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // dgvMakPer
             // 
-            this.dgvMakPer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvMakPer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMakPer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvMakPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMakPer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMakPer.Location = new System.Drawing.Point(3, 53);
             this.dgvMakPer.MinimumSize = new System.Drawing.Size(845, 259);
             this.dgvMakPer.Name = "dgvMakPer";
             this.dgvMakPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMakPer.Size = new System.Drawing.Size(1016, 320);
+            this.dgvMakPer.Size = new System.Drawing.Size(922, 354);
             this.dgvMakPer.TabIndex = 0;
             this.dgvMakPer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellDoubleClick);
             this.dgvMakPer.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMakPer_ColumnHeaderMouseClick);
@@ -273,10 +274,10 @@
             this.pnlPager.AutoScroll = true;
             this.pnlPager.AutoSize = true;
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlPager.Location = new System.Drawing.Point(3, 379);
+            this.pnlPager.Location = new System.Drawing.Point(3, 413);
             this.pnlPager.MinimumSize = new System.Drawing.Size(845, 30);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(1016, 35);
+            this.pnlPager.Size = new System.Drawing.Size(922, 40);
             this.pnlPager.TabIndex = 1;
             // 
             // panel2
@@ -287,7 +288,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.MinimumSize = new System.Drawing.Size(845, 27);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1016, 44);
+            this.panel2.Size = new System.Drawing.Size(922, 44);
             this.panel2.TabIndex = 2;
             // 
             // button2
@@ -309,9 +310,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoScrollMinSize = new System.Drawing.Size(889, 518);
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1022, 537);
+            this.AutoScrollMinSize = new System.Drawing.Size(928, 576);
+            this.ClientSize = new System.Drawing.Size(912, 537);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "appinfolistform";
