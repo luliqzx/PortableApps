@@ -35,8 +35,8 @@
             this.label53 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbBelum = new System.Windows.Forms.RadioButton();
+            this.rbSudah = new System.Windows.Forms.RadioButton();
             this.txttarikhtebang = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new System.Windows.Forms.Button();
             this.cbsyarattanah = new System.Windows.Forms.ComboBox();
@@ -145,8 +145,8 @@
             this.groupBox1.Controls.Add(this.label53);
             this.groupBox1.Controls.Add(this.label52);
             this.groupBox1.Controls.Add(this.label51);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rbBelum);
+            this.groupBox1.Controls.Add(this.rbSudah);
             this.groupBox1.Controls.Add(this.txttarikhtebang);
             this.groupBox1.Controls.Add(this.btnSave);
             this.groupBox1.Controls.Add(this.cbsyarattanah);
@@ -270,27 +270,27 @@
             this.label51.TabIndex = 21;
             this.label51.Text = "ha";
             // 
-            // radioButton2
+            // rbBelum
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(308, 250);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(54, 17);
-            this.radioButton2.TabIndex = 12;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Belum";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rbBelum.AutoSize = true;
+            this.rbBelum.Location = new System.Drawing.Point(308, 250);
+            this.rbBelum.Name = "rbBelum";
+            this.rbBelum.Size = new System.Drawing.Size(54, 17);
+            this.rbBelum.TabIndex = 12;
+            this.rbBelum.TabStop = true;
+            this.rbBelum.Text = "Belum";
+            this.rbBelum.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rbSudah
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(246, 250);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(56, 17);
-            this.radioButton1.TabIndex = 11;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Sudah";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rbSudah.AutoSize = true;
+            this.rbSudah.Location = new System.Drawing.Point(246, 250);
+            this.rbSudah.Name = "rbSudah";
+            this.rbSudah.Size = new System.Drawing.Size(56, 17);
+            this.rbSudah.TabIndex = 11;
+            this.rbSudah.TabStop = true;
+            this.rbSudah.Text = "Sudah";
+            this.rbSudah.UseVisualStyleBackColor = true;
             // 
             // txttarikhtebang
             // 
@@ -1292,8 +1292,8 @@
         private System.Windows.Forms.ComboBox cbjenishakmiliktanah;
         private System.Windows.Forms.ComboBox cbpemilikan;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbBelum;
+        private System.Windows.Forms.RadioButton rbSudah;
         private System.Windows.Forms.DateTimePicker txttarikhtebang;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label34;

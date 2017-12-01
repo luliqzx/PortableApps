@@ -261,6 +261,7 @@ namespace PortableApps
             makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
             makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
             makkebun.tncr = cbtncr.SelectedValue.ToString();
+            makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
 
             if (IsNew)
             {
@@ -475,6 +476,19 @@ namespace PortableApps
             txtluasmatang.Text = makkebun.luasmatang.ToString("#.##");
             txtnolesen.Text = makkebun.nolesen;
             txtnolot.Text = makkebun.nolot;
+            if (makkebun.tebang == "SUDAH")
+            {
+                rbSudah.Checked = true;
+            }
+            else if (makkebun.tebang == "BELUM")
+            {
+                rbBelum.Checked = true;
+            }
+            else
+            {
+                rbBelum.Checked = false;
+                rbSudah.Checked = false;
+            }
             DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             txttarikhtebang.Text = dttarikhtebang.ToString();
             cbnegeri.SelectedValue = makkebun.negeri;
