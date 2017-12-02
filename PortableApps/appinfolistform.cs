@@ -15,7 +15,13 @@ namespace PortableApps
     public partial class appinfolistform : Form
     {
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+        IBangsaRepo BangsaRepo = new BangsaRepo();
+        IParlimenRepo ParlimenRepo = new ParlimenRepo();
+        IDaerahRepo DaerahRepo = new DaerahRepo();
+        IDunRepo DunRepo = new DunRepo();
+        IVariablesRepo VariablesRepo = new VariablesRepo();
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+
         private int PageSize { get; set; }
         private string sidx { get; set; }
         private string sord { get; set; }
@@ -34,6 +40,11 @@ namespace PortableApps
             ControlBox = false;
             WindowState = FormWindowState.Maximized;
             BringToFront();
+
+            LoadNegeri();
+            LoadTBangsa();
+            LoadParlimen();
+
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = " ";
             dateTimePicker1.Checked = true;
@@ -51,6 +62,58 @@ namespace PortableApps
             sord = "ASC";
             BindGrid(xcurrentPage);
         }
+
+
+        private void LoadTBangsa()
+        {
+            IList<TBangsa> lstBangsa = BangsaRepo.GetAll();
+            cbbangsa.Items.Clear();
+            cbbangsa.DataSource = lstBangsa;
+            cbbangsa.DisplayMember = "Bangsa";
+            cbbangsa.ValueMember = "Bangsa";
+            cbbangsa.SelectedIndex = -1;
+        }
+
+        private void LoadParlimen()
+        {
+            IList<parlimen> lstEnt = ParlimenRepo.GetAll();
+            cbparlimen.Items.Clear();
+            cbparlimen.DataSource = lstEnt;
+            cbparlimen.DisplayMember = "kawasan";
+            cbparlimen.ValueMember = "negeri";
+            cbparlimen.SelectedIndex = -1;
+        }
+
+        private void LoadDaerah(string negeri)
+        {
+            IList<tdaerah> lstEnt = DaerahRepo.GetDaerahBy(negeri);
+            //cbdaerah.Items.Clear();
+            cbdaerah.DataSource = lstEnt;
+            cbdaerah.DisplayMember = "daerah";
+            cbdaerah.ValueMember = "kod_daerah";
+            cbdaerah.SelectedIndex = -1;
+        }
+
+        private void LoadDun(string negeri)
+        {
+            IList<dun> lstEnt = DunRepo.GetDunBy(negeri);
+            //cbdaerah.Items.Clear();
+            cbdun.DataSource = lstEnt;
+            cbdun.DisplayMember = "dun_desc";
+            cbdun.ValueMember = "kod_dun";
+            cbdun.SelectedIndex = -1;
+        }
+
+        private void LoadNegeri()
+        {
+            IList<variables> lstEnt = VariablesRepo.GetVariableNegeri("negeri");
+            //cbdaerah.Items.Clear();
+            cbnegeri.DataSource = lstEnt;
+            cbnegeri.DisplayMember = "value";
+            cbnegeri.ValueMember = "code";
+            cbnegeri.SelectedIndex = -1;
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -179,11 +242,11 @@ namespace PortableApps
         {
             appinfo pappinfo = new appinfo();
             pappinfo.refno = txtrefno.Text;
-            pappinfo.negeri = cbnegeri.SelectedValue.ToString();
-            pappinfo.bangsa = cbbangsa.SelectedValue.ToString();
-            pappinfo.daerah = cbdaerah.SelectedValue.ToString();
-            pappinfo.dun = cbdun.SelectedValue.ToString();
-            pappinfo.parlimen = Convert.ToInt32(cbparlimen.SelectedValue);
+            pappinfo.negeri = cbnegeri.SelectedValue == null ? "" : cbnegeri.SelectedValue.ToString();
+            pappinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
+            pappinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
+            pappinfo.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
+            pappinfo.parlimen = Convert.ToInt32(cbparlimen.SelectedValue == null ? 0 : cbparlimen.SelectedValue);
 
             IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, pappinfo);
             dgvMakPer.DataSource = lstEnt;

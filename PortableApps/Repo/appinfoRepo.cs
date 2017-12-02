@@ -155,12 +155,32 @@ namespace PortableApps.Repo
                 if (!string.IsNullOrEmpty(oWhereClause.bangsa))
                 {
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
-                    whereClause = whereClause + operators + " bangsa like '%'+@bangsa+'%'  ";
+                    whereClause = whereClause + operators + " bangsa = @bangsa ";
                 }
                 if (!string.IsNullOrEmpty(oWhereClause.negeri))
                 {
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
-                    whereClause = whereClause + operators + " negeri like '%'+@negeri+'%'   ";
+                    whereClause = whereClause + operators + " negeri = @negeri ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.daerah))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " daerah = @daerah ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.dun))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " dun = @dun   ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.refno))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " refno like '%'||@refno||'%'   ";
+                }
+                if (oWhereClause.parlimen > 0)
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " parlimen =@parlimen ";
                 }
             }
 
@@ -171,8 +191,8 @@ namespace PortableApps.Repo
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 
-            IList<appinfoDTO> lstEnt = sqliteCon.Query<appinfoDTO>(qry, null).ToList();
-            rowCount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
+            IList<appinfoDTO> lstEnt = sqliteCon.Query<appinfoDTO>(qry, oWhereClause).ToList();
+            rowCount = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
             return lstEnt;
         }
 
