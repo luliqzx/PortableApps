@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using PortableApps.Common;
+using PortableApps.Model;
 using PortableApps.Model.DTO;
 using PortableApps.Repo;
 using System;
@@ -236,6 +237,24 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            IList<Control> lstCtrlEmptyCheck = new List<Control>();
+            lstCtrlEmptyCheck.Add(txtaddr1);
+            lstCtrlEmptyCheck.Add(txtaddr2);
+            lstCtrlEmptyCheck.Add(cbnegeri);
+            lstCtrlEmptyCheck.Add(cbdaerah);
+            lstCtrlEmptyCheck.Add(cbdun);
+            lstCtrlEmptyCheck.Add(cbparlimen);
+            lstCtrlEmptyCheck.Add(txtnolot);
+            lstCtrlEmptyCheck.Add(txtluasmatang);
+            lstCtrlEmptyCheck.Add(cbsyarattanah);
+            lstCtrlEmptyCheck.Add(txtnolesen);
+
+            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+            {
+                return;
+            }
+
+
             bool IsNew = false;
             makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
             if (makkebun == null)
