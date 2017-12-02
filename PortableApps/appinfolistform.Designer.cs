@@ -265,6 +265,7 @@
             this.dgvMakPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMakPer.Size = new System.Drawing.Size(922, 354);
             this.dgvMakPer.TabIndex = 0;
+            this.dgvMakPer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellClick);
             this.dgvMakPer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellDoubleClick);
             this.dgvMakPer.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvMakPer_ColumnHeaderMouseClick);
             this.dgvMakPer.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMakPer_DataBindingComplete);
@@ -312,7 +313,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(928, 576);
-            this.ClientSize = new System.Drawing.Size(912, 537);
+            this.ClientSize = new System.Drawing.Size(929, 554);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "appinfolistform";

@@ -38,6 +38,9 @@
             this.rbMaklumatPemohon = new System.Windows.Forms.RibbonButton();
             this.rbmakkebun = new System.Windows.Forms.RibbonButton();
             this.rbLawatanPengesahanKebun = new System.Windows.Forms.RibbonButton();
+            this.ribbonTab4 = new System.Windows.Forms.RibbonTab();
+            this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
+            this.rbUpdateServer = new System.Windows.Forms.RibbonButton();
             this.ribbonTab2 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel2 = new System.Windows.Forms.RibbonPanel();
             this.rbInitData = new System.Windows.Forms.RibbonButton();
@@ -45,9 +48,6 @@
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
-            this.ribbonTab4 = new System.Windows.Forms.RibbonTab();
-            this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
-            this.rbUpdateServer = new System.Windows.Forms.RibbonButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tssUserKeyIn = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -108,8 +108,6 @@
             // 
             // rbDaftarMaklumatPermohonan
             // 
-            this.rbDaftarMaklumatPermohonan.Image = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.Image")));
-            this.rbDaftarMaklumatPermohonan.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.LargeImage")));
             this.rbDaftarMaklumatPermohonan.MinimumSize = new System.Drawing.Size(80, 0);
             this.rbDaftarMaklumatPermohonan.Name = "rbDaftarMaklumatPermohonan";
             this.rbDaftarMaklumatPermohonan.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.SmallImage")));
@@ -147,6 +145,28 @@
             this.rbLawatanPengesahanKebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.SmallImage")));
             this.rbLawatanPengesahanKebun.Text = "Lawatan Pengesahan Kebun";
             this.rbLawatanPengesahanKebun.Click += new System.EventHandler(this.rbLawatanPengesahanKebun_Click);
+            // 
+            // ribbonTab4
+            // 
+            this.ribbonTab4.Name = "ribbonTab4";
+            this.ribbonTab4.Panels.Add(this.ribbonPanel3);
+            this.ribbonTab4.Text = "Sinkronisasi Data";
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.Image = global::PortableApps.Properties.Resources.mpob_small;
+            this.ribbonPanel3.Items.Add(this.rbUpdateServer);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Text = "";
+            // 
+            // rbUpdateServer
+            // 
+            this.rbUpdateServer.Image = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.Image")));
+            this.rbUpdateServer.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.LargeImage")));
+            this.rbUpdateServer.Name = "rbUpdateServer";
+            this.rbUpdateServer.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.SmallImage")));
+            this.rbUpdateServer.Text = "Update Server";
+            this.rbUpdateServer.Click += new System.EventHandler(this.rbUpdateServer_Click);
             // 
             // ribbonTab2
             // 
@@ -200,28 +220,6 @@
             this.ribbonButton1.Text = "Close";
             this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
-            // 
-            // ribbonTab4
-            // 
-            this.ribbonTab4.Name = "ribbonTab4";
-            this.ribbonTab4.Panels.Add(this.ribbonPanel3);
-            this.ribbonTab4.Text = "Sinkronisasi Data";
-            // 
-            // ribbonPanel3
-            // 
-            this.ribbonPanel3.Image = global::PortableApps.Properties.Resources.mpob_small;
-            this.ribbonPanel3.Items.Add(this.rbUpdateServer);
-            this.ribbonPanel3.Name = "ribbonPanel3";
-            this.ribbonPanel3.Text = "";
-            // 
-            // rbUpdateServer
-            // 
-            this.rbUpdateServer.Image = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.Image")));
-            this.rbUpdateServer.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.LargeImage")));
-            this.rbUpdateServer.Name = "rbUpdateServer";
-            this.rbUpdateServer.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.SmallImage")));
-            this.rbUpdateServer.Text = "Update Server";
-            this.rbUpdateServer.Click += new System.EventHandler(this.rbUpdateServer_Click);
             // 
             // statusStrip1
             // 

@@ -315,6 +315,11 @@ namespace PortableApps
 
         private void dgvMakPer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            foreach (DataGridViewRow row in dgvMakPer.Rows)
+            {
+                row.Cells["refno"] = new DataGridViewLinkCell();
+            }
+
             DataGridViewImageColumn Edit = new DataGridViewImageColumn();
             Edit.Name = "Edit";
             Edit.Frozen = true;
@@ -368,6 +373,32 @@ namespace PortableApps
         private void button1_Click(object sender, EventArgs e)
         {
             BindGrid(xcurrentPage);
+        }
+
+        private void dgvMakPer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (e.ColumnIndex == dgvMakPer.Columns["refno"].Index)
+                {
+                    foreach (Form f in ParentForm.MdiChildren)
+                    {
+                        if (f.GetType() == typeof(lawatanpengesahankebunform))
+                        {
+                            //f.Activate();
+                            //return;
+                            f.Close();
+                        }
+                    }
+                    makkebunform form = new makkebunform();
+                    form.appinfo_id = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
+                    form.refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
+                    form.MdiParent = ParentForm;
+                    form.Show();
+                    //SetupFormMakKebun(pappinfo_id, pid_makkebun);
+                    //Do something with your button.
+                }
+            }
         }
     }
 }
