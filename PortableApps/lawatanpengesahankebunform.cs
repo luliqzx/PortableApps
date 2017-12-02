@@ -42,8 +42,9 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
             BindMaklumatPemohon(appinfo_id);
-            txttarikh_lawat.Format = DateTimePickerFormat.Custom;
-            txttarikh_lawat.CustomFormat = "dd-MM-yyyy";
+           
+            txttarikh_lawat.CustomFormat = " ";
+
 
             BindKaedah();
 
@@ -296,6 +297,15 @@ namespace PortableApps
             semak_tapak semak_tapak = SemakTapakRepo.GetBy(appinfo_id, id_makkebun);
             semak_tapak_id = semak_tapak == null ? 0 : semak_tapak.id;
             BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
+        }
+
+        private void txttarikh_lawat_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            if (dtp.Value > DateTime.MinValue)
+            {
+                dtp.CustomFormat = "dd-MM-yyyy";
+            }
         }
     }
 }

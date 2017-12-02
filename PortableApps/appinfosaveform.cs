@@ -245,7 +245,7 @@ namespace PortableApps
             //{
             //    return;
             //}
-            IList<Control> lstCtrlEmptyCheck= new List<Control>();
+            IList<Control> lstCtrlEmptyCheck = new List<Control>();
             lstCtrlEmptyCheck.Add(txtappdate);
             lstCtrlEmptyCheck.Add(txtnama);
             lstCtrlEmptyCheck.Add(txticno);
@@ -363,5 +363,10 @@ namespace PortableApps
             LoadDun("");
         }
 
+        private void txtappdate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            dtp.CustomFormat = "dd-MM-yyyy";
+        }
     }
 }

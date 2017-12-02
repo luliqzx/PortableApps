@@ -223,7 +223,7 @@
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(460, 417);
+            this.label55.Location = new System.Drawing.Point(372, 413);
             this.label55.Margin = new System.Windows.Forms.Padding(10);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(19, 13);
@@ -263,7 +263,7 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Location = new System.Drawing.Point(460, 206);
+            this.label51.Location = new System.Drawing.Point(372, 206);
             this.label51.Margin = new System.Windows.Forms.Padding(10);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(19, 13);
@@ -297,8 +297,9 @@
             this.txttarikhtebang.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txttarikhtebang.Location = new System.Drawing.Point(246, 268);
             this.txttarikhtebang.Name = "txttarikhtebang";
-            this.txttarikhtebang.Size = new System.Drawing.Size(200, 20);
+            this.txttarikhtebang.Size = new System.Drawing.Size(100, 20);
             this.txttarikhtebang.TabIndex = 13;
+            this.txttarikhtebang.ValueChanged += new System.EventHandler(this.txttarikhtebang_ValueChanged);
             // 
             // btnSave
             // 
@@ -597,7 +598,7 @@
             this.txtluaslesen.Location = new System.Drawing.Point(246, 410);
             this.txtluaslesen.Margin = new System.Windows.Forms.Padding(10);
             this.txtluaslesen.Name = "txtluaslesen";
-            this.txtluaslesen.Size = new System.Drawing.Size(208, 20);
+            this.txtluaslesen.Size = new System.Drawing.Size(121, 20);
             this.txtluaslesen.TabIndex = 18;
             // 
             // txtnolesen
@@ -605,7 +606,7 @@
             this.txtnolesen.Location = new System.Drawing.Point(246, 290);
             this.txtnolesen.Margin = new System.Windows.Forms.Padding(10);
             this.txtnolesen.Name = "txtnolesen";
-            this.txtnolesen.Size = new System.Drawing.Size(208, 20);
+            this.txtnolesen.Size = new System.Drawing.Size(121, 20);
             this.txtnolesen.TabIndex = 14;
             // 
             // txtluasmatang
@@ -613,7 +614,7 @@
             this.txtluasmatang.Location = new System.Drawing.Point(246, 203);
             this.txtluasmatang.Margin = new System.Windows.Forms.Padding(10);
             this.txtluasmatang.Name = "txtluasmatang";
-            this.txtluasmatang.Size = new System.Drawing.Size(208, 20);
+            this.txtluasmatang.Size = new System.Drawing.Size(121, 20);
             this.txtluasmatang.TabIndex = 9;
             // 
             // txtnolot
@@ -621,7 +622,7 @@
             this.txtnolot.Location = new System.Drawing.Point(246, 181);
             this.txtnolot.Margin = new System.Windows.Forms.Padding(10);
             this.txtnolot.Name = "txtnolot";
-            this.txtnolot.Size = new System.Drawing.Size(208, 20);
+            this.txtnolot.Size = new System.Drawing.Size(121, 20);
             this.txtnolot.TabIndex = 8;
             // 
             // txtaddr3
@@ -871,7 +872,7 @@
             this.lblwilayah.Name = "lblwilayah";
             this.lblwilayah.Size = new System.Drawing.Size(45, 13);
             this.lblwilayah.TabIndex = 53;
-            this.lblwilayah.Text = "Wilayah";
+            this.lblwilayah.Text = "";
             // 
             // lbldaerah
             // 

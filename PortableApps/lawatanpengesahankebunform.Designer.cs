@@ -181,9 +181,8 @@
             this.lblwilayah.AutoSize = true;
             this.lblwilayah.Location = new System.Drawing.Point(411, 158);
             this.lblwilayah.Name = "lblwilayah";
-            this.lblwilayah.Size = new System.Drawing.Size(45, 13);
+            this.lblwilayah.Size = new System.Drawing.Size(0, 13);
             this.lblwilayah.TabIndex = 53;
-            this.lblwilayah.Text = "Wilayah";
             // 
             // lbldaerah
             // 
@@ -588,10 +587,12 @@
             // 
             // txttarikh_lawat
             // 
+            this.txttarikh_lawat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txttarikh_lawat.Location = new System.Drawing.Point(299, 297);
             this.txttarikh_lawat.Name = "txttarikh_lawat";
-            this.txttarikh_lawat.Size = new System.Drawing.Size(200, 20);
+            this.txttarikh_lawat.Size = new System.Drawing.Size(101, 20);
             this.txttarikh_lawat.TabIndex = 15;
+            this.txttarikh_lawat.ValueChanged += new System.EventHandler(this.txttarikh_lawat_ValueChanged);
             // 
             // label15
             // 

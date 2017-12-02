@@ -109,8 +109,9 @@
             this.txtappdate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.txtappdate.Location = new System.Drawing.Point(220, 18);
             this.txtappdate.Name = "txtappdate";
-            this.txtappdate.Size = new System.Drawing.Size(200, 20);
+            this.txtappdate.Size = new System.Drawing.Size(99, 20);
             this.txtappdate.TabIndex = 1;
+            this.txtappdate.ValueChanged += new System.EventHandler(this.txtappdate_ValueChanged);
             this.txtappdate.MouseHover += new System.EventHandler(this.GeneralTooltip_MouseHover);
             // 
             // label2

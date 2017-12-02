@@ -50,7 +50,7 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
 
-            txttarikhtebang.CustomFormat = "dd-MM-yyyy";
+            txttarikhtebang.CustomFormat = " ";
 
             groupBox1.Text = groupBox1.Text + " " + refno;
             groupBox2.Text = groupBox2.Text + " " + refno;
@@ -511,6 +511,7 @@ namespace PortableApps
             }
             DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
             txttarikhtebang.Text = dttarikhtebang.ToString();
+            txttarikhtebang.Value = dttarikhtebang;
             cbnegeri.SelectedValue = makkebun.negeri;
             cbdaerah.SelectedValue = makkebun.daerah;
             cbdun.SelectedValue = makkebun.dun;
@@ -645,6 +646,15 @@ namespace PortableApps
             var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
 
+        }
+
+        private void txttarikhtebang_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            if (dtp.Value > DateTime.MinValue)
+            {
+                dtp.CustomFormat = "dd-MM-yyyy";
+            }
         }
 
         

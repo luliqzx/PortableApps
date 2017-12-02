@@ -35,7 +35,8 @@ namespace PortableApps
             WindowState = FormWindowState.Maximized;
             BringToFront();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = "dd-MM-yyyy";
+            dateTimePicker1.CustomFormat = " ";
+            dateTimePicker1.Checked = true;
             VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
             if (varPageSize == null)
             {
@@ -176,7 +177,15 @@ namespace PortableApps
 
         private void BindGrid(int pageIndex)
         {
-            IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, null);
+            appinfo pappinfo = new appinfo();
+            pappinfo.refno = txtrefno.Text;
+            pappinfo.negeri = cbnegeri.SelectedValue.ToString();
+            pappinfo.bangsa = cbbangsa.SelectedValue.ToString();
+            pappinfo.daerah = cbdaerah.SelectedValue.ToString();
+            pappinfo.dun = cbdun.SelectedValue.ToString();
+            pappinfo.parlimen = Convert.ToInt32(cbparlimen.SelectedValue);
+
+            IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, pappinfo);
             dgvMakPer.DataSource = lstEnt;
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
@@ -281,6 +290,21 @@ namespace PortableApps
             dgvMakPer.Columns["created"].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
             dgvMakPer.Columns["id"].HeaderText = "Id";
             dgvMakPer.Columns["id"].Visible = false;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            DateTimePicker dtp = sender as DateTimePicker;
+            dtp.ShowCheckBox = true;
+            if (dtp.Value > DateTime.MinValue)
+            {
+                dtp.CustomFormat = "dd-MM-yyyy";
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BindGrid(xcurrentPage);
         }
     }
 }
