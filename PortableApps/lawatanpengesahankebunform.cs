@@ -106,6 +106,8 @@ namespace PortableApps
             txtptk_lawat.Text = semak_tapak.ptk_lawat;
             txttarikh_lawat.Text = semak_tapak.tarikh_lawat;
             txtumr_pokok_tua.Text = semak_tapak.umr_pokok_tua;
+
+            BindRBForm(semak_tapak);
         }
 
         private void BindJenisTanah()
@@ -194,7 +196,6 @@ namespace PortableApps
                 IsNew = true;
             }
 
-            BindRBForm(semak_tapak);
 
             semak_tapak.id = (int)semak_tapak_id;
             semak_tapak.makkebun_id = id_makkebun;
@@ -216,6 +217,7 @@ namespace PortableApps
             //semak_tapak.created = txtcreated.Text;
             //semak_tapak.createdby = txtcreatedby.Text;
             //semak_tapak.lampiran = txtlampiran.Text;
+            BindRBForm(semak_tapak);
 
             if (IsNew)
             {

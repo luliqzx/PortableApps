@@ -30,7 +30,8 @@ namespace PortableApps.Repo
         public int Edit(semak_tapak ent)
         {
             int i = 0;
-            string qry = @"";
+            string qry = @"UPDATE SEMAK_TAPAK SET id=@id,	makkebun_id=@makkebun_id,	appinfo_id=@appinfo_id,	kaedah=@kaedah,	bantuan=@bantuan,	jenis_tanah=@jenis_tanah,	kecerunan=@kecerunan,	jentera=@jentera,	ganoderma=@ganoderma,	peratusan_serangan=@peratusan_serangan,	umr_pokok_tua=@umr_pokok_tua,	hasil=@hasil,	bil_pokok_tua=@bil_pokok_tua,	tarikh_lawat=@tarikh_lawat,	ptk_lawat=@ptk_lawat,	luas=@luas,	catatan=@catatan,	created=@created,	createdby=@createdby,	lampiran=@lampiran
+                                WHERE id=@id";
             i = sqliteCon.Execute(qry, ent);
             return i;
         }

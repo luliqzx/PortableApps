@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortableApps.Repo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -85,6 +86,8 @@ namespace PortableApps
             ControlBox = false;
             WindowState = FormWindowState.Maximized;
             BringToFront();
+
+
         }
 
         private void roobClose_Click(object sender, EventArgs e)
@@ -127,6 +130,30 @@ namespace PortableApps
             Form form = new InitializeForm();
             form.MdiParent = this;
             form.Show();
+        }
+
+        private void rbUpdateServer_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Under contruction");
+            //foreach (Form f in this.MdiChildren)
+            //{
+            //    if (f.GetType() == typeof(InitializeForm))
+            //    {
+            //        f.Close();
+            //        //f.Activate();
+            //        //return;
+            //    }
+            //}
+            //Form form = new InitializeForm();
+            //form.MdiParent = this;
+            //form.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string Nama = new VariableSettingRepo().GetBy("UserKeyIn").Value + " | " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+            tssUserKeyIn.Text = Nama;
+
         }
     }
 }

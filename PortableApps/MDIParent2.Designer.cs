@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MDIParent2));
             this.ribbon1 = new System.Windows.Forms.Ribbon();
             this.roobClose = new System.Windows.Forms.RibbonOrbOptionButton();
@@ -44,6 +45,13 @@
             this.ribbonTab3 = new System.Windows.Forms.RibbonTab();
             this.ribbonPanel1 = new System.Windows.Forms.RibbonPanel();
             this.ribbonButton1 = new System.Windows.Forms.RibbonButton();
+            this.ribbonTab4 = new System.Windows.Forms.RibbonTab();
+            this.ribbonPanel3 = new System.Windows.Forms.RibbonPanel();
+            this.rbUpdateServer = new System.Windows.Forms.RibbonButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tssUserKeyIn = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon1
@@ -68,6 +76,7 @@
             this.ribbon1.Size = new System.Drawing.Size(737, 115);
             this.ribbon1.TabIndex = 4;
             this.ribbon1.Tabs.Add(this.ribbonTab1);
+            this.ribbon1.Tabs.Add(this.ribbonTab4);
             this.ribbon1.Tabs.Add(this.ribbonTab2);
             this.ribbon1.Tabs.Add(this.ribbonTab3);
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
@@ -192,19 +201,72 @@
             this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
+            // ribbonTab4
+            // 
+            this.ribbonTab4.Name = "ribbonTab4";
+            this.ribbonTab4.Panels.Add(this.ribbonPanel3);
+            this.ribbonTab4.Text = "Sinkronisasi Data";
+            // 
+            // ribbonPanel3
+            // 
+            this.ribbonPanel3.Image = global::PortableApps.Properties.Resources.mpob_small;
+            this.ribbonPanel3.Items.Add(this.rbUpdateServer);
+            this.ribbonPanel3.Name = "ribbonPanel3";
+            this.ribbonPanel3.Text = "";
+            // 
+            // rbUpdateServer
+            // 
+            this.rbUpdateServer.Image = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.Image")));
+            this.rbUpdateServer.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.LargeImage")));
+            this.rbUpdateServer.Name = "rbUpdateServer";
+            this.rbUpdateServer.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.SmallImage")));
+            this.rbUpdateServer.Text = "Update Server";
+            this.rbUpdateServer.Click += new System.EventHandler(this.rbUpdateServer_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssUserKeyIn});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 466);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this.statusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.statusStrip1.Size = new System.Drawing.Size(737, 22);
+            this.statusStrip1.TabIndex = 6;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tssUserKeyIn
+            // 
+            this.tssUserKeyIn.Name = "tssUserKeyIn";
+            this.tssUserKeyIn.Size = new System.Drawing.Size(48, 17);
+            this.tssUserKeyIn.Text = "Nama : ";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // MDIParent2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::PortableApps.Properties.Resources.mpob_small;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(737, 488);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.ribbon1);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Lucida Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MDIParent2";
             this.Text = "TSSPK";
             this.Load += new System.EventHandler(this.MDIParent2_Load);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
         #endregion
@@ -224,6 +286,12 @@
         private System.Windows.Forms.RibbonButton ribbonButton1;
         private System.Windows.Forms.RibbonButton rbLawatanPengesahanKebun;
         private System.Windows.Forms.RibbonButton rbInitData;
+        private System.Windows.Forms.RibbonTab ribbonTab4;
+        private System.Windows.Forms.RibbonPanel ribbonPanel3;
+        private System.Windows.Forms.RibbonButton rbUpdateServer;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tssUserKeyIn;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
