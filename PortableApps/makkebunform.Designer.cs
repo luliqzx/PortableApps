@@ -280,6 +280,7 @@
             this.rbBelum.TabStop = true;
             this.rbBelum.Text = "Belum";
             this.rbBelum.UseVisualStyleBackColor = true;
+            this.rbBelum.CheckedChanged += new System.EventHandler(this.rbBelum_CheckedChanged);
             // 
             // rbSudah
             // 
@@ -291,6 +292,7 @@
             this.rbSudah.TabStop = true;
             this.rbSudah.Text = "Sudah";
             this.rbSudah.UseVisualStyleBackColor = true;
+            this.rbSudah.CheckedChanged += new System.EventHandler(this.rbSudah_CheckedChanged);
             // 
             // txttarikhtebang
             // 
@@ -870,9 +872,8 @@
             this.lblwilayah.AutoSize = true;
             this.lblwilayah.Location = new System.Drawing.Point(411, 158);
             this.lblwilayah.Name = "lblwilayah";
-            this.lblwilayah.Size = new System.Drawing.Size(45, 13);
+            this.lblwilayah.Size = new System.Drawing.Size(0, 13);
             this.lblwilayah.TabIndex = 53;
-            this.lblwilayah.Text = "";
             // 
             // lbldaerah
             // 

@@ -657,6 +657,16 @@ namespace PortableApps
             }
         }
 
-        
+        private void rbBelum_CheckedChanged(object sender, EventArgs e)
+        {
+            txttarikhtebang.Checked = false;
+            txttarikhtebang.CustomFormat = " ";
+        }
+
+        private void rbSudah_CheckedChanged(object sender, EventArgs e)
+        {
+            txttarikhtebang.Checked = true;
+            txttarikhtebang.CustomFormat = "dd-MM-yyyy";
+        }
     }
 }
