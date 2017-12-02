@@ -87,6 +87,27 @@ namespace PortableApps.Common
                         break;
                     }
                 }
+                if (ctrl is DateTimePicker)
+                {
+                    if (string.IsNullOrEmpty(ctrl.Text))
+                    {
+                        retVal = true;
+                        MessageBox.Show(ctrl.Name.Replace("txt", "") + " harus diisi.");
+                        ctrl.Focus();
+                        break;
+                    }
+                }
+                if (ctrl is ComboBox)
+                {
+                    string valx = ((ComboBox)ctrl).SelectedValue == null ? "" : ((ComboBox)ctrl).SelectedValue.ToString();
+                    if (string.IsNullOrEmpty(valx))
+                    {
+                        retVal = true;
+                        MessageBox.Show(ctrl.Name.Replace("cb", "") + " harus diisi.");
+                        ctrl.Focus();
+                        break;
+                    }
+                }
             }
             return retVal;
         }

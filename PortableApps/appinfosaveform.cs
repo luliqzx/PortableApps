@@ -246,8 +246,24 @@ namespace PortableApps
             //    return;
             //}
             IList<Control> lstCtrlEmptyCheck= new List<Control>();
+            lstCtrlEmptyCheck.Add(txtappdate);
             lstCtrlEmptyCheck.Add(txtnama);
+            lstCtrlEmptyCheck.Add(txticno);
             lstCtrlEmptyCheck.Add(txtnolesen);
+            lstCtrlEmptyCheck.Add(cbbangsa);
+            lstCtrlEmptyCheck.Add(txtaddr1);
+            lstCtrlEmptyCheck.Add(txtaddr2);
+            //lstCtrlEmptyCheck.Add(txtaddr3);
+            lstCtrlEmptyCheck.Add(txtbandar);
+            lstCtrlEmptyCheck.Add(txtposkod);
+            lstCtrlEmptyCheck.Add(cbnegeri);
+            lstCtrlEmptyCheck.Add(cbdaerah);
+            lstCtrlEmptyCheck.Add(cbdun);
+            lstCtrlEmptyCheck.Add(cbparlimen);
+            lstCtrlEmptyCheck.Add(txthometel);
+            lstCtrlEmptyCheck.Add(txtofficetel);
+            lstCtrlEmptyCheck.Add(txthptel);
+            lstCtrlEmptyCheck.Add(txtemail);
 
             if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
             {
@@ -261,7 +277,7 @@ namespace PortableApps
                 appinfo = new appinfo();
                 appinfo_id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
                 IsNew = true;
-                refno = GenerateRefNo(appinfo.negeri);
+                refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
             }
             appinfo.id = appinfo_id;
             appinfo.appdate = txtappdate.Text;
