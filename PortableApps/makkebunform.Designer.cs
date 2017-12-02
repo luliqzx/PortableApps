@@ -62,7 +62,6 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.txtcatatan = new System.Windows.Forms.TextBox();
@@ -172,7 +171,6 @@
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.label22);
-            this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.txtcatatan);
@@ -552,17 +550,6 @@
             this.label22.TabIndex = 6;
             this.label22.Text = "*";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.Red;
-            this.label21.Location = new System.Drawing.Point(229, 71);
-            this.label21.Margin = new System.Windows.Forms.Padding(10);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(11, 13);
-            this.label21.TabIndex = 6;
-            this.label21.Text = "*";
-            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -602,6 +589,7 @@
             this.txtluaslesen.Name = "txtluaslesen";
             this.txtluaslesen.Size = new System.Drawing.Size(121, 20);
             this.txtluaslesen.TabIndex = 18;
+            this.txtluaslesen.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxNumericOnly_KeyPress);
             // 
             // txtnolesen
             // 
@@ -618,6 +606,7 @@
             this.txtluasmatang.Name = "txtluasmatang";
             this.txtluasmatang.Size = new System.Drawing.Size(121, 20);
             this.txtluasmatang.TabIndex = 9;
+            this.txtluasmatang.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxNumericOnly_KeyPress);
             // 
             // txtnolot
             // 
@@ -1243,7 +1232,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtnolot;
@@ -1283,7 +1271,6 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.TextBox txtcatatan;
         private System.Windows.Forms.TextBox txtluaslesen;
@@ -1339,5 +1326,6 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.ComboBox cbtncr;
+        private System.Windows.Forms.Label label24;
     }
 }
