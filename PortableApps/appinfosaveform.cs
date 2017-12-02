@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using PortableApps.Common;
+using PortableApps.Model;
 using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace PortableApps
             LoadTBangsa();
             LoadParlimen();
             txtappdate.CustomFormat = "dd-MM-yyyy";
+
             VariableSetting vs = VariableSettingRepo.GetBy("UserKeyIn");
 
             txtcreatedby.Text = "System";
@@ -46,6 +48,38 @@ namespace PortableApps
             {
                 txtcreatedby.Text = vs.Value;
             }
+
+            //foreach (Control ctrl in Controls)
+            //{
+            //    ctrl.HookFocusChangeBackColor(Color.Khaki);
+            //}
+            FocusChangeBackColor();
+        }
+
+        private void FocusChangeBackColor()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                {
+                    if (control is TextBox)
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    else if (control is ComboBox)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else if (control is DateTimePicker)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else
+                        func(control.Controls);
+                }
+            };
+
+            func(Controls);
         }
 
         private void LoadTBangsa()
@@ -207,6 +241,19 @@ namespace PortableApps
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //if (txtnama.CheckEmpty() && txtaddr1.CheckEmpty())
+            //{
+            //    return;
+            //}
+            IList<Control> lstCtrlEmptyCheck= new List<Control>();
+            lstCtrlEmptyCheck.Add(txtnama);
+            lstCtrlEmptyCheck.Add(txtnolesen);
+
+            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+            {
+                return;
+            }
+
             bool IsNew = false;
             appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
             if (appinfo == null)
@@ -278,6 +325,7 @@ namespace PortableApps
             func = (controls) =>
             {
                 foreach (Control control in controls)
+                {
                     if (control is TextBox)
                         (control as TextBox).Clear();
                     else if (control is ComboBox)
@@ -286,6 +334,7 @@ namespace PortableApps
                     }
                     else
                         func(control.Controls);
+                }
             };
 
             func(Controls);
@@ -297,5 +346,6 @@ namespace PortableApps
             LoadDaerah("");
             LoadDun("");
         }
+
     }
 }

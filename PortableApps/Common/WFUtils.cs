@@ -1,12 +1,14 @@
 ﻿using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace PortableApps.Common
 {
-    public class WFUtils
+    public static class WFUtils
     {
         /// <summary>
         /// 
@@ -55,5 +57,57 @@ namespace PortableApps.Common
             return plainText;
         }
 
+        public static bool CheckEmpty(this Control ctrl)
+        {
+            bool returnVal = false;
+            if (ctrl is TextBox)
+            {
+                if (string.IsNullOrEmpty(ctrl.Text))
+                {
+                    MessageBox.Show(ctrl.Name.Replace("txt", "") + " tidak boleh kosong");
+                    ctrl.Focus();
+                    returnVal = true;
+                }
+            }
+            return returnVal;
+        }
+
+        public static bool CheckControllCollectionEmpty(IList<Control> ctrlEmpty)
+        {
+            bool retVal = false;
+            foreach (Control ctrl in ctrlEmpty)
+            {
+                if (ctrl is TextBox)
+                {
+                    if (string.IsNullOrEmpty(ctrl.Text))
+                    {
+                        retVal = true;
+                        MessageBox.Show(ctrl.Name.Replace("txt", "") + " harus diisi.");
+                        ctrl.Focus();
+                        break;
+                    }
+                }
+            }
+            return retVal;
+        }
+
+        public static void HookFocusChangeBackColor(this Control ctrl, Color focusBackColor)
+        {
+            var originalColor = ctrl.BackColor;
+            var gotFocusHandler = new EventHandler((sender, e) =>
+            {
+                (ctrl as Control).BackColor = focusBackColor;
+            });
+            var lostFocusHandler = new EventHandler((sender, e) =>
+            {
+                (ctrl as Control).BackColor = originalColor;
+            });
+
+            ctrl.GotFocus -= gotFocusHandler;
+            ctrl.GotFocus += gotFocusHandler;
+
+            ctrl.LostFocus -= lostFocusHandler;
+            ctrl.LostFocus += lostFocusHandler;
+        }
     }
 }
