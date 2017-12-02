@@ -21,6 +21,9 @@ namespace PortableApps
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
 
+        public int appinfo_id;
+        public string refno;
+
         public appinfosaveform()
         {
             InitializeComponent();
@@ -204,8 +207,16 @@ namespace PortableApps
 
         private void button1_Click(object sender, EventArgs e)
         {
-            appinfo appinfo = new appinfo();
-            appinfo.id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
+            bool IsNew = false;
+            appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
+            if (appinfo == null)
+            {
+                appinfo = new appinfo();
+                appinfo_id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
+                IsNew = true;
+                refno = GenerateRefNo(appinfo.negeri);
+            }
+            appinfo.id = appinfo_id;
             appinfo.appdate = txtappdate.Text;
             appinfo.nama = txtnama.Text;
             appinfo.type_id = 0;//txttype_id.Text;
@@ -232,16 +243,18 @@ namespace PortableApps
             //appinfo.faks = txtfaks.Text;
             appinfo.email = txtemail.Text;
             //appinfo.kelompok = txtkelompok.Text;
-            appinfo.created = DateTime.Now;
-            appinfo.createdby = txtcreatedby.Text;
-
-            appinfo.refno = GenerateRefNo(appinfo.negeri);
-
-            int i = AppInfoRepo.Create(appinfo);
-            if (i > 0)
+            appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
+            if (IsNew)
             {
-                MessageBox.Show("Data berhasil disimpan [" + appinfo.id + "]");
+                appinfo.created = DateTime.Now;
+                appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                AppInfoRepo.Create(appinfo);
             }
+            else
+            {
+                AppInfoRepo.Edit(appinfo);
+            }
+            MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
         }
 
         private string GenerateRefNo(string negeri)

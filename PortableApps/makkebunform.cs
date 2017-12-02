@@ -52,6 +52,7 @@ namespace PortableApps
 
             txttarikhtebang.CustomFormat = "dd-MM-yyyy";
 
+            groupBox1.Text = groupBox1.Text + " " + refno;
             groupBox2.Text = groupBox2.Text + " " + refno;
 
             BindMaklumatPemohon(appinfo_id);
@@ -262,9 +263,12 @@ namespace PortableApps
             makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
             makkebun.tncr = cbtncr.SelectedValue.ToString();
             makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
+            
 
             if (IsNew)
             {
+                makkebun.created = DateTime.Now;
+                makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
                 MakkebunRepo.Create(makkebun);
             }
             else
@@ -414,6 +418,22 @@ namespace PortableApps
                 {
                     SetupFormMakKebun(pappinfo_id, pid_makkebun);
                     //Do something with your button.
+                }
+                else if (e.ColumnIndex == dgvMakKebun.Columns["Delete"].Index)
+                {
+                    var confirmResult = MessageBox.Show("Apakah anda yakin menghapus data [" + dgvMakKebun["nolot", e.RowIndex].Value + "] ?",
+                                     "Konfirmasi Hapus Data!!",
+                                     MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Hapus");
+                        BindGrid(xcurrentPage);
+                        // If 'Yes', do something here.
+                    }
+                    else
+                    {
+                        // If 'No', do something here.
+                    }
                 }
                 else if (e.ColumnIndex == dgvMakKebun.Columns["tarikh_lawat"].Index)
                 {
@@ -626,5 +646,7 @@ namespace PortableApps
             e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
 
         }
+
+        
     }
 }

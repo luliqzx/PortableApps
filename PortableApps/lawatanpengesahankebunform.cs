@@ -49,6 +49,7 @@ namespace PortableApps
 
             BindJenisTanah();
 
+            groupBox1.Text = groupBox1.Text + " " + refno;
             groupBox2.Text = groupBox2.Text + " " + refno;
 
             cbnolot.SelectedIndexChanged -= cbnolot_SelectedIndexChanged;
@@ -192,15 +193,18 @@ namespace PortableApps
                 semak_tapak = new semak_tapak();
                 IsNew = true;
             }
+
+            BindRBForm(semak_tapak);
+
             semak_tapak.id = (int)semak_tapak_id;
             semak_tapak.makkebun_id = id_makkebun;
             semak_tapak.appinfo_id = appinfo_id;
             semak_tapak.kaedah = cbkaedah.SelectedValue.ToString();
             semak_tapak.bantuan = txtbantuan.Text;
             semak_tapak.jenis_tanah = cbjenis_tanah.SelectedValue.ToString();
-            ////semak_tapak.kecerunan = txtkecerunan.Text;
-            //semak_tapak.jentera = txtjentera.Text;
-            //semak_tapak.ganoderma = txtganoderma.Text;
+            semak_tapak.kecerunan = rbLebih30Darjah.Checked ? "Lebih 25 Darjah" : rbKurarng30Darjah.Checked ? "Kurang 25 Darjah" : "";
+            semak_tapak.jentera = rbJenteraYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
+            semak_tapak.ganoderma = rbGenodermaYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
             semak_tapak.peratusan_serangan = Convert.ToDouble(txtperatusan_serangan.Text);
             semak_tapak.umr_pokok_tua = txtumr_pokok_tua.Text;
             semak_tapak.hasil = txthasil.Text;
@@ -215,6 +219,9 @@ namespace PortableApps
 
             if (IsNew)
             {
+                semak_tapak.created = DateTime.Now; ;
+                semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
+                semak_tapak.lampiran = "";// txtlampiran.Text;
                 SemakTapakRepo.Create(semak_tapak);
             }
             else
@@ -222,7 +229,62 @@ namespace PortableApps
                 SemakTapakRepo.Edit(semak_tapak);
             }
 
-            MessageBox.Show("Data berhasil disimpan [" + semak_tapak_id + "]");
+            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+        }
+
+        private void BindRBForm(semak_tapak semak_tapak)
+        {
+            if (!string.IsNullOrEmpty(semak_tapak.kecerunan))
+            {
+                if (semak_tapak.kecerunan == "Lebih 25 Darjah")
+                {
+                    rbLebih30Darjah.Checked = true;
+                }
+                else if (semak_tapak.kecerunan == "Kurang 25 Darjah")
+                {
+                    rbKurarng30Darjah.Checked = true;
+                }
+            }
+            else
+            {
+                rbLebih30Darjah.Checked = false;
+                rbKurarng30Darjah.Checked = false;
+            }
+
+            if (!string.IsNullOrEmpty(semak_tapak.jentera))
+            {
+                if (semak_tapak.jentera == "Ya")
+                {
+                    rbJenteraYa.Checked = true;
+                }
+                else if (semak_tapak.jentera == "Tidak")
+                {
+                    rbJenteraTidak.Checked = true;
+                }
+            }
+            else
+            {
+                rbJenteraYa.Checked = false;
+                rbJenteraTidak.Checked = false;
+            }
+
+
+            if (!string.IsNullOrEmpty(semak_tapak.ganoderma))
+            {
+                if (semak_tapak.ganoderma == "Ya")
+                {
+                    rbGenodermaYa.Checked = true;
+                }
+                else if (semak_tapak.ganoderma == "Tidak")
+                {
+                    rbGenodermaTidak.Checked = true;
+                }
+            }
+            else
+            {
+                rbGenodermaYa.Checked = false;
+                rbGenodermaTidak.Checked = false;
+            }
         }
 
         private void cbnolot_SelectedIndexChanged(object sender, EventArgs e)

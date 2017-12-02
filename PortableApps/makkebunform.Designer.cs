@@ -209,7 +209,7 @@
             this.groupBox1.Size = new System.Drawing.Size(540, 538);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Form";
+            this.groupBox1.Text = "Maklumat Kebun ";
             // 
             // cbtncr
             // 
@@ -862,7 +862,7 @@
             this.groupBox2.Size = new System.Drawing.Size(533, 194);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Maklumat Kebun";
+            this.groupBox2.Text = "Maklumat Pemohon";
             // 
             // lblwilayah
             // 

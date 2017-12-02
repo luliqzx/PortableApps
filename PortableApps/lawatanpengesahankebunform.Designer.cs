@@ -60,12 +60,19 @@
             this.label34 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.rbGenodermaYa = new System.Windows.Forms.RadioButton();
+            this.rbGenodermaTidak = new System.Windows.Forms.RadioButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rbJenteraYa = new System.Windows.Forms.RadioButton();
+            this.rbJenteraTidak = new System.Windows.Forms.RadioButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.rbLebih30Darjah = new System.Windows.Forms.RadioButton();
+            this.rbKurarng30Darjah = new System.Windows.Forms.RadioButton();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.txttarikh_lawat = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.txtcatatan = new System.Windows.Forms.TextBox();
             this.txtluas = new System.Windows.Forms.TextBox();
             this.txtptk_lawat = new System.Windows.Forms.TextBox();
@@ -92,21 +99,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -174,7 +174,7 @@
             this.groupBox2.Size = new System.Drawing.Size(641, 194);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Maklumat Kebun";
+            this.groupBox2.Text = "Maklumat Pemohon";
             // 
             // lblwilayah
             // 
@@ -474,6 +474,99 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Lawatan Pengesahan Kebun";
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.rbGenodermaYa);
+            this.panel5.Controls.Add(this.rbGenodermaTidak);
+            this.panel5.Location = new System.Drawing.Point(299, 170);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(232, 25);
+            this.panel5.TabIndex = 23;
+            // 
+            // rbGenodermaYa
+            // 
+            this.rbGenodermaYa.AutoSize = true;
+            this.rbGenodermaYa.Location = new System.Drawing.Point(3, 5);
+            this.rbGenodermaYa.Name = "rbGenodermaYa";
+            this.rbGenodermaYa.Size = new System.Drawing.Size(38, 17);
+            this.rbGenodermaYa.TabIndex = 9;
+            this.rbGenodermaYa.TabStop = true;
+            this.rbGenodermaYa.Text = "Ya";
+            this.rbGenodermaYa.UseVisualStyleBackColor = true;
+            // 
+            // rbGenodermaTidak
+            // 
+            this.rbGenodermaTidak.AutoSize = true;
+            this.rbGenodermaTidak.Location = new System.Drawing.Point(47, 5);
+            this.rbGenodermaTidak.Name = "rbGenodermaTidak";
+            this.rbGenodermaTidak.Size = new System.Drawing.Size(52, 17);
+            this.rbGenodermaTidak.TabIndex = 10;
+            this.rbGenodermaTidak.TabStop = true;
+            this.rbGenodermaTidak.Text = "Tidak";
+            this.rbGenodermaTidak.UseVisualStyleBackColor = true;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.rbJenteraYa);
+            this.panel4.Controls.Add(this.rbJenteraTidak);
+            this.panel4.Location = new System.Drawing.Point(299, 139);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(232, 25);
+            this.panel4.TabIndex = 22;
+            // 
+            // rbJenteraYa
+            // 
+            this.rbJenteraYa.AutoSize = true;
+            this.rbJenteraYa.Location = new System.Drawing.Point(3, 5);
+            this.rbJenteraYa.Name = "rbJenteraYa";
+            this.rbJenteraYa.Size = new System.Drawing.Size(38, 17);
+            this.rbJenteraYa.TabIndex = 7;
+            this.rbJenteraYa.TabStop = true;
+            this.rbJenteraYa.Text = "Ya";
+            this.rbJenteraYa.UseVisualStyleBackColor = true;
+            // 
+            // rbJenteraTidak
+            // 
+            this.rbJenteraTidak.AutoSize = true;
+            this.rbJenteraTidak.Location = new System.Drawing.Point(47, 5);
+            this.rbJenteraTidak.Name = "rbJenteraTidak";
+            this.rbJenteraTidak.Size = new System.Drawing.Size(52, 17);
+            this.rbJenteraTidak.TabIndex = 8;
+            this.rbJenteraTidak.TabStop = true;
+            this.rbJenteraTidak.Text = "Tidak";
+            this.rbJenteraTidak.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.rbLebih30Darjah);
+            this.panel3.Controls.Add(this.rbKurarng30Darjah);
+            this.panel3.Location = new System.Drawing.Point(299, 113);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(232, 25);
+            this.panel3.TabIndex = 21;
+            // 
+            // rbLebih30Darjah
+            // 
+            this.rbLebih30Darjah.AutoSize = true;
+            this.rbLebih30Darjah.Location = new System.Drawing.Point(3, 5);
+            this.rbLebih30Darjah.Name = "rbLebih30Darjah";
+            this.rbLebih30Darjah.Size = new System.Drawing.Size(98, 17);
+            this.rbLebih30Darjah.TabIndex = 5;
+            this.rbLebih30Darjah.TabStop = true;
+            this.rbLebih30Darjah.Text = "Lebih 30 darjah";
+            this.rbLebih30Darjah.UseVisualStyleBackColor = true;
+            // 
+            // rbKurarng30Darjah
+            // 
+            this.rbKurarng30Darjah.AutoSize = true;
+            this.rbKurarng30Darjah.Location = new System.Drawing.Point(107, 5);
+            this.rbKurarng30Darjah.Name = "rbKurarng30Darjah";
+            this.rbKurarng30Darjah.Size = new System.Drawing.Size(106, 17);
+            this.rbKurarng30Darjah.TabIndex = 6;
+            this.rbKurarng30Darjah.TabStop = true;
+            this.rbKurarng30Darjah.Text = "Kurang 30 darjah";
+            this.rbKurarng30Darjah.UseVisualStyleBackColor = true;
+            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(397, 440);
@@ -508,28 +601,6 @@
             this.label15.Size = new System.Drawing.Size(15, 13);
             this.label15.TabIndex = 4;
             this.label15.Text = "%";
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(107, 5);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(106, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Kurang 30 darjah";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(3, 5);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(98, 17);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Lebih 30 darjah";
-            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // txtcatatan
             // 
@@ -748,77 +819,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "No. Lot";
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.radioButton1);
-            this.panel3.Controls.Add(this.radioButton2);
-            this.panel3.Location = new System.Drawing.Point(299, 113);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(232, 25);
-            this.panel3.TabIndex = 21;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.radioButton7);
-            this.panel4.Controls.Add(this.radioButton8);
-            this.panel4.Location = new System.Drawing.Point(299, 139);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(232, 25);
-            this.panel4.TabIndex = 22;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(3, 5);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(38, 17);
-            this.radioButton7.TabIndex = 5;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.Text = "Ya";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(47, 5);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(52, 17);
-            this.radioButton8.TabIndex = 6;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Tidak";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.radioButton3);
-            this.panel5.Controls.Add(this.radioButton4);
-            this.panel5.Location = new System.Drawing.Point(299, 170);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(232, 25);
-            this.panel5.TabIndex = 23;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(3, 5);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(38, 17);
-            this.radioButton3.TabIndex = 5;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Ya";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(47, 5);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(52, 17);
-            this.radioButton4.TabIndex = 6;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Tidak";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
             // lawatanpengesahankebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -837,12 +837,12 @@
             this.panel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -884,8 +884,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DateTimePicker txttarikh_lawat;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbKurarng30Darjah;
+        private System.Windows.Forms.RadioButton rbLebih30Darjah;
         private System.Windows.Forms.TextBox txtcatatan;
         private System.Windows.Forms.TextBox txtluas;
         private System.Windows.Forms.TextBox txtptk_lawat;
@@ -913,11 +913,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rbGenodermaYa;
+        private System.Windows.Forms.RadioButton rbGenodermaTidak;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
+        private System.Windows.Forms.RadioButton rbJenteraYa;
+        private System.Windows.Forms.RadioButton rbJenteraTidak;
         private System.Windows.Forms.Panel panel3;
     }
 }

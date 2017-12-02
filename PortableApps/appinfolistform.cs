@@ -243,18 +243,44 @@ namespace PortableApps
 
         private void dgvMakPer_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
+            DataGridViewImageColumn Edit = new DataGridViewImageColumn();
+            Edit.Name = "Edit";
+            Edit.Frozen = true;
+            Edit.Image = Properties.Resources.b_edit;
+            Edit.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //Edit.Text = "Edit";
+            Edit.HeaderText = "";
+            //Edit.UseColumnTextForButtonValue = true;
+            if (dgvMakPer.Columns["Edit"] == null)
+            {
+                dgvMakPer.Columns.Insert(0, Edit);
+            }
 
-            dgvMakPer.Columns[0].HeaderText = "Nama Pemohon";
-            dgvMakPer.Columns[1].HeaderText = "No Kad. Pengenalan";
-            dgvMakPer.Columns[2].HeaderText = "Negeri";
-            dgvMakPer.Columns[3].HeaderText = "No. Lesen";
-            dgvMakPer.Columns[4].HeaderText = "No. Rujukan";
-            dgvMakPer.Columns[5].HeaderText = "Tarikh Permohonan";
-            dgvMakPer.Columns[6].HeaderText = "Dibuat Oleh";
-            dgvMakPer.Columns[7].HeaderText = "Dibuat Tanggal";
-            dgvMakPer.Columns[7].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
-            dgvMakPer.Columns[8].HeaderText = "Id";
-            dgvMakPer.Columns[8].Visible = false;
+            DataGridViewImageColumn Delete = new DataGridViewImageColumn();
+            Delete.Name = "Delete";
+            Delete.Frozen = true;
+            //Delete.Text = "Delete";
+            Delete.ImageLayout = DataGridViewImageCellLayout.Zoom;
+            Delete.Image = Properties.Resources.b_drop;
+            Delete.HeaderText = "";
+            //Delete.UseColumnTextForButtonValue = true;
+            if (dgvMakPer.Columns["Delete"] == null)
+            {
+                dgvMakPer.Columns.Insert(1, Delete);
+            }
+
+
+            dgvMakPer.Columns["nama"].HeaderText = "Nama Pemohon";
+            dgvMakPer.Columns["icno"].HeaderText = "No Kad. Pengenalan";
+            dgvMakPer.Columns["negeri"].HeaderText = "Negeri";
+            dgvMakPer.Columns["nolesen"].HeaderText = "No. Lesen";
+            dgvMakPer.Columns["refno"].HeaderText = "No. Rujukan";
+            dgvMakPer.Columns["appdate"].HeaderText = "Tarikh Permohonan";
+            dgvMakPer.Columns["createdby"].HeaderText = "Dibuat Oleh";
+            dgvMakPer.Columns["created"].HeaderText = "Dibuat Tanggal";
+            dgvMakPer.Columns["created"].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
+            dgvMakPer.Columns["id"].HeaderText = "Id";
+            dgvMakPer.Columns["id"].Visible = false;
         }
     }
 }

@@ -254,8 +254,7 @@
             // 
             // dgvMakPer
             // 
-            this.dgvMakPer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMakPer.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvMakPer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgvMakPer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMakPer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMakPer.Location = new System.Drawing.Point(3, 53);
