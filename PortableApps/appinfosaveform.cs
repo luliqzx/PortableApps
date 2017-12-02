@@ -275,7 +275,7 @@ namespace PortableApps
             if (appinfo == null)
             {
                 appinfo = new appinfo();
-                appinfo_id = Convert.ToInt32(DateTime.Now.Subtract(new DateTime()).TotalMinutes);
+                appinfo_id = Convert.ToInt32(WFUtils.DateTimeToUnixTimestamp(DateTime.Now));
                 IsNew = true;
                 refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
             }

@@ -130,5 +130,29 @@ namespace PortableApps.Common
             ctrl.LostFocus -= lostFocusHandler;
             ctrl.LostFocus += lostFocusHandler;
         }
+
+        /// <summary>
+        /// DateTime -> Unix
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static double DateTimeToUnixTimestamp(DateTime dateTime)
+        {
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            long unixTimeStampInTicks = (dateTime.ToUniversalTime() - unixStart).Ticks;
+            return (double)unixTimeStampInTicks / TimeSpan.TicksPerSecond;
+        }
+
+        /// <summary>
+        /// Unix -> DateTime
+        /// </summary>
+        /// <param name="unixTime"></param>
+        /// <returns></returns>
+        public static DateTime UnixTimestampToDateTime(double unixTime)
+        {
+            DateTime unixStart = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            long unixTimeStampInTicks = (long)(unixTime * TimeSpan.TicksPerSecond);
+            return new DateTime(unixStart.Ticks + unixTimeStampInTicks, System.DateTimeKind.Utc);
+        }
     }
 }

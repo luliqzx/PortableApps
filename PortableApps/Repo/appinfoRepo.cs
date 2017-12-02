@@ -140,7 +140,6 @@ namespace PortableApps.Repo
             return lstEnt;
         }
 
-
         public IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null)
         {
             string whereClause = "";
