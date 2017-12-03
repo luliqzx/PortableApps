@@ -262,7 +262,7 @@
             this.dgvMakPer.Location = new System.Drawing.Point(3, 53);
             this.dgvMakPer.MinimumSize = new System.Drawing.Size(845, 259);
             this.dgvMakPer.Name = "dgvMakPer";
-            this.dgvMakPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvMakPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvMakPer.Size = new System.Drawing.Size(922, 354);
             this.dgvMakPer.TabIndex = 0;
             this.dgvMakPer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellClick);

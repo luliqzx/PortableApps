@@ -406,6 +406,12 @@ namespace PortableApps
         {
             if (e.RowIndex >= 0)
             {
+                if (e.ColumnIndex == dgvMakPer.Columns["Edit"].Index || e.ColumnIndex == dgvMakPer.Columns["Delete"].Index)
+                {
+                    MessageBox.Show("Currently event not use");
+                    return;
+                }
+
                 if (e.ColumnIndex == dgvMakPer.Columns["refno"].Index)
                 {
                     foreach (Form f in ParentForm.MdiChildren)
@@ -427,5 +433,7 @@ namespace PortableApps
                 }
             }
         }
+
+        
     }
 }

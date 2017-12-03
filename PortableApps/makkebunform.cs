@@ -472,7 +472,7 @@ namespace PortableApps
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        MessageBox.Show("Hapus");
+                        MessageBox.Show("Currently event not use");
                         BindGrid(xcurrentPage);
                         // If 'Yes', do something here.
                     }
@@ -545,6 +545,9 @@ namespace PortableApps
             if (makkebun.tebang == "SUDAH")
             {
                 rbSudah.Checked = true;
+                DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                txttarikhtebang.Text = dttarikhtebang.ToString();
+                txttarikhtebang.Value = dttarikhtebang;
             }
             else if (makkebun.tebang == "BELUM")
             {
@@ -555,9 +558,7 @@ namespace PortableApps
                 rbBelum.Checked = false;
                 rbSudah.Checked = false;
             }
-            DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-            txttarikhtebang.Text = dttarikhtebang.ToString();
-            txttarikhtebang.Value = dttarikhtebang;
+          
             cbnegeri.SelectedValue = makkebun.negeri;
             cbdaerah.SelectedValue = makkebun.daerah;
             cbdun.SelectedValue = makkebun.dun;
