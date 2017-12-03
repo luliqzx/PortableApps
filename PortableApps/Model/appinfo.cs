@@ -7,7 +7,8 @@ namespace PortableApps.Model
 {
     public class appinfo
     {
-        public string newrefno;
+        public string newrefno { get; set; }
+        public DateTime? syncdate { get; set; }
 
         public int id { get; set; }
         public string refno { get; set; }

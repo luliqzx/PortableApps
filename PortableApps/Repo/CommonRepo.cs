@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Dapper;
 using PortableApps.Common;
+using System.Data;
 
 namespace PortableApps.Repo
 {
@@ -16,16 +17,16 @@ namespace PortableApps.Repo
             get { return Environment.CurrentDirectory + "\\PortableAppDB.sqlite"; }
         }
 
-        private SQLiteConnection MySQLiteConnection()
+        private IDbConnection MySQLiteConnection()
         {
             return new SQLiteConnection("Data Source=" + DbFile);
         }
 
-        public SQLiteConnection sqliteCon { get { return MySQLiteConnection(); } }
+        public IDbConnection sqliteCon { get { return MySQLiteConnection(); } }
 
-        private MySqlConnection MySQLConnectin()
+        private IDbConnection MySQLConnectin()
         {
-            MySqlConnection MySqlConnection = new MySqlConnection();
+            IDbConnection MySqlConnection = new MySqlConnection();
             IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
             VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
             if (VariableSetting != null)
@@ -44,6 +45,6 @@ namespace PortableApps.Repo
             return MySqlConnection;
         }
 
-        public MySqlConnection mysqlCon { get { return MySQLConnectin(); } }
+        public IDbConnection mysqlCon { get { return MySQLConnectin(); } }
     }
 }

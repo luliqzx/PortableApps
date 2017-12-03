@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using MySql.Data.MySqlClient;
+using PortableApps.Model;
 using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
@@ -162,20 +163,31 @@ namespace PortableApps
             for (int i = 0; i < lstAppInfoToSync.Count; i++)
             {
                 appinfo appinfoSqlite = lstAppInfoToSync[i];
-                appinfoSqlite.newrefno = GenerateRefNo(appinfoSqlite.negeri);
-                // Update data local sqlite
+                AppInfoRepo.OpenMySQLDB();
+                //using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
+                //{
+                string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
+                appinfoSqlite.newrefno = newrefno;
                 // Insert To MySQL Server
+                if (AppInfoRepo.CreateMySQL(appinfoSqlite, null) > 0)
+                {
+                    // Update data local sqlite
+                    appinfoSqlite.syncdate = DateTime.Now;
+                    AppInfoRepo.UpdateSync(appinfoSqlite);
+                }
+                //}
+                AppInfoRepo.CloseMySQLDB();
             }
         }
 
-        private string GenerateRefNo(string negeri)
+        private string GenerateRefNo(string negeri, IDbTransaction mySqlTrans)
         {
             string refno = "";
 
             variables variables = VariablesRepo.GetBy(negeri);
             refno = @"TSSPK/" + variables.Parent + "/";
 
-            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno);
+            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno, mySqlTrans);
 
             refno = refno + maxappinfo.ToString().PadLeft(5, '0');
 

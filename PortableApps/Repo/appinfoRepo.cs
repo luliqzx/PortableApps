@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using Dapper;
 using PortableApps.Model.DTO;
+using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace PortableApps.Repo
 {
@@ -12,8 +14,12 @@ namespace PortableApps.Repo
     {
         IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null);
         int GetMaxAppInfoBy(string refno);
-        int CreateMySQL(appinfo ent);
-        int GetMaxRefNoMySQL(string refno);
+        int CreateMySQL(appinfo ent, IDbTransaction mySqlTrans = null);
+        int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null);
+        int UpdateSync(appinfo appinfoSqlite);
+        IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted);
+        void OpenMySQLDB();
+        void CloseMySQLDB();
     }
     public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
@@ -33,16 +39,16 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int CreateMySQL(appinfo ent)
+        public int CreateMySQL(appinfo ent, IDbTransaction mySqlTrans = null)
         {
             int i = 0;
             //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
             //{
             string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
                                 VALUES
-                            (@id,	@refno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
+                            (@id,	@newrefno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
                         ";
-            i = mysqlCon.Execute(qry, ent);
+            i = mysqlCon.Execute(qry, ent, mySqlTrans);
             //}
             return i;
         }
@@ -231,11 +237,11 @@ namespace PortableApps.Repo
             return i + 1;
         }
 
-        public int GetMaxRefNoMySQL(string refno)
+        public int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null)
         {
             int i = 0;
             string qry = @"SELECT MAX(refno) refno from appinfo where refno like CONCAT(@refno, '%')";
-            appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno }).FirstOrDefault();
+            appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno }, mySqlTrans).FirstOrDefault();
             if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
             {
                 string[] nowrefno = appinfo.refno.Split('/');
@@ -249,6 +255,46 @@ namespace PortableApps.Repo
                 }
             }
             return i + 1;
+        }
+
+        public int UpdateSync(appinfo appinfoSqlite)
+        {
+            int i = 0;
+            string qry = @"UPDATE appinfo SET
+                                newrefno=@newrefno,
+                                syncdate=@syncdate
+                                WHERE id=@id
+                            ";
+            using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
+            {
+                i = cnn.Execute(qry, appinfoSqlite);
+            }
+            return i;
+        }
+
+        public IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted)
+        {
+            //if (mysqlCon.State != ConnectionState.Open)
+            //{
+            //    mysqlCon.Open();
+            //}
+            return mysqlCon.BeginTransaction(isoLev);
+        }
+
+        public void OpenMySQLDB()
+        {
+            if (mysqlCon.State != ConnectionState.Open)
+            {
+                mysqlCon.Open();
+            }
+        }
+
+        public void CloseMySQLDB()
+        {
+            if (mysqlCon.State != ConnectionState.Closed)
+            {
+                mysqlCon.Close();
+            }
         }
     }
 }
