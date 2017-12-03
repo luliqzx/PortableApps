@@ -32,5 +32,7 @@ namespace PortableApps.Model
         public DateTime created { get; set; }
         public string createdby { get; set; }
 
+        public int? newid_makkebun { get; set; }
+        public DateTime? syncdate { get; set; }
     }
 }

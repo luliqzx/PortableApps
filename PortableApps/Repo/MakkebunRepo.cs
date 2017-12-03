@@ -12,6 +12,10 @@ namespace PortableApps.Repo
     {
         IList<makkebunDTO> PagedListDTO(int pageIndex, int pageSize, string sidx, string sord, out int totalRecords, makkebun oWhereClause);
         IList<makkebunDTO> GetAllAppInfoBy(int appinfo_id);
+        IList<makkebun> GetAllByAppInfo(int id);
+        int CreateMySQL(makkebun makkebunSqlite);
+        makkebun GetLastMakkebunBy(int id);
+        int UpdateSync(makkebun makkebunSqlite);
     }
     public class MakkebunRepo : CommonRepo, IMakkebunRepo
     {
@@ -102,6 +106,47 @@ namespace PortableApps.Repo
                                             ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id WHERE a.appinfo_id=@appinfo_id";
             IList<makkebunDTO> ent = sqliteCon.Query<makkebunDTO>(qry, new { appinfo_id }).ToList();
             return ent;
+        }
+
+        public IList<makkebun> GetAllByAppInfo(int id)
+        {
+            string qry = @"SELECT * FROM makkebun where appinfo_id=@appinfo_id";
+            IList<makkebun> lstEnt = sqliteCon.Query<makkebun>(qry, new { appinfo_id = id }).ToList();
+            return lstEnt;
+        }
+
+        public int CreateMySQL(makkebun makkebunSqlite)
+        {
+            int i = 0;
+            string qry = @"INSERT INTO makkebun (
+                                --id_makkebun,	
+                                appinfo_id,	addr1,	addr2,	addr3,	daerah,	dun,	parlimen,	poskod,	negeri,	nolot,	hakmiliktanah,	tncr
+                            ,	luasmatang,	tebang,	tarikhtebang,	nolesen,	syarattanah,	pemilikan,	pengurusan,	luaslesen,	catatan,	created,	createdby) 
+                            VALUES (
+                                -- @id_makkebun,	
+                                @appinfo_id,	@addr1,	@addr2,	@addr3,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@nolot,	@hakmiliktanah,	@tncr
+                            ,	@luasmatang,	@tebang,	@tarikhtebang,	@nolesen,	@syarattanah,	@pemilikan,	@pengurusan,	@luaslesen,	@catatan,	@created
+                            ,	@createdby) ";
+            i = mysqlCon.Execute(qry, makkebunSqlite);
+            return i;
+        }
+
+        public makkebun GetLastMakkebunBy(int appinfo_id)
+        {
+            string qry = @"SELECT * FROM makkebun WHERE id_makkebun=(SELECT MAX(id_makkebun) FROM makkebun WHERE appinfo_id=@appinfo_id)";
+            makkebun ent = sqliteCon.Query<makkebun>(qry, new { appinfo_id = appinfo_id }).FirstOrDefault();
+            return ent;
+        }
+
+        public int UpdateSync(makkebun makkebunSqlite)
+        {
+            int i = 0;
+            string qry = @"UPDATE makkebun SET 
+                                    newid_makkebun=@newid_makkebun,	
+                                    syncdate=@syncdate	
+                                 WHERE id_makkebun=@id_makkebun and appinfo_id=@appinfo_id";
+            i = sqliteCon.Execute(qry, makkebunSqlite);
+            return i;
         }
     }
 }

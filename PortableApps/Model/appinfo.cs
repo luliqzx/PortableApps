@@ -7,8 +7,6 @@ namespace PortableApps.Model
 {
     public class appinfo
     {
-        public string newrefno { get; set; }
-        public DateTime? syncdate { get; set; }
 
         public int id { get; set; }
         public string refno { get; set; }
@@ -43,5 +41,7 @@ namespace PortableApps.Model
         public string approved_by { get; set; }
         public int sop { get; set; }
 
+        public string newrefno { get; set; }
+        public DateTime? syncdate { get; set; }
     }
 }

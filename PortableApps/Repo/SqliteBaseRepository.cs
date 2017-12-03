@@ -77,7 +77,10 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
   `status` int(11) NOT NULL,
   `date_approved` datetime NOT NULL,
   `approved_by` varchar(255) COLLATE NOCASE NOT NULL,
-  `sop` tinyint(4) NOT NULL
+  `sop` tinyint(4) NOT NULL,
+
+    newrefno varchar(100) COLLATE NOCASE NULL,
+    syncdate datetime NULL
 );";
                 #endregion
 
@@ -750,7 +753,8 @@ DELETE from dun;
                                       `luaslesen` double DEFAULT NULL,
                                       `catatan` text,
                                       `created` datetime DEFAULT NULL,
-                                      `createdby` varchar(100) DEFAULT NULL
+                                      `createdby` varchar(100) DEFAULT NULL,
+                                       newid_makkebun INTEGER null
                                     );
                            ";
                 cmd.CommandType = CommandType.Text;

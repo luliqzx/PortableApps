@@ -20,6 +20,7 @@ namespace PortableApps.Repo
         IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted);
         void OpenMySQLDB();
         void CloseMySQLDB();
+        IList<appinfo> GetAllWithoutSync();
     }
     public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
@@ -295,6 +296,17 @@ namespace PortableApps.Repo
             {
                 mysqlCon.Close();
             }
+        }
+
+        public IList<appinfo> GetAllWithoutSync()
+        {
+            string qry = @"SELECT * FROM appinfo where IFNULL(newrefno,'')='' and syncdate is null";
+            IList<appinfo> lst = new List<appinfo>();
+            using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
+            {
+                lst = cnn.Query<appinfo>(qry, null).ToList();
+            }
+            return lst;
         }
     }
 }

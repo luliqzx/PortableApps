@@ -14,6 +14,11 @@ namespace PortableApps
 {
     public partial class MDIParent2 : Form
     {
+        IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+        IVariablesRepo VariablesRepo = new VariablesRepo();
+        IMakkebunRepo MakkebunRepo = new MakkebunRepo();
+        ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
+
         public MDIParent2()
         {
             InitializeComponent();
@@ -154,12 +159,9 @@ namespace PortableApps
 
         }
 
-        IAppInfoRepo AppInfoRepo = new AppInfoRepo();
-        IVariablesRepo VariablesRepo = new VariablesRepo();
-
         private void SyncToServer()
         {
-            IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAll();
+            IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
             for (int i = 0; i < lstAppInfoToSync.Count; i++)
             {
                 appinfo appinfoSqlite = lstAppInfoToSync[i];
@@ -168,12 +170,27 @@ namespace PortableApps
                 //{
                 string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
                 appinfoSqlite.newrefno = newrefno;
-                // Insert To MySQL Server
+                // Insert To MySQL Server - AppInfo
                 if (AppInfoRepo.CreateMySQL(appinfoSqlite, null) > 0)
                 {
                     // Update data local sqlite
                     appinfoSqlite.syncdate = DateTime.Now;
                     AppInfoRepo.UpdateSync(appinfoSqlite);
+
+                    IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
+                    for (int j = 0; j < lstMakkebunSqlite.Count; j++)
+                    {
+                        makkebun makkebunSqlite = lstMakkebunSqlite[j];
+                        // INSERT MAKKEBUN TO MYSQL
+                        int iSaveMakkebun = MakkebunRepo.CreateMySQL(makkebunSqlite);
+                        if (iSaveMakkebun > 0)
+                        {
+                            makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(appinfoSqlite.id);
+                            makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
+                            // UPDATE MAKKEBUN SQLITE
+                            MakkebunRepo.UpdateSync(makkebunSqlite);
+                        }
+                    }
                 }
                 //}
                 AppInfoRepo.CloseMySQLDB();
