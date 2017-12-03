@@ -187,8 +187,24 @@ namespace PortableApps
                         {
                             makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(appinfoSqlite.id);
                             makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
+                            makkebunSqlite.syncdate = DateTime.Now;
                             // UPDATE MAKKEBUN SQLITE
                             MakkebunRepo.UpdateSync(makkebunSqlite);
+
+                            // GET LAWATAN SQLITE DATA
+                            semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(appinfoSqlite.id, makkebunSqlite.id_makkebun);
+                            semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
+
+                            // INSERT LAWATAN TO MYSQL
+                            int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite);
+                            if (iSaveSemakTapak > 0)
+                            {
+                                semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
+                                semak_tapakSqlite.newid = lastsemak_tapak.id;
+                                semak_tapakSqlite.syncdate = DateTime.Now;
+                                // UPDATE MAKKEBUN SQLITE
+                                int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
+                            }
                         }
                     }
                 }

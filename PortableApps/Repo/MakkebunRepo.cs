@@ -119,11 +119,9 @@ namespace PortableApps.Repo
         {
             int i = 0;
             string qry = @"INSERT INTO makkebun (
-                                --id_makkebun,	
                                 appinfo_id,	addr1,	addr2,	addr3,	daerah,	dun,	parlimen,	poskod,	negeri,	nolot,	hakmiliktanah,	tncr
                             ,	luasmatang,	tebang,	tarikhtebang,	nolesen,	syarattanah,	pemilikan,	pengurusan,	luaslesen,	catatan,	created,	createdby) 
                             VALUES (
-                                -- @id_makkebun,	
                                 @appinfo_id,	@addr1,	@addr2,	@addr3,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@nolot,	@hakmiliktanah,	@tncr
                             ,	@luasmatang,	@tebang,	@tarikhtebang,	@nolesen,	@syarattanah,	@pemilikan,	@pengurusan,	@luaslesen,	@catatan,	@created
                             ,	@createdby) ";
@@ -134,7 +132,7 @@ namespace PortableApps.Repo
         public makkebun GetLastMakkebunBy(int appinfo_id)
         {
             string qry = @"SELECT * FROM makkebun WHERE id_makkebun=(SELECT MAX(id_makkebun) FROM makkebun WHERE appinfo_id=@appinfo_id)";
-            makkebun ent = sqliteCon.Query<makkebun>(qry, new { appinfo_id = appinfo_id }).FirstOrDefault();
+            makkebun ent = mysqlCon.Query<makkebun>(qry, new { appinfo_id = appinfo_id }).FirstOrDefault();
             return ent;
         }
 

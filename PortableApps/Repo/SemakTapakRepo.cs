@@ -11,6 +11,9 @@ namespace PortableApps.Repo
     {
         semak_tapak GetBy(int appinfo_id, int makkebun_id, int? semak_tapak_id);
         semak_tapak GetBy(int appinfo_id, int makkebun_id);
+        int CreateMySQL(semak_tapak semak_tapakSqlite);
+        semak_tapak GetLastSemakTapakBy(int id, int? newmakkebun_id);
+        int UpdateSync(semak_tapak semak_tapakSqlite);
     }
     public class SemakTapakRepo : CommonRepo, ISemakTapakRepo
     {
@@ -75,6 +78,37 @@ namespace PortableApps.Repo
             string qry = @"SELECT * FROM semak_tapak WHERE appinfo_id=@appinfo_id and makkebun_id=@makkebun_id";
             semak_tapak ent = sqliteCon.Query<semak_tapak>(qry, new { appinfo_id, makkebun_id }).FirstOrDefault();
             return ent;
+        }
+
+        public int CreateMySQL(semak_tapak semak_tapakSqlite)
+        {
+            int i = 0;
+            string qry = @"INSERT INTO semak_tapak (
+                                        -- id,	
+                                        makkebun_id, appinfo_id,	kaedah,	bantuan,	jenis_tanah,	kecerunan,	jentera,	ganoderma,	peratusan_serangan,	umr_pokok_tua,	hasil,	bil_pokok_tua,	tarikh_lawat,	ptk_lawat,	luas,	catatan,	created,	createdby,	lampiran) 
+                            VALUES (
+                               -- @id,	
+                                @newmakkebun_id,	@appinfo_id,	@kaedah,	@bantuan,	@jenis_tanah,	@kecerunan,	@jentera,	@ganoderma,	@peratusan_serangan,	@umr_pokok_tua,	@hasil,	@bil_pokok_tua,	@tarikh_lawat,	@ptk_lawat,	@luas,	@catatan,	@created,	@createdby,	@lampiran) ";
+            i = mysqlCon.Execute(qry, semak_tapakSqlite);
+            return i;
+        }
+
+        public semak_tapak GetLastSemakTapakBy(int appinfo_id, int? newmakkebun_id)
+        {
+            string qry = @"SELECT * FROM semak_tapak WHERE ID=(SELECT MAX(ID) FROM semak_tapak WHERE appinfo_id=@appinfo_id and makkebun_id=@newmakkebun_id)";
+            semak_tapak ent = mysqlCon.Query<semak_tapak>(qry, new { appinfo_id, newmakkebun_id }).FirstOrDefault();
+            return ent;
+        }
+
+        public int UpdateSync(semak_tapak semak_tapakSqlite)
+        {
+            int i = 0;
+            string qry = @"UPDATE SEMAK_TAPAK 
+                                SET newid=@newid,	newmakkebun_id=@newmakkebun_id
+                                    , syncdate=@syncdate
+                                WHERE id=@id";
+            i = sqliteCon.Execute(qry, semak_tapakSqlite);
+            return i;
         }
     }
 }

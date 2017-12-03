@@ -754,7 +754,8 @@ DELETE from dun;
                                       `catatan` text,
                                       `created` datetime DEFAULT NULL,
                                       `createdby` varchar(100) DEFAULT NULL,
-                                       newid_makkebun INTEGER null
+                                       newid_makkebun INTEGER null,
+                                        syncdate datetime null
                                     );
                            ";
                 cmd.CommandType = CommandType.Text;
@@ -1531,7 +1532,10 @@ DROP TABLE IF  EXISTS `VariableSetting`;
                                   `catatan` text,
                                   `created` datetime DEFAULT NULL,
                                   `createdby` varchar(100) DEFAULT NULL,
-                                  `lampiran` varchar(100) NOT NULL
+                                  `lampiran` varchar(100) NOT NULL,
+                                    newid integer null,
+                                    newmakkebun_id integer null,
+                                    syncdate integer null
                                 );
                            ";
                 cmd.CommandType = CommandType.Text;

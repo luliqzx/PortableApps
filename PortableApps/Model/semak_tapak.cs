@@ -28,5 +28,8 @@ namespace PortableApps.Model
         public string createdby { get; set; }
         public string lampiran { get; set; }
 
+        public int? newid { get; set; }
+        public int? newmakkebun_id { get; set; }
+        public DateTime? syncdate { get; set; }
     }
 }
