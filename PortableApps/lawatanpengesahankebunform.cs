@@ -317,7 +317,6 @@ namespace PortableApps
                 IsNew = true;
             }
 
-
             semak_tapak.id = (int)semak_tapak_id;
             semak_tapak.makkebun_id = id_makkebun;
             semak_tapak.appinfo_id = appinfo_id;
@@ -326,7 +325,7 @@ namespace PortableApps
             semak_tapak.jenis_tanah = cbjenis_tanah.SelectedValue.ToString();
             semak_tapak.kecerunan = rbLebih30Darjah.Checked ? "Lebih 25 Darjah" : rbKurarng30Darjah.Checked ? "Kurang 25 Darjah" : "";
             semak_tapak.jentera = rbJenteraYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
-            semak_tapak.ganoderma = rbGenodermaYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
+            semak_tapak.ganoderma = rbGenodermaYa.Checked ? "Ya" : rbGenodermaTidak.Checked ? "Tidak" : "";
             semak_tapak.peratusan_serangan = Convert.ToDouble(txtperatusan_serangan.Text);
             semak_tapak.umr_pokok_tua = txtumr_pokok_tua.Text;
             semak_tapak.hasil = txthasil.Text;
