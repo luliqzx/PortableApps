@@ -7,6 +7,8 @@ namespace PortableApps.Model
 {
     public class appinfo
     {
+        public string newrefno;
+
         public int id { get; set; }
         public string refno { get; set; }
         public string nama { get; set; }

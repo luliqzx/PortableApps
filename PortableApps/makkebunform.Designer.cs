@@ -1144,6 +1144,7 @@
             this.dgvMakKebun.Size = new System.Drawing.Size(533, 242);
             this.dgvMakKebun.TabIndex = 2;
             this.dgvMakKebun.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakKebun_CellClick);
+            this.dgvMakKebun.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_ColumnHeaderMouseClick);
             this.dgvMakKebun.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvMakKebun_DataBindingComplete);
             this.dgvMakKebun.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvMakKebun_RowPostPaint);
             // 

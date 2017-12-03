@@ -12,6 +12,8 @@ namespace PortableApps.Repo
     {
         IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null);
         int GetMaxAppInfoBy(string refno);
+        int CreateMySQL(appinfo ent);
+        int GetMaxRefNoMySQL(string refno);
     }
     public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
@@ -27,6 +29,20 @@ namespace PortableApps.Repo
                             (@id,	@refno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
                         ";
             i = sqliteCon.Execute(qry, ent);
+            //}
+            return i;
+        }
+
+        public int CreateMySQL(appinfo ent)
+        {
+            int i = 0;
+            //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
+            //{
+            string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
+                                VALUES
+                            (@id,	@refno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
+                        ";
+            i = mysqlCon.Execute(qry, ent);
             //}
             return i;
         }
@@ -200,6 +216,26 @@ namespace PortableApps.Repo
             int i = 0;
             string qry = @"SELECT MAX(refno) refno from appinfo where refno like @refno || '%' COLLATE NOCASE";
             appinfo appinfo = sqliteCon.Query<appinfo>(qry, new { refno }).FirstOrDefault();
+            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
+            {
+                string[] nowrefno = appinfo.refno.Split('/');
+                try
+                {
+                    i = Convert.ToInt32(nowrefno[2]);
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            return i + 1;
+        }
+
+        public int GetMaxRefNoMySQL(string refno)
+        {
+            int i = 0;
+            string qry = @"SELECT MAX(refno) refno from appinfo where refno like CONCAT(@refno, '%')";
+            appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno }).FirstOrDefault();
             if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
             {
                 string[] nowrefno = appinfo.refno.Split('/');

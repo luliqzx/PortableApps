@@ -82,8 +82,35 @@ namespace PortableApps
 
             LoadNegeri();
             LoadParlimen();
+
+            FocusChangeBackColor();
         }
 
+        private void FocusChangeBackColor()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                {
+                    if (control is TextBox)
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    else if (control is ComboBox)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else if (control is DateTimePicker)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else
+                        func(control.Controls);
+                }
+            };
+
+            func(Controls);
+        }
 
         private void LoadParlimen()
         {
@@ -267,7 +294,7 @@ namespace PortableApps
             makkebun.addr2 = txtaddr2.Text;
             makkebun.addr3 = txtaddr3.Text;
             makkebun.catatan = txtcatatan.Text;
-            makkebun.luaslesen = Convert.ToDouble(txtluaslesen.Text);
+            makkebun.luaslesen = Convert.ToDouble(string.IsNullOrEmpty(txtluaslesen.Text) ? 0 : Convert.ToDouble(txtluaslesen.Text));
             makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
             makkebun.nolesen = txtnolesen.Text;
             makkebun.nolot = txtnolot.Text;
@@ -701,5 +728,21 @@ namespace PortableApps
                 e.Handled = true;
             }
         }
+
+        private void dgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridView dgv = sender as DataGridView;
+            sidx = dgv.Columns[e.ColumnIndex].Name;
+            if (sord == "ASC")
+            {
+                sord = "DESC";
+            }
+            else
+            {
+                sord = "ASC";
+            }
+            BindGrid(xcurrentPage);
+        }
+
     }
 }

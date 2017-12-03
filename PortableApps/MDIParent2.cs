@@ -1,4 +1,5 @@
-﻿using PortableApps.Repo;
+﻿using PortableApps.Model;
+using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -147,6 +148,38 @@ namespace PortableApps
             //Form form = new InitializeForm();
             //form.MdiParent = this;
             //form.Show();
+
+            SyncToServer();
+
+        }
+
+        IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+        IVariablesRepo VariablesRepo = new VariablesRepo();
+
+        private void SyncToServer()
+        {
+            IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAll();
+            for (int i = 0; i < lstAppInfoToSync.Count; i++)
+            {
+                appinfo appinfoSqlite = lstAppInfoToSync[i];
+                appinfoSqlite.newrefno = GenerateRefNo(appinfoSqlite.negeri);
+                // Update data local sqlite
+                // Insert To MySQL Server
+            }
+        }
+
+        private string GenerateRefNo(string negeri)
+        {
+            string refno = "";
+
+            variables variables = VariablesRepo.GetBy(negeri);
+            refno = @"TSSPK/" + variables.Parent + "/";
+
+            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno);
+
+            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
+
+            return refno;
         }
 
         private void timer1_Tick(object sender, EventArgs e)

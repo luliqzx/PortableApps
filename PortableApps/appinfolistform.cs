@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using PortableApps.Common;
+using PortableApps.Model;
 using PortableApps.Model.DTO;
 using PortableApps.Repo;
 using System;
@@ -61,8 +62,34 @@ namespace PortableApps
             sidx = "ID";
             sord = "ASC";
             BindGrid(xcurrentPage);
+            FocusChangeBackColor();
         }
 
+        private void FocusChangeBackColor()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                {
+                    if (control is TextBox)
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    else if (control is ComboBox)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else if (control is DateTimePicker)
+                    {
+                        control.HookFocusChangeBackColor(Color.Khaki);
+                    }
+                    else
+                        func(control.Controls);
+                }
+            };
+
+            func(Controls);
+        }
 
         private void LoadTBangsa()
         {
