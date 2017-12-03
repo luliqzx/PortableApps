@@ -141,7 +141,8 @@ namespace PortableApps
 
         private void rbUpdateServer_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Under contruction");
+            MessageBox.Show("Under Construction");
+            return;
             //foreach (Form f in this.MdiChildren)
             //{
             //    if (f.GetType() == typeof(InitializeForm))
