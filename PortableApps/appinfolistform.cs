@@ -417,7 +417,27 @@ namespace PortableApps
         {
             if (e.RowIndex >= 0)
             {
-                if (e.ColumnIndex == dgvMakPer.Columns["Edit"].Index || e.ColumnIndex == dgvMakPer.Columns["Delete"].Index)
+                if (e.ColumnIndex == dgvMakPer.Columns["Edit"].Index)
+                {
+                    foreach (Form f in ParentForm.MdiChildren)
+                    {
+                        if (f.GetType() == typeof(appinfosaveform))
+                        {
+                            //f.Activate();
+                            //return;
+                            f.Close();
+                        }
+                    }
+                    appinfosaveform form = new appinfosaveform();
+                    form.appinfo_id = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
+                    form.refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
+                    form.MdiParent = ParentForm;
+                    form.Show();
+                    //SetupFormMakKebun(pappinfo_id, pid_makkebun);
+                    //Do something with your button.
+                }
+
+                if (e.ColumnIndex == dgvMakPer.Columns["Delete"].Index)
                 {
                     MessageBox.Show("Currently event not use");
                     return;
@@ -427,7 +447,7 @@ namespace PortableApps
                 {
                     foreach (Form f in ParentForm.MdiChildren)
                     {
-                        if (f.GetType() == typeof(lawatanpengesahankebunform))
+                        if (f.GetType() == typeof(makkebunform))
                         {
                             //f.Activate();
                             //return;

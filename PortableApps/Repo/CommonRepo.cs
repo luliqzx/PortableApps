@@ -42,6 +42,10 @@ namespace PortableApps.Repo
                     MySqlConnection = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
                 }
             }
+            else
+            {
+                MySqlConnection = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+            }
             return MySqlConnection;
         }
 

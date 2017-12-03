@@ -228,6 +228,7 @@ namespace PortableApps
             }
             MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
             BindGrid(xcurrentPage);
+            btnReset.PerformClick();
         }
 
 
@@ -252,14 +253,18 @@ namespace PortableApps
 
         private void dgvCS_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
-            DataGridViewRow dgvr = dgv.Rows[e.RowIndex];
-            txtKey.Text = dgvr.Cells["Key"].Value.ToString();
-            txtValue.Text = dgvr.Cells["Value"].Value.ToString();
-            txtDescription.Text = dgvr.Cells["Description"].Value.ToString();
-            bool CanModify = Convert.ToUInt32(dgvr.Cells["CanModify"].Value) == 1 ? true : false;
-            cbxCanModify.Checked = CanModify;
-            cbEncrypt.Checked = Convert.ToBoolean(dgvr.Cells["IsEncrypt"].Value);
+            if (e.RowIndex >= 0)
+            {
+                DataGridView dgv = sender as DataGridView;
+                DataGridViewRow dgvr = dgv.Rows[e.RowIndex];
+                txtKey.Text = dgvr.Cells["Key"].Value.ToString();
+                txtValue.Text = dgvr.Cells["Value"].Value.ToString();
+                txtDescription.Text = dgvr.Cells["Description"].Value.ToString();
+                bool CanModify = Convert.ToUInt32(dgvr.Cells["CanModify"].Value) == 1 ? true : false;
+                cbxCanModify.Checked = CanModify;
+                cbEncrypt.Checked = Convert.ToBoolean(dgvr.Cells["IsEncrypt"].Value);
+
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

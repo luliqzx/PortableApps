@@ -458,6 +458,7 @@
             this.label7.Size = new System.Drawing.Size(11, 13);
             this.label7.TabIndex = 72;
             this.label7.Text = "*";
+            this.label7.Visible = false;
             // 
             // txtcreatedby
             // 
@@ -465,6 +466,7 @@
             this.txtcreatedby.Name = "txtcreatedby";
             this.txtcreatedby.Size = new System.Drawing.Size(200, 20);
             this.txtcreatedby.TabIndex = 70;
+            this.txtcreatedby.Visible = false;
             // 
             // label34
             // 
@@ -474,6 +476,7 @@
             this.label34.Size = new System.Drawing.Size(49, 13);
             this.label34.TabIndex = 71;
             this.label34.Text = "Pembuat";
+            this.label34.Visible = false;
             // 
             // label33
             // 

@@ -36,6 +36,32 @@ namespace PortableApps
         #endregion
 
         #region Functions
+        private void BindForm(int appinfo_id)
+        {
+            appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
+            if (appinfo == null)
+            {
+                appinfo = new appinfo();
+            }
+            cbnegeri.SelectedValue = appinfo.negeri;
+            txtappdate.Text = appinfo.appdate;
+            txtnama.Text = appinfo.nama;
+            txticno.Text = appinfo.icno;
+            txtnolesen.Text = appinfo.nolesen;
+            cbbangsa.SelectedValue = appinfo.bangsa;
+            txtaddr1.Text = appinfo.addr1;
+            txtaddr2.Text = appinfo.addr2;
+            txtaddr3.Text = appinfo.addr3;
+            txtbandar.Text = appinfo.bandar;
+            cbdaerah.SelectedValue = appinfo.daerah;
+            cbdun.SelectedValue = appinfo.dun;
+            cbparlimen.SelectedValue = ParlimenRepo.GetBy(appinfo.parlimen).Negeri;
+            txtposkod.Text = appinfo.poskod;
+            txthometel.Text = appinfo.hometel;
+            txtofficetel.Text = appinfo.officetel;
+            txthptel.Text = appinfo.hptel;
+            txtemail.Text = appinfo.email;
+        }
 
         private string GenerateRefNo(string negeri)
         {
@@ -71,6 +97,8 @@ namespace PortableApps
             };
 
             func(Controls);
+
+            appinfo_id = 0;
         }
 
         private string GetAliasesParent(string parent)
@@ -298,6 +326,7 @@ namespace PortableApps
                 IsNew = true;
                 refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
             }
+
             appinfo.id = appinfo_id;
             appinfo.appdate = txtappdate.Text;
             appinfo.nama = txtnama.Text;
@@ -337,8 +366,9 @@ namespace PortableApps
                 AppInfoRepo.Edit(appinfo);
             }
             MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
-        }
 
+            button2.PerformClick();
+        }
 
         private void appinfosaveform_Load(object sender, EventArgs e)
         {
@@ -349,6 +379,9 @@ namespace PortableApps
             LoadNegeri();
             LoadTBangsa();
             LoadParlimen();
+
+            groupBox1.Text = groupBox1.Text + " " + refno;
+
             txtappdate.CustomFormat = "dd-MM-yyyy";
 
             VariableSetting vs = VariableSettingRepo.GetBy("UserKeyIn");
@@ -363,8 +396,15 @@ namespace PortableApps
             //{
             //    ctrl.HookFocusChangeBackColor(Color.Khaki);
             //}
+
+            if (appinfo_id > 0)
+            {
+                BindForm(appinfo_id);
+            }
+
             FocusChangeBackColor();
         }
+
 
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {

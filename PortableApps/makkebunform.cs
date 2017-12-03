@@ -763,6 +763,8 @@ namespace PortableApps
             }
             BindGrid(xcurrentPage);
             MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+
+            btnReset.PerformClick();
         }
 
 
