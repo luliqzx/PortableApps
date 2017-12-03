@@ -15,6 +15,7 @@ namespace PortableApps
 {
     public partial class appinfolistform : Form
     {
+        #region Properties
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
         IBangsaRepo BangsaRepo = new BangsaRepo();
         IParlimenRepo ParlimenRepo = new ParlimenRepo();
@@ -28,42 +29,9 @@ namespace PortableApps
         private string sord { get; set; }
         private int xcurrentPage { get; set; }
         int totalRecords;
+        #endregion
 
-
-        public appinfolistform()
-        {
-            InitializeComponent();
-
-        }
-
-        private void appinfolistform_Load(object sender, EventArgs e)
-        {
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
-
-            LoadNegeri();
-            LoadTBangsa();
-            LoadParlimen();
-
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = " ";
-            dateTimePicker1.Checked = true;
-            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
-            if (varPageSize == null)
-            {
-                PageSize = 2;
-            }
-            else
-            {
-                PageSize = Convert.ToInt32(varPageSize.Value);
-            }
-            xcurrentPage = 1;
-            sidx = "ID";
-            sord = "ASC";
-            BindGrid(xcurrentPage);
-            FocusChangeBackColor();
-        }
+        #region Functions
 
         private void FocusChangeBackColor()
         {
@@ -142,23 +110,17 @@ namespace PortableApps
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Constructor
+        public appinfolistform()
         {
-            foreach (Form f in ParentForm.MdiChildren)
-            {
-                if (f.GetType() == typeof(appinfosaveform))
-                {
-                    //f.Activate();
-                    //return;
-                    f.Close();
-                }
-            }
-            Form form = new appinfosaveform();
-            form.MdiParent = ParentForm;
-            form.Show();
+            InitializeComponent();
+
         }
+        #endregion
 
-
+        #region Pager & Binding Grid
         private void PopulatePager(int recordCount, int currentPage)
         {
             List<Page> pages = new List<Page>();
@@ -280,6 +242,55 @@ namespace PortableApps
             int recordCount = Convert.ToInt32(totalRecords);
             this.PopulatePager(recordCount, pageIndex);
 
+        }
+
+        #endregion
+
+        #region Events
+
+        private void appinfolistform_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+
+            LoadNegeri();
+            LoadTBangsa();
+            LoadParlimen();
+
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = " ";
+            dateTimePicker1.Checked = true;
+            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
+            if (varPageSize == null)
+            {
+                PageSize = 2;
+            }
+            else
+            {
+                PageSize = Convert.ToInt32(varPageSize.Value);
+            }
+            xcurrentPage = 1;
+            sidx = "ID";
+            sord = "ASC";
+            BindGrid(xcurrentPage);
+            FocusChangeBackColor();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach (Form f in ParentForm.MdiChildren)
+            {
+                if (f.GetType() == typeof(appinfosaveform))
+                {
+                    //f.Activate();
+                    //return;
+                    f.Close();
+                }
+            }
+            Form form = new appinfosaveform();
+            form.MdiParent = ParentForm;
+            form.Show();
         }
 
         private void dgvMakPer_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -434,6 +445,6 @@ namespace PortableApps
             }
         }
 
-        
+        #endregion
     }
 }

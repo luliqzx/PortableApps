@@ -14,6 +14,7 @@ namespace PortableApps
 {
     public partial class appinfosaveform : Form
     {
+        #region Fields / Properties
         IBangsaRepo BangsaRepo = new BangsaRepo();
         IParlimenRepo ParlimenRepo = new ParlimenRepo();
         IDaerahRepo DaerahRepo = new DaerahRepo();
@@ -25,35 +26,72 @@ namespace PortableApps
         public int appinfo_id;
         public string refno;
 
+        #endregion
+
+        #region Constructor
         public appinfosaveform()
         {
             InitializeComponent();
         }
+        #endregion
 
-        private void appinfosaveform_Load(object sender, EventArgs e)
+        #region Functions
+
+        private string GenerateRefNo(string negeri)
         {
-            //OnLoad(e);
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
-            LoadNegeri();
-            LoadTBangsa();
-            LoadParlimen();
-            txtappdate.CustomFormat = "dd-MM-yyyy";
+            string refno = "";
 
-            VariableSetting vs = VariableSettingRepo.GetBy("UserKeyIn");
+            variables variables = VariablesRepo.GetBy(negeri);
+            refno = @"TSSPK/" + variables.Parent + "/";
 
-            txtcreatedby.Text = "System";
-            if (vs != null)
+            int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno);
+
+            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
+
+            return refno;
+        }
+
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
             {
-                txtcreatedby.Text = vs.Value;
-            }
+                foreach (Control control in controls)
+                {
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                    {
+                        (control as ComboBox).SelectedIndex = -1;
+                    }
+                    else
+                        func(control.Controls);
+                }
+            };
 
-            //foreach (Control ctrl in Controls)
-            //{
-            //    ctrl.HookFocusChangeBackColor(Color.Khaki);
-            //}
-            FocusChangeBackColor();
+            func(Controls);
+        }
+
+        private string GetAliasesParent(string parent)
+        {
+            if (parent == "UTR")
+            {
+                parent = "UTARA";
+            }
+            else if (parent == "TMR")
+            {
+                parent = "TIMUR";
+            }
+            else if (parent == "TGH")
+            {
+                parent = "TENGAH";
+            }
+            else if (parent == "SEL")
+            {
+                parent = "SELATAN";
+            }
+            return parent;
         }
 
         private void FocusChangeBackColor()
@@ -132,40 +170,21 @@ namespace PortableApps
             cbnegeri.SelectedIndex = -1;
         }
 
-        private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
+        #endregion
+
+        #region Events
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            ComboBox cbx = (ComboBox)sender;
-            if (cbx.SelectedValue != null)
-            {
-                LoadDaerah(cbx.SelectedValue.ToString());
-                LoadDun(cbx.SelectedValue.ToString());
-                variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
-                if (variables != null)
-                {
-                    lblWilayah.Text = GetAliasesParent(variables.Parent);
-                }
-            }
+            ClearTextBoxes();
+            LoadDaerah("");
+            LoadDun("");
         }
 
-        private string GetAliasesParent(string parent)
+        private void txtappdate_ValueChanged(object sender, EventArgs e)
         {
-            if (parent == "UTR")
-            {
-                parent = "UTARA";
-            }
-            else if (parent == "TMR")
-            {
-                parent = "TIMUR";
-            }
-            else if (parent == "TGH")
-            {
-                parent = "TENGAH";
-            }
-            else if (parent == "SEL")
-            {
-                parent = "SELATAN";
-            }
-            return parent;
+            DateTimePicker dtp = sender as DateTimePicker;
+            dtp.CustomFormat = "dd-MM-yyyy";
         }
 
         private void AdjustWidthComboBox_DropDown(object sender, System.EventArgs e)
@@ -320,53 +339,48 @@ namespace PortableApps
             MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
         }
 
-        private string GenerateRefNo(string negeri)
+
+        private void appinfosaveform_Load(object sender, EventArgs e)
         {
-            string refno = "";
+            //OnLoad(e);
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+            LoadNegeri();
+            LoadTBangsa();
+            LoadParlimen();
+            txtappdate.CustomFormat = "dd-MM-yyyy";
 
-            variables variables = VariablesRepo.GetBy(negeri);
-            refno = @"TSSPK/" + variables.Parent + "/";
+            VariableSetting vs = VariableSettingRepo.GetBy("UserKeyIn");
 
-            int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno);
-
-            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
-
-            return refno;
-        }
-
-        private void ClearTextBoxes()
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
+            txtcreatedby.Text = "System";
+            if (vs != null)
             {
-                foreach (Control control in controls)
+                txtcreatedby.Text = vs.Value;
+            }
+
+            //foreach (Control ctrl in Controls)
+            //{
+            //    ctrl.HookFocusChangeBackColor(Color.Khaki);
+            //}
+            FocusChangeBackColor();
+        }
+
+        private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbx = (ComboBox)sender;
+            if (cbx.SelectedValue != null)
+            {
+                LoadDaerah(cbx.SelectedValue.ToString());
+                LoadDun(cbx.SelectedValue.ToString());
+                variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
+                if (variables != null)
                 {
-                    if (control is TextBox)
-                        (control as TextBox).Clear();
-                    else if (control is ComboBox)
-                    {
-                        (control as ComboBox).SelectedIndex = -1;
-                    }
-                    else
-                        func(control.Controls);
+                    lblWilayah.Text = GetAliasesParent(variables.Parent);
                 }
-            };
-
-            func(Controls);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ClearTextBoxes();
-            LoadDaerah("");
-            LoadDun("");
-        }
-
-        private void txtappdate_ValueChanged(object sender, EventArgs e)
-        {
-            DateTimePicker dtp = sender as DateTimePicker;
-            dtp.CustomFormat = "dd-MM-yyyy";
-        }
+        #endregion
     }
 }

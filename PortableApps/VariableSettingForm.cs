@@ -14,66 +14,24 @@ namespace PortableApps
 {
     public partial class VariableSettingForm : Form
     {
+        #region Fields / Properties
+
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
         private int PageSize { get; set; }
         private string sidx { get; set; }
         private string sord { get; set; }
         private int xcurrentPage { get; set; }
         int totalRecords;
+        #endregion
 
+        #region Constructor
         public VariableSettingForm()
         {
             InitializeComponent();
         }
+        #endregion
 
-        private void SettingForm_Load(object sender, EventArgs e)
-        {
-            //LoadGrid();
-            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
-            if (varPageSize == null)
-            {
-                PageSize = 2;
-            }
-            else
-            {
-                PageSize = Convert.ToInt32(varPageSize.Value);
-            }
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
-            xcurrentPage = 1;
-
-
-            sidx = "KEY";
-            sidx = "ASC";
-            BindGrid(xcurrentPage);
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            bool IsNew = false;
-            VariableSetting VariableSetting = VariableSettingRepo.GetBy(txtKey.Text);
-            if (VariableSetting == null)
-            {
-                IsNew = true;
-                VariableSetting = new VariableSetting();
-            }
-            VariableSetting.Key = txtKey.Text;
-            VariableSetting.Value = cbEncrypt.Checked ? WFUtils.Encrypt(txtValue.Text) : txtValue.Text;
-            VariableSetting.Description = txtDescription.Text;
-            VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
-            int i = 0;
-            if (IsNew)
-            {
-                i = VariableSettingRepo.Create(VariableSetting);
-            }
-            else
-            {
-                i = VariableSettingRepo.Edit(VariableSetting);
-            }
-            MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
-            BindGrid(xcurrentPage);
-        }
+        #region Pager & Binding Grid
 
         private void PopulatePager(int recordCount, int currentPage)
         {
@@ -189,6 +147,90 @@ namespace PortableApps
             this.PopulatePager(recordCount, pageIndex);
         }
 
+        #endregion
+
+        #region Functions
+        private void ClearTextBoxes()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                    {
+                        (control as ComboBox).SelectedIndex = -1;
+                    }
+                    else if (control is CheckBox)
+                    {
+                        (control as CheckBox).Checked = false;
+                    }
+                    else if (control is RichTextBox)
+                    {
+                        (control as RichTextBox).Clear();
+                    }
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+        #endregion
+
+        #region Events
+
+        private void SettingForm_Load(object sender, EventArgs e)
+        {
+            //LoadGrid();
+            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
+            if (varPageSize == null)
+            {
+                PageSize = 2;
+            }
+            else
+            {
+                PageSize = Convert.ToInt32(varPageSize.Value);
+            }
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+            xcurrentPage = 1;
+
+
+            sidx = "KEY";
+            sidx = "ASC";
+            BindGrid(xcurrentPage);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            bool IsNew = false;
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy(txtKey.Text);
+            if (VariableSetting == null)
+            {
+                IsNew = true;
+                VariableSetting = new VariableSetting();
+            }
+            VariableSetting.Key = txtKey.Text;
+            VariableSetting.Value = cbEncrypt.Checked ? WFUtils.Encrypt(txtValue.Text) : txtValue.Text;
+            VariableSetting.Description = txtDescription.Text;
+            VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
+            int i = 0;
+            if (IsNew)
+            {
+                i = VariableSettingRepo.Create(VariableSetting);
+            }
+            else
+            {
+                i = VariableSettingRepo.Edit(VariableSetting);
+            }
+            MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
+            BindGrid(xcurrentPage);
+        }
+
+
         private void dgvCS_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
             var grid = sender as DataGridView;
@@ -246,33 +288,6 @@ namespace PortableApps
             BindGrid(xcurrentPage);
         }
 
-        private void ClearTextBoxes()
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                    if (control is TextBox)
-                        (control as TextBox).Clear();
-                    else if (control is ComboBox)
-                    {
-                        (control as ComboBox).SelectedIndex = -1;
-                    }
-                    else if (control is CheckBox)
-                    {
-                        (control as CheckBox).Checked = false;
-                    }
-                    else if (control is RichTextBox)
-                    {
-                        (control as RichTextBox).Clear();
-                    }
-                    else
-                        func(control.Controls);
-            };
-
-            func(Controls);
-        }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -294,5 +309,7 @@ namespace PortableApps
             }
             BindGrid(xcurrentPage);
         }
+
+        #endregion
     }
 }

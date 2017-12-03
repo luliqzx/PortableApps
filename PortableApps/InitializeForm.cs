@@ -12,12 +12,18 @@ namespace PortableApps
 {
     public partial class InitializeForm : Form
     {
+        #region Fields/ Properties
         ISqLiteBaseRepository SqLiteBaseRepository = new SqLiteBaseRepository();
+        #endregion
 
+        #region Constructor
         public InitializeForm()
         {
             InitializeComponent();
         }
+        #endregion
+
+        #region Events
 
         private void btnCreateAppInfo_Click(object sender, EventArgs e)
         {
@@ -108,5 +114,7 @@ namespace PortableApps
                 SqLiteBaseRepository.SetupSemakTapak(cnn);
             }
         }
+
+        #endregion
     }
 }

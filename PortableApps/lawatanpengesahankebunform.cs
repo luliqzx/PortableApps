@@ -15,6 +15,7 @@ namespace PortableApps
 {
     public partial class lawatanpengesahankebunform : Form
     {
+        #region Fields/ Properties
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
         ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
@@ -35,34 +36,88 @@ namespace PortableApps
             public string Key { get; set; }
             public string Value { get; set; }
         }
+        #endregion
 
-        protected override void OnLoad(EventArgs e)
+        #region Functions
+
+        private void BindRBForm(semak_tapak semak_tapak)
         {
-            base.OnLoad(e);
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
-            BindMaklumatPemohon(appinfo_id);
-           
-            txttarikh_lawat.CustomFormat = " ";
+            if (!string.IsNullOrEmpty(semak_tapak.kecerunan))
+            {
+                if (semak_tapak.kecerunan == "Lebih 25 Darjah")
+                {
+                    rbLebih30Darjah.Checked = true;
+                }
+                else if (semak_tapak.kecerunan == "Kurang 25 Darjah")
+                {
+                    rbKurarng30Darjah.Checked = true;
+                }
+            }
+            else
+            {
+                rbLebih30Darjah.Checked = false;
+                rbKurarng30Darjah.Checked = false;
+            }
+
+            if (!string.IsNullOrEmpty(semak_tapak.jentera))
+            {
+                if (semak_tapak.jentera == "Ya")
+                {
+                    rbJenteraYa.Checked = true;
+                }
+                else if (semak_tapak.jentera == "Tidak")
+                {
+                    rbJenteraTidak.Checked = true;
+                }
+            }
+            else
+            {
+                rbJenteraYa.Checked = false;
+                rbJenteraTidak.Checked = false;
+            }
 
 
-            BindKaedah();
-
-            BindJenisTanah();
-
-            groupBox1.Text = groupBox1.Text + " " + refno;
-            groupBox2.Text = groupBox2.Text + " " + refno;
-
-            cbnolot.SelectedIndexChanged -= cbnolot_SelectedIndexChanged;
-            BindNoLot();
-            cbnolot.SelectedIndexChanged += cbnolot_SelectedIndexChanged;
-            BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
-
-            FocusChangeBackColor();
-
+            if (!string.IsNullOrEmpty(semak_tapak.ganoderma))
+            {
+                if (semak_tapak.ganoderma == "Ya")
+                {
+                    rbGenodermaYa.Checked = true;
+                }
+                else if (semak_tapak.ganoderma == "Tidak")
+                {
+                    rbGenodermaTidak.Checked = true;
+                }
+            }
+            else
+            {
+                rbGenodermaYa.Checked = false;
+                rbGenodermaTidak.Checked = false;
+            }
         }
 
+        private void ClearMakKebunForm()
+        {
+            Action<Control.ControlCollection> func = null;
+
+            func = (controls) =>
+            {
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                    {
+                        (control as ComboBox).SelectedIndex = -1;
+                    }
+                    else if (control is RadioButton)
+                    {
+                        (control as RadioButton).Checked = false;
+                    }
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
 
         private void FocusChangeBackColor()
         {
@@ -217,6 +272,41 @@ namespace PortableApps
             return parent;
         }
 
+        #endregion
+
+        #region Events
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+            BindMaklumatPemohon(appinfo_id);
+
+            txttarikh_lawat.CustomFormat = " ";
+
+
+            BindKaedah();
+
+            BindJenisTanah();
+
+            groupBox1.Text = groupBox1.Text + " " + refno;
+            groupBox2.Text = groupBox2.Text + " " + refno;
+
+            cbnolot.SelectedIndexChanged -= cbnolot_SelectedIndexChanged;
+            BindNoLot();
+            cbnolot.SelectedIndexChanged += cbnolot_SelectedIndexChanged;
+            BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
+
+            FocusChangeBackColor();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ClearMakKebunForm();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             bool IsNew = false;
@@ -265,61 +355,6 @@ namespace PortableApps
             MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
         }
 
-        private void BindRBForm(semak_tapak semak_tapak)
-        {
-            if (!string.IsNullOrEmpty(semak_tapak.kecerunan))
-            {
-                if (semak_tapak.kecerunan == "Lebih 25 Darjah")
-                {
-                    rbLebih30Darjah.Checked = true;
-                }
-                else if (semak_tapak.kecerunan == "Kurang 25 Darjah")
-                {
-                    rbKurarng30Darjah.Checked = true;
-                }
-            }
-            else
-            {
-                rbLebih30Darjah.Checked = false;
-                rbKurarng30Darjah.Checked = false;
-            }
-
-            if (!string.IsNullOrEmpty(semak_tapak.jentera))
-            {
-                if (semak_tapak.jentera == "Ya")
-                {
-                    rbJenteraYa.Checked = true;
-                }
-                else if (semak_tapak.jentera == "Tidak")
-                {
-                    rbJenteraTidak.Checked = true;
-                }
-            }
-            else
-            {
-                rbJenteraYa.Checked = false;
-                rbJenteraTidak.Checked = false;
-            }
-
-
-            if (!string.IsNullOrEmpty(semak_tapak.ganoderma))
-            {
-                if (semak_tapak.ganoderma == "Ya")
-                {
-                    rbGenodermaYa.Checked = true;
-                }
-                else if (semak_tapak.ganoderma == "Tidak")
-                {
-                    rbGenodermaTidak.Checked = true;
-                }
-            }
-            else
-            {
-                rbGenodermaYa.Checked = false;
-                rbGenodermaTidak.Checked = false;
-            }
-        }
-
         private void cbnolot_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbx = sender as ComboBox;
@@ -337,5 +372,8 @@ namespace PortableApps
                 dtp.CustomFormat = "dd-MM-yyyy";
             }
         }
+
+        #endregion
+
     }
 }

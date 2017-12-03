@@ -16,6 +16,8 @@ namespace PortableApps
 {
     public partial class makkebunform : Form
     {
+        #region Fields/ Properties
+
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
         IMakkebunRepo MakkebunRepo = new MakkebunRepo();
@@ -40,51 +42,83 @@ namespace PortableApps
             public string Value { get; set; }
         }
 
+        #endregion
+
+        #region Constructor
         public makkebunform()
         {
             InitializeComponent();
         }
+        #endregion
 
-        private void makkebunform_Load(object sender, EventArgs e)
+        #region Functions
+
+        private void ClearMakKebunForm()
         {
-            ControlBox = false;
-            WindowState = FormWindowState.Maximized;
-            BringToFront();
+            Action<Control.ControlCollection> func = null;
 
-            txttarikhtebang.CustomFormat = " ";
-
-            groupBox1.Text = groupBox1.Text + " " + refno;
-            groupBox2.Text = groupBox2.Text + " " + refno;
-
-            BindMaklumatPemohon(appinfo_id);
-
-            BindSyaratTanah();
-
-            BindPemilikan();
-
-            BindJenisHakMilikTanah();
-
-            BindPengurusan();
-
-            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
-            if (varPageSize == null)
+            func = (controls) =>
             {
-                PageSize = 2;
+                foreach (Control control in controls)
+                    if (control is TextBox)
+                        (control as TextBox).Clear();
+                    else if (control is ComboBox)
+                    {
+                        (control as ComboBox).SelectedIndex = -1;
+                    }
+                    else if (control is RadioButton)
+                    {
+                        (control as RadioButton).Checked = false;
+                    }
+                    else
+                        func(control.Controls);
+            };
+
+            func(Controls);
+        }
+
+        private void SetupFormMakKebun(int appinfo_id, int id_makkebun)
+        {
+            this.appinfo_id = appinfo_id;
+            this.id_makkebun = id_makkebun;
+            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
+
+            txtaddr1.Text = makkebun.addr1;
+            txtaddr2.Text = makkebun.addr2;
+            txtaddr3.Text = makkebun.addr3;
+            txtcatatan.Text = makkebun.catatan;
+            txtluaslesen.Text = makkebun.luaslesen.ToString("#.##");
+            txtluasmatang.Text = makkebun.luasmatang.ToString("#.##");
+            txtnolesen.Text = makkebun.nolesen;
+            txtnolot.Text = makkebun.nolot;
+            if (makkebun.tebang == "SUDAH")
+            {
+                rbSudah.Checked = true;
+                DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
+                txttarikhtebang.Text = dttarikhtebang.ToString();
+                txttarikhtebang.Value = dttarikhtebang;
+            }
+            else if (makkebun.tebang == "BELUM")
+            {
+                rbBelum.Checked = true;
             }
             else
             {
-                PageSize = Convert.ToInt32(varPageSize.Value);
+                rbBelum.Checked = false;
+                rbSudah.Checked = false;
             }
-            xcurrentPage = 1;
-            sidx = "id_makkebun";
-            sord = "ASC";
-            BindGrid(xcurrentPage);
 
-            LoadNegeri();
-            LoadParlimen();
-
-            FocusChangeBackColor();
+            cbnegeri.SelectedValue = makkebun.negeri;
+            cbdaerah.SelectedValue = makkebun.daerah;
+            cbdun.SelectedValue = makkebun.dun;
+            cbparlimen.SelectedValue = ParlimenRepo.GetBy(makkebun.parlimen).Negeri;
+            cbsyarattanah.SelectedValue = makkebun.syarattanah;
+            cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
+            cbpemilikan.SelectedValue = makkebun.pemilikan;
+            cbpengurusan.SelectedValue = makkebun.pengurusan;
+            cbtncr.SelectedValue = makkebun.tncr;
         }
+
 
         private void FocusChangeBackColor()
         {
@@ -262,68 +296,9 @@ namespace PortableApps
             return parent;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            IList<Control> lstCtrlEmptyCheck = new List<Control>();
-            lstCtrlEmptyCheck.Add(txtaddr1);
-            lstCtrlEmptyCheck.Add(txtaddr2);
-            lstCtrlEmptyCheck.Add(cbnegeri);
-            lstCtrlEmptyCheck.Add(cbdaerah);
-            lstCtrlEmptyCheck.Add(cbdun);
-            lstCtrlEmptyCheck.Add(cbparlimen);
-            lstCtrlEmptyCheck.Add(txtnolot);
-            lstCtrlEmptyCheck.Add(txtluasmatang);
-            lstCtrlEmptyCheck.Add(cbsyarattanah);
-            lstCtrlEmptyCheck.Add(txtnolesen);
+        #endregion
 
-            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
-            {
-                return;
-            }
-
-
-            bool IsNew = false;
-            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
-            if (makkebun == null)
-            {
-                makkebun = new makkebun();
-                IsNew = true;
-            }
-            makkebun.appinfo_id = appinfo_id;
-            makkebun.addr1 = txtaddr1.Text;
-            makkebun.addr2 = txtaddr2.Text;
-            makkebun.addr3 = txtaddr3.Text;
-            makkebun.catatan = txtcatatan.Text;
-            makkebun.luaslesen = Convert.ToDouble(string.IsNullOrEmpty(txtluaslesen.Text) ? 0 : Convert.ToDouble(txtluaslesen.Text));
-            makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
-            makkebun.nolesen = txtnolesen.Text;
-            makkebun.nolot = txtnolot.Text;
-            makkebun.tarikhtebang = txttarikhtebang.Text;
-            makkebun.negeri = cbnegeri.SelectedValue.ToString();
-            makkebun.daerah = cbdaerah.SelectedValue.ToString();
-            makkebun.dun = cbdun.SelectedValue.ToString();
-            makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
-            makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
-            makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
-            makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
-            makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
-            makkebun.tncr = cbtncr.SelectedValue.ToString();
-            makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
-
-
-            if (IsNew)
-            {
-                makkebun.created = DateTime.Now;
-                makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
-                MakkebunRepo.Create(makkebun);
-            }
-            else
-            {
-                MakkebunRepo.Edit(makkebun);
-            }
-            BindGrid(xcurrentPage);
-            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
-        }
+        #region Pager & Binding Grid
 
         private void PopulatePager(int recordCount, int currentPage)
         {
@@ -443,6 +418,9 @@ namespace PortableApps
 
         }
 
+        #endregion
+
+        #region Events
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbx = (ComboBox)sender;
@@ -505,69 +483,6 @@ namespace PortableApps
                     //Do something with your button.
                 }
             }
-        }
-
-        private void ClearMakKebunForm()
-
-        {
-            Action<Control.ControlCollection> func = null;
-
-            func = (controls) =>
-            {
-                foreach (Control control in controls)
-                    if (control is TextBox)
-                        (control as TextBox).Clear();
-                    else if (control is ComboBox)
-                    {
-                        (control as ComboBox).SelectedIndex = -1;
-                    }
-                    else
-                        func(control.Controls);
-            };
-
-            func(Controls);
-        }
-
-        private void SetupFormMakKebun(int appinfo_id, int id_makkebun)
-        {
-            this.appinfo_id = appinfo_id;
-            this.id_makkebun = id_makkebun;
-            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
-
-            txtaddr1.Text = makkebun.addr1;
-            txtaddr2.Text = makkebun.addr2;
-            txtaddr3.Text = makkebun.addr3;
-            txtcatatan.Text = makkebun.catatan;
-            txtluaslesen.Text = makkebun.luaslesen.ToString("#.##");
-            txtluasmatang.Text = makkebun.luasmatang.ToString("#.##");
-            txtnolesen.Text = makkebun.nolesen;
-            txtnolot.Text = makkebun.nolot;
-            if (makkebun.tebang == "SUDAH")
-            {
-                rbSudah.Checked = true;
-                DateTime dttarikhtebang = DateTime.ParseExact(makkebun.tarikhtebang, "dd-MM-yyyy", CultureInfo.InvariantCulture);
-                txttarikhtebang.Text = dttarikhtebang.ToString();
-                txttarikhtebang.Value = dttarikhtebang;
-            }
-            else if (makkebun.tebang == "BELUM")
-            {
-                rbBelum.Checked = true;
-            }
-            else
-            {
-                rbBelum.Checked = false;
-                rbSudah.Checked = false;
-            }
-          
-            cbnegeri.SelectedValue = makkebun.negeri;
-            cbdaerah.SelectedValue = makkebun.daerah;
-            cbdun.SelectedValue = makkebun.dun;
-            cbparlimen.SelectedValue = ParlimenRepo.GetBy(makkebun.parlimen).Negeri;
-            cbsyarattanah.SelectedValue = makkebun.syarattanah;
-            cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
-            cbpemilikan.SelectedValue = makkebun.pemilikan;
-            cbpengurusan.SelectedValue = makkebun.pengurusan;
-            cbtncr.SelectedValue = makkebun.tncr;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -744,6 +659,119 @@ namespace PortableApps
             }
             BindGrid(xcurrentPage);
         }
+
+
+        private void makkebunform_Load(object sender, EventArgs e)
+        {
+            ControlBox = false;
+            WindowState = FormWindowState.Maximized;
+            BringToFront();
+
+            txttarikhtebang.CustomFormat = " ";
+
+            groupBox1.Text = groupBox1.Text + " " + refno;
+            groupBox2.Text = groupBox2.Text + " " + refno;
+
+            BindMaklumatPemohon(appinfo_id);
+
+            BindSyaratTanah();
+
+            BindPemilikan();
+
+            BindJenisHakMilikTanah();
+
+            BindPengurusan();
+
+            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
+            if (varPageSize == null)
+            {
+                PageSize = 2;
+            }
+            else
+            {
+                PageSize = Convert.ToInt32(varPageSize.Value);
+            }
+            xcurrentPage = 1;
+            sidx = "id_makkebun";
+            sord = "ASC";
+            BindGrid(xcurrentPage);
+
+            LoadNegeri();
+            LoadParlimen();
+
+            FocusChangeBackColor();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            IList<Control> lstCtrlEmptyCheck = new List<Control>();
+            lstCtrlEmptyCheck.Add(txtaddr1);
+            lstCtrlEmptyCheck.Add(txtaddr2);
+            lstCtrlEmptyCheck.Add(cbnegeri);
+            lstCtrlEmptyCheck.Add(cbdaerah);
+            lstCtrlEmptyCheck.Add(cbdun);
+            lstCtrlEmptyCheck.Add(cbparlimen);
+            lstCtrlEmptyCheck.Add(txtnolot);
+            lstCtrlEmptyCheck.Add(txtluasmatang);
+            lstCtrlEmptyCheck.Add(cbsyarattanah);
+            lstCtrlEmptyCheck.Add(txtnolesen);
+
+            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+            {
+                return;
+            }
+
+
+            bool IsNew = false;
+            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
+            if (makkebun == null)
+            {
+                makkebun = new makkebun();
+                IsNew = true;
+            }
+            makkebun.appinfo_id = appinfo_id;
+            makkebun.addr1 = txtaddr1.Text;
+            makkebun.addr2 = txtaddr2.Text;
+            makkebun.addr3 = txtaddr3.Text;
+            makkebun.catatan = txtcatatan.Text;
+            makkebun.luaslesen = Convert.ToDouble(string.IsNullOrEmpty(txtluaslesen.Text) ? 0 : Convert.ToDouble(txtluaslesen.Text));
+            makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
+            makkebun.nolesen = txtnolesen.Text;
+            makkebun.nolot = txtnolot.Text;
+            makkebun.tarikhtebang = txttarikhtebang.Text;
+            makkebun.negeri = cbnegeri.SelectedValue.ToString();
+            makkebun.daerah = cbdaerah.SelectedValue.ToString();
+            makkebun.dun = cbdun.SelectedValue.ToString();
+            makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
+            makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
+            makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
+            makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
+            makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
+            makkebun.tncr = cbtncr.SelectedValue.ToString();
+            makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
+
+
+            if (IsNew)
+            {
+                makkebun.created = DateTime.Now;
+                makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                MakkebunRepo.Create(makkebun);
+            }
+            else
+            {
+                MakkebunRepo.Edit(makkebun);
+            }
+            BindGrid(xcurrentPage);
+            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+        }
+
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearMakKebunForm();
+            id_makkebun = 0;
+        }
+        #endregion
 
     }
 }

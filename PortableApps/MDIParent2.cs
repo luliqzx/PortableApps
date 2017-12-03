@@ -14,14 +14,27 @@ namespace PortableApps
 {
     public partial class MDIParent2 : Form
     {
+        #region Fields / Properties
         IAppInfoRepo AppInfoRepo = new AppInfoRepo();
         IVariablesRepo VariablesRepo = new VariablesRepo();
         IMakkebunRepo MakkebunRepo = new MakkebunRepo();
         ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
 
+        #endregion
+
+        #region Constructor
         public MDIParent2()
         {
             InitializeComponent();
+        }
+        #endregion
+
+        #region Events
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            string Nama = new VariableSettingRepo().GetBy("UserKeyIn").Value + " | " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+            tssUserKeyIn.Text = Nama;
+
         }
 
         private void rbMaklumatPemohon_Click(object sender, EventArgs e)
@@ -160,6 +173,9 @@ namespace PortableApps
 
         }
 
+        #endregion
+
+        #region Functions
         private void SyncToServer()
         {
             IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
@@ -228,11 +244,7 @@ namespace PortableApps
             return refno;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            string Nama = new VariableSettingRepo().GetBy("UserKeyIn").Value + " | " + DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
-            tssUserKeyIn.Text = Nama;
+        #endregion
 
-        }
     }
 }

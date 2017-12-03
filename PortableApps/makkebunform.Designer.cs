@@ -126,6 +126,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnReset);
             this.groupBox1.Controls.Add(this.cbtncr);
             this.groupBox1.Controls.Add(this.label55);
             this.groupBox1.Controls.Add(this.label54);
@@ -1199,6 +1201,16 @@
             this.panel1.Size = new System.Drawing.Size(1133, 556);
             this.panel1.TabIndex = 3;
             // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(350, 498);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 26;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // makkebunform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1328,5 +1340,6 @@
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.ComboBox cbtncr;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnReset;
     }
 }

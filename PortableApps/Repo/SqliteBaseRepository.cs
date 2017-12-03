@@ -1535,7 +1535,7 @@ DROP TABLE IF  EXISTS `VariableSetting`;
                                   `lampiran` varchar(100) NOT NULL,
                                     newid integer null,
                                     newmakkebun_id integer null,
-                                    syncdate integer null
+                                    syncdate datetime null
                                 );
                            ";
                 cmd.CommandType = CommandType.Text;
