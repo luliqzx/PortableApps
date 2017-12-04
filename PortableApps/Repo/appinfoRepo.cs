@@ -241,7 +241,7 @@ namespace PortableApps.Repo
         public int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null)
         {
             int i = 0;
-            string qry = @"SELECT MAX(refno) refno from appinfo where refno like CONCAT(@refno, '%') FOR UPDATE";
+            string qry = @"SELECT MAX(refno) refno from appinfo where refno like CONCAT(@refno, '%') LOCK IN SHARE MODE";
             appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno }, mySqlTrans).FirstOrDefault();
             if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
             {
