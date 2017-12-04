@@ -176,13 +176,13 @@ namespace PortableApps
         #endregion
 
         #region Functions
-        private void SyncToServer()
+        public void SyncToServer()
         {
             IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
             for (int i = 0; i < lstAppInfoToSync.Count; i++)
             {
                 appinfo appinfoSqlite = lstAppInfoToSync[i];
-                AppInfoRepo.OpenMySQLDB();
+                //AppInfoRepo.OpenMySQLDB();
                 //using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
                 //{
                 string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
@@ -226,7 +226,7 @@ namespace PortableApps
                     }
                 }
                 //}
-                AppInfoRepo.CloseMySQLDB();
+                //AppInfoRepo.CloseMySQLDB();
             }
         }
 
