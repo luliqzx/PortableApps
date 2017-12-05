@@ -153,24 +153,40 @@ namespace PortableApps
         }
 
         private void rbUpdateServer_Click(object sender, EventArgs e)
+        //{
+
+        //    MessageBox.Show("Under Construction");
+        //    return;
+        //    //foreach (Form f in this.MdiChildren)
+        //    //{
+        //    //    if (f.GetType() == typeof(InitializeForm))
+        //    //    {
+        //    //        f.Close();
+        //    //        //f.Activate();
+        //    //        //return;
+        //    //    }
+        //    //}
+        //    //Form form = new InitializeForm();
+        //    //form.MdiParent = this;
+        //    //form.Show();
+
+        //    SyncToServer();
+
+        //}
         {
-            MessageBox.Show("Under Construction");
-            return;
-            //foreach (Form f in this.MdiChildren)
-            //{
-            //    if (f.GetType() == typeof(InitializeForm))
-            //    {
-            //        f.Close();
-            //        //f.Activate();
-            //        //return;
-            //    }
-            //}
-            //Form form = new InitializeForm();
+            foreach (Form f in this.MdiChildren)
+            {
+                if (f.GetType() == typeof(SecurityForm))
+                {
+                    f.Close();
+                    //f.Activate();
+                    //return;
+                }
+            }
+            Form form = new SecurityForm();
             //form.MdiParent = this;
+            form.ShowDialog();
             //form.Show();
-
-            SyncToServer();
-
         }
 
         #endregion

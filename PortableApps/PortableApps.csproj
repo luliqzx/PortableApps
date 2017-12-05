@@ -165,6 +165,12 @@
     <Compile Include="Repo\VariablesRepo.cs" />
     <Compile Include="Repo\DunRepo.cs" />
     <Compile Include="Repo\SqliteBaseRepository.cs" />
+    <Compile Include="SecurityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SecurityForm.Designer.cs">
+      <DependentUpon>SecurityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SecurityForm.resx">
+      <DependentUpon>SecurityForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestingForm.resx">
       <DependentUpon>TestingForm.cs</DependentUpon>
     </EmbeddedResource>
