@@ -21,7 +21,7 @@ namespace PortableApps
 
             ProcessFirst();
 
-            Application.Run(new MDIParent2());
+            Application.Run(new SamplePagingForm());
         }
 
         private static void ProcessFirst()

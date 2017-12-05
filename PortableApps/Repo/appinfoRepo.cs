@@ -21,6 +21,7 @@ namespace PortableApps.Repo
         void OpenMySQLDB();
         void CloseMySQLDB();
         IList<appinfo> GetAllWithoutSync();
+        IList<appinfo> GetListMySQL(int page, int pagesize, string sidx, string sord, appinfo oWhereClause, out int rowcount);
     }
     public class AppInfoRepo : CommonRepo, IAppInfoRepo
     {
@@ -307,6 +308,39 @@ namespace PortableApps.Repo
                 lst = cnn.Query<appinfo>(qry, null).ToList();
             }
             return lst;
+        }
+
+        public IList<appinfo> GetListMySQL(int page, int pagesize, string sidx, string sord, appinfo oWhereClause, out int rowcount)
+
+        {
+            string whereClause = "";
+            string operators = "";
+            if (!object.Equals(null, oWhereClause))
+            {
+                if (oWhereClause.id > 0)
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " id=@id ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.bangsa))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " bangsa like '%'+@bangsa+'%'  ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.negeri))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " negeri like '%'+@negeri+'%'   ";
+                }
+            }
+
+            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
+                                            {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (page - 1) * pagesize, pagesize);
+            string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
+
+            IList<appinfo> lstEnt = mysqlCon.Query<appinfo>(qry, null).ToList();
+            rowcount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
+            return lstEnt;
         }
     }
 }

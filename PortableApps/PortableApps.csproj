@@ -165,6 +165,12 @@
     <Compile Include="Repo\VariablesRepo.cs" />
     <Compile Include="Repo\DunRepo.cs" />
     <Compile Include="Repo\SqliteBaseRepository.cs" />
+    <Compile Include="SamplePagingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SamplePagingForm.Designer.cs">
+      <DependentUpon>SamplePagingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SecurityForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +223,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SamplePagingForm.resx">
+      <DependentUpon>SamplePagingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SecurityForm.resx">
       <DependentUpon>SecurityForm.cs</DependentUpon>
     </EmbeddedResource>
