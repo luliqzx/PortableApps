@@ -274,6 +274,7 @@
   <ItemGroup>
     <Content Include="Resources\add.png" />
     <Content Include="Resources\mpob_small.png.ico" />
+    <Content Include="Resources\paging.PNG" />
     <None Include="Resources\b_add.png" />
     <Content Include="Resources\b_drop.png" />
     <Content Include="Resources\b_edit.png" />
