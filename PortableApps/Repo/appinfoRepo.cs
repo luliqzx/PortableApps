@@ -339,7 +339,7 @@ namespace PortableApps.Repo
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 
             IList<appinfo> lstEnt = mysqlCon.Query<appinfo>(qry, null).ToList();
-            rowcount = sqliteCon.Query<int>(qryCtn, null).FirstOrDefault();
+            rowcount = mysqlCon.Query<int>(qryCtn, null).FirstOrDefault();
             return lstEnt;
         }
     }
