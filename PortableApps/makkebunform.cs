@@ -119,7 +119,6 @@ namespace PortableApps
             cbtncr.SelectedValue = makkebun.tncr;
         }
 
-
         private void FocusChangeBackColor()
         {
             Action<Control.ControlCollection> func = null;
@@ -217,7 +216,7 @@ namespace PortableApps
             lstKV.Add(new KeyValue() { Key = "Berkongsi", Value = "Berkongsi" });
             lstKV.Add(new KeyValue() { Key = "Kekal", Value = "Kekal" });
             lstKV.Add(new KeyValue() { Key = "Sementara", Value = "Sementara" });
-            lstKV.Add(new KeyValue() { Key = "Pajakans", Value = "Pajakans" });
+            lstKV.Add(new KeyValue() { Key = "Pajakan", Value = "Pajakan" });
             cbpemilikan.DataSource = lstKV;
             cbpemilikan.ValueMember = "Key";
             cbpemilikan.DisplayMember = "Value";
