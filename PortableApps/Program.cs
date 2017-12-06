@@ -21,7 +21,9 @@ namespace PortableApps
 
             ProcessFirst();
 
-            Application.Run(new SamplePagingForm());
+            Application.Run(new MDIParent2());
+            // Will be use for all datagridview
+            //Application.Run(new SamplePagingForm());
         }
 
         private static void ProcessFirst()

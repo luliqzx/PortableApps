@@ -33,7 +33,7 @@ namespace PortableApps.Model.DTO
         //public string email { get; set; }
         //public string kelompok { get; set; }
         //public string semak_tapak { get; set; }
-        //public string keputusan { get; set; }
+        public string keputusan { get; set; }
         //public string sts_bck { get; set; }
         //public string status { get; set; }
         //public string date_approved { get; set; }

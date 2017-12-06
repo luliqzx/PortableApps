@@ -236,6 +236,10 @@
       <DependentUpon>VariableSettingForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Note\Note Portable Apps\Note Portable Apps.onepkg" />
+    <None Include="Note\Note Portable Apps\Open Notebook.onetoc2" />
+    <None Include="Note\Note Portable Apps\Review Apps.one" />
+    <None Include="Note\Note Portable Apps\Update Grid.one" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
