@@ -265,37 +265,30 @@ namespace PortableApps
             label3.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
         }
 
-        #endregion
-
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode== Keys.Enter )
+            if (e.KeyCode == Keys.Enter)
             {
-                
-            int iText = Convert.ToInt32(textBox1.Text);
-            if (iText < 1)
-            {
-                page = 1;
-            }
-            else if (iText > pagecount)
-            {
-                page = pagecount;
-            }
-            else
-            {
-                page = iText;
-            }
-            textBox1.Text = page.ToString();
-            BindGrid(page);
+
+                int iText = Convert.ToInt32(textBox1.Text);
+                if (iText < 1)
+                {
+                    page = 1;
+                }
+                else if (iText > pagecount)
+                {
+                    page = pagecount;
+                }
+                else
+                {
+                    page = iText;
+                }
+                textBox1.Text = page.ToString();
+                BindGrid(page);
             }
         }
 
-        
 
-        
-        
-
-
-
+        #endregion
     }
 }
