@@ -207,12 +207,16 @@ namespace PortableApps.Repo
                 }
             }
 
+            operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+            whereClause = whereClause + operators + " type COLLATE NOCASE ='Negeri' ";
+
             string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id
                                             -- , keputusan 
                                             FROM appinfo join variables
                                             ON negeri = code
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
-            string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
+            string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo join variables
+                                            ON negeri = code {0}", whereClause);
 
             IList<appinfoDTO> lstEnt = sqliteCon.Query<appinfoDTO>(qry, oWhereClause).ToList();
             rowCount = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
