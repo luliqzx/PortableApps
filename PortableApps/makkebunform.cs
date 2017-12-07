@@ -42,6 +42,8 @@ namespace PortableApps
             public string Value { get; set; }
         }
 
+        IList<variables> lstWilayah = new List<variables>();
+
         #endregion
 
         #region Constructor
@@ -177,7 +179,7 @@ namespace PortableApps
 
         private void LoadNegeri()
         {
-            IList<variables> lstEnt = VariablesRepo.GetVariableNegeri("negeri");
+            IList<variables> lstEnt = VariablesRepo.GetVariableByType("negeri");
             //cbdaerah.Items.Clear();
             cbnegeri.DataSource = lstEnt;
             cbnegeri.DisplayMember = "value";
@@ -256,8 +258,25 @@ namespace PortableApps
             lbladdr1.Text = appinfo.addr1;
             lbladdr2.Text = appinfo.addr2;
             lbladdr3.Text = appinfo.addr3;
-            lblnegeri.Text = appinfo.negeri;
-            lbldaerah.Text = appinfo.daerah;
+            variables varNegeri = VariablesRepo.GetNegeri("negeri", appinfo.negeri);
+            if (varNegeri != null)
+            {
+                lblnegeri.Text = varNegeri.Value;
+            }
+
+            tdaerah daerah = DaerahRepo.GetBy(appinfo.daerah);
+            string sdaerah = "";
+            if (daerah != null)
+            {
+                sdaerah = daerah.daerah;
+            }
+            parlimen parlimen = ParlimenRepo.GetBy(appinfo.parlimen);
+            string sparlimen = "";
+            if (parlimen != null)
+            {
+                sparlimen = parlimen.Kawasan;
+            }
+            lbldaerah.Text = sdaerah + " / " + sparlimen;
             lblnokp.Text = appinfo.icno;
             lblnolesen.Text = appinfo.nolesen;
             lblbandar.Text = appinfo.bandar;
@@ -267,7 +286,7 @@ namespace PortableApps
 
         private void LoadWilayah(string negeri)
         {
-            variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == negeri);
+            variables variables = VariablesRepo.GetVariableByType("NEGERI").FirstOrDefault(x => x.Code == negeri);
             if (variables != null)
             {
                 lblwilayah.Text = GetAliasesParent(variables.Parent);
@@ -276,22 +295,27 @@ namespace PortableApps
 
         private string GetAliasesParent(string parent)
         {
-            if (parent == "UTR")
+            variables varByParent = lstWilayah.FirstOrDefault(x => x.Code == parent);
+            if (varByParent != null)
             {
-                parent = "UTARA";
+                parent = varByParent.Value;
             }
-            else if (parent == "TMR")
-            {
-                parent = "TIMUR";
-            }
-            else if (parent == "TGH")
-            {
-                parent = "TENGAH";
-            }
-            else if (parent == "SEL")
-            {
-                parent = "SELATAN";
-            }
+            //if (parent == "UTR")
+            //{
+            //    parent = "UTARA";
+            //}
+            //else if (parent == "TMR")
+            //{
+            //    parent = "TIMUR";
+            //}
+            //else if (parent == "TGH")
+            //{
+            //    parent = "TENGAH";
+            //}
+            //else if (parent == "SEL")
+            //{
+            //    parent = "SELATAN";
+            //}
             return parent;
         }
 
@@ -420,6 +444,7 @@ namespace PortableApps
         #endregion
 
         #region Events
+
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbx = (ComboBox)sender;
@@ -659,19 +684,19 @@ namespace PortableApps
             BindGrid(xcurrentPage);
         }
 
-
         private void makkebunform_Load(object sender, EventArgs e)
         {
             ControlBox = false;
             WindowState = FormWindowState.Maximized;
             BringToFront();
 
+            lstWilayah = VariablesRepo.GetVariableByType("wilayah");
+
             txttarikhtebang.CustomFormat = " ";
 
             groupBox1.Text = groupBox1.Text + " " + refno;
             groupBox2.Text = groupBox2.Text + " " + refno;
 
-            BindMaklumatPemohon(appinfo_id);
 
             BindSyaratTanah();
 
@@ -697,6 +722,8 @@ namespace PortableApps
 
             LoadNegeri();
             LoadParlimen();
+
+            BindMaklumatPemohon(appinfo_id);
 
             FocusChangeBackColor();
         }
@@ -766,13 +793,11 @@ namespace PortableApps
             btnReset.PerformClick();
         }
 
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             ClearMakKebunForm();
             id_makkebun = 0;
         }
         #endregion
-
     }
 }

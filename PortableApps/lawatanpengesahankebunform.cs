@@ -21,6 +21,7 @@ namespace PortableApps
         ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
         IMakkebunRepo MakkebunRepo = new MakkebunRepo();
 
+        IList<variables> lstWilayah = new List<variables>();
         public int appinfo_id { get; set; }
         public string refno { get; set; }
         public int id_makkebun { get; set; }
@@ -233,8 +234,25 @@ namespace PortableApps
             lbladdr1.Text = appinfo.addr1;
             lbladdr2.Text = appinfo.addr2;
             lbladdr3.Text = appinfo.addr3;
-            lblnegeri.Text = appinfo.negeri;
-            lbldaerah.Text = appinfo.daerah;
+            variables varNegeri = VariablesRepo.GetNegeri("negeri", appinfo.negeri);
+            if (varNegeri != null)
+            {
+                lblnegeri.Text = varNegeri.Value;
+            }
+
+            tdaerah daerah = new DaerahRepo().GetBy(appinfo.daerah);
+            string sdaerah = "";
+            if (daerah != null)
+            {
+                sdaerah = daerah.daerah;
+            }
+            parlimen parlimen = new ParlimenRepo().GetBy(appinfo.parlimen);
+            string sparlimen = "";
+            if (parlimen != null)
+            {
+                sparlimen = parlimen.Kawasan;
+            }
+            lbldaerah.Text = sdaerah + " / " + sparlimen;
             lblnokp.Text = appinfo.icno;
             lblnolesen.Text = appinfo.nolesen;
             lblbandar.Text = appinfo.bandar;
@@ -244,7 +262,7 @@ namespace PortableApps
 
         private void LoadWilayah(string negeri)
         {
-            variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == negeri);
+            variables variables = VariablesRepo.GetVariableByType("NEGERI").FirstOrDefault(x => x.Code == negeri);
             if (variables != null)
             {
                 lblwilayah.Text = GetAliasesParent(variables.Parent);
@@ -253,22 +271,27 @@ namespace PortableApps
 
         private string GetAliasesParent(string parent)
         {
-            if (parent == "UTR")
+            variables var = lstWilayah.FirstOrDefault(x => x.Code == parent);
+            if (var != null)
             {
-                parent = "UTARA";
+                parent = var.Value;
             }
-            else if (parent == "TMR")
-            {
-                parent = "TIMUR";
-            }
-            else if (parent == "TGH")
-            {
-                parent = "TENGAH";
-            }
-            else if (parent == "SEL")
-            {
-                parent = "SELATAN";
-            }
+            //if (parent == "UTR")
+            //{
+            //    parent = "UTARA";
+            //}
+            //else if (parent == "TMR")
+            //{
+            //    parent = "TIMUR";
+            //}
+            //else if (parent == "TGH")
+            //{
+            //    parent = "TENGAH";
+            //}
+            //else if (parent == "SEL")
+            //{
+            //    parent = "SELATAN";
+            //}
             return parent;
         }
 
@@ -281,6 +304,9 @@ namespace PortableApps
             ControlBox = false;
             WindowState = FormWindowState.Maximized;
             BringToFront();
+
+            lstWilayah = VariablesRepo.GetVariableByType("wilayah");
+
             BindMaklumatPemohon(appinfo_id);
 
             txttarikh_lawat.CustomFormat = " ";
@@ -299,7 +325,6 @@ namespace PortableApps
             BindFormLawatanPengesahanKebun(appinfo_id, id_makkebun, semak_tapak_id);
 
             FocusChangeBackColor();
-
         }
 
         private void button2_Click(object sender, EventArgs e)

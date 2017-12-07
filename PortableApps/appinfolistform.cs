@@ -115,7 +115,7 @@ namespace PortableApps
 
         private void LoadNegeri()
         {
-            IList<variables> lstEnt = VariablesRepo.GetVariableNegeri("negeri");
+            IList<variables> lstEnt = VariablesRepo.GetVariableByType("negeri");
             //cbdaerah.Items.Clear();
             cbnegeri.DataSource = lstEnt;
             cbnegeri.DisplayMember = "value";

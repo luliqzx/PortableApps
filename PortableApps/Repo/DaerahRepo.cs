@@ -10,6 +10,7 @@ namespace PortableApps.Repo
     public interface IDaerahRepo : IBaseTRepo<tdaerah, int>
     {
         IList<tdaerah> GetDaerahBy(string negeri);
+        tdaerah GetBy(string kod_daerah);
     }
     public class DaerahRepo : CommonRepo, IDaerahRepo
     {
@@ -66,6 +67,13 @@ namespace PortableApps.Repo
         {
             string qry = @"SELECT * FROM daerah WHERE kod_negeri=@negeri";
             IList<tdaerah> ent = sqliteCon.Query<tdaerah>(qry, new { negeri }).ToList();
+            return ent;
+        }
+
+        public tdaerah GetBy(string kod_daerah)
+        {
+            string qry = @"SELECT * FROM daerah WHERE kod_daerah=@kod_daerah";
+            tdaerah ent = sqliteCon.Query<tdaerah>(qry, new { kod_daerah }).FirstOrDefault();
             return ent;
         }
     }

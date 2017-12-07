@@ -10,7 +10,8 @@ namespace PortableApps.Repo
     public interface IVariablesRepo : IBaseTRepo<variables, string>
     {
 
-        IList<variables> GetVariableNegeri(string type);
+        IList<variables> GetVariableByType(string type);
+        variables GetNegeri(string v, string negeri);
     }
     public class VariablesRepo : CommonRepo, IVariablesRepo
     {
@@ -57,11 +58,18 @@ namespace PortableApps.Repo
             throw new NotImplementedException();
         }
 
-        public IList<variables> GetVariableNegeri(string type)
+        public IList<variables> GetVariableByType(string type)
         {
-            string qry = @"SELECT * FROM variables WHERE type=@type COLLATE NOCASE";
+            string qry = @"SELECT * FROM variables WHERE type COLLATE NOCASE =@type ";
             IList<variables> lstEnt = sqliteCon.Query<variables>(qry, new { type }).ToList();
             return lstEnt;
+        }
+
+        public variables GetNegeri(string type, string code)
+        {
+            string qry = @"SELECT * FROM variables WHERE code=@code and type collate nocase = @type";
+            variables ent = sqliteCon.Query<variables>(qry, new { code, type }).FirstOrDefault();
+            return ent;
         }
     }
 }

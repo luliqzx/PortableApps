@@ -26,6 +26,7 @@ namespace PortableApps
         public int appinfo_id;
         public string refno;
 
+        private IList<variables> lstWilayah = new List<variables>();
         #endregion
 
         #region Constructor
@@ -36,6 +37,7 @@ namespace PortableApps
         #endregion
 
         #region Functions
+
         private void BindForm(int appinfo_id)
         {
             appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
@@ -103,22 +105,27 @@ namespace PortableApps
 
         private string GetAliasesParent(string parent)
         {
-            if (parent == "UTR")
+            variables varByParent = lstWilayah.FirstOrDefault(x => x.Code == parent);
+            if (varByParent != null)
             {
-                parent = "UTARA";
+                parent = varByParent.Value;
             }
-            else if (parent == "TMR")
-            {
-                parent = "TIMUR";
-            }
-            else if (parent == "TGH")
-            {
-                parent = "TENGAH";
-            }
-            else if (parent == "SEL")
-            {
-                parent = "SELATAN";
-            }
+            //if (parent == "UTR")
+            //{
+            //    parent = "UTARA";
+            //}
+            //else if (parent == "TMR")
+            //{
+            //    parent = "TIMUR";
+            //}
+            //else if (parent == "TGH")
+            //{
+            //    parent = "TENGAH";
+            //}
+            //else if (parent == "SEL")
+            //{
+            //    parent = "SELATAN";
+            //}
             return parent;
         }
 
@@ -190,7 +197,7 @@ namespace PortableApps
 
         private void LoadNegeri()
         {
-            IList<variables> lstEnt = VariablesRepo.GetVariableNegeri("negeri");
+            IList<variables> lstEnt = VariablesRepo.GetVariableByType("negeri");
             //cbdaerah.Items.Clear();
             cbnegeri.DataSource = lstEnt;
             cbnegeri.DisplayMember = "value";
@@ -376,6 +383,12 @@ namespace PortableApps
             ControlBox = false;
             WindowState = FormWindowState.Maximized;
             BringToFront();
+
+
+            string Wilayah = "wilayah";
+            lstWilayah = VariablesRepo.GetVariableByType(Wilayah);
+
+
             LoadNegeri();
             LoadTBangsa();
             LoadParlimen();
@@ -405,7 +418,6 @@ namespace PortableApps
             FocusChangeBackColor();
         }
 
-
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cbx = (ComboBox)sender;
@@ -413,7 +425,7 @@ namespace PortableApps
             {
                 LoadDaerah(cbx.SelectedValue.ToString());
                 LoadDun(cbx.SelectedValue.ToString());
-                variables variables = VariablesRepo.GetVariableNegeri("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
+                variables variables = VariablesRepo.GetVariableByType("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
                 if (variables != null)
                 {
                     lblWilayah.Text = GetAliasesParent(variables.Parent);
