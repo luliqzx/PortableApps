@@ -49,6 +49,17 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvMakPer = new System.Windows.Forms.DataGridView();
             this.pnlPager = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtPageIndex = new System.Windows.Forms.TextBox();
+            this.lblPageView = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblRowView = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
@@ -56,6 +67,9 @@
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMakPer)).BeginInit();
+            this.pnlPager.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +81,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(840, 120);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(928, 120);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(959, 120);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // gbFilter
@@ -251,7 +265,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88.84489F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 11.15511F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(928, 456);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(959, 456);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // dgvMakPer
@@ -263,7 +277,7 @@
             this.dgvMakPer.MinimumSize = new System.Drawing.Size(845, 259);
             this.dgvMakPer.Name = "dgvMakPer";
             this.dgvMakPer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvMakPer.Size = new System.Drawing.Size(922, 354);
+            this.dgvMakPer.Size = new System.Drawing.Size(953, 354);
             this.dgvMakPer.TabIndex = 0;
             this.dgvMakPer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellClick);
             this.dgvMakPer.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMakPer_CellDoubleClick);
@@ -275,12 +289,132 @@
             // 
             this.pnlPager.AutoScroll = true;
             this.pnlPager.AutoSize = true;
+            this.pnlPager.Controls.Add(this.tableLayoutPanel2);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPager.Location = new System.Drawing.Point(3, 413);
             this.pnlPager.MinimumSize = new System.Drawing.Size(845, 30);
             this.pnlPager.Name = "pnlPager";
-            this.pnlPager.Size = new System.Drawing.Size(922, 40);
+            this.pnlPager.Size = new System.Drawing.Size(953, 40);
             this.pnlPager.TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.18182F));
+            this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 0, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(953, 40);
+            this.tableLayoutPanel2.TabIndex = 2;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.btnFirst);
+            this.flowLayoutPanel2.Controls.Add(this.btnPrev);
+            this.flowLayoutPanel2.Controls.Add(this.label8);
+            this.flowLayoutPanel2.Controls.Add(this.txtPageIndex);
+            this.flowLayoutPanel2.Controls.Add(this.lblPageView);
+            this.flowLayoutPanel2.Controls.Add(this.btnNext);
+            this.flowLayoutPanel2.Controls.Add(this.btnLast);
+            this.flowLayoutPanel2.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel2.Controls.Add(this.lblRowView);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(947, 34);
+            this.flowLayoutPanel2.TabIndex = 0;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Location = new System.Drawing.Point(3, 3);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(32, 23);
+            this.btnFirst.TabIndex = 4;
+            this.btnFirst.Text = "|<";
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(41, 3);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(32, 23);
+            this.btnPrev.TabIndex = 5;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(79, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(32, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Page";
+            // 
+            // txtPageIndex
+            // 
+            this.txtPageIndex.Location = new System.Drawing.Point(117, 3);
+            this.txtPageIndex.Name = "txtPageIndex";
+            this.txtPageIndex.Size = new System.Drawing.Size(39, 20);
+            this.txtPageIndex.TabIndex = 1;
+            this.txtPageIndex.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // lblPageView
+            // 
+            this.lblPageView.AutoSize = true;
+            this.lblPageView.Location = new System.Drawing.Point(162, 0);
+            this.lblPageView.Name = "lblPageView";
+            this.lblPageView.Size = new System.Drawing.Size(70, 13);
+            this.lblPageView.TabIndex = 2;
+            this.lblPageView.Text = "of pagecount";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(238, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(32, 23);
+            this.btnNext.TabIndex = 6;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnLast
+            // 
+            this.btnLast.Location = new System.Drawing.Point(276, 3);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(32, 23);
+            this.btnLast.TabIndex = 7;
+            this.btnLast.Text = ">|";
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "45",
+            "60"});
+            this.comboBox1.Location = new System.Drawing.Point(314, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(54, 21);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // lblRowView
+            // 
+            this.lblRowView.AutoSize = true;
+            this.lblRowView.Location = new System.Drawing.Point(374, 0);
+            this.lblRowView.Name = "lblRowView";
+            this.lblRowView.Size = new System.Drawing.Size(81, 13);
+            this.lblRowView.TabIndex = 9;
+            this.lblRowView.Text = "View 1-15 of 15";
             // 
             // panel2
             // 
@@ -290,7 +424,7 @@
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.MinimumSize = new System.Drawing.Size(845, 27);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(922, 44);
+            this.panel2.Size = new System.Drawing.Size(953, 44);
             this.panel2.TabIndex = 2;
             // 
             // button2
@@ -313,7 +447,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoScrollMinSize = new System.Drawing.Size(928, 576);
-            this.ClientSize = new System.Drawing.Size(929, 554);
+            this.ClientSize = new System.Drawing.Size(976, 554);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "appinfolistform";
@@ -326,6 +460,10 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMakPer)).EndInit();
+            this.pnlPager.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -357,6 +495,16 @@
         private System.Windows.Forms.Panel pnlPager;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button2;
-
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtPageIndex;
+        private System.Windows.Forms.Label lblPageView;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblRowView;
     }
 }
