@@ -26,21 +26,16 @@ namespace PortableApps
         IDaerahRepo DaerahRepo = new DaerahRepo();
         IDunRepo DunRepo = new DunRepo();
 
-        private int PageSize { get; set; }
-        private string sidx { get; set; }
-        private string sord { get; set; }
-        private int xcurrentPage { get; set; }
-        int totalRecords;
+        public int page { get; set; }
+        public int rowcount { get; set; }
+        public int pagesize { get; set; }
+        public string sidx { get; set; }
+        public string sord { get; set; }
+        public int pagecount { get; set; }
 
         public int appinfo_id { get; set; }
         public string refno { get; set; }
         public int id_makkebun { get; set; }
-
-        public class KeyValue
-        {
-            public string Key { get; set; }
-            public string Value { get; set; }
-        }
 
         IList<variables> lstWilayah = new List<variables>();
 
@@ -54,6 +49,20 @@ namespace PortableApps
         #endregion
 
         #region Functions
+
+        private void BindingPageSize()
+        {
+            comboBox1.Items.Clear();
+            List<KeyValue> lstKV = new List<KeyValue>();
+            lstKV.Add(new KeyValue { Key = "15", Value = "15" });
+            lstKV.Add(new KeyValue { Key = "30", Value = "30" });
+            lstKV.Add(new KeyValue { Key = "45", Value = "45" });
+            lstKV.Add(new KeyValue { Key = "60", Value = "60" });
+            comboBox1.DataSource = lstKV;
+            comboBox1.DisplayMember = "Key";
+            comboBox1.ValueMember = "Value";
+            comboBox1.SelectedIndex = 0;
+        }
 
         private void ClearMakKebunForm()
         {
@@ -321,129 +330,194 @@ namespace PortableApps
 
         #endregion
 
-        #region Pager & Binding Grid
+        //#region Pager & Binding Grid
 
-        private void PopulatePager(int recordCount, int currentPage)
+        //private void PopulatePager(int recordCount, int currentPage)
+        //{
+        //    List<Page> pages = new List<Page>();
+        //    int startIndex, endIndex;
+        //    int pagerSpan = 5;
+
+        //    //Calculate the Start and End Index of pages to be displayed.
+        //    double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
+        //    int pageCount = (int)Math.Ceiling(dblPageCount);
+        //    startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
+        //    endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
+        //    if (currentPage > pagerSpan % 2)
+        //    {
+        //        if (currentPage == 2)
+        //        {
+        //            endIndex = 5;
+        //        }
+        //        else
+        //        {
+        //            endIndex = currentPage + 2;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        endIndex = (pagerSpan - currentPage) + 1;
+        //    }
+
+        //    if (endIndex - (pagerSpan - 1) > startIndex)
+        //    {
+        //        startIndex = endIndex - (pagerSpan - 1);
+        //    }
+
+        //    if (endIndex > pageCount)
+        //    {
+        //        endIndex = pageCount;
+        //        startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
+        //    }
+
+        //    //Add the First Page Button.
+        //    if (currentPage > 1)
+        //    {
+        //        pages.Add(new Page { Text = "First", Value = "1" });
+        //    }
+
+        //    //Add the Previous Button.
+        //    if (currentPage > 1)
+        //    {
+        //        pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
+        //    }
+
+        //    for (int i = startIndex; i <= endIndex; i++)
+        //    {
+        //        pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
+        //    }
+
+        //    //Add the Next Button.
+        //    if (currentPage < pageCount)
+        //    {
+        //        pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
+        //    }
+
+        //    //Add the Last Button.
+        //    if (currentPage != pageCount)
+        //    {
+        //        pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
+        //    }
+
+        //    //Clear existing Pager Buttons.
+        //    pnlPager.Controls.Clear();
+
+        //    //Loop and add Buttons for Pager.
+        //    int count = 0;
+        //    Label lblPage = new Label();
+        //    lblPage.Location = new System.Drawing.Point(0, 5);
+        //    lblPage.Size = new System.Drawing.Size(60, 20);
+        //    lblPage.Name = "lblPage";
+        //    lblPage.Text = "Halaman";
+        //    pnlPager.Controls.Add(lblPage);
+        //    foreach (Page page in pages)
+        //    {
+        //        Button btnPage = new Button();
+        //        btnPage.Location = new System.Drawing.Point(60 + (40 * count), 5);
+        //        btnPage.Size = new System.Drawing.Size(40, 20);
+        //        btnPage.Name = page.Value;
+        //        btnPage.Text = page.Text;
+        //        btnPage.Enabled = !page.Selected;
+        //        btnPage.Click += new System.EventHandler(this.Page_Click);
+        //        pnlPager.Controls.Add(btnPage);
+        //        count++;
+        //    }
+        //}
+
+        //private void Page_Click(object sender, EventArgs e)
+        //{
+        //    Button btnPager = (sender as Button);
+        //    xcurrentPage = int.Parse(btnPager.Name);
+        //    this.BindGrid(xcurrentPage);
+        //}
+
+        //public class Page
+        //{
+        //    public string Text { get; set; }
+        //    public string Value { get; set; }
+        //    public bool Selected { get; set; }
+        //}
+
+        //private void BindGrid(int pageIndex)
+        //{
+        //    IList<makkebunDTO> lstEnt = MakkebunRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, new makkebun { appinfo_id = appinfo_id });
+        //    dgvMakKebun.DataSource = lstEnt;
+        //    int recordCount = Convert.ToInt32(totalRecords);
+        //    this.PopulatePager(recordCount, pageIndex);
+
+        //    //dgvMakKebun.Columns.Add("Edit", "Edit");
+        //    //dgvMakKebun.Columns.Add("Delete", "Delete");
+
+        //}
+
+        //#endregion
+
+        #region Events
+
+
+        private void btnFirst_Click(object sender, EventArgs e)
         {
-            List<Page> pages = new List<Page>();
-            int startIndex, endIndex;
-            int pagerSpan = 5;
+            page = 1;
+            txtPageIndex.Text = page.ToString();
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+        }
 
-            //Calculate the Start and End Index of pages to be displayed.
-            double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(PageSize));
-            int pageCount = (int)Math.Ceiling(dblPageCount);
-            startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
-            endIndex = pageCount > pagerSpan ? pagerSpan : pageCount;
-            if (currentPage > pagerSpan % 2)
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            page = page - 1 <= 0 ? 1 : page - 1 > pagecount ? pagecount : page - 1;
+            txtPageIndex.Text = page.ToString();
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cbx = sender as ComboBox;
+            int ips = Convert.ToInt32(cbx.SelectedValue);
+            pagesize = ips;
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1 > rowcount ? rowcount + 1 : ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+        }
+
+        private void btnLast_Click(object sender, EventArgs e)
+        {
+            page = pagecount;
+            txtPageIndex.Text = page.ToString();
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            page = page + 1 > pagecount ? pagecount : page + 1;
+            txtPageIndex.Text = page.ToString();
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
             {
-                if (currentPage == 2)
+
+                int iText = Convert.ToInt32(txtPageIndex.Text);
+                if (iText < 1)
                 {
-                    endIndex = 5;
+                    page = 1;
+                }
+                else if (iText > pagecount)
+                {
+                    page = pagecount;
                 }
                 else
                 {
-                    endIndex = currentPage + 2;
+                    page = iText;
                 }
-            }
-            else
-            {
-                endIndex = (pagerSpan - currentPage) + 1;
-            }
-
-            if (endIndex - (pagerSpan - 1) > startIndex)
-            {
-                startIndex = endIndex - (pagerSpan - 1);
-            }
-
-            if (endIndex > pageCount)
-            {
-                endIndex = pageCount;
-                startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
-            }
-
-            //Add the First Page Button.
-            if (currentPage > 1)
-            {
-                pages.Add(new Page { Text = "First", Value = "1" });
-            }
-
-            //Add the Previous Button.
-            if (currentPage > 1)
-            {
-                pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
-            }
-
-            for (int i = startIndex; i <= endIndex; i++)
-            {
-                pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
-            }
-
-            //Add the Next Button.
-            if (currentPage < pageCount)
-            {
-                pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
-            }
-
-            //Add the Last Button.
-            if (currentPage != pageCount)
-            {
-                pages.Add(new Page { Text = "Last", Value = pageCount.ToString() });
-            }
-
-            //Clear existing Pager Buttons.
-            pnlPager.Controls.Clear();
-
-            //Loop and add Buttons for Pager.
-            int count = 0;
-            Label lblPage = new Label();
-            lblPage.Location = new System.Drawing.Point(0, 5);
-            lblPage.Size = new System.Drawing.Size(60, 20);
-            lblPage.Name = "lblPage";
-            lblPage.Text = "Halaman";
-            pnlPager.Controls.Add(lblPage);
-            foreach (Page page in pages)
-            {
-                Button btnPage = new Button();
-                btnPage.Location = new System.Drawing.Point(60 + (40 * count), 5);
-                btnPage.Size = new System.Drawing.Size(40, 20);
-                btnPage.Name = page.Value;
-                btnPage.Text = page.Text;
-                btnPage.Enabled = !page.Selected;
-                btnPage.Click += new System.EventHandler(this.Page_Click);
-                pnlPager.Controls.Add(btnPage);
-                count++;
+                txtPageIndex.Text = page.ToString();
+                BindGrid(page);
             }
         }
-
-        private void Page_Click(object sender, EventArgs e)
-        {
-            Button btnPager = (sender as Button);
-            xcurrentPage = int.Parse(btnPager.Name);
-            this.BindGrid(xcurrentPage);
-        }
-
-        public class Page
-        {
-            public string Text { get; set; }
-            public string Value { get; set; }
-            public bool Selected { get; set; }
-        }
-
-        private void BindGrid(int pageIndex)
-        {
-            IList<makkebunDTO> lstEnt = MakkebunRepo.PagedListDTO(pageIndex, PageSize, sidx, sord, out totalRecords, new makkebun { appinfo_id = appinfo_id });
-            dgvMakKebun.DataSource = lstEnt;
-            int recordCount = Convert.ToInt32(totalRecords);
-            this.PopulatePager(recordCount, pageIndex);
-
-            //dgvMakKebun.Columns.Add("Edit", "Edit");
-            //dgvMakKebun.Columns.Add("Delete", "Delete");
-
-        }
-
-        #endregion
-
-        #region Events
 
         private void cbnegeri_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -475,7 +549,7 @@ namespace PortableApps
                     if (confirmResult == DialogResult.Yes)
                     {
                         MessageBox.Show("Currently event not use");
-                        BindGrid(xcurrentPage);
+                        BindGrid(page);
                         // If 'Yes', do something here.
                     }
                     else
@@ -627,7 +701,7 @@ namespace PortableApps
                 LineAlignment = StringAlignment.Center
             };
 
-            string snumber = ((PageSize * (xcurrentPage - 1)) + Convert.ToInt32(rowIdx)).ToString();
+            string snumber = ((pagesize * (page - 1)) + Convert.ToInt32(rowIdx)).ToString();
 
             var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
             e.Graphics.DrawString(snumber, this.Font, SystemBrushes.ControlText, headerBounds, centerFormat);
@@ -681,7 +755,7 @@ namespace PortableApps
             {
                 sord = "ASC";
             }
-            BindGrid(xcurrentPage);
+            BindGrid(page);
         }
 
         private void makkebunform_Load(object sender, EventArgs e)
@@ -706,19 +780,20 @@ namespace PortableApps
 
             BindPengurusan();
 
-            VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
-            if (varPageSize == null)
-            {
-                PageSize = 2;
-            }
-            else
-            {
-                PageSize = Convert.ToInt32(varPageSize.Value);
-            }
-            xcurrentPage = 1;
+            comboBox1.SelectedIndexChanged -= comboBox1_SelectedIndexChanged;
+            BindingPageSize();
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+
+            txtPageIndex.Text = "1";
+
+            page = 1;
+            pagesize = Convert.ToInt32(comboBox1.SelectedValue);
+
+            page = 1;
             sidx = "id_makkebun";
             sord = "ASC";
-            BindGrid(xcurrentPage);
+            BindGrid(page);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
 
             LoadNegeri();
             LoadParlimen();
@@ -787,7 +862,7 @@ namespace PortableApps
             {
                 MakkebunRepo.Edit(makkebun);
             }
-            BindGrid(xcurrentPage);
+            BindGrid(page);
             MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
 
             btnReset.PerformClick();
@@ -798,6 +873,136 @@ namespace PortableApps
             ClearMakKebunForm();
             id_makkebun = 0;
         }
+        #endregion
+
+        #region Pager & Binding Grid
+        private void PopulatePager(int recordCount, int currentPage)
+        {
+            List<Page> pages = new List<Page>();
+            //int startIndex, endIndex;
+            //int pagerSpan = 5;
+
+            //Calculate the Start and End Index of pages to be displayed.
+            double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(pagesize));
+            pagecount = (int)Math.Ceiling(dblPageCount);
+            lblPageView.Text = "of " + pagecount;
+            //startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
+            //endIndex = pagecount > pagerSpan ? pagerSpan : pagecount;
+            //if (currentPage > pagerSpan % 2)
+            //{
+            //    if (currentPage == 2)
+            //    {
+            //        endIndex = 5;
+            //    }
+            //    else
+            //    {
+            //        endIndex = currentPage + 2;
+            //    }
+            //}
+            //else
+            //{
+            //    endIndex = (pagerSpan - currentPage) + 1;
+            //}
+
+            //if (endIndex - (pagerSpan - 1) > startIndex)
+            //{
+            //    startIndex = endIndex - (pagerSpan - 1);
+            //}
+
+            //if (endIndex > pagecount)
+            //{
+            //    endIndex = pagecount;
+            //    startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
+            //}
+
+            ////Add the First Page Button.
+            //if (currentPage > 1)
+            //{
+            //    pages.Add(new Page { Text = "First", Value = "1" });
+            //}
+
+            ////Add the Previous Button.
+            //if (currentPage > 1)
+            //{
+            //    pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
+            //}
+
+            //for (int i = startIndex; i <= endIndex; i++)
+            //{
+            //    pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
+            //}
+
+            ////Add the Next Button.
+            //if (currentPage < pagecount)
+            //{
+            //    pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
+            //}
+
+            ////Add the Last Button.
+            //if (currentPage != pagecount)
+            //{
+            //    pages.Add(new Page { Text = "Last", Value = pagecount.ToString() });
+            //}
+
+            ////Clear existing Pager Buttons.
+            //pnlPager.Controls.Clear();
+
+            ////Loop and add Buttons for Pager.
+            //int count = 0;
+            //Label lblPage = new Label();
+            //lblPage.Location = new System.Drawing.Point(0, 5);
+            //lblPage.Size = new System.Drawing.Size(60, 20);
+            //lblPage.Name = "lblPage";
+            //lblPage.Text = "Halaman";
+            //pnlPager.Controls.Add(lblPage);
+            //foreach (Page page in pages)
+            //{
+            //    Button btnPage = new Button();
+            //    btnPage.Location = new System.Drawing.Point(60 + (40 * count), 5);
+            //    btnPage.Size = new System.Drawing.Size(40, 20);
+            //    btnPage.Name = page.Value;
+            //    btnPage.Text = page.Text;
+            //    btnPage.Enabled = !page.Selected;
+            //    btnPage.Click += new System.EventHandler(this.Page_Click);
+            //    pnlPager.Controls.Add(btnPage);
+            //    count++;
+            //}
+        }
+
+        private void Page_Click(object sender, EventArgs e)
+        {
+            //Button btnPager = (sender as Button);
+            //xcurrentPage = int.Parse(btnPager.Name);
+            //this.BindGrid(xcurrentPage);
+        }
+
+        public class Page
+        {
+            public string Text { get; set; }
+            public string Value { get; set; }
+            public bool Selected { get; set; }
+        }
+
+        private void BindGrid(int pageIndex)
+        {
+            page = pageIndex;
+            int rowcount = 0;
+            IList<makkebunDTO> lstEnt = MakkebunRepo.PagedListDTO(pageIndex, pagesize, sidx, sord, out rowcount, new makkebun { appinfo_id = appinfo_id });
+            this.rowcount = rowcount;
+            dgvMakKebun.DataSource = lstEnt;
+            this.PopulatePager(rowcount, pageIndex);
+        }
+
+        #endregion
+
+        #region Common Class
+
+        public class KeyValue
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+
         #endregion
     }
 }

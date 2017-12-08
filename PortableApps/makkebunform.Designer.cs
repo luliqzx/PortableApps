@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
             this.cbtncr = new System.Windows.Forms.ComboBox();
             this.label55 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
@@ -126,15 +127,26 @@
             this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnFirst = new System.Windows.Forms.Button();
+            this.btnPrev = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtPageIndex = new System.Windows.Forms.TextBox();
+            this.lblPageView = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnLast = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblRowView = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMakKebun)).BeginInit();
+            this.pnlPager.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -210,6 +222,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Maklumat Kebun ";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Location = new System.Drawing.Point(350, 498);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 26;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // cbtncr
             // 
@@ -1152,6 +1174,7 @@
             // 
             // pnlPager
             // 
+            this.pnlPager.Controls.Add(this.flowLayoutPanel2);
             this.pnlPager.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlPager.Location = new System.Drawing.Point(3, 501);
             this.pnlPager.Name = "pnlPager";
@@ -1201,15 +1224,111 @@
             this.panel1.Size = new System.Drawing.Size(1133, 556);
             this.panel1.TabIndex = 3;
             // 
-            // btnReset
+            // flowLayoutPanel2
             // 
-            this.btnReset.Location = new System.Drawing.Point(350, 498);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 26;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.flowLayoutPanel2.Controls.Add(this.btnFirst);
+            this.flowLayoutPanel2.Controls.Add(this.btnPrev);
+            this.flowLayoutPanel2.Controls.Add(this.label21);
+            this.flowLayoutPanel2.Controls.Add(this.txtPageIndex);
+            this.flowLayoutPanel2.Controls.Add(this.lblPageView);
+            this.flowLayoutPanel2.Controls.Add(this.btnNext);
+            this.flowLayoutPanel2.Controls.Add(this.btnLast);
+            this.flowLayoutPanel2.Controls.Add(this.comboBox1);
+            this.flowLayoutPanel2.Controls.Add(this.lblRowView);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(533, 34);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // btnFirst
+            // 
+            this.btnFirst.Location = new System.Drawing.Point(3, 3);
+            this.btnFirst.Name = "btnFirst";
+            this.btnFirst.Size = new System.Drawing.Size(32, 23);
+            this.btnFirst.TabIndex = 4;
+            this.btnFirst.Text = "|<";
+            this.btnFirst.UseVisualStyleBackColor = true;
+            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
+            // 
+            // btnPrev
+            // 
+            this.btnPrev.Location = new System.Drawing.Point(41, 3);
+            this.btnPrev.Name = "btnPrev";
+            this.btnPrev.Size = new System.Drawing.Size(32, 23);
+            this.btnPrev.TabIndex = 5;
+            this.btnPrev.Text = "<";
+            this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(79, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(32, 13);
+            this.label21.TabIndex = 0;
+            this.label21.Text = "Page";
+            // 
+            // txtPageIndex
+            // 
+            this.txtPageIndex.Location = new System.Drawing.Point(117, 3);
+            this.txtPageIndex.Name = "txtPageIndex";
+            this.txtPageIndex.Size = new System.Drawing.Size(39, 20);
+            this.txtPageIndex.TabIndex = 1;
+            this.txtPageIndex.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            // 
+            // lblPageView
+            // 
+            this.lblPageView.AutoSize = true;
+            this.lblPageView.Location = new System.Drawing.Point(162, 0);
+            this.lblPageView.Name = "lblPageView";
+            this.lblPageView.Size = new System.Drawing.Size(70, 13);
+            this.lblPageView.TabIndex = 2;
+            this.lblPageView.Text = "of pagecount";
+            // 
+            // btnNext
+            // 
+            this.btnNext.Location = new System.Drawing.Point(238, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(32, 23);
+            this.btnNext.TabIndex = 6;
+            this.btnNext.Text = ">";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnLast
+            // 
+            this.btnLast.Location = new System.Drawing.Point(276, 3);
+            this.btnLast.Name = "btnLast";
+            this.btnLast.Size = new System.Drawing.Size(32, 23);
+            this.btnLast.TabIndex = 7;
+            this.btnLast.Text = ">|";
+            this.btnLast.UseVisualStyleBackColor = true;
+            this.btnLast.Click += new System.EventHandler(this.btnLast_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "15",
+            "30",
+            "45",
+            "60"});
+            this.comboBox1.Location = new System.Drawing.Point(314, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(54, 21);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // lblRowView
+            // 
+            this.lblRowView.AutoSize = true;
+            this.lblRowView.Location = new System.Drawing.Point(374, 0);
+            this.lblRowView.Name = "lblRowView";
+            this.lblRowView.Size = new System.Drawing.Size(81, 13);
+            this.lblRowView.TabIndex = 9;
+            this.lblRowView.Text = "View 1-15 of 15";
             // 
             // makkebunform
             // 
@@ -1231,10 +1350,13 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMakKebun)).EndInit();
+            this.pnlPager.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1341,5 +1463,15 @@
         private System.Windows.Forms.ComboBox cbtncr;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.Button btnPrev;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtPageIndex;
+        private System.Windows.Forms.Label lblPageView;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnLast;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label lblRowView;
     }
 }
