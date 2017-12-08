@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using Dapper;
 using PortableApps.Model.DTO;
+using System.Data;
 
 namespace PortableApps.Repo
 {
@@ -13,7 +14,7 @@ namespace PortableApps.Repo
         IList<makkebunDTO> PagedListDTO(int pageIndex, int pageSize, string sidx, string sord, out int totalRecords, makkebun oWhereClause);
         IList<makkebunDTO> GetAllAppInfoBy(int appinfo_id);
         IList<makkebun> GetAllByAppInfo(int id);
-        int CreateMySQL(makkebun makkebunSqlite);
+        int CreateMySQL(makkebun makkebunSqlite, IDbTransaction sqlTrans = null);
         makkebun GetLastMakkebunBy(int id);
         int UpdateSync(makkebun makkebunSqlite);
     }
@@ -115,7 +116,7 @@ namespace PortableApps.Repo
             return lstEnt;
         }
 
-        public int CreateMySQL(makkebun makkebunSqlite)
+        public int CreateMySQL(makkebun makkebunSqlite, IDbTransaction sqlTrans = null)
         {
             int i = 0;
             string qry = @"INSERT INTO makkebun (
@@ -125,7 +126,7 @@ namespace PortableApps.Repo
                                 @appinfo_id,	@addr1,	@addr2,	@addr3,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@nolot,	@hakmiliktanah,	@tncr
                             ,	@luasmatang,	@tebang,	@tarikhtebang,	@nolesen,	@syarattanah,	@pemilikan,	@pengurusan,	@luaslesen,	@catatan,	@created
                             ,	@createdby) ";
-            i = mysqlCon.Execute(qry, makkebunSqlite);
+            i = mysqlCon.Execute(qry, makkebunSqlite, transaction: sqlTrans);
             return i;
         }
 

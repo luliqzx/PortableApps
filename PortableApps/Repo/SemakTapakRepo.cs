@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dapper;
+using System.Data;
 
 namespace PortableApps.Repo
 {
@@ -11,7 +12,7 @@ namespace PortableApps.Repo
     {
         semak_tapak GetBy(int appinfo_id, int makkebun_id, int? semak_tapak_id);
         semak_tapak GetBy(int appinfo_id, int makkebun_id);
-        int CreateMySQL(semak_tapak semak_tapakSqlite);
+        int CreateMySQL(semak_tapak semak_tapakSqlite, IDbTransaction sqlTrans = null);
         semak_tapak GetLastSemakTapakBy(int id, int? newmakkebun_id);
         int UpdateSync(semak_tapak semak_tapakSqlite);
     }
@@ -80,7 +81,7 @@ namespace PortableApps.Repo
             return ent;
         }
 
-        public int CreateMySQL(semak_tapak semak_tapakSqlite)
+        public int CreateMySQL(semak_tapak semak_tapakSqlite, IDbTransaction sqlTrans)
         {
             int i = 0;
             string qry = @"INSERT INTO semak_tapak (
@@ -89,7 +90,7 @@ namespace PortableApps.Repo
                             VALUES (
                                -- @id,	
                                 @newmakkebun_id,	@appinfo_id,	@kaedah,	@bantuan,	@jenis_tanah,	@kecerunan,	@jentera,	@ganoderma,	@peratusan_serangan,	@umr_pokok_tua,	@hasil,	@bil_pokok_tua,	@tarikh_lawat,	@ptk_lawat,	@luas,	@catatan,	@created,	@createdby,	@lampiran) ";
-            i = mysqlCon.Execute(qry, semak_tapakSqlite);
+            i = mysqlCon.Execute(qry, semak_tapakSqlite, transaction: sqlTrans);
             return i;
         }
 

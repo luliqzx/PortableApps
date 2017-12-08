@@ -17,37 +17,63 @@ namespace PortableApps.Repo
             get { return Environment.CurrentDirectory + "\\PortableAppDB.sqlite"; }
         }
 
+        private static IDbConnection _sqliteCon { get; set; }
+
         private IDbConnection MySQLiteConnection()
         {
-            return new SQLiteConnection("Data Source=" + DbFile);
+            try
+            {
+                if (_sqliteCon == null)
+                {
+                    _sqliteCon = new SQLiteConnection("Data Source=" + DbFile);
+                }
+            }
+            catch (Exception)
+            {
+                _sqliteCon = null;
+            }
+           
+            return _sqliteCon;
         }
 
         public IDbConnection sqliteCon { get { return MySQLiteConnection(); } }
 
         private IDbConnection MySQLConnectin()
         {
-            IDbConnection MySqlConnection = new MySqlConnection();
-            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
-            VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
-            if (VariableSetting != null)
+            try
             {
-                if (VariableSetting.Value == "Production")
+                if (_mysqlCon == null)
                 {
-                    VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
-                    //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
-                    MySqlConnection = new MySqlConnection(WFUtils.Decrypt(VariableSettingConStr.Value));
-                }
-                else
-                {
-                    MySqlConnection = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+                    IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+                    VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
+                    if (VariableSetting != null)
+                    {
+                        if (VariableSetting.Value == "Production")
+                        {
+                            VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
+                            //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
+                            _mysqlCon = new MySqlConnection(WFUtils.Decrypt(VariableSettingConStr.Value));
+                        }
+                        else
+                        {
+                            _mysqlCon = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+                        }
+                    }
+                    else
+                    {
+                        _mysqlCon = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+                    }
                 }
             }
-            else
+            catch (Exception)
             {
-                MySqlConnection = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+                _mysqlCon = null;
             }
-            return MySqlConnection;
+            
+            return _mysqlCon;
         }
+
+        private static IDbConnection _mysqlCon { get; set; }
 
         public IDbConnection mysqlCon { get { return MySQLConnectin(); } }
     }
