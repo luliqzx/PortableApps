@@ -291,14 +291,13 @@ namespace PortableApps
                 }
             }
             BindGrid(xcurrentPage);
+            btnReset.PerformClick();
         }
-
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             ClearTextBoxes();
         }
-
 
         private void dgvCS_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {

@@ -853,16 +853,32 @@ namespace PortableApps
 
             if (IsNew)
             {
-                makkebun.created = DateTime.Now;
-                makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
-                MakkebunRepo.Create(makkebun);
+                try
+                {
+                    makkebun.created = DateTime.Now;
+                    makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                    MakkebunRepo.Create(makkebun);
+                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
+
             }
             else
             {
-                MakkebunRepo.Edit(makkebun);
+                try
+                {
+                    MakkebunRepo.Edit(makkebun);
+                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
             }
             BindGrid(page);
-            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
 
             btnReset.PerformClick();
         }

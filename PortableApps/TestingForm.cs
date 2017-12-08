@@ -18,8 +18,6 @@ namespace PortableApps
 
         private void TestingForm_Load(object sender, EventArgs e)
         {
-            MDIParent2 newMDIParent2 = new MDIParent2();
-            newMDIParent2.SyncToServer();
         }
     }
 }

@@ -21,9 +21,9 @@ namespace PortableApps
 
             ProcessFirst();
 
-            //Application.Run(new MDIParent2());
-            MDIParent2 MDIParent2 = new MDIParent2();
-            MDIParent2.SyncToServer();
+            Application.Run(new MDIParent2());
+            //MDIParent2 MDIParent2 = new MDIParent2();
+            //MDIParent2.SyncToServer();
             // Will be use for all datagridview
             //Application.Run(new SamplePagingForm());
         }

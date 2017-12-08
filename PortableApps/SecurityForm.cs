@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PortableApps.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,11 +21,17 @@ namespace PortableApps
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "abcde")
+            if (textBox1.Text == "mpob1234")
             {
-                MDIParent2 mdiPage = MdiParent as MDIParent2;
-                //mdiPage.SyncToServer();
-                MessageBox.Show("OK");
+                try
+                {
+                    WFUtils.SyncToServer();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
+                //MessageBox.Show("OK");
             }
         }
     }

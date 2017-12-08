@@ -365,16 +365,31 @@ namespace PortableApps
             appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
             if (IsNew)
             {
-                appinfo.created = DateTime.Now;
-                appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
-                AppInfoRepo.Create(appinfo);
+                try
+                {
+                    appinfo.created = DateTime.Now;
+                    appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                    AppInfoRepo.Create(appinfo);
+                    MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
+
             }
             else
             {
-                AppInfoRepo.Edit(appinfo);
+                try
+                {
+                    AppInfoRepo.Edit(appinfo);
+                    MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
             }
-            MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
-
             button2.PerformClick();
         }
 

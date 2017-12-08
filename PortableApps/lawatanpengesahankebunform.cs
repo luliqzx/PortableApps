@@ -366,17 +366,33 @@ namespace PortableApps
 
             if (IsNew)
             {
-                semak_tapak.created = DateTime.Now; ;
-                semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
-                semak_tapak.lampiran = "";// txtlampiran.Text;
-                SemakTapakRepo.Create(semak_tapak);
+                try
+                {
+                    semak_tapak.created = DateTime.Now; ;
+                    semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
+                    semak_tapak.lampiran = "";// txtlampiran.Text;
+                    SemakTapakRepo.Create(semak_tapak);
+                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
+
             }
             else
             {
-                SemakTapakRepo.Edit(semak_tapak);
+                try
+                {
+                    SemakTapakRepo.Edit(semak_tapak);
+                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.GetFullMessage());
+                }
             }
-
-            MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+            button2.PerformClick();
         }
 
         private void cbnolot_SelectedIndexChanged(object sender, EventArgs e)

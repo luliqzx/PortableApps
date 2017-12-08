@@ -193,75 +193,7 @@ namespace PortableApps
 
         #region Functions
 
-        public void SyncToServer()
-        {
-            IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
-            for (int i = 0; i < lstAppInfoToSync.Count; i++)
-            {
-                appinfo appinfoSqlite = lstAppInfoToSync[i];
-                AppInfoRepo.OpenMySQLDB();
-
-                using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
-                {
-                    string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
-                    appinfoSqlite.newrefno = newrefno;
-                    // Insert To MySQL Server - AppInfo
-                    if (AppInfoRepo.CreateMySQL(appinfoSqlite, sqlTrans) > 0)
-                    {
-                        // Update data local sqlite
-                        appinfoSqlite.syncdate = DateTime.Now;
-                        AppInfoRepo.UpdateSync(appinfoSqlite);
-
-                        IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
-                        for (int j = 0; j < lstMakkebunSqlite.Count; j++)
-                        {
-                            makkebun makkebunSqlite = lstMakkebunSqlite[j];
-                            // INSERT MAKKEBUN TO MYSQL
-                            int iSaveMakkebun = MakkebunRepo.CreateMySQL(makkebunSqlite, sqlTrans);
-                            if (iSaveMakkebun > 0)
-                            {
-                                makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(appinfoSqlite.id);
-                                makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
-                                makkebunSqlite.syncdate = DateTime.Now;
-                                // UPDATE MAKKEBUN SQLITE
-                                MakkebunRepo.UpdateSync(makkebunSqlite);
-
-                                // GET LAWATAN SQLITE DATA
-                                semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(appinfoSqlite.id, makkebunSqlite.id_makkebun);
-                                semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
-
-                                // INSERT LAWATAN TO MYSQL
-                                int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
-                                if (iSaveSemakTapak > 0)
-                                {
-                                    semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
-                                    semak_tapakSqlite.newid = lastsemak_tapak.id;
-                                    semak_tapakSqlite.syncdate = DateTime.Now;
-                                    // UPDATE MAKKEBUN SQLITE
-                                    int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
-                                }
-                            }
-                        }
-                    }
-                    sqlTrans.Commit();
-                }
-                AppInfoRepo.CloseMySQLDB();
-            }
-        }
-
-        private string GenerateRefNo(string negeri, IDbTransaction mySqlTrans)
-        {
-            string refno = "";
-
-            variables variables = VariablesRepo.GetBy(negeri);
-            refno = @"TSSPK/" + variables.Parent + "/";
-
-            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno, mySqlTrans);
-
-            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
-
-            return refno;
-        }
+        
 
         #endregion
 
