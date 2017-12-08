@@ -12,6 +12,15 @@ namespace PortableApps.Common
 {
     public static class WFUtils
     {
+        #region Fields / Properties
+        const string passPhrase = "#1UWLyP1";        // can be any string
+        const string saltValue = "s@ltValue";             // can be any string
+        const string hashAlgorithm = "SHA1";                   // can be "MD5"
+        const int passwordIterations = 2;                   // can be any number
+        const string initVector = "@1B2c3D4e5F6g7H8";         // must be 16 bytes
+        const int keySize = 256;                 // can be 192 or 128
+        #endregion
+
         /// <summary>
         /// 
         /// </summary>
@@ -19,14 +28,14 @@ namespace PortableApps.Common
         /// <returns></returns>
         public static string Encrypt(string plainText)
         {
-            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+            //IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
 
-            string passPhrase = VariableSettingRepo.GetBy("passPhrase").Value;        // can be any string
-            string saltValue = VariableSettingRepo.GetBy("saltValue").Value;             // can be any string
-            string hashAlgorithm = VariableSettingRepo.GetBy("hashAlgorithm").Value;                   // can be "MD5"
-            int passwordIterations = Convert.ToInt32(VariableSettingRepo.GetBy("passwordIterations").Value);                   // can be any number
-            string initVector = VariableSettingRepo.GetBy("initVector").Value;         // must be 16 bytes
-            int keySize = Convert.ToInt32(VariableSettingRepo.GetBy("keySize").Value);                 // can be 192 or 128
+            //string passPhrase = VariableSettingRepo.GetBy("passPhrase").Value;        // can be any string
+            //string saltValue = VariableSettingRepo.GetBy("saltValue").Value;             // can be any string
+            //string hashAlgorithm = VariableSettingRepo.GetBy("hashAlgorithm").Value;                   // can be "MD5"
+            //int passwordIterations = Convert.ToInt32(VariableSettingRepo.GetBy("passwordIterations").Value);                   // can be any number
+            //string initVector = VariableSettingRepo.GetBy("initVector").Value;         // must be 16 bytes
+            //int keySize = Convert.ToInt32(VariableSettingRepo.GetBy("keySize").Value);                 // can be 192 or 128
 
             string chiperText = string.Empty;
             chiperText = RijndaelSimple.Encrypt(plainText, passPhrase, saltValue, hashAlgorithm, passwordIterations, initVector, keySize);
@@ -46,13 +55,13 @@ namespace PortableApps.Common
             //int passwordIterations = Convert.ToInt32(Utils.GetAppSetting("passwordIterations"));                   // can be any number
             //string initVector = Utils.GetAppSetting("initVector");         // must be 16 bytes
             //int keySize = Convert.ToInt32(Utils.GetAppSetting("keySize"));                 // can be 192 or 128
-            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
-            string passPhrase = VariableSettingRepo.GetBy("passPhrase").Value;        // can be any string
-            string saltValue = VariableSettingRepo.GetBy("saltValue").Value;             // can be any string
-            string hashAlgorithm = VariableSettingRepo.GetBy("hashAlgorithm").Value;                   // can be "MD5"
-            int passwordIterations = Convert.ToInt32(VariableSettingRepo.GetBy("passwordIterations").Value);                   // can be any number
-            string initVector = VariableSettingRepo.GetBy("initVector").Value;         // must be 16 bytes
-            int keySize = Convert.ToInt32(VariableSettingRepo.GetBy("keySize").Value);                 // can be 192 or 128
+            //IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+            //string passPhrase = VariableSettingRepo.GetBy("passPhrase").Value;        // can be any string
+            //string saltValue = VariableSettingRepo.GetBy("saltValue").Value;             // can be any string
+            //string hashAlgorithm = VariableSettingRepo.GetBy("hashAlgorithm").Value;                   // can be "MD5"
+            //int passwordIterations = Convert.ToInt32(VariableSettingRepo.GetBy("passwordIterations").Value);                   // can be any number
+            //string initVector = VariableSettingRepo.GetBy("initVector").Value;         // must be 16 bytes
+            //int keySize = Convert.ToInt32(VariableSettingRepo.GetBy("keySize").Value);                 // can be 192 or 128
 
             string plainText = string.Empty;
             plainText = RijndaelSimple.Decrypt(chiperText, passPhrase, saltValue, hashAlgorithm, passwordIterations, initVector, keySize);

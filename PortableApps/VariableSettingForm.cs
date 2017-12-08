@@ -187,7 +187,7 @@ namespace PortableApps
             VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
             if (varPageSize == null)
             {
-                PageSize = 2;
+                PageSize = 15;
             }
             else
             {
@@ -230,7 +230,6 @@ namespace PortableApps
             BindGrid(xcurrentPage);
             btnReset.PerformClick();
         }
-
 
         private void dgvCS_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
