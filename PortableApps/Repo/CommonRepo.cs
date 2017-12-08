@@ -12,6 +12,7 @@ namespace PortableApps.Repo
 {
     public class CommonRepo
     {
+        #region SQLite
         public string DbFile
         {
             get { return Environment.CurrentDirectory + "\\PortableAppDB.sqlite"; }
@@ -32,12 +33,15 @@ namespace PortableApps.Repo
             {
                 _sqliteCon = null;
             }
-           
+
             return _sqliteCon;
         }
 
         public IDbConnection sqliteCon { get { return MySQLiteConnection(); } }
 
+        #endregion
+
+        #region MySQL
         private IDbConnection MySQLConnectin()
         {
             try
@@ -69,12 +73,14 @@ namespace PortableApps.Repo
             {
                 _mysqlCon = null;
             }
-            
+
             return _mysqlCon;
         }
 
         private static IDbConnection _mysqlCon { get; set; }
 
         public IDbConnection mysqlCon { get { return MySQLConnectin(); } }
+        #endregion
+
     }
 }
