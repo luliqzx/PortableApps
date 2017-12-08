@@ -454,7 +454,6 @@ namespace PortableApps
 
         #region Events
 
-
         private void btnFirst_Click(object sender, EventArgs e)
         {
             page = 1;
@@ -876,104 +875,17 @@ namespace PortableApps
         #endregion
 
         #region Pager & Binding Grid
+
         private void PopulatePager(int recordCount, int currentPage)
         {
             List<Page> pages = new List<Page>();
-            //int startIndex, endIndex;
-            //int pagerSpan = 5;
-
-            //Calculate the Start and End Index of pages to be displayed.
             double dblPageCount = (double)((decimal)recordCount / Convert.ToDecimal(pagesize));
             pagecount = (int)Math.Ceiling(dblPageCount);
             lblPageView.Text = "of " + pagecount;
-            //startIndex = currentPage > 1 && currentPage + pagerSpan - 1 < pagerSpan ? currentPage : 1;
-            //endIndex = pagecount > pagerSpan ? pagerSpan : pagecount;
-            //if (currentPage > pagerSpan % 2)
-            //{
-            //    if (currentPage == 2)
-            //    {
-            //        endIndex = 5;
-            //    }
-            //    else
-            //    {
-            //        endIndex = currentPage + 2;
-            //    }
-            //}
-            //else
-            //{
-            //    endIndex = (pagerSpan - currentPage) + 1;
-            //}
-
-            //if (endIndex - (pagerSpan - 1) > startIndex)
-            //{
-            //    startIndex = endIndex - (pagerSpan - 1);
-            //}
-
-            //if (endIndex > pagecount)
-            //{
-            //    endIndex = pagecount;
-            //    startIndex = ((endIndex - pagerSpan) + 1) > 0 ? (endIndex - pagerSpan) + 1 : 1;
-            //}
-
-            ////Add the First Page Button.
-            //if (currentPage > 1)
-            //{
-            //    pages.Add(new Page { Text = "First", Value = "1" });
-            //}
-
-            ////Add the Previous Button.
-            //if (currentPage > 1)
-            //{
-            //    pages.Add(new Page { Text = "<<", Value = (currentPage - 1).ToString() });
-            //}
-
-            //for (int i = startIndex; i <= endIndex; i++)
-            //{
-            //    pages.Add(new Page { Text = i.ToString(), Value = i.ToString(), Selected = i == currentPage });
-            //}
-
-            ////Add the Next Button.
-            //if (currentPage < pagecount)
-            //{
-            //    pages.Add(new Page { Text = ">>", Value = (currentPage + 1).ToString() });
-            //}
-
-            ////Add the Last Button.
-            //if (currentPage != pagecount)
-            //{
-            //    pages.Add(new Page { Text = "Last", Value = pagecount.ToString() });
-            //}
-
-            ////Clear existing Pager Buttons.
-            //pnlPager.Controls.Clear();
-
-            ////Loop and add Buttons for Pager.
-            //int count = 0;
-            //Label lblPage = new Label();
-            //lblPage.Location = new System.Drawing.Point(0, 5);
-            //lblPage.Size = new System.Drawing.Size(60, 20);
-            //lblPage.Name = "lblPage";
-            //lblPage.Text = "Halaman";
-            //pnlPager.Controls.Add(lblPage);
-            //foreach (Page page in pages)
-            //{
-            //    Button btnPage = new Button();
-            //    btnPage.Location = new System.Drawing.Point(60 + (40 * count), 5);
-            //    btnPage.Size = new System.Drawing.Size(40, 20);
-            //    btnPage.Name = page.Value;
-            //    btnPage.Text = page.Text;
-            //    btnPage.Enabled = !page.Selected;
-            //    btnPage.Click += new System.EventHandler(this.Page_Click);
-            //    pnlPager.Controls.Add(btnPage);
-            //    count++;
-            //}
         }
 
         private void Page_Click(object sender, EventArgs e)
         {
-            //Button btnPager = (sender as Button);
-            //xcurrentPage = int.Parse(btnPager.Name);
-            //this.BindGrid(xcurrentPage);
         }
 
         public class Page

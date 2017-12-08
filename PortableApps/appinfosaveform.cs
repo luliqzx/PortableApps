@@ -214,6 +214,7 @@ namespace PortableApps
             ClearTextBoxes();
             LoadDaerah("");
             LoadDun("");
+            lblWilayah.Text = "";
         }
 
         private void txtappdate_ValueChanged(object sender, EventArgs e)
