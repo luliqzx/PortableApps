@@ -81,7 +81,7 @@ namespace PortableApps.Repo
             return ent;
         }
 
-        public int CreateMySQL(semak_tapak semak_tapakSqlite, IDbTransaction sqlTrans)
+        public int CreateMySQL(semak_tapak semak_tapakSqlite, IDbTransaction sqlTrans = null)
         {
             int i = 0;
             string qry = @"INSERT INTO semak_tapak (
