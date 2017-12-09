@@ -71,18 +71,23 @@ namespace PortableApps
 
         private void rbSetting_Click(object sender, EventArgs e)
         {
-            foreach (Form f in this.MdiChildren)
-            {
-                if (f.GetType() == typeof(VariableSettingForm))
-                {
-                    f.Close();
-                    //f.Activate();
-                    //return;
-                }
-            }
-            Form form = new VariableSettingForm();
-            form.MdiParent = this;
-            form.Show();
+            //foreach (Form f in this.MdiChildren)
+            //{
+            //    if (f.GetType() == typeof(VariableSettingForm))
+            //    {
+            //        f.Close();
+            //        //f.Activate();
+            //        //return;
+            //    }
+            //}
+            //Form form = new VariableSettingForm();
+            //form.MdiParent = this;
+            //form.Show();
+
+            SecurityForm SecurityForm = new SecurityForm();
+            SecurityForm.RedirectToForm = typeof(VariableSettingForm);
+            SecurityForm.SourceMdiParent = this;
+            SecurityForm.ShowDialog();
         }
 
         private void rbDaftarMaklumatPermohonan_Click(object sender, EventArgs e)
@@ -138,18 +143,23 @@ namespace PortableApps
 
         private void rbInitData_Click(object sender, EventArgs e)
         {
-            foreach (Form f in this.MdiChildren)
-            {
-                if (f.GetType() == typeof(InitializeForm))
-                {
-                    f.Close();
-                    //f.Activate();
-                    //return;
-                }
-            }
-            Form form = new InitializeForm();
-            form.MdiParent = this;
-            form.Show();
+            //foreach (Form f in this.MdiChildren)
+            //{
+            //    if (f.GetType() == typeof(InitializeForm))
+            //    {
+            //        f.Close();
+            //        //f.Activate();
+            //        //return;
+            //    }
+            //}
+            //Form form = new InitializeForm();
+            //form.MdiParent = this;
+            //form.Show();
+
+            SecurityForm SecurityForm = new SecurityForm();
+            SecurityForm.RedirectToForm = typeof(InitializeForm);
+            SecurityForm.SourceMdiParent = this;
+            SecurityForm.ShowDialog();
         }
 
         private void rbUpdateServer_Click(object sender, EventArgs e)
@@ -174,16 +184,16 @@ namespace PortableApps
 
         //}
         {
-            foreach (Form f in this.MdiChildren)
-            {
-                if (f.GetType() == typeof(SecurityForm))
-                {
-                    f.Close();
-                    //f.Activate();
-                    //return;
-                }
-            }
-            Form form = new SecurityForm();
+            //foreach (Form f in this.MdiChildren)
+            //{
+            //    if (f.GetType() == typeof(SecurityForm))
+            //    {
+            //        f.Close();
+            //        //f.Activate();
+            //        //return;
+            //    }
+            //}
+            SecurityForm form = new SecurityForm();
             //form.MdiParent = this;
             form.ShowDialog();
             //form.Show();
@@ -193,7 +203,7 @@ namespace PortableApps
 
         #region Functions
 
-        
+
 
         #endregion
 

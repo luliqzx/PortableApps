@@ -185,11 +185,11 @@
             // 
             // rbInitData
             // 
-            this.rbInitData.Image = ((System.Drawing.Image)(resources.GetObject("rbInitData.Image")));
-            this.rbInitData.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.LargeImage")));
+            this.rbInitData.Image = global::PortableApps.Properties.Resources.b_edit;
+            this.rbInitData.LargeImage = global::PortableApps.Properties.Resources.b_edit;
             this.rbInitData.Name = "rbInitData";
             this.rbInitData.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbInitData.SmallImage")));
-            this.rbInitData.Text = "InitializeData";
+            this.rbInitData.Text = "Reset To Default";
             this.rbInitData.Click += new System.EventHandler(this.rbInitData_Click);
             // 
             // rbSetting
@@ -215,12 +215,11 @@
             // 
             // ribbonButton1
             // 
-            this.ribbonButton1.Image = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.Image")));
-            this.ribbonButton1.LargeImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.LargeImage")));
+            this.ribbonButton1.Image = global::PortableApps.Properties.Resources.b_drop;
+            this.ribbonButton1.LargeImage = global::PortableApps.Properties.Resources.b_drop;
             this.ribbonButton1.Name = "ribbonButton1";
-            this.ribbonButton1.SmallImage = ((System.Drawing.Image)(resources.GetObject("ribbonButton1.SmallImage")));
+            this.ribbonButton1.SmallImage = global::PortableApps.Properties.Resources.b_drop;
             this.ribbonButton1.Text = "Close";
-            this.ribbonButton1.TextAlignment = System.Windows.Forms.RibbonItem.RibbonItemTextAlignment.Center;
             this.ribbonButton1.Click += new System.EventHandler(this.ribbonButton1_Click);
             // 
             // statusStrip1
