@@ -108,6 +108,7 @@
             // 
             // rbDaftarMaklumatPermohonan
             // 
+            this.rbDaftarMaklumatPermohonan.CheckOnClick = true;
             this.rbDaftarMaklumatPermohonan.Image = global::PortableApps.Properties.Resources.rz25list_512_1_;
             this.rbDaftarMaklumatPermohonan.LargeImage = global::PortableApps.Properties.Resources.rz25list_512_1_;
             this.rbDaftarMaklumatPermohonan.MinimumSize = new System.Drawing.Size(80, 0);
@@ -120,6 +121,7 @@
             // 
             // rbMaklumatPemohon
             // 
+            this.rbMaklumatPemohon.CheckOnClick = true;
             this.rbMaklumatPemohon.Image = global::PortableApps.Properties.Resources.rz25Policy_Icon2_1_;
             this.rbMaklumatPemohon.LargeImage = global::PortableApps.Properties.Resources.rz25Policy_Icon2_1_;
             this.rbMaklumatPemohon.Name = "rbMaklumatPemohon";
@@ -131,6 +133,7 @@
             // 
             // rbmakkebun
             // 
+            this.rbmakkebun.CheckOnClick = true;
             this.rbmakkebun.Image = global::PortableApps.Properties.Resources.rz25farm_2_filled1600_1_;
             this.rbmakkebun.LargeImage = global::PortableApps.Properties.Resources.rz25farm_2_filled1600_1_;
             this.rbmakkebun.Name = "rbmakkebun";
@@ -140,6 +143,7 @@
             // 
             // rbLawatanPengesahanKebun
             // 
+            this.rbLawatanPengesahanKebun.CheckOnClick = true;
             this.rbLawatanPengesahanKebun.Image = global::PortableApps.Properties.Resources.rz25images;
             this.rbLawatanPengesahanKebun.LargeImage = global::PortableApps.Properties.Resources.rz25images;
             this.rbLawatanPengesahanKebun.MinimumSize = new System.Drawing.Size(120, 0);
