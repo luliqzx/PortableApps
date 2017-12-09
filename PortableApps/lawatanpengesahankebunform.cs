@@ -234,6 +234,8 @@ namespace PortableApps
             lbladdr1.Text = appinfo.addr1;
             lbladdr2.Text = appinfo.addr2;
             lbladdr3.Text = appinfo.addr3;
+
+            lblnegeri.Text = "";
             variables varNegeri = VariablesRepo.GetNegeri("negeri", appinfo.negeri);
             if (varNegeri != null)
             {

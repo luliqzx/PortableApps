@@ -50,6 +50,7 @@
             this.textBox1.PasswordChar = 'x';
             this.textBox1.Size = new System.Drawing.Size(128, 20);
             this.textBox1.TabIndex = 1;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // button1
             // 

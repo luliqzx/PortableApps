@@ -75,7 +75,10 @@ namespace PortableApps
                         (control as TextBox).Clear();
                     else if (control is ComboBox)
                     {
-                        (control as ComboBox).SelectedIndex = -1;
+                        if (control.Name != "comboBox1")
+                        {
+                            (control as ComboBox).SelectedIndex = -1;
+                        }
                     }
                     else if (control is RadioButton)
                     {
@@ -267,6 +270,8 @@ namespace PortableApps
             lbladdr1.Text = appinfo.addr1;
             lbladdr2.Text = appinfo.addr2;
             lbladdr3.Text = appinfo.addr3;
+
+            lblnegeri.Text = "";
             variables varNegeri = VariablesRepo.GetNegeri("negeri", appinfo.negeri);
             if (varNegeri != null)
             {
@@ -878,6 +883,7 @@ namespace PortableApps
                     MessageBox.Show(ex.GetFullMessage());
                 }
             }
+
             BindGrid(page);
 
             btnReset.PerformClick();
@@ -887,6 +893,7 @@ namespace PortableApps
         {
             ClearMakKebunForm();
             id_makkebun = 0;
+            comboBox1.SelectedIndex = 0;
         }
         #endregion
 

@@ -91,11 +91,20 @@ namespace PortableApps.Repo
                 }
             }
 
+            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy("AlreadySyncDisplay");
+
+            if (VariableSetting != null && Convert.ToBoolean(VariableSetting.Value))
+            {
+                operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                whereClause = whereClause + operators + " c.syncdate is null ";
+            }
+
             string qry = string.Format(@"SELECT a.*, IFNULL(b.tarikh_lawat, 'BELUM LAWAT') tarikh_lawat, b.id semak_tapak_id FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
-                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id
+                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id join appinfo c on a.appinfo_id = c.id
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (pageIndex - 1) * pageSize, pageSize);
             string qryCtn = string.Format(@"SELECT COUNT(a.id_makkebun)  FROM MAKKEBUN a LEFT JOIN SEMAK_TAPAK b
-                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id {0}", whereClause);
+                                            ON a.id_makkebun = b.makkebun_id AND a.appinfo_id = b.appinfo_id join appinfo c on a.appinfo_id = c.id {0}", whereClause);
 
             IList<makkebunDTO> lstEnt = sqliteCon.Query<makkebunDTO>(qry, oWhereClause).ToList();
             totalRecords = sqliteCon.Query<int>(qryCtn, oWhereClause).FirstOrDefault();
