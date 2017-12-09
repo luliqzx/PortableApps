@@ -50,6 +50,11 @@ namespace PortableApps
 
         #region Functions
 
+        public void RefreshGrid()
+        {
+            BindGrid(page);
+        }
+
         private void BindingPageSize()
         {
             comboBox1.Items.Clear();
@@ -812,6 +817,12 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (appinfo_id <= 0)
+            {
+                MessageBox.Show("Harap masukan data dari Maklumat Pemohon.");
+                return;
+            }
+
             IList<Control> lstCtrlEmptyCheck = new List<Control>();
             lstCtrlEmptyCheck.Add(txtaddr1);
             lstCtrlEmptyCheck.Add(txtaddr2);

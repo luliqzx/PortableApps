@@ -86,7 +86,7 @@ namespace PortableApps.Repo
             string operators = "";
             if (!object.Equals(null, oWhereClause))
             {
-                if (oWhereClause.appinfo_id > 0)
+                if (oWhereClause.appinfo_id >= 0)
                 {
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
                     whereClause = whereClause + operators + " a.appinfo_id=@appinfo_id ";

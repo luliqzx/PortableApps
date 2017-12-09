@@ -18,6 +18,7 @@ namespace PortableApps
         }
 
         public Type RedirectToForm { get; set; }
+
         public Form SourceMdiParent { get; set; }
 
         private void button1_Click(object sender, EventArgs e)

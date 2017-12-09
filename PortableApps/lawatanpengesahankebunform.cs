@@ -337,6 +337,13 @@ namespace PortableApps
         private void button1_Click(object sender, EventArgs e)
         {
             bool IsNew = false;
+
+            if (semak_tapak_id == null || semak_tapak_id <= 0)
+            {
+                MessageBox.Show("Harap masukkan data dari Makluma Kebun");
+                return;
+            }
+
             semak_tapak semak_tapak = SemakTapakRepo.GetBy((int)semak_tapak_id);
             if (semak_tapak == null)
             {

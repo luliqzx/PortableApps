@@ -59,9 +59,10 @@ namespace PortableApps
             {
                 if (f.GetType() == typeof(makkebunform))
                 {
-                    f.Close();
-                    //f.Activate();
-                    //return;
+                    //f.Close();
+                    f.Activate();
+                    (f as makkebunform).RefreshGrid();
+                    return;
                 }
             }
             Form form = new makkebunform();

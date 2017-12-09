@@ -271,9 +271,9 @@ namespace PortableApps
             LoadTBangsa();
             LoadParlimen();
 
-            dateTimePicker1.Format = DateTimePickerFormat.Custom;
-            dateTimePicker1.CustomFormat = " ";
-            dateTimePicker1.Checked = true;
+            txttarikpermohonan.Format = DateTimePickerFormat.Custom;
+            txttarikpermohonan.CustomFormat = " ";
+            txttarikpermohonan.Checked = true;
             //VariableSetting varPageSize = VariableSettingRepo.GetBy("PageSize");
             //if (varPageSize == null)
             //{
@@ -695,6 +695,12 @@ namespace PortableApps
             pappinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
             pappinfo.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
             pappinfo.parlimen = Convert.ToInt32(cbparlimen.SelectedValue == null ? 0 : cbparlimen.SelectedValue);
+            pappinfo.icno = txticno.Text;
+            if (txttarikpermohonan.Checked)
+            {
+                pappinfo.appdate = txttarikpermohonan.Text;
+            }
+            pappinfo.nolesen = txtnolesen.Text;
 
             int rowcount = 0;
             IList<appinfoDTO> lstEnt = AppInfoRepo.PagedListDTO(pageIndex, pagesize, sidx, sord, out rowcount, pappinfo);
@@ -716,5 +722,7 @@ namespace PortableApps
         }
 
         #endregion
+
+        
     }
 }

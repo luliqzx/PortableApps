@@ -204,6 +204,21 @@ namespace PortableApps.Repo
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
                     whereClause = whereClause + operators + " parlimen =@parlimen ";
                 }
+                if (!string.IsNullOrEmpty(oWhereClause.icno))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " icno like '%'||@icno||'%'   ";
+                }
+                if (!string.IsNullOrEmpty(oWhereClause.nolesen))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " nolesen like '%'||@nolesen||'%'   ";
+                }
+                if (oWhereClause.appdate != null && !string.IsNullOrEmpty(oWhereClause.appdate.Trim()))
+                {
+                    operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                    whereClause = whereClause + operators + " appdate =@appdate   ";
+                }
             }
 
             operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
