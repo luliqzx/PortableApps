@@ -56,6 +56,8 @@ namespace PortableApps.Repo
             int i = 0;
             string qry = @"DELETE from makkebun  WHERE id_makkebun=@id_makkebun";
             i = sqliteCon.Execute(qry, new { id_makkebun = ID });
+            qry = @"DELETE from semak_tapak  WHERE makkebun_id=@id_makkebun";
+            i = i + sqliteCon.Execute(qry, new { id_makkebun = ID });
             return i;
         }
 

@@ -548,11 +548,15 @@ namespace PortableApps
                 else if (e.ColumnIndex == dgvMakKebun.Columns["Delete"].Index)
                 {
                     var confirmResult = MessageBox.Show("Apakah anda yakin menghapus data [" + dgvMakKebun["nolot", e.RowIndex].Value + "] ?",
-                                     "Konfirmasi Hapus Data!!",
+                                     "Konfirmasi Hapus [" + dgvMakKebun["nolot", e.RowIndex].Value + "] !!",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        MessageBox.Show("Currently event not use");
+                        int iDelete = MakkebunRepo.Delete(pid_makkebun);
+                        if (iDelete > 0)
+                        {
+                            MessageBox.Show("Data berhasil dihapus. [" + dgvMakKebun["nolot", e.RowIndex].Value + "]");
+                        }
                         BindGrid(page);
                         // If 'Yes', do something here.
                     }
