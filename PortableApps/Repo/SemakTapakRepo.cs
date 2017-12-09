@@ -16,9 +16,9 @@ namespace PortableApps.Repo
         semak_tapak GetLastSemakTapakBy(int id, int? newmakkebun_id);
         int UpdateSync(semak_tapak semak_tapakSqlite);
     }
-    public class SemakTapakRepo : CommonRepo, ISemakTapakRepo
+    public class SemakTapakRepo : DefaultRepo<semak_tapak, int>, ISemakTapakRepo
     {
-        public int Create(semak_tapak ent)
+        public override int Create(semak_tapak ent)
         {
             int i = 0;
             string qry = @"INSERT INTO semak_tapak (
@@ -31,7 +31,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(semak_tapak ent)
+        public override int Edit(semak_tapak ent)
         {
             int i = 0;
             string qry = @"UPDATE SEMAK_TAPAK SET id=@id,	makkebun_id=@makkebun_id,	appinfo_id=@appinfo_id,	kaedah=@kaedah,	bantuan=@bantuan,	jenis_tanah=@jenis_tanah,	kecerunan=@kecerunan,	jentera=@jentera,	ganoderma=@ganoderma,	peratusan_serangan=@peratusan_serangan,	umr_pokok_tua=@umr_pokok_tua,	hasil=@hasil,	bil_pokok_tua=@bil_pokok_tua,	tarikh_lawat=@tarikh_lawat,	ptk_lawat=@ptk_lawat,	luas=@luas,	catatan=@catatan,	created=@created,	createdby=@createdby,	lampiran=@lampiran
@@ -40,7 +40,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(int ID)
+        public override int Delete(int ID)
         {
             int i = 0;
             string qry = @"DELETE from semak_tapak  WHERE id=@id";
@@ -48,21 +48,21 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<semak_tapak> GetAll()
+        public override IList<semak_tapak> GetAll()
         {
             string qry = @"SELECT * FROM semak_tapak";
             IList<semak_tapak> lstEnt = sqliteCon.Query<semak_tapak>(qry, null).ToList();
             return lstEnt;
         }
 
-        public semak_tapak GetBy(int ID)
+        public override semak_tapak GetBy(int ID)
         {
             string qry = @"SELECT * FROM semak_tapak WHERE id=@id";
             semak_tapak ent = sqliteCon.Query<semak_tapak>(qry, new { id = ID }).FirstOrDefault();
             return ent;
         }
 
-        public IList<semak_tapak> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, semak_tapak oWhareClause = null)
+        public override IList<semak_tapak> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, semak_tapak oWhareClause = null)
         {
             throw new NotImplementedException();
         }

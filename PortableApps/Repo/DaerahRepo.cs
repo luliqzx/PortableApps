@@ -12,9 +12,9 @@ namespace PortableApps.Repo
         IList<tdaerah> GetDaerahBy(string negeri);
         tdaerah GetBy(string kod_daerah);
     }
-    public class DaerahRepo : CommonRepo, IDaerahRepo
+    public class DaerahRepo : DefaultRepo<tdaerah, int>, IDaerahRepo
     {
-        public int Create(tdaerah ent)
+        public override int Create(tdaerah ent)
         {
             int i = 0;
             string qry = @"INSERT INTO daerah (id, kod_negeri, kod_daerah, daerah, daerah_spe) 
@@ -23,7 +23,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(tdaerah ent)
+        public override int Edit(tdaerah ent)
         {
             int i = 0;
             string qry = @"";
@@ -31,7 +31,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(int ID)
+        public override int Delete(int ID)
         {
             int i = 0;
             string qry = @"";
@@ -39,21 +39,21 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<tdaerah> GetAll()
+        public override IList<tdaerah> GetAll()
         {
             string qry = @"SELECT * FROM daerah";
             IList<tdaerah> lstEnt = sqliteCon.Query<tdaerah>(qry, null).ToList();
             return lstEnt;
         }
 
-        public tdaerah GetBy(int ID)
+        public override tdaerah GetBy(int ID)
         {
             string qry = @"SELECT * FROM daerah WHERE id=@ID";
             tdaerah ent = sqliteCon.Query<tdaerah>(qry, new { ID }).FirstOrDefault();
             return ent;
         }
 
-        public IList<tdaerah> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, tdaerah whareClause = null)
+        public override IList<tdaerah> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, tdaerah whareClause = null)
         {
             //int PageSize = page * rows;
             string qry = @"SELECT * FROM daerah LIMIT @page, @PageSize ";

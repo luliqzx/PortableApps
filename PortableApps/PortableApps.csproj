@@ -158,6 +158,7 @@
     <Compile Include="Repo\BangsaRepo.cs" />
     <Compile Include="Repo\DaerahRepo.cs" />
     <Compile Include="Repo\CSToDBRepo.cs" />
+    <Compile Include="Repo\DefaultRepo.cs" />
     <Compile Include="Repo\IBaseTRepo.cs" />
     <Compile Include="Repo\CommonRepo.cs" />
     <Compile Include="Repo\MakkebunRepo.cs" />

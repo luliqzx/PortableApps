@@ -13,5 +13,7 @@ namespace PortableApps.Repo
         IList<T> GetAll();
         T GetBy(TID ID);
         IList<T> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, T oWhereClause);
+        void OpenMySQLDB();
+        void CloseMySQLDB();
     }
 }

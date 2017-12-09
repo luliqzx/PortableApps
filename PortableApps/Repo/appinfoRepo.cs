@@ -18,16 +18,15 @@ namespace PortableApps.Repo
         int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null);
         int UpdateSync(appinfo appinfoSqlite);
         IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted);
-        void OpenMySQLDB();
-        void CloseMySQLDB();
+
         IList<appinfo> GetAllWithoutSync();
         IList<appinfo> GetListMySQL(int page, int pagesize, string sidx, string sord, appinfo oWhereClause, out int rowcount);
     }
-    public class AppInfoRepo : CommonRepo, IAppInfoRepo
+    public class AppInfoRepo : DefaultRepo<appinfo, int>, IAppInfoRepo
     {
         ISqLiteBaseRepository SqLiteBaseRepository = new SqLiteBaseRepository();
 
-        public int Create(appinfo ent)
+        public override int Create(appinfo ent)
         {
             int i = 0;
             //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
@@ -55,7 +54,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(appinfo ent)
+        public override int Edit(appinfo ent)
         {
             int i = 0;
             string qry = @"UPDATE appinfo SET
@@ -99,7 +98,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(int ID)
+        public override int Delete(int ID)
         {
             int i = 0;
             string qry = @"DELETE FROM appinfo  WHERE id=@id";
@@ -110,7 +109,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<appinfo> GetAll()
+        public override IList<appinfo> GetAll()
         {
             string qry = @"SELECT * FROM appinfo";
             IList<appinfo> lst = new List<appinfo>();
@@ -121,7 +120,7 @@ namespace PortableApps.Repo
             return lst;
         }
 
-        public appinfo GetBy(int ID)
+        public override appinfo GetBy(int ID)
         {
             string qry = @"SELECT * FROM appinfo WHERE ID=@ID";
             appinfo appinfo = null;
@@ -132,7 +131,7 @@ namespace PortableApps.Repo
             return appinfo;
         }
 
-        public IList<appinfo> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null)
+        public override IList<appinfo> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null)
         {
             string whereClause = "";
             string operators = "";
@@ -285,22 +284,6 @@ namespace PortableApps.Repo
             //    mysqlCon.Open();
             //}
             return mysqlCon.BeginTransaction(isoLev);
-        }
-
-        public void OpenMySQLDB()
-        {
-            if (mysqlCon.State != ConnectionState.Open)
-            {
-                mysqlCon.Open();
-            }
-        }
-
-        public void CloseMySQLDB()
-        {
-            if (mysqlCon.State != ConnectionState.Closed)
-            {
-                mysqlCon.Close();
-            }
         }
 
         public IList<appinfo> GetAllWithoutSync()

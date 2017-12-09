@@ -176,7 +176,7 @@ namespace PortableApps.Common
             for (int i = 0; i < lstAppInfoToSync.Count; i++)
             {
                 appinfo appinfoSqlite = lstAppInfoToSync[i];
-                AppInfoRepo.OpenMySQLDB();
+                //AppInfoRepo.OpenMySQLDB();
 
                 using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
                 {
@@ -222,9 +222,68 @@ namespace PortableApps.Common
                     }
                     sqlTrans.Commit();
                 }
-                AppInfoRepo.CloseMySQLDB();
+                //AppInfoRepo.CloseMySQLDB();
             }
         }
+
+        public static void SyncToServerForMakKebun()
+        {
+            IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+            IMakkebunRepo MakkebunRepo = new MakkebunRepo();
+            ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
+
+            IList<makkebun> lstMakKebun = MakkebunRepo.GetAllToSync();
+            //for (int i = 0; i < lstMakKebun.Count; i++)
+            //{
+            //    makkebun makkebunsqlite = lstMakKebun[i];
+            //    using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
+            //    {
+            //        string newrefno = GenerateRefNo(makkebunsqlite.negeri, null);
+            //        makkebunsqlite.newrefno = newrefno;
+            //        // Insert To MySQL Server - AppInfo
+            //        if (AppInfoRepo.CreateMySQL(makkebunsqlite, sqlTrans) > 0)
+            //        {
+            //            // Update data local sqlite
+            //            makkebunsqlite.syncdate = DateTime.Now;
+            //            AppInfoRepo.UpdateSync(makkebunsqlite);
+
+            //            IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(makkebunsqlite.id);
+            //            for (int j = 0; j < lstMakkebunSqlite.Count; j++)
+            //            {
+            //                makkebun makkebunSqlite = lstMakkebunSqlite[j];
+            //                // INSERT MAKKEBUN TO MYSQL
+            //                int iSaveMakkebun = MakkebunRepo.CreateMySQL(makkebunSqlite, sqlTrans);
+            //                if (iSaveMakkebun > 0)
+            //                {
+            //                    makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(makkebunsqlite.id);
+            //                    makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
+            //                    makkebunSqlite.syncdate = DateTime.Now;
+            //                    // UPDATE MAKKEBUN SQLITE
+            //                    MakkebunRepo.UpdateSync(makkebunSqlite);
+
+            //                    // GET LAWATAN SQLITE DATA
+            //                    semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(makkebunsqlite.id, makkebunSqlite.id_makkebun);
+            //                    semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
+
+            //                    // INSERT LAWATAN TO MYSQL
+            //                    int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
+            //                    if (iSaveSemakTapak > 0)
+            //                    {
+            //                        semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(makkebunsqlite.id, semak_tapakSqlite.newmakkebun_id);
+            //                        semak_tapakSqlite.newid = lastsemak_tapak.id;
+            //                        semak_tapakSqlite.syncdate = DateTime.Now;
+            //                        // UPDATE MAKKEBUN SQLITE
+            //                        int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
+            //                    }
+            //                }
+            //            }
+            //        }
+            //        sqlTrans.Commit();
+            //    }
+            //    AppInfoRepo.CloseMySQLDB();
+            //}
+        }
+
 
         public static string GenerateRefNo(string negeri, IDbTransaction mySqlTrans)
         {

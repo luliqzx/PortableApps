@@ -10,9 +10,9 @@ namespace PortableApps.Repo
     public interface ICSToDBRepo : IBaseTRepo<CSToDB, string>
     {
     }
-    public class CSToDBRepo : CommonRepo, ICSToDBRepo
+    public class CSToDBRepo : DefaultRepo<CSToDB, string>, ICSToDBRepo
     {
-        public int Create(CSToDB ent)
+        public override int Create(CSToDB ent)
         {
             int i = 0;
             string qry = @"INSERT INTO CSToDB (CSName	,ConnString) VALUES (@CSName, @ConnString) ";
@@ -20,7 +20,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(CSToDB ent)
+        public override int Edit(CSToDB ent)
         {
             int i = 0;
             string qry = @"UPDATE CSToDB SET CSName=@CSName,	ConnString=@ConnString WHERE CSName=@CSName";
@@ -28,7 +28,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(string ID)
+        public override int Delete(string ID)
         {
             int i = 0;
             string qry = @"DELETE from CSToDB  WHERE CSName=@CSName";
@@ -36,21 +36,21 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<CSToDB> GetAll()
+        public override IList<CSToDB> GetAll()
         {
             string qry = @"SELECT * FROM CSToDB";
             IList<CSToDB> lstEnt = sqliteCon.Query<CSToDB>(qry, null).ToList();
             return lstEnt;
         }
 
-        public CSToDB GetBy(string ID)
+        public override CSToDB GetBy(string ID)
         {
             string qry = @"SELECT * FROM CSToDB WHERE CSName=@CSName";
             CSToDB ent = sqliteCon.Query<CSToDB>(qry, new { CSName = ID }).FirstOrDefault();
             return ent;
         }
 
-        public IList<CSToDB> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, CSToDB whareClause = null)
+        public override IList<CSToDB> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, CSToDB whareClause = null)
         {
             //int PageSize = page * rows;
             string qry = @"SELECT * FROM CSToDB LIMIT @page, @PageSize ";

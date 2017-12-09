@@ -11,36 +11,36 @@ namespace PortableApps.Repo
     {
         void SyncBangsaFromAppInfoMySQL();
     }
-    public class BangsaRepo : CommonRepo, IBangsaRepo
+    public class BangsaRepo : DefaultRepo<TBangsa, string>, IBangsaRepo
     {
-        public int Create(TBangsa ent)
+        public override int Create(TBangsa ent)
         {
             throw new NotImplementedException();
         }
 
-        public int Edit(TBangsa ent)
+        public override int Edit(TBangsa ent)
         {
             throw new NotImplementedException();
         }
 
-        public int Delete(string ID)
+        public override int Delete(string ID)
         {
             throw new NotImplementedException();
         }
 
-        public IList<TBangsa> GetAll()
+        public override  IList<TBangsa> GetAll()
         {
             string qry = @"SELECT * FROM TBangsa";
             IList<TBangsa> lstBangsa = sqliteCon.Query<TBangsa>(qry, null).ToList();
             return lstBangsa;
         }
 
-        public TBangsa GetBy(string ID)
+        public override TBangsa GetBy(string ID)
         {
             throw new NotImplementedException();
         }
 
-        public IList<TBangsa> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, TBangsa oWhereClause)
+        public override IList<TBangsa> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, TBangsa oWhereClause)
         {
             throw new NotImplementedException();
         }

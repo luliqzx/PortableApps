@@ -11,11 +11,11 @@ namespace PortableApps.Repo
     {
         int GetParlimenIDBy(string negeri);
     }
-    public class ParlimenRepo : CommonRepo, IParlimenRepo
+    public class ParlimenRepo : DefaultRepo<parlimen, int>, IParlimenRepo
     {
 
 
-        public int Create(parlimen ent)
+        public override int Create(parlimen ent)
         {
             int i = 0;
             string qry = @"INSERT INTO parlimen (id	,negeri,	kawasan) VALUES (@id	,@negeri,	@kawasan) ";
@@ -23,7 +23,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(parlimen ent)
+        public override int Edit(parlimen ent)
         {
             int i = 0;
             string qry = @"UPDATE parlimen SET id=@id,	negeri=@negeri,	kawasan=@kawasan WHERE id=@id";
@@ -31,7 +31,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(int ID)
+        public override int Delete(int ID)
         {
             int i = 0;
             string qry = @"DELETE from parlimen  WHERE id=@id";
@@ -39,14 +39,14 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<parlimen> GetAll()
+        public override IList<parlimen> GetAll()
         {
             string qry = @"SELECT * FROM parlimen";
             IList<parlimen> lstEnt = sqliteCon.Query<parlimen>(qry, null).ToList();
             return lstEnt;
         }
 
-        public parlimen GetBy(int ID)
+        public override parlimen GetBy(int ID)
         {
             string qry = @"SELECT * FROM parlimen WHERE id=@id";
             parlimen ent = sqliteCon.Query<parlimen>(qry, new { id = ID }).FirstOrDefault();
@@ -54,7 +54,7 @@ namespace PortableApps.Repo
         }
 
 
-        public IList<parlimen> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, parlimen whareClause = null)
+        public override IList<parlimen> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, parlimen whareClause = null)
         {
             throw new NotImplementedException();
         }

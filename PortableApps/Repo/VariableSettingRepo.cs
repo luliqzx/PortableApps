@@ -10,9 +10,9 @@ namespace PortableApps.Repo
     {
         void RecreateVariableSettingTable();
     }
-    public class VariableSettingRepo : CommonRepo, IVariableSettingRepo
+    public class VariableSettingRepo : DefaultRepo<VariableSetting, string>, IVariableSettingRepo
     {
-        public int Create(VariableSetting ent)
+        public override int Create(VariableSetting ent)
         {
             int i = 0;
             string qry = @"INSERT INTO VariableSetting (Key, Value, Description, CanModify, IsEncrypt) VALUES (@Key, @Value, @Description, @CanModify, @IsEncrypt) ";
@@ -20,7 +20,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(VariableSetting ent)
+        public override int Edit(VariableSetting ent)
         {
             int i = 0;
             string qry = @"UPDATE VariableSetting SET Value=@Value, Description=@Description, CanModify=@CanModify, IsEncrypt=@IsEncrypt
@@ -29,7 +29,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(string ID)
+        public override int Delete(string ID)
         {
             int i = 0;
             string qry = @"DELETE FROM VariableSetting WHERE Key=@Key";
@@ -37,19 +37,19 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<VariableSetting> GetAll()
+        public override IList<VariableSetting> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public VariableSetting GetBy(string ID)
+        public override VariableSetting GetBy(string ID)
         {
             string qry = @"SELECT * FROM VariableSetting WHERE KEY=@Key";
             VariableSetting VariableSetting = sqliteCon.Query<VariableSetting>(qry, new { Key = ID }).FirstOrDefault();
             return VariableSetting;
         }
 
-        public IList<VariableSetting> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, VariableSetting oWhereClause)
+        public override IList<VariableSetting> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, VariableSetting oWhereClause)
         {
             string whereClause = "";
             string operators = "";

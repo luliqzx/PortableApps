@@ -10,7 +10,7 @@ using System.Data;
 
 namespace PortableApps.Repo
 {
-    public class CommonRepo
+    public class CommonRepo 
     {
         #region SQLite
         public string DbFile

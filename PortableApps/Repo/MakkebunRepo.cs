@@ -17,10 +17,11 @@ namespace PortableApps.Repo
         int CreateMySQL(makkebun makkebunSqlite, IDbTransaction sqlTrans = null);
         makkebun GetLastMakkebunBy(int id);
         int UpdateSync(makkebun makkebunSqlite);
+        IList<makkebun> GetAllToSync();
     }
-    public class MakkebunRepo : CommonRepo, IMakkebunRepo
+    public class MakkebunRepo : DefaultRepo<makkebun, int>, IMakkebunRepo
     {
-        public int Create(makkebun ent)
+        public override int Create(makkebun ent)
         {
             int i = 0;
             string qry = @"INSERT INTO makkebun (
@@ -36,7 +37,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Edit(makkebun ent)
+        public override int Edit(makkebun ent)
         {
             int i = 0;
             string qry = @"UPDATE makkebun SET 
@@ -50,7 +51,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public int Delete(int ID)
+        public override int Delete(int ID)
         {
             int i = 0;
             string qry = @"DELETE from makkebun  WHERE id_makkebun=@id_makkebun";
@@ -58,21 +59,21 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public IList<makkebun> GetAll()
+        public override IList<makkebun> GetAll()
         {
             string qry = @"SELECT * FROM makkebun";
             IList<makkebun> lstEnt = sqliteCon.Query<makkebun>(qry, null).ToList();
             return lstEnt;
         }
 
-        public makkebun GetBy(int ID)
+        public override makkebun GetBy(int ID)
         {
             string qry = @"SELECT * FROM makkebun WHERE id_makkebun=@id_makkebun";
             makkebun ent = sqliteCon.Query<makkebun>(qry, new { id_makkebun = ID }).FirstOrDefault();
             return ent;
         }
 
-        public IList<makkebun> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, makkebun whareClause = null)
+        public override IList<makkebun> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, makkebun whareClause = null)
         {
             throw new NotImplementedException();
         }
@@ -146,6 +147,13 @@ namespace PortableApps.Repo
                                  WHERE id_makkebun=@id_makkebun and appinfo_id=@appinfo_id";
             i = sqliteCon.Execute(qry, makkebunSqlite);
             return i;
+        }
+
+        public IList<makkebun> GetAllToSync()
+        {
+            string qry = @"SELECT * FROM makkebun WHERE syncdate is null";
+            IList<makkebun> lstEnt = sqliteCon.Query<makkebun>(qry, null).ToList();
+            return lstEnt;
         }
     }
 }
