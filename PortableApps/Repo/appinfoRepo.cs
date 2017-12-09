@@ -17,7 +17,6 @@ namespace PortableApps.Repo
         int CreateMySQL(appinfo ent, IDbTransaction mySqlTrans = null);
         int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null);
         int UpdateSync(appinfo appinfoSqlite);
-        IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted);
 
         IList<appinfo> GetAllWithoutSync();
         IList<appinfo> GetListMySQL(int page, int pagesize, string sidx, string sord, appinfo oWhereClause, out int rowcount);
@@ -209,6 +208,15 @@ namespace PortableApps.Repo
             operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
             whereClause = whereClause + operators + " type COLLATE NOCASE ='Negeri' ";
 
+            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy("AlreadySyncDisplay");
+
+            if (VariableSetting != null && Convert.ToBoolean(VariableSetting.Value))
+            {
+                operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
+                whereClause = whereClause + operators + " syncdate is null ";
+            }
+
             string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id
                                             -- , keputusan 
                                             FROM appinfo join variables
@@ -275,15 +283,6 @@ namespace PortableApps.Repo
                 i = cnn.Execute(qry, appinfoSqlite);
             }
             return i;
-        }
-
-        public IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted)
-        {
-            //if (mysqlCon.State != ConnectionState.Open)
-            //{
-            //    mysqlCon.Open();
-            //}
-            return mysqlCon.BeginTransaction(isoLev);
         }
 
         public IList<appinfo> GetAllWithoutSync()

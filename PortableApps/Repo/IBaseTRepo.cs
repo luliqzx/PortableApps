@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -15,5 +16,6 @@ namespace PortableApps.Repo
         IList<T> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, T oWhereClause);
         void OpenMySQLDB();
         void CloseMySQLDB();
+        IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted);
     }
 }

@@ -69,7 +69,7 @@ namespace PortableApps
             {
                 if (f.GetType() == RedirectToForm)
                 {
-                    ToOpenForm = f;
+                    //ToOpenForm = f;
                     f.Close();
                     break;
                     //f.Activate();

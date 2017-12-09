@@ -123,7 +123,6 @@ namespace PortableApps
             cbnegeri.SelectedIndex = -1;
         }
 
-
         #endregion
 
         #region Constructor

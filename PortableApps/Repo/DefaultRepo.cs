@@ -49,10 +49,14 @@ namespace PortableApps.Repo
             }
         }
 
-
         public virtual IList<T> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, T oWhereClause)
         {
             throw new NotImplementedException();
+        }
+
+        public virtual IDbTransaction MySQLBeginTransaction(IsolationLevel isoLev = IsolationLevel.ReadCommitted)
+        {
+            return mysqlCon.BeginTransaction(isoLev);
         }
     }
 }

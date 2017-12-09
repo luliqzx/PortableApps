@@ -15,7 +15,7 @@ namespace PortableApps.Repo
         IList<makkebunDTO> GetAllAppInfoBy(int appinfo_id);
         IList<makkebun> GetAllByAppInfo(int id);
         int CreateMySQL(makkebun makkebunSqlite, IDbTransaction sqlTrans = null);
-        makkebun GetLastMakkebunBy(int id);
+        makkebun GetLastMakkebunBy(int appinfo_id);
         int UpdateSync(makkebun makkebunSqlite);
         IList<makkebun> GetAllToSync();
     }

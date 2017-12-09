@@ -13,7 +13,7 @@ namespace PortableApps.Repo
         semak_tapak GetBy(int appinfo_id, int makkebun_id, int? semak_tapak_id);
         semak_tapak GetBy(int appinfo_id, int makkebun_id);
         int CreateMySQL(semak_tapak semak_tapakSqlite, IDbTransaction sqlTrans = null);
-        semak_tapak GetLastSemakTapakBy(int id, int? newmakkebun_id);
+        semak_tapak GetLastSemakTapakBy(int appinfo_id, int? newmakkebun_id);
         int UpdateSync(semak_tapak semak_tapakSqlite);
     }
     public class SemakTapakRepo : DefaultRepo<semak_tapak, int>, ISemakTapakRepo
