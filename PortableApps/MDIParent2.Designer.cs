@@ -108,8 +108,8 @@
             // 
             // rbDaftarMaklumatPermohonan
             // 
-            this.rbDaftarMaklumatPermohonan.Image = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.Image")));
-            this.rbDaftarMaklumatPermohonan.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.LargeImage")));
+            this.rbDaftarMaklumatPermohonan.Image = global::PortableApps.Properties.Resources.rz25list_512_1_;
+            this.rbDaftarMaklumatPermohonan.LargeImage = global::PortableApps.Properties.Resources.rz25list_512_1_;
             this.rbDaftarMaklumatPermohonan.MinimumSize = new System.Drawing.Size(80, 0);
             this.rbDaftarMaklumatPermohonan.Name = "rbDaftarMaklumatPermohonan";
             this.rbDaftarMaklumatPermohonan.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbDaftarMaklumatPermohonan.SmallImage")));
@@ -120,8 +120,8 @@
             // 
             // rbMaklumatPemohon
             // 
-            this.rbMaklumatPemohon.Image = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.Image")));
-            this.rbMaklumatPemohon.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.LargeImage")));
+            this.rbMaklumatPemohon.Image = global::PortableApps.Properties.Resources.rz25Policy_Icon2_1_;
+            this.rbMaklumatPemohon.LargeImage = global::PortableApps.Properties.Resources.rz25Policy_Icon2_1_;
             this.rbMaklumatPemohon.Name = "rbMaklumatPemohon";
             this.rbMaklumatPemohon.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbMaklumatPemohon.SmallImage")));
             this.rbMaklumatPemohon.Text = "Maklumat Pemohon";
@@ -131,8 +131,8 @@
             // 
             // rbmakkebun
             // 
-            this.rbmakkebun.Image = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.Image")));
-            this.rbmakkebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.LargeImage")));
+            this.rbmakkebun.Image = global::PortableApps.Properties.Resources.rz25farm_2_filled1600_1_;
+            this.rbmakkebun.LargeImage = global::PortableApps.Properties.Resources.rz25farm_2_filled1600_1_;
             this.rbmakkebun.Name = "rbmakkebun";
             this.rbmakkebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbmakkebun.SmallImage")));
             this.rbmakkebun.Text = "Maklumat Kebun";
@@ -140,8 +140,8 @@
             // 
             // rbLawatanPengesahanKebun
             // 
-            this.rbLawatanPengesahanKebun.Image = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.Image")));
-            this.rbLawatanPengesahanKebun.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.LargeImage")));
+            this.rbLawatanPengesahanKebun.Image = global::PortableApps.Properties.Resources.rz25images;
+            this.rbLawatanPengesahanKebun.LargeImage = global::PortableApps.Properties.Resources.rz25images;
             this.rbLawatanPengesahanKebun.MinimumSize = new System.Drawing.Size(120, 0);
             this.rbLawatanPengesahanKebun.Name = "rbLawatanPengesahanKebun";
             this.rbLawatanPengesahanKebun.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbLawatanPengesahanKebun.SmallImage")));
@@ -163,8 +163,8 @@
             // 
             // rbUpdateServer
             // 
-            this.rbUpdateServer.Image = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.Image")));
-            this.rbUpdateServer.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.LargeImage")));
+            this.rbUpdateServer.Image = global::PortableApps.Properties.Resources.rz25sync_512;
+            this.rbUpdateServer.LargeImage = global::PortableApps.Properties.Resources.rz25sync_512;
             this.rbUpdateServer.Name = "rbUpdateServer";
             this.rbUpdateServer.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbUpdateServer.SmallImage")));
             this.rbUpdateServer.Text = "Update Server";
@@ -194,8 +194,8 @@
             // 
             // rbSetting
             // 
-            this.rbSetting.Image = ((System.Drawing.Image)(resources.GetObject("rbSetting.Image")));
-            this.rbSetting.LargeImage = ((System.Drawing.Image)(resources.GetObject("rbSetting.LargeImage")));
+            this.rbSetting.Image = global::PortableApps.Properties.Resources.rz25setting;
+            this.rbSetting.LargeImage = global::PortableApps.Properties.Resources.rz25setting;
             this.rbSetting.Name = "rbSetting";
             this.rbSetting.SmallImage = ((System.Drawing.Image)(resources.GetObject("rbSetting.SmallImage")));
             this.rbSetting.Text = "Setting";
@@ -261,7 +261,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MDIParent2";
-            this.Text = "TSSPK";
+            this.Text = "Sistem Pengurusan Skim Tanam Semula Sawit Pekebun Kecil (TSSPK)";
             this.Load += new System.EventHandler(this.MDIParent2_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

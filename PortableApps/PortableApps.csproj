@@ -292,6 +292,12 @@
     <Content Include="Resources\add.png" />
     <Content Include="Resources\mpob_small.png.ico" />
     <Content Include="Resources\paging.PNG" />
+    <Content Include="Resources\rz24setting.png" />
+    <None Include="Resources\rz25setting.png" />
+    <None Include="Resources\rz25list-512[1].png" />
+    <None Include="Resources\rz25Policy_Icon2[1].png" />
+    <None Include="Resources\rz25farm_2_filled1600[1].png" />
+    <None Include="Resources\rz25images.png" />
     <Content Include="Resources\rz25sync-512.png" />
     <None Include="Resources\b_add.png" />
     <Content Include="Resources\b_drop.png" />
