@@ -797,7 +797,6 @@ namespace PortableApps
             sidx = "id_makkebun";
             sord = "ASC";
             BindGrid(page);
-            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
 
             LoadNegeri();
             LoadParlimen();
@@ -926,6 +925,7 @@ namespace PortableApps
             this.rowcount = rowcount;
             dgvMakKebun.DataSource = lstEnt;
             this.PopulatePager(rowcount, pageIndex);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
         }
 
         #endregion

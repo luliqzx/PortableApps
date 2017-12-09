@@ -529,8 +529,28 @@ namespace PortableApps
 
                 if (e.ColumnIndex == dgvMakPer.Columns["Delete"].Index)
                 {
-                    MessageBox.Show("Currently event not use");
-                    return;
+                    int appid = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
+                    string refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
+                    var confirmResult = MessageBox.Show("Apakah anda yakin menghapus data ini [" + refno + "] ??",
+                                     "Konfirmasi Hapus [" + appid + "] !!",
+                                     MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        // If 'Yes', do something here.
+                        int iDelete = AppInfoRepo.Delete(appid);
+                        if (iDelete > 0)
+                        {
+                            MessageBox.Show("Data berhasil dihapus. [" + refno + "]");
+                        }
+                        BindGrid(page);
+                    }
+                    else
+                    {
+                        // If 'No', do something here.
+                    }
+
+                    //MessageBox.Show("Currently event not use");
+                    //return;
                 }
 
                 if (e.ColumnIndex == dgvMakPer.Columns["refno"].Index)
@@ -681,6 +701,8 @@ namespace PortableApps
             this.rowcount = rowcount;
             dgvMakPer.DataSource = lstEnt;
             this.PopulatePager(rowcount, pageIndex);
+            lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
+
         }
 
         #endregion

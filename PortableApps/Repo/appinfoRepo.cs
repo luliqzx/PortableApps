@@ -101,10 +101,11 @@ namespace PortableApps.Repo
         {
             int i = 0;
             string qry = @"DELETE FROM appinfo  WHERE id=@id";
-            using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
-            {
-                i = cnn.Execute(qry, ID);
-            }
+            i = sqliteCon.Execute(qry, new { id = ID });
+            qry = @"DELETE FROM makkebun  WHERE appinfo_id=@id";
+            i = i + sqliteCon.Execute(qry, new { id = ID });
+            qry = @"DELETE FROM semak_tapak  WHERE appinfo_id=@id";
+            i = i + sqliteCon.Execute(qry, new { id = ID });
             return i;
         }
 
