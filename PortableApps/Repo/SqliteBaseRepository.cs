@@ -1476,8 +1476,8 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                             --, ('keySize', '256','', 0, 0)
                             ('Status', 'Development','', 0, 0)
                             , ('UserKeyIn', 'System','', 0, 0)
-                            , ('MySQLConn', '','Connection To MySQL Server', 1, 1)
-                            , ('HiddenDataSync', 'true','Hidden Data Sync', 1, 0)
+                            , ('MySQLConn', '','Connection To MySQL Server', 0, 1)
+                            , ('HiddenDataSync', 'true','Hidden Data Sync', 0, 0)
                     ";
                 #endregion
                 cmd.CommandText = qry;

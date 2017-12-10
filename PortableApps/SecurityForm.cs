@@ -30,6 +30,10 @@ namespace PortableApps
                     try
                     {
                         WFUtils.SyncToServer();
+                        MessageBox.Show("Sinkronisasi data dengan Server selesai.");
+
+                        string directory = AppDomain.CurrentDomain.BaseDirectory + string.Format(@"\Logs\AppLogs\{0}\", DateTime.Now.ToString("MM.yyyy"));
+                        System.Diagnostics.Process.Start(directory);
                     }
                     catch (Exception ex)
                     {
