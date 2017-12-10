@@ -246,35 +246,39 @@ namespace PortableApps.Common
 
                                             // GET LAWATAN SQLITE DATA
                                             semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(appinfoSqlite.id, makkebunSqlite.id_makkebun);
-                                            semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
-
-                                            // INSERT LAWATAN TO MYSQL
-                                            WriteLog("SemakTapakRepo.CreateMySQL");
-                                            try
+                                            if (semak_tapakSqlite != null)
                                             {
-                                                int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
-                                                if (iSaveSemakTapak > 0)
+                                                semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
+                                                // INSERT LAWATAN TO MYSQL
+                                                WriteLog("SemakTapakRepo.CreateMySQL");
+                                                try
                                                 {
-                                                    semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
-                                                    semak_tapakSqlite.newid = lastsemak_tapak.id;
-                                                    semak_tapakSqlite.syncdate = DateTime.Now;
-                                                    // UPDATE MAKKEBUN SQLITE
-                                                    int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
-                                                    WriteLog(string.Format("SemakTapakRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, semak_tapakSqlite.id, semak_tapakSqlite.newid));
+                                                    int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
+                                                    if (iSaveSemakTapak > 0)
+                                                    {
+                                                        semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
+                                                        semak_tapakSqlite.newid = lastsemak_tapak.id;
+                                                        semak_tapakSqlite.syncdate = DateTime.Now;
+                                                        // UPDATE MAKKEBUN SQLITE
+                                                        int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
+                                                        WriteLog(string.Format("SemakTapakRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, semak_tapakSqlite.id, semak_tapakSqlite.newid));
+                                                    }
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    WriteLog(string.Format("ERROR-SemakTapakRepo.CreateMySQL-{0}", ex.GetFullMessage()));
                                                 }
                                             }
-                                            catch (Exception ex)
+                                            else
                                             {
-                                                WriteLog(string.Format("ERROR-SemakTapakRepo.CreateMySQL-{0}", ex.GetFullMessage()));
+                                                WriteLog(string.Format("Maklumat Kebun Belum Lawat - {0}", makkebunSqlite.id_makkebun));
                                             }
-
                                         }
                                     }
                                     catch (Exception ex)
                                     {
                                         WriteLog(string.Format("ERROR-MakkebunRepo.CreateMySQL-{0}", ex.GetFullMessage()));
                                     }
-
                                 }
                             }
                         }
