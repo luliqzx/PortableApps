@@ -206,27 +206,37 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool IsNew = false;
-            VariableSetting VariableSetting = VariableSettingRepo.GetBy(txtKey.Text);
-            if (VariableSetting == null)
+            try
             {
-                IsNew = true;
-                VariableSetting = new VariableSetting();
+
+
+                bool IsNew = false;
+                VariableSetting VariableSetting = VariableSettingRepo.GetBy(txtKey.Text);
+                if (VariableSetting == null)
+                {
+                    IsNew = true;
+                    VariableSetting = new VariableSetting();
+                }
+                VariableSetting.Key = txtKey.Text;
+                VariableSetting.Value = cbEncrypt.Checked ? WFUtils.Encrypt(txtValue.Text) : txtValue.Text;
+                VariableSetting.Description = txtDescription.Text;
+                VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
+                int i = 0;
+                if (IsNew)
+                {
+                    i = VariableSettingRepo.Create(VariableSetting);
+                }
+                else
+                {
+                    i = VariableSettingRepo.Edit(VariableSetting);
+                }
+                MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
             }
-            VariableSetting.Key = txtKey.Text;
-            VariableSetting.Value = cbEncrypt.Checked ? WFUtils.Encrypt(txtValue.Text) : txtValue.Text;
-            VariableSetting.Description = txtDescription.Text;
-            VariableSetting.CanModify = cbEncrypt.Checked ? 1 : 2;
-            int i = 0;
-            if (IsNew)
+            catch (Exception ex)
             {
-                i = VariableSettingRepo.Create(VariableSetting);
+                MessageBox.Show(ex.GetFullMessage() + " - Harap periksa data input kembali");
+                return;
             }
-            else
-            {
-                i = VariableSettingRepo.Edit(VariableSetting);
-            }
-            MessageBox.Show("Data berhasil disimpan [" + txtKey.Text + "]");
             BindGrid(xcurrentPage);
             btnReset.PerformClick();
         }

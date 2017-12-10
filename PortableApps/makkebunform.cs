@@ -827,89 +827,99 @@ namespace PortableApps
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (appinfo_id <= 0)
+            try
             {
-                MessageBox.Show("Harap masukan data dari Maklumat Pemohon.");
+
+
+                if (appinfo_id <= 0)
+                {
+                    MessageBox.Show("Harap masukan data dari Maklumat Pemohon.");
+                    return;
+                }
+
+                IList<Control> lstCtrlEmptyCheck = new List<Control>();
+                lstCtrlEmptyCheck.Add(txtaddr1);
+                lstCtrlEmptyCheck.Add(txtaddr2);
+                lstCtrlEmptyCheck.Add(cbnegeri);
+                //lstCtrlEmptyCheck.Add(cbdaerah);
+                //lstCtrlEmptyCheck.Add(cbdun);
+                //lstCtrlEmptyCheck.Add(cbparlimen);
+                lstCtrlEmptyCheck.Add(txtnolot);
+                lstCtrlEmptyCheck.Add(txtluasmatang);
+                lstCtrlEmptyCheck.Add(cbsyarattanah);
+                lstCtrlEmptyCheck.Add(txtnolesen);
+                lstCtrlEmptyCheck.Add(cbjenishakmiliktanah);
+                lstCtrlEmptyCheck.Add(cbpengurusan);
+                lstCtrlEmptyCheck.Add(cbpemilikan);
+
+                if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+                {
+                    return;
+                }
+
+                bool IsNew = false;
+                makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
+                if (makkebun == null)
+                {
+                    makkebun = new makkebun();
+                    IsNew = true;
+                }
+                makkebun.appinfo_id = appinfo_id;
+                makkebun.addr1 = txtaddr1.Text;
+                makkebun.addr2 = txtaddr2.Text;
+                makkebun.addr3 = txtaddr3.Text;
+                makkebun.catatan = txtcatatan.Text;
+                makkebun.luaslesen = Convert.ToDouble(string.IsNullOrEmpty(txtluaslesen.Text) ? 0 : Convert.ToDouble(txtluaslesen.Text));
+                makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
+                makkebun.nolesen = txtnolesen.Text;
+                makkebun.nolot = txtnolot.Text;
+                makkebun.tarikhtebang = txttarikhtebang.Text;
+                makkebun.negeri = cbnegeri.SelectedValue.ToString();
+                makkebun.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
+                makkebun.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
+                makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
+                makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
+                makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
+                makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
+                makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
+                makkebun.tncr = cbtncr.SelectedValue.ToString();
+                makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
+
+
+                if (IsNew)
+                {
+                    try
+                    {
+                        makkebun.created = DateTime.Now;
+                        makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                        MakkebunRepo.Create(makkebun);
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        MakkebunRepo.Edit(makkebun);
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetFullMessage() + " - Harap periksa data input kembali");
                 return;
             }
-
-            IList<Control> lstCtrlEmptyCheck = new List<Control>();
-            lstCtrlEmptyCheck.Add(txtaddr1);
-            lstCtrlEmptyCheck.Add(txtaddr2);
-            lstCtrlEmptyCheck.Add(cbnegeri);
-            //lstCtrlEmptyCheck.Add(cbdaerah);
-            //lstCtrlEmptyCheck.Add(cbdun);
-            //lstCtrlEmptyCheck.Add(cbparlimen);
-            lstCtrlEmptyCheck.Add(txtnolot);
-            lstCtrlEmptyCheck.Add(txtluasmatang);
-            lstCtrlEmptyCheck.Add(cbsyarattanah);
-            lstCtrlEmptyCheck.Add(txtnolesen);
-            lstCtrlEmptyCheck.Add(cbjenishakmiliktanah);
-            lstCtrlEmptyCheck.Add(cbpengurusan);
-            lstCtrlEmptyCheck.Add(cbpemilikan);
-
-            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
-            {
-                return;
-            }
-
-            bool IsNew = false;
-            makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
-            if (makkebun == null)
-            {
-                makkebun = new makkebun();
-                IsNew = true;
-            }
-            makkebun.appinfo_id = appinfo_id;
-            makkebun.addr1 = txtaddr1.Text;
-            makkebun.addr2 = txtaddr2.Text;
-            makkebun.addr3 = txtaddr3.Text;
-            makkebun.catatan = txtcatatan.Text;
-            makkebun.luaslesen = Convert.ToDouble(string.IsNullOrEmpty(txtluaslesen.Text) ? 0 : Convert.ToDouble(txtluaslesen.Text));
-            makkebun.luasmatang = Convert.ToDouble(txtluasmatang.Text);
-            makkebun.nolesen = txtnolesen.Text;
-            makkebun.nolot = txtnolot.Text;
-            makkebun.tarikhtebang = txttarikhtebang.Text;
-            makkebun.negeri = cbnegeri.SelectedValue.ToString();
-            makkebun.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
-            makkebun.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
-            makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
-            makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
-            makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();
-            makkebun.pemilikan = cbpemilikan.SelectedValue.ToString();
-            makkebun.pengurusan = cbpengurusan.SelectedValue.ToString();
-            makkebun.tncr = cbtncr.SelectedValue.ToString();
-            makkebun.tebang = rbSudah.Checked ? "SUDAH" : rbBelum.Checked ? "BELUM" : "";
-
-
-            if (IsNew)
-            {
-                try
-                {
-                    makkebun.created = DateTime.Now;
-                    makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
-                    MakkebunRepo.Create(makkebun);
-                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    MakkebunRepo.Edit(makkebun);
-                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
-            }
-
             BindGrid(page);
 
             btnReset.PerformClick();

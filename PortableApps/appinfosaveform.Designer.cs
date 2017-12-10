@@ -983,7 +983,7 @@
             this.ClientSize = new System.Drawing.Size(594, 620);
             this.Controls.Add(this.groupBox1);
             this.Name = "appinfosaveform";
-            this.Text = "PERMOHONAN BARU";
+            this.Text = "Permohonan Baru";
             this.Load += new System.EventHandler(this.appinfosaveform_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

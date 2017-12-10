@@ -343,70 +343,80 @@ namespace PortableApps
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool IsNew = false;
-
-            if (id_makkebun <= 0)
+            try
             {
-                MessageBox.Show("Harap masukkan data dari Makluma Kebun");
+
+
+                bool IsNew = false;
+
+                if (id_makkebun <= 0)
+                {
+                    MessageBox.Show("Harap masukkan data dari Makluma Kebun");
+                    return;
+                }
+
+                semak_tapak semak_tapak = SemakTapakRepo.GetBy((int)semak_tapak_id);
+                if (semak_tapak == null)
+                {
+                    semak_tapak = new semak_tapak();
+                    IsNew = true;
+                }
+
+                semak_tapak.id = (int)semak_tapak_id;
+                semak_tapak.makkebun_id = id_makkebun;
+                semak_tapak.appinfo_id = appinfo_id;
+                semak_tapak.kaedah = cbkaedah.SelectedValue.ToString();
+                semak_tapak.bantuan = txtbantuan.Text;
+                semak_tapak.jenis_tanah = cbjenis_tanah.SelectedValue.ToString();
+                semak_tapak.kecerunan = rbLebih30Darjah.Checked ? "Lebih 25 Darjah" : rbKurarng30Darjah.Checked ? "Kurang 25 Darjah" : "";
+                semak_tapak.jentera = rbJenteraYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
+                semak_tapak.ganoderma = rbGenodermaYa.Checked ? "Ya" : rbGenodermaTidak.Checked ? "Tidak" : "";
+                semak_tapak.peratusan_serangan = Convert.ToDouble(txtperatusan_serangan.Text);
+                semak_tapak.umr_pokok_tua = txtumr_pokok_tua.Text;
+                semak_tapak.hasil = txthasil.Text;
+                semak_tapak.bil_pokok_tua = txtbil_pokok_tua.Text;
+                semak_tapak.tarikh_lawat = txttarikh_lawat.Text;
+                semak_tapak.ptk_lawat = txtptk_lawat.Text;
+                semak_tapak.luas = Convert.ToDouble(txtluas.Text);
+                semak_tapak.catatan = txtcatatan.Text;
+                //semak_tapak.created = txtcreated.Text;
+                //semak_tapak.createdby = txtcreatedby.Text;
+                //semak_tapak.lampiran = txtlampiran.Text;
+                BindRBForm(semak_tapak);
+
+                if (IsNew)
+                {
+                    try
+                    {
+                        semak_tapak.created = DateTime.Now; ;
+                        semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
+                        semak_tapak.lampiran = "";// txtlampiran.Text;
+                        SemakTapakRepo.Create(semak_tapak);
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        SemakTapakRepo.Edit(semak_tapak);
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetFullMessage() + " - Harap periksa data input kembali");
                 return;
-            }
-
-            semak_tapak semak_tapak = SemakTapakRepo.GetBy((int)semak_tapak_id);
-            if (semak_tapak == null)
-            {
-                semak_tapak = new semak_tapak();
-                IsNew = true;
-            }
-
-            semak_tapak.id = (int)semak_tapak_id;
-            semak_tapak.makkebun_id = id_makkebun;
-            semak_tapak.appinfo_id = appinfo_id;
-            semak_tapak.kaedah = cbkaedah.SelectedValue.ToString();
-            semak_tapak.bantuan = txtbantuan.Text;
-            semak_tapak.jenis_tanah = cbjenis_tanah.SelectedValue.ToString();
-            semak_tapak.kecerunan = rbLebih30Darjah.Checked ? "Lebih 25 Darjah" : rbKurarng30Darjah.Checked ? "Kurang 25 Darjah" : "";
-            semak_tapak.jentera = rbJenteraYa.Checked ? "Ya" : rbJenteraTidak.Checked ? "Tidak" : "";
-            semak_tapak.ganoderma = rbGenodermaYa.Checked ? "Ya" : rbGenodermaTidak.Checked ? "Tidak" : "";
-            semak_tapak.peratusan_serangan = Convert.ToDouble(txtperatusan_serangan.Text);
-            semak_tapak.umr_pokok_tua = txtumr_pokok_tua.Text;
-            semak_tapak.hasil = txthasil.Text;
-            semak_tapak.bil_pokok_tua = txtbil_pokok_tua.Text;
-            semak_tapak.tarikh_lawat = txttarikh_lawat.Text;
-            semak_tapak.ptk_lawat = txtptk_lawat.Text;
-            semak_tapak.luas = Convert.ToDouble(txtluas.Text);
-            semak_tapak.catatan = txtcatatan.Text;
-            //semak_tapak.created = txtcreated.Text;
-            //semak_tapak.createdby = txtcreatedby.Text;
-            //semak_tapak.lampiran = txtlampiran.Text;
-            BindRBForm(semak_tapak);
-
-            if (IsNew)
-            {
-                try
-                {
-                    semak_tapak.created = DateTime.Now; ;
-                    semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
-                    semak_tapak.lampiran = "";// txtlampiran.Text;
-                    SemakTapakRepo.Create(semak_tapak);
-                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    SemakTapakRepo.Edit(semak_tapak);
-                    MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
             }
             button2.PerformClick();
         }

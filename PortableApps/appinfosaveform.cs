@@ -304,102 +304,112 @@ namespace PortableApps
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (txtnama.CheckEmpty() && txtaddr1.CheckEmpty())
-            //{
-            //    return;
-            //}
-            IList<Control> lstCtrlEmptyCheck = new List<Control>();
-            lstCtrlEmptyCheck.Add(txtappdate);
-            lstCtrlEmptyCheck.Add(txtnama);
-            lstCtrlEmptyCheck.Add(txticno);
-            lstCtrlEmptyCheck.Add(txtnolesen);
-            //lstCtrlEmptyCheck.Add(cbbangsa);
-            lstCtrlEmptyCheck.Add(txtaddr1);
-            lstCtrlEmptyCheck.Add(txtaddr2);
-            //lstCtrlEmptyCheck.Add(txtaddr3);
-            lstCtrlEmptyCheck.Add(txtbandar);
-            lstCtrlEmptyCheck.Add(txtposkod);
-            lstCtrlEmptyCheck.Add(cbnegeri);
-            //lstCtrlEmptyCheck.Add(cbdaerah);
-            //lstCtrlEmptyCheck.Add(cbdun);
-            //lstCtrlEmptyCheck.Add(cbparlimen);
-            lstCtrlEmptyCheck.Add(txthometel);
-            lstCtrlEmptyCheck.Add(txtofficetel);
-            lstCtrlEmptyCheck.Add(txthptel);
-            lstCtrlEmptyCheck.Add(txtemail);
-
-            if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+            try
             {
+
+
+                //if (txtnama.CheckEmpty() && txtaddr1.CheckEmpty())
+                //{
+                //    return;
+                //}
+                IList<Control> lstCtrlEmptyCheck = new List<Control>();
+                lstCtrlEmptyCheck.Add(txtappdate);
+                lstCtrlEmptyCheck.Add(txtnama);
+                lstCtrlEmptyCheck.Add(txticno);
+                lstCtrlEmptyCheck.Add(txtnolesen);
+                //lstCtrlEmptyCheck.Add(cbbangsa);
+                lstCtrlEmptyCheck.Add(txtaddr1);
+                lstCtrlEmptyCheck.Add(txtaddr2);
+                //lstCtrlEmptyCheck.Add(txtaddr3);
+                lstCtrlEmptyCheck.Add(txtbandar);
+                lstCtrlEmptyCheck.Add(txtposkod);
+                lstCtrlEmptyCheck.Add(cbnegeri);
+                //lstCtrlEmptyCheck.Add(cbdaerah);
+                //lstCtrlEmptyCheck.Add(cbdun);
+                //lstCtrlEmptyCheck.Add(cbparlimen);
+                lstCtrlEmptyCheck.Add(txthometel);
+                lstCtrlEmptyCheck.Add(txtofficetel);
+                lstCtrlEmptyCheck.Add(txthptel);
+                lstCtrlEmptyCheck.Add(txtemail);
+
+                if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
+                {
+                    return;
+                }
+
+                bool IsNew = false;
+                appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
+                if (appinfo == null)
+                {
+                    appinfo = new appinfo();
+                    appinfo_id = Convert.ToInt32(WFUtils.DateTimeToUnixTimestamp(DateTime.Now));
+                    IsNew = true;
+                    refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
+                }
+
+                appinfo.id = appinfo_id;
+                appinfo.appdate = txtappdate.Text;
+                appinfo.nama = txtnama.Text;
+                appinfo.type_id = 0;//txttype_id.Text;
+                appinfo.icno = txticno.Text;
+                appinfo.nolesen = txtnolesen.Text;
+                appinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
+                appinfo.addr1 = txtaddr1.Text;
+                appinfo.addr2 = txtaddr2.Text;
+                appinfo.addr3 = txtaddr3.Text;
+                appinfo.bandar = txtbandar.Text;
+                appinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
+                appinfo.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
+                int? sparlimen = (int?)cbparlimen.SelectedValue;
+                parlimen parlimen = ParlimenRepo.GetBy(sparlimen);
+                appinfo.parlimen = parlimen == null ? null : (int?)parlimen.Id;
+                appinfo.poskod = txtposkod.Text;
+                appinfo.negeri = cbnegeri.SelectedValue.ToString();
+                appinfo.hometel = txthometel.Text;
+                appinfo.officetel = txtofficetel.Text;
+                appinfo.hptel = txthptel.Text;
+                appinfo.sts_bck = 0;
+                appinfo.status = 0;
+                appinfo.sop = 0;
+                appinfo.date_approved = DateTime.MinValue;
+                appinfo.approved_by = "";
+                //appinfo.faks = txtfaks.Text;
+                appinfo.email = txtemail.Text;
+                //appinfo.kelompok = txtkelompok.Text;
+                appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
+
+                if (IsNew)
+                {
+                    try
+                    {
+                        appinfo.created = DateTime.Now;
+                        appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
+                        AppInfoRepo.Create(appinfo);
+                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+
+                }
+                else
+                {
+                    try
+                    {
+                        AppInfoRepo.Edit(appinfo);
+                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.GetFullMessage());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetFullMessage() + " - Harap periksa data input kembali");
                 return;
-            }
-
-            bool IsNew = false;
-            appinfo appinfo = AppInfoRepo.GetBy(appinfo_id);
-            if (appinfo == null)
-            {
-                appinfo = new appinfo();
-                appinfo_id = Convert.ToInt32(WFUtils.DateTimeToUnixTimestamp(DateTime.Now));
-                IsNew = true;
-                refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
-            }
-
-            appinfo.id = appinfo_id;
-            appinfo.appdate = txtappdate.Text;
-            appinfo.nama = txtnama.Text;
-            appinfo.type_id = 0;//txttype_id.Text;
-            appinfo.icno = txticno.Text;
-            appinfo.nolesen = txtnolesen.Text;
-            appinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
-            appinfo.addr1 = txtaddr1.Text;
-            appinfo.addr2 = txtaddr2.Text;
-            appinfo.addr3 = txtaddr3.Text;
-            appinfo.bandar = txtbandar.Text;
-            appinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
-            appinfo.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
-            int? sparlimen = (int?)cbparlimen.SelectedValue;
-            parlimen parlimen = ParlimenRepo.GetBy(sparlimen);
-            appinfo.parlimen = parlimen == null ? null : (int?)parlimen.Id;
-            appinfo.poskod = txtposkod.Text;
-            appinfo.negeri = cbnegeri.SelectedValue.ToString();
-            appinfo.hometel = txthometel.Text;
-            appinfo.officetel = txtofficetel.Text;
-            appinfo.hptel = txthptel.Text;
-            appinfo.sts_bck = 0;
-            appinfo.status = 0;
-            appinfo.sop = 0;
-            appinfo.date_approved = DateTime.MinValue;
-            appinfo.approved_by = "";
-            //appinfo.faks = txtfaks.Text;
-            appinfo.email = txtemail.Text;
-            //appinfo.kelompok = txtkelompok.Text;
-            appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
-
-            if (IsNew)
-            {
-                try
-                {
-                    appinfo.created = DateTime.Now;
-                    appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
-                    AppInfoRepo.Create(appinfo);
-                    MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
-
-            }
-            else
-            {
-                try
-                {
-                    AppInfoRepo.Edit(appinfo);
-                    MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.GetFullMessage());
-                }
             }
             button2.PerformClick();
         }

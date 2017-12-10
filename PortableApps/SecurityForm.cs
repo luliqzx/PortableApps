@@ -61,6 +61,10 @@ namespace PortableApps
 
                 //MessageBox.Show("OK");
             }
+            else
+            {
+                MessageBox.Show("Harap masukkan code dengan benar.");
+            }
         }
 
         private void DisplayForm(Form sourceMdiParent, Type redirectToForm)

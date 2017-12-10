@@ -1715,7 +1715,7 @@
             this.ClientSize = new System.Drawing.Size(1133, 610);
             this.Controls.Add(this.panel1);
             this.Name = "makkebunform";
-            this.Text = "Maklumat Kebun Form";
+            this.Text = "Maklumat Kebun";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.makkebunform_Load);
             this.groupBox1.ResumeLayout(false);

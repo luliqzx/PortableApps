@@ -43,7 +43,7 @@ namespace PortableApps.Repo
             {
                 #region Query
                 cmd.CommandText = @"
--- DROP TABLE IF  EXISTS `appinfo`;
+ DROP TABLE IF  EXISTS `appinfo`;
 -- Dumping structure for table a1_tsspk1511.appinfo
 CREATE TABLE IF NOT EXISTS `appinfo` (
   `id` int(11) NOT NULL PRIMARY KEY,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 //                           ";
                 #region Create & Insert Dun
                 cmd.CommandText = @"
--- DROP TABLE IF  EXISTS `dun`;
+ DROP TABLE IF  EXISTS `dun`;
 
                                         -- --------------------------------------------------------
                                         -- Host:                         127.0.0.1
@@ -726,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                    -- DROP TABLE IF  EXISTS `makkebun`;
+                                     DROP TABLE IF  EXISTS `makkebun`;
 
                                     -- Dumping structure for table a1_tsspk1511.makkebun
                                     CREATE TABLE IF NOT EXISTS `makkebun` (
@@ -771,7 +771,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
             {
                 #region Query Create & Insert
                 cmd.CommandText = @"
-                                -- DROP TABLE IF  EXISTS `parlimen`;
+                                 DROP TABLE IF  EXISTS `parlimen`;
 
                                     -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1028,7 +1028,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 cmd.CommandType = CommandType.Text;
                 #region Query Create & Insert
                 cmd.CommandText = @"
-                                -- DROP TABLE IF  EXISTS `variables`;
+                                 DROP TABLE IF  EXISTS `variables`;
 
                                 -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1209,7 +1209,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-                            -- DROP TABLE IF  EXISTS `daerah`;
+                             DROP TABLE IF  EXISTS `daerah`;
 
                             -- --------------------------------------------------------
                             -- Host:                         127.0.0.1
@@ -1454,7 +1454,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-                            -- DROP TABLE IF  EXISTS `VariableSetting`;
+                             DROP TABLE IF  EXISTS `VariableSetting`;
 
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (
@@ -1494,6 +1494,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
+                             DROP TABLE IF  EXISTS `TBANGSA`;
                             CREATE TABLE IF NOT EXISTS TBANGSA
                             (
                                 BANGSA varchar(100) COLLATE NOCASE
@@ -1516,7 +1517,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                -- DROP TABLE IF  EXISTS `semak_tapak`;
+                                 DROP TABLE IF  EXISTS `semak_tapak`;
 
                                 -- Dumping structure for table tsspk1511.semak_tapak
                                 CREATE TABLE IF NOT EXISTS `semak_tapak` (
