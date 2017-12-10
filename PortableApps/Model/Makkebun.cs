@@ -14,7 +14,7 @@ namespace PortableApps.Model
         public string addr3 { get; set; }
         public string daerah { get; set; }
         public string dun { get; set; }
-        public int parlimen { get; set; }
+        public int? parlimen { get; set; }
         public string poskod { get; set; }
         public string negeri { get; set; }
         public string nolot { get; set; }

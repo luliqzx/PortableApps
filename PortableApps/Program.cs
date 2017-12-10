@@ -30,20 +30,38 @@ namespace PortableApps
 
         private static void ProcessFirst()
         {
+            //Application.Run(new InitializeForm());
+            //return;
             ISqLiteBaseRepository sqlRepo = new SqLiteBaseRepository();
-            using (var cnn = sqlRepo.MySQLiteConnection())
+            if (!sqlRepo.CheckExistingDB(sqlRepo.DbFile))
             {
-                cnn.Open();
-                //sqlRepo.ResetDefault(cnn);
-                //sqlRepo.SetupAppInfo(cnn);
-                //sqlRepo.SetupDun(cnn);
-                //sqlRepo.SetupMakkebun(cnn);
-                //sqlRepo.SetupParlimen(cnn);
-                //sqlRepo.SetupVariables(cnn);
-                //sqlRepo.SetupDaerah(cnn);
-                //sqlRepo.SetupVariableSetting(cnn);
-                //sqlRepo.SetupTBangsa(cnn);
+                using (var cnn = sqlRepo.MySQLiteConnection())
+                {
+                    cnn.Open();
+                    sqlRepo.SetupVariableSetting(cnn);
+                    sqlRepo.SetupVariables(cnn);
+                    sqlRepo.SetupTBangsa(cnn);
+                    sqlRepo.SetupDaerah(cnn);
+                    sqlRepo.SetupDun(cnn);
+                    sqlRepo.SetupParlimen(cnn);
+                    sqlRepo.SetupAppInfo(cnn);
+                    sqlRepo.SetupMakkebun(cnn);
+                    sqlRepo.SetupSemakTapak(cnn);
+                }
             }
+            //using (var cnn = sqlRepo.MySQLiteConnection())
+            //{
+            //    cnn.Open();
+            //    sqlRepo.ResetDefault(cnn);
+            //    sqlRepo.SetupAppInfo(cnn);
+            //    sqlRepo.SetupDun(cnn);
+            //    sqlRepo.SetupMakkebun(cnn);
+            //    sqlRepo.SetupParlimen(cnn);
+            //    sqlRepo.SetupVariables(cnn);
+            //    sqlRepo.SetupDaerah(cnn);
+            //    sqlRepo.SetupVariableSetting(cnn);
+            //    sqlRepo.SetupTBangsa(cnn);
+            //}
 
             //IBangsaRepo BangsaRepo = new BangsaRepo();
             //BangsaRepo.SyncBangsaFromAppInfoMySQL();

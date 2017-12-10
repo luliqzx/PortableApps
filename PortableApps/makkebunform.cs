@@ -130,7 +130,7 @@ namespace PortableApps
             cbnegeri.SelectedValue = makkebun.negeri;
             cbdaerah.SelectedValue = makkebun.daerah;
             cbdun.SelectedValue = makkebun.dun;
-            cbparlimen.SelectedValue = ParlimenRepo.GetBy(makkebun.parlimen).Negeri;
+            cbparlimen.SelectedValue = makkebun.parlimen;
             cbsyarattanah.SelectedValue = makkebun.syarattanah;
             cbjenishakmiliktanah.SelectedValue = makkebun.hakmiliktanah;
             cbpemilikan.SelectedValue = makkebun.pemilikan;
@@ -164,44 +164,47 @@ namespace PortableApps
             func(Controls);
         }
 
-        private void LoadParlimen()
+        private void LoadParlimen(string negeri = "")
         {
-            IList<parlimen> lstEnt = ParlimenRepo.GetAll();
-            cbparlimen.Items.Clear();
+            IList<parlimen> lstEnt = ParlimenRepo.GetParlimentBy(negeri);
+            lstEnt.Insert(0, new parlimen { Id = 0, Kawasan = "" });
             cbparlimen.DataSource = lstEnt;
             cbparlimen.DisplayMember = "kawasan";
-            cbparlimen.ValueMember = "negeri";
-            cbparlimen.SelectedIndex = -1;
+            cbparlimen.ValueMember = "id";
+            cbparlimen.SelectedIndex = 0;
         }
 
         private void LoadDaerah(string negeri)
         {
             IList<tdaerah> lstEnt = DaerahRepo.GetDaerahBy(negeri);
             //cbdaerah.Items.Clear();
+            lstEnt.Insert(0, new tdaerah { daerah = "", kod_daerah = "" });
             cbdaerah.DataSource = lstEnt;
             cbdaerah.DisplayMember = "daerah";
             cbdaerah.ValueMember = "kod_daerah";
-            cbdaerah.SelectedIndex = -1;
+            cbdaerah.SelectedIndex = 0;
         }
 
         private void LoadDun(string negeri)
         {
             IList<dun> lstEnt = DunRepo.GetDunBy(negeri);
             //cbdaerah.Items.Clear();
+            lstEnt.Insert(0, new dun { dun_desc = "", kod_dun = "" });
             cbdun.DataSource = lstEnt;
             cbdun.DisplayMember = "dun_desc";
             cbdun.ValueMember = "kod_dun";
-            cbdun.SelectedIndex = -1;
+            cbdun.SelectedIndex = 0;
         }
 
         private void LoadNegeri()
         {
             IList<variables> lstEnt = VariablesRepo.GetVariableByType("negeri");
             //cbdaerah.Items.Clear();
+            lstEnt.Insert(0, new variables { Code = "", Value = "" });
             cbnegeri.DataSource = lstEnt;
             cbnegeri.DisplayMember = "value";
             cbnegeri.ValueMember = "code";
-            cbnegeri.SelectedIndex = -1;
+            cbnegeri.SelectedIndex = 0;
         }
 
         private void BindPengurusan()
@@ -491,7 +494,7 @@ namespace PortableApps
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            page = pagecount;
+            page = pagecount > 0 ? pagecount : 1;
             txtPageIndex.Text = page.ToString();
             BindGrid(page);
             lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
@@ -499,7 +502,7 @@ namespace PortableApps
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            page = page + 1 > pagecount ? pagecount : page + 1;
+            page = page + 1 > pagecount ? pagecount > 0 ? pagecount : 1 : page + 1;
             txtPageIndex.Text = page.ToString();
             BindGrid(page);
             lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
@@ -535,6 +538,7 @@ namespace PortableApps
             {
                 LoadDaerah(cbx.SelectedValue.ToString());
                 LoadDun(cbx.SelectedValue.ToString());
+                LoadParlimen(cbx.SelectedValue.ToString());
             }
         }
 
@@ -681,6 +685,10 @@ namespace PortableApps
             dgvMakKebun.Columns["tarikh_lawat"].DisplayIndex = 9;
             dgvMakKebun.Columns["pengurusan"].DisplayIndex = 10;
 
+            dgvMakKebun.Columns["addr1"].HeaderText = "Alamat (Baris 1)";
+            dgvMakKebun.Columns["addr2"].HeaderText = "Alamat (Baris 2)";
+            dgvMakKebun.Columns["addr3"].HeaderText = "Alamat (Baris 3)";
+
             dgvMakKebun.Columns["nolot"].HeaderText = "No. Lot";
             dgvMakKebun.Columns["luaslesen"].HeaderText = "Kaw. Tanaman Sawit";
             dgvMakKebun.Columns["nolesen"].HeaderText = "No. Lesen";
@@ -688,6 +696,7 @@ namespace PortableApps
 
             dgvMakKebun.Columns["tarikh_lawat"].HeaderText = "Lawatan Pengesahan Kebun";
             dgvMakKebun.Columns["pengurusan"].HeaderText = "Pengurusan";
+            dgvMakKebun.Columns["syncdate"].HeaderText = "Server Sync Date";
 
             dgvMakKebun.Columns[0].Visible = true;
             dgvMakKebun.Columns[1].Visible = true;
@@ -700,6 +709,7 @@ namespace PortableApps
             dgvMakKebun.Columns["pemilikan"].Visible = true;
             dgvMakKebun.Columns["tarikh_lawat"].Visible = true;
             dgvMakKebun.Columns["pengurusan"].Visible = true;
+            dgvMakKebun.Columns["syncdate"].Visible = false;
         }
 
         private void dgvMakKebun_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -827,19 +837,21 @@ namespace PortableApps
             lstCtrlEmptyCheck.Add(txtaddr1);
             lstCtrlEmptyCheck.Add(txtaddr2);
             lstCtrlEmptyCheck.Add(cbnegeri);
-            lstCtrlEmptyCheck.Add(cbdaerah);
-            lstCtrlEmptyCheck.Add(cbdun);
-            lstCtrlEmptyCheck.Add(cbparlimen);
+            //lstCtrlEmptyCheck.Add(cbdaerah);
+            //lstCtrlEmptyCheck.Add(cbdun);
+            //lstCtrlEmptyCheck.Add(cbparlimen);
             lstCtrlEmptyCheck.Add(txtnolot);
             lstCtrlEmptyCheck.Add(txtluasmatang);
             lstCtrlEmptyCheck.Add(cbsyarattanah);
             lstCtrlEmptyCheck.Add(txtnolesen);
+            lstCtrlEmptyCheck.Add(cbjenishakmiliktanah);
+            lstCtrlEmptyCheck.Add(cbpengurusan);
+            lstCtrlEmptyCheck.Add(cbpemilikan);
 
             if (WFUtils.CheckControllCollectionEmpty(lstCtrlEmptyCheck))
             {
                 return;
             }
-
 
             bool IsNew = false;
             makkebun makkebun = MakkebunRepo.GetBy(id_makkebun);
@@ -859,8 +871,8 @@ namespace PortableApps
             makkebun.nolot = txtnolot.Text;
             makkebun.tarikhtebang = txttarikhtebang.Text;
             makkebun.negeri = cbnegeri.SelectedValue.ToString();
-            makkebun.daerah = cbdaerah.SelectedValue.ToString();
-            makkebun.dun = cbdun.SelectedValue.ToString();
+            makkebun.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
+            makkebun.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
             makkebun.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
             makkebun.syarattanah = cbsyarattanah.SelectedValue.ToString();
             makkebun.hakmiliktanah = cbjenishakmiliktanah.SelectedValue.ToString();

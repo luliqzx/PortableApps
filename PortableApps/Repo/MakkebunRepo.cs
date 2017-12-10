@@ -94,7 +94,7 @@ namespace PortableApps.Repo
             }
 
             IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
-            VariableSetting VariableSetting = VariableSettingRepo.GetBy("AlreadySyncDisplay");
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy("HiddenDataSync");
 
             if (VariableSetting != null && Convert.ToBoolean(VariableSetting.Value))
             {

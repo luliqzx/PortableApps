@@ -7,14 +7,13 @@ using Dapper;
 
 namespace PortableApps.Repo
 {
-    public interface IParlimenRepo : IBaseTRepo<parlimen, int>
+    public interface IParlimenRepo : IBaseTRepo<parlimen, int?>
     {
-        int GetParlimenIDBy(string negeri);
+        int? GetParlimenIDBy(string negeri);
+        IList<parlimen> GetParlimentBy(string negeri);
     }
-    public class ParlimenRepo : DefaultRepo<parlimen, int>, IParlimenRepo
+    public class ParlimenRepo : DefaultRepo<parlimen, int?>, IParlimenRepo
     {
-
-
         public override int Create(parlimen ent)
         {
             int i = 0;
@@ -31,7 +30,7 @@ namespace PortableApps.Repo
             return i;
         }
 
-        public override int Delete(int ID)
+        public override int Delete(int? ID)
         {
             int i = 0;
             string qry = @"DELETE from parlimen  WHERE id=@id";
@@ -46,20 +45,19 @@ namespace PortableApps.Repo
             return lstEnt;
         }
 
-        public override parlimen GetBy(int ID)
+        public override parlimen GetBy(int? ID)
         {
             string qry = @"SELECT * FROM parlimen WHERE id=@id";
             parlimen ent = sqliteCon.Query<parlimen>(qry, new { id = ID }).FirstOrDefault();
             return ent;
         }
 
-
         public override IList<parlimen> PagedList(int page, int rows, string sidx, string sodx, out int rowCount, parlimen whareClause = null)
         {
             throw new NotImplementedException();
         }
 
-        public int GetParlimenIDBy(string negeri)
+        public int? GetParlimenIDBy(string negeri)
         {
             int i = 0;
             string qry = @"SELECT * FROM parlimen where negeri=@negeri";
@@ -69,6 +67,13 @@ namespace PortableApps.Repo
                 i = parlimen.Id;
             }
             return i;
+        }
+
+        public IList<parlimen> GetParlimentBy(string negeri)
+        {
+            string qry = @"SELECT * FROM parlimen where negeri=@negeri";
+            IList<parlimen> lstEnt = sqliteCon.Query<parlimen>(qry, new { negeri }).ToList();
+            return lstEnt;
         }
     }
 }

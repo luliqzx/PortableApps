@@ -30,5 +30,7 @@ namespace PortableApps.Model.DTO
         public string tarikh_lawat { get; set; }
         public int? semak_tapak_id { get; set; }
         #endregion semak_tapak
+        public DateTime syncdate { get; set; }
+
     }
 }

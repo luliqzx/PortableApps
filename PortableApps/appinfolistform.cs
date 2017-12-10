@@ -329,7 +329,7 @@ namespace PortableApps
 
         private void btnLast_Click(object sender, EventArgs e)
         {
-            page = pagecount;
+            page = pagecount > 0 ? pagecount : 1;
             txtPageIndex.Text = page.ToString();
             BindGrid(page);
             lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
@@ -337,7 +337,7 @@ namespace PortableApps
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            page = page + 1 > pagecount ? pagecount : page + 1;
+            page = page + 1 > pagecount ? pagecount > 0 ? pagecount : 1 : page + 1;
             txtPageIndex.Text = page.ToString();
             BindGrid(page);
             lblRowView.Text = string.Format("View {0} - {1} of {2}", ((page - 1) * pagesize) + 1, page * pagesize > rowcount ? rowcount : page * pagesize, rowcount);
@@ -485,6 +485,14 @@ namespace PortableApps
             dgvMakPer.Columns["created"].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
             dgvMakPer.Columns["id"].HeaderText = "Id";
             dgvMakPer.Columns["id"].Visible = false;
+
+            dgvMakPer.Columns["newrefno"].HeaderText = "Server Ref No";
+            dgvMakPer.Columns["syncdate"].HeaderText = "Server Sync Date";
+            dgvMakPer.Columns["syncdate"].DefaultCellStyle.Format = "dd-MM-yyyy HH:mm:ss";
+
+            dgvMakPer.Columns["newrefno"].Visible = false;
+            dgvMakPer.Columns["syncdate"].Visible = false;
+
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
@@ -723,6 +731,6 @@ namespace PortableApps
 
         #endregion
 
-        
+
     }
 }

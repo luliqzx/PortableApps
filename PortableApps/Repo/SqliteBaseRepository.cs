@@ -43,7 +43,7 @@ namespace PortableApps.Repo
             {
                 #region Query
                 cmd.CommandText = @"
-DROP TABLE IF  EXISTS `appinfo`;
+-- DROP TABLE IF  EXISTS `appinfo`;
 -- Dumping structure for table a1_tsspk1511.appinfo
 CREATE TABLE IF NOT EXISTS `appinfo` (
   `id` int(11) NOT NULL PRIMARY KEY,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `appinfo` (
                 //                           ";
                 #region Create & Insert Dun
                 cmd.CommandText = @"
-DROP TABLE IF  EXISTS `dun`;
+-- DROP TABLE IF  EXISTS `dun`;
 
                                         -- --------------------------------------------------------
                                         -- Host:                         127.0.0.1
@@ -111,14 +111,14 @@ DROP TABLE IF  EXISTS `dun`;
                                         -- --------------------------------------------------------
                                         -- Dumping structure for table a1_tsspk1511.dun
                                         -- Dumping structure for table a1_tsspk1511.dun
-CREATE TABLE IF NOT EXISTS `dun` (
-  `id` int(10) NOT NULL PRIMARY KEY,
-  `kod_negeri` varchar(10) COLLATE NOCASE NOT NULL,
-  `kod_dun` varchar(10) COLLATE NOCASE NOT NULL,
-  `dun_desc` varchar(100) COLLATE NOCASE NOT NULL
-);
+                                        CREATE TABLE IF NOT EXISTS `dun` (
+                                            `id` int(10) NOT NULL PRIMARY KEY,
+                                            `kod_negeri` varchar(10) COLLATE NOCASE NOT NULL,
+                                            `kod_dun` varchar(10) COLLATE NOCASE NOT NULL,
+                                            `dun_desc` varchar(100) COLLATE NOCASE NOT NULL
+                                        );
 
-DELETE from dun;
+                                        DELETE from dun;
 
                                         -- Dumping data for table a1_tsspk1511.dun: 590 rows
                                         INSERT INTO `dun` (`id`, `kod_negeri`, `kod_dun`, `dun_desc`) VALUES
@@ -726,7 +726,7 @@ DELETE from dun;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                    DROP TABLE IF  EXISTS `makkebun`;
+                                    -- DROP TABLE IF  EXISTS `makkebun`;
 
                                     -- Dumping structure for table a1_tsspk1511.makkebun
                                     CREATE TABLE IF NOT EXISTS `makkebun` (
@@ -771,7 +771,7 @@ DELETE from dun;
             {
                 #region Query Create & Insert
                 cmd.CommandText = @"
-                                DROP TABLE IF  EXISTS `parlimen`;
+                                -- DROP TABLE IF  EXISTS `parlimen`;
 
                                     -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1028,7 +1028,7 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Query Create & Insert
                 cmd.CommandText = @"
-                                DROP TABLE IF  EXISTS `variables`;
+                                -- DROP TABLE IF  EXISTS `variables`;
 
                                 -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1190,11 +1190,11 @@ DELETE from dun;
             using (var cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                    DROP TABLE appinfo;
-                                    DROP TABLE dun;
-                                    DROP TABLE makkebun;
-                                    DROP TABLE parlimen;
-                                    DROP TABLE variables;
+                                    -- DROP TABLE appinfo;
+                                    -- DROP TABLE dun;
+                                    -- DROP TABLE makkebun;
+                                    -- DROP TABLE parlimen;
+                                    -- DROP TABLE variables;
                                     ";
                 i = cmd.ExecuteNonQuery();
             }
@@ -1209,7 +1209,7 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-                            DROP TABLE IF  EXISTS `daerah`;
+                            -- DROP TABLE IF  EXISTS `daerah`;
 
                             -- --------------------------------------------------------
                             -- Host:                         127.0.0.1
@@ -1454,7 +1454,7 @@ DELETE from dun;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-                            DROP TABLE IF  EXISTS `VariableSetting`;
+                            -- DROP TABLE IF  EXISTS `VariableSetting`;
 
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (
@@ -1468,13 +1468,16 @@ DELETE from dun;
                              DELETE FROM VariableSetting;
 
                             INSERT INTO VariableSetting (Key, Value, Description, CanModify, IsEncrypt) VALUES 
-                                ('passPhrase', '#1UWLyP1','', 0, 0)
-                            , ('saltValue', 's@1tValue','', 0, 0)
-                            , ('hashAlgorithm', 'SHA1','', 0, 0)
-                            , ('passwordIterations', '2','', 0, 0)
-                            , ('initVector', '@1B2c3D4e5F6g7H8','', 0, 0)
-                            , ('keySize', '256','', 0, 0)
-                            , ('Status', 'Development','', 0, 0)
+                            --    ('passPhrase', '#1UWLyP1','', 0, 0)
+                            --, ('saltValue', 's@1tValue','', 0, 0)
+                            --, ('hashAlgorithm', 'SHA1','', 0, 0)
+                            --, ('passwordIterations', '2','', 0, 0)
+                            --, ('initVector', '@1B2c3D4e5F6g7H8','', 0, 0)
+                            --, ('keySize', '256','', 0, 0)
+                            ('Status', 'Development','', 0, 0)
+                            , ('UserKeyIn', 'System','', 0, 0)
+                            , ('MySQLConn', '','Connection To MySQL Server', 1, 1)
+                            , ('HiddenDataSync', 'true','Hidden Data Sync', 1, 0)
                     ";
                 #endregion
                 cmd.CommandText = qry;
@@ -1495,7 +1498,11 @@ DELETE from dun;
                             (
                                 BANGSA varchar(100) COLLATE NOCASE
                             );
-                    ";
+
+                            DELETE FROM TBANGSA;
+
+                            INSERT INTO TBANGSA (BANGSA) VALUES
+                                ('BUMIPUTERA SABAH'), ('BUMIPUTERA SARAWAK'), ('BUMIPUTERA SEMENANJUNG'), ('CINA'), ('INDIA'), ('LAIN- LAIN'), ('MELAYU')";
                 #endregion
                 cmd.CommandText = qry;
                 i = cmd.ExecuteNonQuery();
@@ -1509,7 +1516,7 @@ DELETE from dun;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                DROP TABLE IF  EXISTS `semak_tapak`;
+                                -- DROP TABLE IF  EXISTS `semak_tapak`;
 
                                 -- Dumping structure for table tsspk1511.semak_tapak
                                 CREATE TABLE IF NOT EXISTS `semak_tapak` (

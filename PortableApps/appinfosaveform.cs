@@ -45,6 +45,10 @@ namespace PortableApps
             {
                 appinfo = new appinfo();
             }
+            if (!string.IsNullOrEmpty(appinfo.negeri))
+            {
+                cbnegeri.Enabled = false;
+            }
             cbnegeri.SelectedValue = appinfo.negeri;
             txtappdate.Text = appinfo.appdate;
             txtnama.Text = appinfo.nama;
@@ -57,7 +61,8 @@ namespace PortableApps
             txtbandar.Text = appinfo.bandar;
             cbdaerah.SelectedValue = appinfo.daerah;
             cbdun.SelectedValue = appinfo.dun;
-            cbparlimen.SelectedValue = ParlimenRepo.GetBy(appinfo.parlimen).Negeri;
+            parlimen parlimen = ParlimenRepo.GetBy(appinfo.parlimen);
+            cbparlimen.SelectedValue = parlimen == null ? 0 : parlimen.Id;
             txtposkod.Text = appinfo.poskod;
             txthometel.Text = appinfo.hometel;
             txtofficetel.Text = appinfo.officetel;
@@ -158,51 +163,54 @@ namespace PortableApps
         private void LoadTBangsa()
         {
             IList<TBangsa> lstBangsa = BangsaRepo.GetAll();
-            cbbangsa.Items.Clear();
+            lstBangsa.Insert(0, new TBangsa { Bangsa = "" });
             cbbangsa.DataSource = lstBangsa;
             cbbangsa.DisplayMember = "Bangsa";
             cbbangsa.ValueMember = "Bangsa";
-            cbbangsa.SelectedIndex = -1;
+            cbbangsa.SelectedIndex = 0;
         }
 
-        private void LoadParlimen()
+        private void LoadParlimen(string negeri = "")
         {
-            IList<parlimen> lstEnt = ParlimenRepo.GetAll();
-            cbparlimen.Items.Clear();
+            IList<parlimen> lstEnt = ParlimenRepo.GetParlimentBy(negeri);
+            lstEnt.Insert(0, new parlimen { Kawasan = "", Id = 0 });
             cbparlimen.DataSource = lstEnt;
             cbparlimen.DisplayMember = "kawasan";
-            cbparlimen.ValueMember = "negeri";
-            cbparlimen.SelectedIndex = -1;
+            cbparlimen.ValueMember = "id";
+            cbparlimen.SelectedIndex = 0;
         }
 
         private void LoadDaerah(string negeri)
         {
             IList<tdaerah> lstEnt = DaerahRepo.GetDaerahBy(negeri);
             //cbdaerah.Items.Clear();
+            lstEnt.Insert(0, new tdaerah { daerah = "", kod_daerah = "" });
             cbdaerah.DataSource = lstEnt;
             cbdaerah.DisplayMember = "daerah";
             cbdaerah.ValueMember = "kod_daerah";
-            cbdaerah.SelectedIndex = -1;
+            cbdaerah.SelectedIndex = 0;
         }
 
         private void LoadDun(string negeri)
         {
             IList<dun> lstEnt = DunRepo.GetDunBy(negeri);
             //cbdaerah.Items.Clear();
+            lstEnt.Insert(0, new dun { dun_desc = "", kod_dun = "" });
             cbdun.DataSource = lstEnt;
             cbdun.DisplayMember = "dun_desc";
             cbdun.ValueMember = "kod_dun";
-            cbdun.SelectedIndex = -1;
+            cbdun.SelectedIndex = 0;
         }
 
         private void LoadNegeri()
         {
             IList<variables> lstEnt = VariablesRepo.GetVariableByType("negeri");
+            lstEnt.Insert(0, new variables { Value = "", Code = "" });
             //cbdaerah.Items.Clear();
             cbnegeri.DataSource = lstEnt;
             cbnegeri.DisplayMember = "value";
             cbnegeri.ValueMember = "code";
-            cbnegeri.SelectedIndex = -1;
+            cbnegeri.SelectedIndex = 0;
         }
 
         #endregion
@@ -305,16 +313,16 @@ namespace PortableApps
             lstCtrlEmptyCheck.Add(txtnama);
             lstCtrlEmptyCheck.Add(txticno);
             lstCtrlEmptyCheck.Add(txtnolesen);
-            lstCtrlEmptyCheck.Add(cbbangsa);
+            //lstCtrlEmptyCheck.Add(cbbangsa);
             lstCtrlEmptyCheck.Add(txtaddr1);
             lstCtrlEmptyCheck.Add(txtaddr2);
             //lstCtrlEmptyCheck.Add(txtaddr3);
             lstCtrlEmptyCheck.Add(txtbandar);
             lstCtrlEmptyCheck.Add(txtposkod);
             lstCtrlEmptyCheck.Add(cbnegeri);
-            lstCtrlEmptyCheck.Add(cbdaerah);
-            lstCtrlEmptyCheck.Add(cbdun);
-            lstCtrlEmptyCheck.Add(cbparlimen);
+            //lstCtrlEmptyCheck.Add(cbdaerah);
+            //lstCtrlEmptyCheck.Add(cbdun);
+            //lstCtrlEmptyCheck.Add(cbparlimen);
             lstCtrlEmptyCheck.Add(txthometel);
             lstCtrlEmptyCheck.Add(txtofficetel);
             lstCtrlEmptyCheck.Add(txthptel);
@@ -341,14 +349,16 @@ namespace PortableApps
             appinfo.type_id = 0;//txttype_id.Text;
             appinfo.icno = txticno.Text;
             appinfo.nolesen = txtnolesen.Text;
-            appinfo.bangsa = cbbangsa.SelectedValue.ToString();
+            appinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
             appinfo.addr1 = txtaddr1.Text;
             appinfo.addr2 = txtaddr2.Text;
             appinfo.addr3 = txtaddr3.Text;
             appinfo.bandar = txtbandar.Text;
-            appinfo.daerah = cbdaerah.SelectedValue.ToString();
-            appinfo.dun = cbdun.SelectedValue.ToString();
-            appinfo.parlimen = ParlimenRepo.GetParlimenIDBy(cbparlimen.SelectedValue.ToString());
+            appinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
+            appinfo.dun = cbdun.SelectedValue == null ? "" : cbdun.SelectedValue.ToString();
+            int? sparlimen = (int?)cbparlimen.SelectedValue;
+            parlimen parlimen = ParlimenRepo.GetBy(sparlimen);
+            appinfo.parlimen = parlimen == null ? null : (int?)parlimen.Id;
             appinfo.poskod = txtposkod.Text;
             appinfo.negeri = cbnegeri.SelectedValue.ToString();
             appinfo.hometel = txthometel.Text;
@@ -363,6 +373,7 @@ namespace PortableApps
             appinfo.email = txtemail.Text;
             //appinfo.kelompok = txtkelompok.Text;
             appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
+
             if (IsNew)
             {
                 try
@@ -441,6 +452,7 @@ namespace PortableApps
             {
                 LoadDaerah(cbx.SelectedValue.ToString());
                 LoadDun(cbx.SelectedValue.ToString());
+                LoadParlimen(cbx.SelectedValue.ToString());
                 variables variables = VariablesRepo.GetVariableByType("NEGERI").FirstOrDefault(x => x.Code == cbx.SelectedValue.ToString());
                 if (variables != null)
                 {

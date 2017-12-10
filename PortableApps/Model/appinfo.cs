@@ -21,7 +21,7 @@ namespace PortableApps.Model
         public string bandar { get; set; }
         public string daerah { get; set; }
         public string dun { get; set; }
-        public int parlimen { get; set; }
+        public int? parlimen { get; set; }
         public string poskod { get; set; }
         public string negeri { get; set; }
         public string hometel { get; set; }

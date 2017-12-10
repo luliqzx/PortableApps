@@ -205,8 +205,7 @@ namespace PortableApps.Common
             for (int i = 0; i < lstAppInfoToSync.Count; i++)
             {
                 appinfo appinfoSqlite = lstAppInfoToSync[i];
-                //AppInfoRepo.OpenMySQLDB();
-
+                AppInfoRepo.OpenMySQLDB();
                 using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
                 {
                     string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
@@ -251,7 +250,7 @@ namespace PortableApps.Common
                     }
                     sqlTrans.Commit();
                 }
-                //AppInfoRepo.CloseMySQLDB();
+                AppInfoRepo.CloseMySQLDB();
             }
         }
 

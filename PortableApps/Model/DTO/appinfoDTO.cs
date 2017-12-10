@@ -39,5 +39,8 @@ namespace PortableApps.Model.DTO
         //public string date_approved { get; set; }
         //public string approved_by { get; set; }
         //public string sop { get; set; }
+        public string newrefno { get; set; }
+        public DateTime syncdate { get; set; }
+
     }
 }

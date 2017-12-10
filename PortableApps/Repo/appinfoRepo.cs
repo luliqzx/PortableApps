@@ -225,7 +225,7 @@ namespace PortableApps.Repo
             whereClause = whereClause + operators + " type COLLATE NOCASE ='Negeri' ";
 
             IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
-            VariableSetting VariableSetting = VariableSettingRepo.GetBy("AlreadySyncDisplay");
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy("HiddenDataSync");
 
             if (VariableSetting != null && Convert.ToBoolean(VariableSetting.Value))
             {
@@ -233,7 +233,7 @@ namespace PortableApps.Repo
                 whereClause = whereClause + operators + " syncdate is null ";
             }
 
-            string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id
+            string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id, newrefno, syncdate
                                             -- , keputusan 
                                             FROM appinfo join variables
                                             ON negeri = code
