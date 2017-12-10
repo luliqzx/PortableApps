@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -197,60 +198,70 @@ namespace PortableApps.Common
         /// </summary>
         public static void SyncToServer()
         {
-            IAppInfoRepo AppInfoRepo = new AppInfoRepo();
-            IMakkebunRepo MakkebunRepo = new MakkebunRepo();
-            ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
-
-            IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
-            for (int i = 0; i < lstAppInfoToSync.Count; i++)
+            try
             {
-                appinfo appinfoSqlite = lstAppInfoToSync[i];
-                AppInfoRepo.OpenMySQLDB();
-                using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
+                IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+                IMakkebunRepo MakkebunRepo = new MakkebunRepo();
+                ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
+
+                IList<appinfo> lstAppInfoToSync = AppInfoRepo.GetAllWithoutSync();
+                for (int i = 0; i < lstAppInfoToSync.Count; i++)
                 {
-                    string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
-                    appinfoSqlite.newrefno = newrefno;
-                    // Insert To MySQL Server - AppInfo
-                    if (AppInfoRepo.CreateMySQL(appinfoSqlite, sqlTrans) > 0)
+                    appinfo appinfoSqlite = lstAppInfoToSync[i];
+                    AppInfoRepo.OpenMySQLDB();
+                    WriteLog("MySQLBeginTransaction");
+                    using (IDbTransaction sqlTrans = AppInfoRepo.MySQLBeginTransaction())
                     {
-                        // Update data local sqlite
-                        appinfoSqlite.syncdate = DateTime.Now;
-                        AppInfoRepo.UpdateSync(appinfoSqlite);
-
-                        IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
-                        for (int j = 0; j < lstMakkebunSqlite.Count; j++)
+                        string newrefno = GenerateRefNo(appinfoSqlite.negeri, null);
+                        appinfoSqlite.newrefno = newrefno;
+                        // Insert To MySQL Server - AppInfo
+                        WriteLog("CreateMySQL");
+                        if (AppInfoRepo.CreateMySQL(appinfoSqlite, sqlTrans) > 0)
                         {
-                            makkebun makkebunSqlite = lstMakkebunSqlite[j];
-                            // INSERT MAKKEBUN TO MYSQL
-                            int iSaveMakkebun = MakkebunRepo.CreateMySQL(makkebunSqlite, sqlTrans);
-                            if (iSaveMakkebun > 0)
+                            // Update data local sqlite
+                            appinfoSqlite.syncdate = DateTime.Now;
+                            AppInfoRepo.UpdateSync(appinfoSqlite);
+                            WriteLog(string.Format("CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, appinfoSqlite.refno, appinfoSqlite.newrefno));
+
+                            IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
+                            for (int j = 0; j < lstMakkebunSqlite.Count; j++)
                             {
-                                makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(appinfoSqlite.id);
-                                makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
-                                makkebunSqlite.syncdate = DateTime.Now;
-                                // UPDATE MAKKEBUN SQLITE
-                                MakkebunRepo.UpdateSync(makkebunSqlite);
-
-                                // GET LAWATAN SQLITE DATA
-                                semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(appinfoSqlite.id, makkebunSqlite.id_makkebun);
-                                semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
-
-                                // INSERT LAWATAN TO MYSQL
-                                int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
-                                if (iSaveSemakTapak > 0)
+                                makkebun makkebunSqlite = lstMakkebunSqlite[j];
+                                // INSERT MAKKEBUN TO MYSQL
+                                int iSaveMakkebun = MakkebunRepo.CreateMySQL(makkebunSqlite, sqlTrans);
+                                if (iSaveMakkebun > 0)
                                 {
-                                    semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
-                                    semak_tapakSqlite.newid = lastsemak_tapak.id;
-                                    semak_tapakSqlite.syncdate = DateTime.Now;
+                                    makkebun lastmakkebun = MakkebunRepo.GetLastMakkebunBy(appinfoSqlite.id);
+                                    makkebunSqlite.newid_makkebun = lastmakkebun.id_makkebun;
+                                    makkebunSqlite.syncdate = DateTime.Now;
                                     // UPDATE MAKKEBUN SQLITE
-                                    int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
+                                    MakkebunRepo.UpdateSync(makkebunSqlite);
+
+                                    // GET LAWATAN SQLITE DATA
+                                    semak_tapak semak_tapakSqlite = SemakTapakRepo.GetBy(appinfoSqlite.id, makkebunSqlite.id_makkebun);
+                                    semak_tapakSqlite.newmakkebun_id = makkebunSqlite.newid_makkebun;
+
+                                    // INSERT LAWATAN TO MYSQL
+                                    int iSaveSemakTapak = SemakTapakRepo.CreateMySQL(semak_tapakSqlite, sqlTrans);
+                                    if (iSaveSemakTapak > 0)
+                                    {
+                                        semak_tapak lastsemak_tapak = SemakTapakRepo.GetLastSemakTapakBy(appinfoSqlite.id, semak_tapakSqlite.newmakkebun_id);
+                                        semak_tapakSqlite.newid = lastsemak_tapak.id;
+                                        semak_tapakSqlite.syncdate = DateTime.Now;
+                                        // UPDATE MAKKEBUN SQLITE
+                                        int iSemakTapakUpdateSync = SemakTapakRepo.UpdateSync(semak_tapakSqlite);
+                                    }
                                 }
                             }
                         }
+                        sqlTrans.Commit();
                     }
-                    sqlTrans.Commit();
+                    AppInfoRepo.CloseMySQLDB();
                 }
-                AppInfoRepo.CloseMySQLDB();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.GetFullMessage());
             }
         }
 
@@ -301,5 +312,32 @@ namespace PortableApps.Common
         }
 
         #endregion
+
+        internal static void EnsureFolder(string path)
+        {
+            string directoryName = Path.GetDirectoryName(path);
+            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+            {
+                Directory.CreateDirectory(directoryName);
+            }
+        }
+
+        internal static void WriteLog(string strMsg)
+        {
+            StreamWriter sw = null;
+            try
+            {
+                string directory = AppDomain.CurrentDomain.BaseDirectory + string.Format(@"\Logs\AppLogs\{0}\", DateTime.Now.ToString("MM.yyyy"));
+                EnsureFolder(directory);
+                string fileName = string.Format(@"LogFile_{1}", DateTime.Now.ToString("MM.yyyy"), DateTime.Now.ToString("dd.MM.yyyy"));
+                sw = new StreamWriter(Path.Combine(directory, fileName), true);
+                sw.WriteLine(DateTime.Now.ToString() + " - " + strMsg);
+                sw.Flush();
+                sw.Close();
+            }
+            catch
+            {
+            }
+        }
     }
 }
