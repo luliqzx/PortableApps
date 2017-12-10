@@ -771,7 +771,7 @@ DELETE from dun;
             {
                 #region Query Create & Insert
                 cmd.CommandText = @"
-DROP TABLE IF  EXISTS `parlimen`;
+                                DROP TABLE IF  EXISTS `parlimen`;
 
                                     -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1028,7 +1028,7 @@ DROP TABLE IF  EXISTS `parlimen`;
                 cmd.CommandType = CommandType.Text;
                 #region Query Create & Insert
                 cmd.CommandText = @"
-DROP TABLE IF  EXISTS `variables`;
+                                DROP TABLE IF  EXISTS `variables`;
 
                                 -- --------------------------------------------------------
                                 -- Host:                         127.0.0.1
@@ -1038,11 +1038,11 @@ DROP TABLE IF  EXISTS `variables`;
                                 -- --------------------------------------------------------
                                 -- Dumping structure for table a1_tsspk1511.variables
                                 CREATE TABLE IF NOT EXISTS `variables` (
-  `code` varchar(30) COLLATE NOCASE NOT NULL,
-  `value` varchar(50) COLLATE NOCASE NOT NULL,
-  `type` varchar(50) COLLATE NOCASE DEFAULT NULL,
-  `parent` varchar(5) COLLATE NOCASE DEFAULT NULL
-);
+                                  `code` varchar(30) COLLATE NOCASE NOT NULL,
+                                  `value` varchar(50) COLLATE NOCASE NOT NULL,
+                                  `type` varchar(50) COLLATE NOCASE DEFAULT NULL,
+                                  `parent` varchar(5) COLLATE NOCASE DEFAULT NULL
+                                );
 
                                 DELETE FROM variables;
 
@@ -1209,7 +1209,7 @@ DROP TABLE IF  EXISTS `variables`;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-DROP TABLE IF  EXISTS `daerah`;
+                            DROP TABLE IF  EXISTS `daerah`;
 
                             -- --------------------------------------------------------
                             -- Host:                         127.0.0.1
@@ -1454,7 +1454,7 @@ DROP TABLE IF  EXISTS `daerah`;
                 cmd.CommandType = CommandType.Text;
                 #region Create & Insert
                 string qry = @"
-DROP TABLE IF  EXISTS `VariableSetting`;
+                            DROP TABLE IF  EXISTS `VariableSetting`;
 
                             CREATE TABLE IF NOT EXISTS VariableSetting
                             (
@@ -1509,7 +1509,7 @@ DROP TABLE IF  EXISTS `VariableSetting`;
             using (SQLiteCommand cmd = cnn.CreateCommand())
             {
                 cmd.CommandText = @"
-                                    DROP TABLE IF  EXISTS `semak_tapak`;
+                                DROP TABLE IF  EXISTS `semak_tapak`;
 
                                 -- Dumping structure for table tsspk1511.semak_tapak
                                 CREATE TABLE IF NOT EXISTS `semak_tapak` (
