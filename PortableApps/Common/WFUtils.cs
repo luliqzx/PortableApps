@@ -284,7 +284,7 @@ namespace PortableApps.Common
                         }
                         catch (Exception ex)
                         {
-                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-{0}", ex.GetFullMessage()));
+                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-appinfo:{0}-refno:{1}-MESSAGE:{2}", appinfoSqlite.id, appinfoSqlite.refno, ex.GetFullMessage()));
                         }
 
                         sqlTrans.Commit();
