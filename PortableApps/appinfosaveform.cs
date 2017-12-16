@@ -75,7 +75,7 @@ namespace PortableApps
             string refno_new = "";
 
             variables variables = VariablesRepo.GetBy(negeri);
-            refno_new = @"TSSPK/" + variables.Parent + "/";
+            refno_new = @"TBSPK/" + variables.Parent + "/";
 
             //int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno_new);
             int maxappinfo = AppInfoRepo.GetMaxAppInfoBy();
