@@ -243,7 +243,7 @@ namespace PortableApps
         //private void BindGrid(int pageIndex)
         //{
         //    appinfo pappinfo = new appinfo();
-        //    pappinfo.refno_new = txtrefno.Text;
+        //    pappinfo.refno = txtrefno.Text;
         //    pappinfo.negeri = cbnegeri.SelectedValue == null ? "" : cbnegeri.SelectedValue.ToString();
         //    pappinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
         //    pappinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();
@@ -419,7 +419,7 @@ namespace PortableApps
                 }
                 makkebunform form = new makkebunform();
                 form.appinfo_id = Convert.ToInt32(dgv["id", e.RowIndex].Value);
-                form.refno_new = Convert.ToString(dgv["refno_new", e.RowIndex].Value);
+                form.refno = Convert.ToString(dgv["refno", e.RowIndex].Value);
                 form.MdiParent = ParentForm;
                 form.Show();
             }
@@ -444,7 +444,7 @@ namespace PortableApps
         {
             foreach (DataGridViewRow row in dgvMakPer.Rows)
             {
-                row.Cells["refno_new"] = new DataGridViewLinkCell();
+                row.Cells["refno"] = new DataGridViewLinkCell();
             }
 
             DataGridViewImageColumn Edit = new DataGridViewImageColumn();
@@ -478,7 +478,7 @@ namespace PortableApps
             dgvMakPer.Columns["icno"].HeaderText = "No Kad. Pengenalan";
             dgvMakPer.Columns["negeri"].HeaderText = "Negeri";
             dgvMakPer.Columns["nolesen"].HeaderText = "No. Lesen";
-            dgvMakPer.Columns["refno_new"].HeaderText = "No. Rujukan";
+            dgvMakPer.Columns["refno"].HeaderText = "No. Rujukan";
             dgvMakPer.Columns["appdate"].HeaderText = "Tarikh Permohonan";
             dgvMakPer.Columns["createdby"].HeaderText = "Dibuat Oleh";
             dgvMakPer.Columns["created"].HeaderText = "Dibuat Tanggal";
@@ -528,7 +528,7 @@ namespace PortableApps
                     }
                     appinfosaveform form = new appinfosaveform();
                     form.appinfo_id = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
-                    form.refno_new = Convert.ToString(dgvMakPer["refno_new", e.RowIndex].Value);
+                    form.refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
                     form.MdiParent = ParentForm;
                     form.Show();
                     //SetupFormMakKebun(pappinfo_id, pid_makkebun);
@@ -538,8 +538,8 @@ namespace PortableApps
                 if (e.ColumnIndex == dgvMakPer.Columns["Delete"].Index)
                 {
                     int appid = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
-                    string refno_new = Convert.ToString(dgvMakPer["refno_new", e.RowIndex].Value);
-                    var confirmResult = MessageBox.Show("Apakah anda yakin menghapus data ini [" + refno_new + "] ??",
+                    string refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
+                    var confirmResult = MessageBox.Show("Apakah anda yakin menghapus data ini [" + refno + "] ??",
                                      "Konfirmasi Hapus [" + appid + "] !!",
                                      MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
@@ -548,7 +548,7 @@ namespace PortableApps
                         int iDelete = AppInfoRepo.Delete(appid);
                         if (iDelete > 0)
                         {
-                            MessageBox.Show("Data berhasil dihapus. [" + refno_new + "]");
+                            MessageBox.Show("Data berhasil dihapus. [" + refno + "]");
                         }
                         BindGrid(page);
                     }
@@ -561,7 +561,7 @@ namespace PortableApps
                     //return;
                 }
 
-                if (e.ColumnIndex == dgvMakPer.Columns["refno_new"].Index)
+                if (e.ColumnIndex == dgvMakPer.Columns["refno"].Index)
                 {
                     foreach (Form f in ParentForm.MdiChildren)
                     {
@@ -574,7 +574,7 @@ namespace PortableApps
                     }
                     makkebunform form = new makkebunform();
                     form.appinfo_id = Convert.ToInt32(dgvMakPer["id", e.RowIndex].Value);
-                    form.refno_new = Convert.ToString(dgvMakPer["refno_new", e.RowIndex].Value);
+                    form.refno = Convert.ToString(dgvMakPer["refno", e.RowIndex].Value);
                     form.MdiParent = ParentForm;
                     form.Show();
                     //SetupFormMakKebun(pappinfo_id, pid_makkebun);
@@ -697,7 +697,7 @@ namespace PortableApps
         {
             page = pageIndex;
             appinfo pappinfo = new appinfo();
-            pappinfo.refno_new = txtrefno.Text;
+            pappinfo.refno = txtrefno.Text;
             pappinfo.negeri = cbnegeri.SelectedValue == null ? "" : cbnegeri.SelectedValue.ToString();
             pappinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
             pappinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();

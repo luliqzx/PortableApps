@@ -11,7 +11,7 @@ namespace PortableApps.Model.DTO
         public string icno { get; set; }
         public string negeri { get; set; }
         public string nolesen { get; set; }
-        public string refno_new { get; set; }
+        public string refno { get; set; }
         public string appdate { get; set; }
         public string createdby { get; set; }
         public DateTime created { get; set; }

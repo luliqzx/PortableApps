@@ -13,10 +13,10 @@ namespace PortableApps.Repo
     public interface IAppInfoRepo : IBaseTRepo<appinfo, int>
     {
         IList<appinfoDTO> PagedListDTO(int page, int rows, string sidx, string sodx, out int rowCount, appinfo oWhereClause = null);
-        int GetMaxAppInfoBy(string refno_new);
+        int GetMaxAppInfoBy(string refno);
         int GetMaxAppInfoBy();
         int CreateMySQL(appinfo ent, IDbTransaction mySqlTrans = null);
-        int GetMaxRefNoMySQL(string refno_new, IDbTransaction mySqlTrans = null);
+        int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null);
         int GetMaxRefNoMySQL(IDbTransaction mySqlTrans = null);
         int UpdateSync(appinfo appinfoSqlite);
 
@@ -35,17 +35,17 @@ namespace PortableApps.Repo
             //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
             //{
             // TSSPK
-            //string qry = @"INSERT INTO appinfo (id,	refno_new,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
+            //string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
             //                    VALUES
-            //                (@id,	@refno_new,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
+            //                (@id,	@refno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
             //            ";
             // TBSPK
-            string qry = @"INSERT INTO appinfo (id,	refno_new,	nama
+            string qry = @"INSERT INTO appinfo (id,	refno,	nama
                                     ,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel
                                     ,	faks,	email,	created,	createdby,	appdate
                                     )
                                 VALUES
-                            (@id,	@refno_new,	@nama,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri
+                            (@id,	@refno,	@nama,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri
                                 ,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@created,	@createdby,	@appdate
                                 )
                         ";
@@ -59,11 +59,11 @@ namespace PortableApps.Repo
             int i = 0;
             //using (var cnn = SqLiteBaseRepository.MySQLiteConnection())
             //{
-            //string qry = @"INSERT INTO appinfo (id,	refno_new,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
+            //string qry = @"INSERT INTO appinfo (id,	refno,	nama,	type_id,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel,	hptel,	faks,	email,	kelompok,	created,	createdby,	appdate,	semak_tapak,	keputusan,	sts_bck,	status,	date_approved,	approved_by,	sop)
             //                    VALUES
             //                (@id,	@newrefno,	@nama,	@type_id,	@icno,	@nolesen,	@bangsa,	@addr1,	@addr2,	@addr3,	@bandar,	@daerah,	@dun,	@parlimen,	@poskod,	@negeri,	@hometel,	@officetel,	@hptel,	@faks,	@email,	@kelompok,	@created,	@createdby,	@appdate,	@semak_tapak,	@keputusan,	@sts_bck,	@status,	@date_approved,	@approved_by,	@sop)
             //            ";
-            string qry = @"INSERT INTO appinfo (id,	refno_new,	nama
+            string qry = @"INSERT INTO appinfo (id,	refno,	nama
                                     ,	icno,	nolesen,	bangsa,	addr1,	addr2,	addr3,	bandar,	daerah,	dun,	parlimen,	poskod,	negeri,	hometel,	officetel
                                     ,	hptel,	faks,	email,	created,	createdby,	appdate
                                     )
@@ -82,7 +82,7 @@ namespace PortableApps.Repo
         {
             int i = 0;
             //string qry = @"UPDATE appinfo SET
-            //                    refno_new=@refno_new,
+            //                    refno=@refno,
             //                    nama=@nama,
             //                    type_id=@type_id,
             //                    icno=@icno,
@@ -117,7 +117,7 @@ namespace PortableApps.Repo
             //                ";
             // TB&TS SPK
             string qry = @"UPDATE appinfo SET
-                                refno_new=@refno_new,
+                                refno=@refno,
                                 nama=@nama,
                                 icno=@icno,
                                 nolesen=@nolesen,
@@ -205,9 +205,9 @@ namespace PortableApps.Repo
                 }
             }
 
-            //string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno_new, appdate, keputusan FROM appinfo 
+            //string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
             //                                {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
-            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno_new, appdate FROM appinfo 
+            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate FROM appinfo 
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 
@@ -247,10 +247,10 @@ namespace PortableApps.Repo
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
                     whereClause = whereClause + operators + " dun = @dun   ";
                 }
-                if (!string.IsNullOrEmpty(oWhereClause.refno_new))
+                if (!string.IsNullOrEmpty(oWhereClause.refno))
                 {
                     operators = whereClause.StartsWith("WHERE") ? " AND " : "WHERE";
-                    whereClause = whereClause + operators + " refno_new like '%'||@refno_new||'%'   ";
+                    whereClause = whereClause + operators + " refno like '%'||@refno||'%'   ";
                 }
                 if (oWhereClause.parlimen > 0)
                 {
@@ -286,12 +286,12 @@ namespace PortableApps.Repo
                 whereClause = whereClause + operators + " syncdate is null ";
             }
 
-            //string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno_new, appdate, created, createdby, id, newrefno, syncdate
+            //string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id, newrefno, syncdate
             //                                -- , keputusan 
             //                                FROM appinfo join variables
             //                                ON negeri = code
             //                                {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
-            string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno_new, appdate, created, createdby, id, newrefno, syncdate
+            string qry = string.Format(@"SELECT nama, icno, value negeri, nolesen, refno, appdate, created, createdby, id, newrefno, syncdate
                                             FROM appinfo join variables
                                             ON negeri = code
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sodx, (page - 1) * rows, rows);
@@ -303,14 +303,14 @@ namespace PortableApps.Repo
             return lstEnt;
         }
 
-        public int GetMaxAppInfoBy(string refno_new)
+        public int GetMaxAppInfoBy(string refno)
         {
             int i = 0;
-            string qry = @"SELECT MAX(refno_new) refno_new from appinfo where refno_new like @refno_new || '%' COLLATE NOCASE";
-            appinfo appinfo = sqliteCon.Query<appinfo>(qry, new { refno_new }).FirstOrDefault();
-            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno_new))
+            string qry = @"SELECT MAX(refno) refno from appinfo where refno like @refno || '%' COLLATE NOCASE";
+            appinfo appinfo = sqliteCon.Query<appinfo>(qry, new { refno }).FirstOrDefault();
+            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
             {
-                string[] nowrefno = appinfo.refno_new.Split('/');
+                string[] nowrefno = appinfo.refno.Split('/');
                 try
                 {
                     i = Convert.ToInt32(nowrefno[2]);
@@ -323,14 +323,14 @@ namespace PortableApps.Repo
             return i + 1;
         }
 
-        public int GetMaxRefNoMySQL(string refno_new, IDbTransaction mySqlTrans = null)
+        public int GetMaxRefNoMySQL(string refno, IDbTransaction mySqlTrans = null)
         {
             int i = 0;
-            string qry = @"SELECT MAX(refno_new) refno_new from appinfo where refno_new like CONCAT(@refno_new, '%') LOCK IN SHARE MODE";
-            appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno_new }, mySqlTrans).FirstOrDefault();
-            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno_new))
+            string qry = @"SELECT MAX(refno) refno from appinfo where refno like CONCAT(@refno, '%') LOCK IN SHARE MODE";
+            appinfo appinfo = mysqlCon.Query<appinfo>(qry, new { refno }, mySqlTrans).FirstOrDefault();
+            if (appinfo != null && !string.IsNullOrEmpty(appinfo.refno))
             {
-                string[] nowrefno = appinfo.refno_new.Split('/');
+                string[] nowrefno = appinfo.refno.Split('/');
                 try
                 {
                     i = Convert.ToInt32(nowrefno[2]);
@@ -393,9 +393,9 @@ namespace PortableApps.Repo
                 }
             }
 
-            //string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno_new, appdate, keputusan FROM appinfo 
+            //string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate, keputusan FROM appinfo 
             //                                {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (page - 1) * pagesize, pagesize);
-            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno_new, appdate FROM appinfo 
+            string qry = string.Format(@"SELECT id, nama, icno, negeri, nolesen, refno, appdate FROM appinfo 
                                             {0} ORDER BY {1} {2} LIMIT {3}, {4}", whereClause, sidx, sord, (page - 1) * pagesize, pagesize);
             string qryCtn = string.Format(@"SELECT COUNT(*) FROM appinfo {0}", whereClause);
 
@@ -407,8 +407,8 @@ namespace PortableApps.Repo
         public int GetMaxRefNoMySQL(IDbTransaction mySqlTrans = null)
         {
             int i = 0;
-            //string qry = @"SELECT max(cast(SUBSTRING_INDEX(refno_new, '/', -1) as signed)) lastNumber from appinfo";
-            string qry = @"SELECT max(cast(SUBSTRING_INDEX(refno_new, '/', -1) as signed)) lastNumber from appinfo";
+            //string qry = @"SELECT max(cast(SUBSTRING_INDEX(refno, '/', -1) as signed)) lastNumber from appinfo";
+            string qry = @"SELECT max(cast(SUBSTRING_INDEX(refno, '/', -1) as signed)) lastNumber from appinfo";
             try
             {
                 i = mysqlCon.Query<int>(qry, null, mySqlTrans).FirstOrDefault();
@@ -430,9 +430,9 @@ namespace PortableApps.Repo
         public int GetMaxAppInfoBy()
         {
             int i = 0;
-            //string qry = @"SELECT max(SUBSTRING_INDEX(refno_new, '/', -1)) lastNumber from appinfo";
-            //string qry = @"SELECT  substr(refno_new, INSTR(refno_new, '/')+1),substr(substr(refno_new, INSTR(refno_new, '/')+1), INSTR(substr(refno_new, INSTR(refno_new, '/')+1), '/')+1) from appinfo";
-            string qry = @"SELECT  max(cast(substr(substr(refno_new, INSTR(refno_new, '/')+1), INSTR(substr(refno_new, INSTR(refno_new, '/')+1), '/')+1) as int)) from appinfo";
+            //string qry = @"SELECT max(SUBSTRING_INDEX(refno, '/', -1)) lastNumber from appinfo";
+            //string qry = @"SELECT  substr(refno, INSTR(refno, '/')+1),substr(substr(refno, INSTR(refno, '/')+1), INSTR(substr(refno, INSTR(refno, '/')+1), '/')+1) from appinfo";
+            string qry = @"SELECT  max(cast(substr(substr(refno, INSTR(refno, '/')+1), INSTR(substr(refno, INSTR(refno, '/')+1), '/')+1) as int)) from appinfo";
             try
             {
                 i = sqliteCon.Query<int>(qry, null).FirstOrDefault();

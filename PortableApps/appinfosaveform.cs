@@ -24,7 +24,7 @@ namespace PortableApps
         IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
 
         public int appinfo_id;
-        public string refno_new;
+        public string refno;
 
         private IList<variables> lstWilayah = new List<variables>();
         #endregion
@@ -72,17 +72,18 @@ namespace PortableApps
 
         private string GenerateRefNo(string negeri)
         {
-            string refno_new = "";
+            string refno = "";
 
             variables variables = VariablesRepo.GetBy(negeri);
-            refno_new = @"TBSPK/" + variables.Parent + "/";
+            //refno = @"TBSPK/" + variables.Parent + "/";
+            refno = @"TSSPK/" + variables.Parent + "/";
 
-            //int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno_new);
+            //int maxappinfo = AppInfoRepo.GetMaxAppInfoBy(refno);
             int maxappinfo = AppInfoRepo.GetMaxAppInfoBy();
 
-            refno_new = refno_new + maxappinfo.ToString().PadLeft(5, '0');
+            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
 
-            return refno_new;
+            return refno;
         }
 
         private void ClearTextBoxes()
@@ -343,7 +344,7 @@ namespace PortableApps
                     appinfo = new appinfo();
                     appinfo_id = Convert.ToInt32(WFUtils.DateTimeToUnixTimestamp(DateTime.Now));
                     IsNew = true;
-                    refno_new = GenerateRefNo(cbnegeri.SelectedValue.ToString());
+                    refno = GenerateRefNo(cbnegeri.SelectedValue.ToString());
                 }
 
                 appinfo.id = appinfo_id;
@@ -375,7 +376,7 @@ namespace PortableApps
                 //appinfo.faks = txtfaks.Text;
                 appinfo.email = txtemail.Text;
                 //appinfo.kelompok = txtkelompok.Text;
-                appinfo.refno_new = refno_new;// GenerateRefNo(appinfo.negeri);
+                appinfo.refno = refno;// GenerateRefNo(appinfo.negeri);
 
                 if (IsNew)
                 {
@@ -384,7 +385,7 @@ namespace PortableApps
                         appinfo.created = DateTime.Now;
                         appinfo.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
                         AppInfoRepo.Create(appinfo);
-                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno_new + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
                     }
                     catch (Exception ex)
                     {
@@ -397,7 +398,7 @@ namespace PortableApps
                     try
                     {
                         AppInfoRepo.Edit(appinfo);
-                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno_new + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + appinfo.refno + "]");
                     }
                     catch (Exception ex)
                     {
@@ -429,7 +430,7 @@ namespace PortableApps
             LoadTBangsa();
             LoadParlimen();
 
-            groupBox1.Text = groupBox1.Text + " " + refno_new;
+            groupBox1.Text = groupBox1.Text + " " + refno;
 
             txtappdate.CustomFormat = "dd-MM-yyyy";
 

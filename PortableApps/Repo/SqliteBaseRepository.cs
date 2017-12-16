@@ -47,7 +47,7 @@ namespace PortableApps.Repo
 -- Dumping structure for table a1_tsspk1511.appinfo
 CREATE TABLE IF NOT EXISTS `appinfo` (
   `id` int(11) NOT NULL PRIMARY KEY,
-  `refno_new` varchar(100) COLLATE NOCASE DEFAULT NULL,
+  `refno` varchar(100) COLLATE NOCASE DEFAULT NULL,
   `nama` varchar(100) COLLATE NOCASE NOT NULL,
   --`type_id` int(11) NOT NULL,
   `icno` varchar(100) COLLATE NOCASE NOT NULL,

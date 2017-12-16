@@ -262,7 +262,8 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MDIParent2";
-            this.Text = "Sistem Pengurusan Skim Tanam Baru Sawit Pekebun Kecil (TBSPK)";
+            //this.Text = "Sistem Pengurusan Skim Tanam Baru Sawit Pekebun Kecil (TBSPK)";
+            this.Text = "Sistem Pengurusan Skim Tanam Semula Sawit Pekebun Kecil (TSSPK)";
             this.Load += new System.EventHandler(this.MDIParent2_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

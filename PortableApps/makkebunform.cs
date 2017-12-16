@@ -34,7 +34,7 @@ namespace PortableApps
         public int pagecount { get; set; }
 
         public int appinfo_id { get; set; }
-        public string refno_new { get; set; }
+        public string refno { get; set; }
         public int id_makkebun { get; set; }
 
         IList<variables> lstWilayah = new List<variables>();
@@ -587,7 +587,7 @@ namespace PortableApps
                     }
                     lawatanpengesahankebunform form = new lawatanpengesahankebunform();
                     form.appinfo_id = pappinfo_id;
-                    form.refno_new = refno_new;
+                    form.refno = refno;
                     form.id_makkebun = pid_makkebun;
                     int? semak_tapak_id = Convert.ToInt32(dgv["semak_tapak_id", e.RowIndex].Value);
                     form.semak_tapak_id = semak_tapak_id;
@@ -791,8 +791,8 @@ namespace PortableApps
 
             txttarikhtebang.CustomFormat = " ";
 
-            groupBox1.Text = groupBox1.Text + " " + refno_new;
-            groupBox2.Text = groupBox2.Text + " " + refno_new;
+            groupBox1.Text = groupBox1.Text + " " + refno;
+            groupBox2.Text = groupBox2.Text + " " + refno;
 
 
             BindSyaratTanah();
@@ -893,7 +893,7 @@ namespace PortableApps
                         makkebun.created = DateTime.Now;
                         makkebun.createdby = VariableSettingRepo.GetBy("UserKeyIn").Value;
                         MakkebunRepo.Create(makkebun);
-                        MessageBox.Show("Data berhasil disimpan [" + refno_new + " | " + txtnolot.Text + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
                     }
                     catch (Exception ex)
                     {
@@ -906,7 +906,7 @@ namespace PortableApps
                     try
                     {
                         MakkebunRepo.Edit(makkebun);
-                        MessageBox.Show("Data berhasil disimpan [" + refno_new + " | " + txtnolot.Text + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + txtnolot.Text + "]");
                     }
                     catch (Exception ex)
                     {

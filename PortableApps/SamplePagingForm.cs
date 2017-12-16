@@ -169,7 +169,7 @@ namespace PortableApps
         {
             page = pageIndex;
             //appinfo pappinfo = new appinfo();
-            //pappinfo.refno_new = txtrefno.Text;
+            //pappinfo.refno = txtrefno.Text;
             //pappinfo.negeri = cbnegeri.SelectedValue == null ? "" : cbnegeri.SelectedValue.ToString();
             //pappinfo.bangsa = cbbangsa.SelectedValue == null ? "" : cbbangsa.SelectedValue.ToString();
             //pappinfo.daerah = cbdaerah.SelectedValue == null ? "" : cbdaerah.SelectedValue.ToString();

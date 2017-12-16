@@ -173,17 +173,18 @@ namespace PortableApps.Common
             IVariablesRepo VariablesRepo = new VariablesRepo();
             IAppInfoRepo AppInfoRepo = new AppInfoRepo();
 
-            string refno_new = "";
+            string refno = "";
 
             variables variables = VariablesRepo.GetBy(negeri);
-            refno_new = @"TBSPK/" + variables.Parent + "/";
+            //refno = @"TBSPK/" + variables.Parent + "/";
+            refno = @"TSSPK/" + variables.Parent + "/";
 
-            //int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno_new, mySqlTrans);
+            //int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno, mySqlTrans);
             int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(mySqlTrans);
 
-            refno_new = refno_new + maxappinfo.ToString().PadLeft(5, '0');
+            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
 
-            return refno_new;
+            return refno;
         }
 
         public static string GetFullMessage(this Exception ex)
@@ -226,7 +227,7 @@ namespace PortableApps.Common
                                 // Update data local sqlite
                                 appinfoSqlite.syncdate = DateTime.Now;
                                 AppInfoRepo.UpdateSync(appinfoSqlite);
-                                WriteLog(string.Format("AppInfoRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, appinfoSqlite.refno_new, appinfoSqlite.newrefno));
+                                WriteLog(string.Format("AppInfoRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, appinfoSqlite.refno, appinfoSqlite.newrefno));
 
                                 IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
                                 for (int j = 0; j < lstMakkebunSqlite.Count; j++)
@@ -287,7 +288,7 @@ namespace PortableApps.Common
                         }
                         catch (Exception ex)
                         {
-                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-appinfo:{0}-refno_new:{1}-MESSAGE:{2}", appinfoSqlite.id, appinfoSqlite.refno_new, ex.GetFullMessage()));
+                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-appinfo:{0}-refno:{1}-MESSAGE:{2}", appinfoSqlite.id, appinfoSqlite.refno, ex.GetFullMessage()));
                         }
 
                         sqlTrans.Commit();
