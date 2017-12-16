@@ -10,7 +10,7 @@ using System.Data;
 
 namespace PortableApps.Repo
 {
-    public class CommonRepo 
+    public class CommonRepo
     {
         #region SQLite
         public string DbFile
@@ -52,7 +52,7 @@ namespace PortableApps.Repo
                     VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
                     if (VariableSetting != null)
                     {
-                        if (VariableSetting.Value == "Production")
+                        if (!string.IsNullOrEmpty(VariableSetting.Value) && VariableSetting.Value.ToUpper() == "PRODUCTION")
                         {
                             VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
                             //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
@@ -68,6 +68,10 @@ namespace PortableApps.Repo
                         _mysqlCon = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
                     }
                 }
+                if (_mysqlCon.State != ConnectionState.Open)
+                {
+                    _mysqlCon.Open();
+                }
             }
             catch (Exception)
             {
@@ -80,7 +84,11 @@ namespace PortableApps.Repo
         private static IDbConnection _mysqlCon { get; set; }
 
         public IDbConnection mysqlCon { get { return MySQLConnectin(); } }
-        #endregion
 
+        public void ResetMySQLConnection()
+        {
+            _mysqlCon = null;
+        }
+        #endregion
     }
 }

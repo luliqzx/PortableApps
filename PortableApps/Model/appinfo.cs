@@ -9,7 +9,7 @@ namespace PortableApps.Model
     {
 
         public int id { get; set; }
-        public string refno { get; set; }
+        public string refno_new { get; set; }
         public string nama { get; set; }
         public int type_id { get; set; }
         public string icno { get; set; }

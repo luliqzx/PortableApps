@@ -24,7 +24,7 @@ namespace PortableApps
 
         IList<variables> lstWilayah = new List<variables>();
         public int appinfo_id { get; set; }
-        public string refno { get; set; }
+        public string refno_new { get; set; }
         public int id_makkebun { get; set; }
         public int? semak_tapak_id;
 
@@ -320,13 +320,14 @@ namespace PortableApps
 
             txttarikh_lawat.CustomFormat = " ";
 
+            txttarikh_lawat.Value = DateTime.Now;
 
             BindKaedah();
 
             BindJenisTanah();
 
-            groupBox1.Text = groupBox1.Text + " " + refno;
-            groupBox2.Text = groupBox2.Text + " " + refno;
+            groupBox1.Text = groupBox1.Text + " " + refno_new;
+            groupBox2.Text = groupBox2.Text + " " + refno_new;
 
             cbnolot.SelectedIndexChanged -= cbnolot_SelectedIndexChanged;
             BindNoLot();
@@ -392,7 +393,7 @@ namespace PortableApps
                         semak_tapak.createdby = new VariableSettingRepo().GetBy("UserKeyIn").Value;
                         semak_tapak.lampiran = "";// txtlampiran.Text;
                         SemakTapakRepo.Create(semak_tapak);
-                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + refno_new + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
                     }
                     catch (Exception ex)
                     {
@@ -405,7 +406,7 @@ namespace PortableApps
                     try
                     {
                         SemakTapakRepo.Edit(semak_tapak);
-                        MessageBox.Show("Data berhasil disimpan [" + refno + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
+                        MessageBox.Show("Data berhasil disimpan [" + refno_new + " | " + MakkebunRepo.GetBy(id_makkebun).nolot + "]");
                     }
                     catch (Exception ex)
                     {

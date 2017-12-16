@@ -1,4 +1,5 @@
-﻿using PortableApps.Model;
+﻿using MySql.Data.MySqlClient;
+using PortableApps.Model;
 using PortableApps.Repo;
 using System;
 using System.Collections.Generic;
@@ -172,16 +173,17 @@ namespace PortableApps.Common
             IVariablesRepo VariablesRepo = new VariablesRepo();
             IAppInfoRepo AppInfoRepo = new AppInfoRepo();
 
-            string refno = "";
+            string refno_new = "";
 
             variables variables = VariablesRepo.GetBy(negeri);
-            refno = @"TSSPK/" + variables.Parent + "/";
+            refno_new = @"TBSPK/" + variables.Parent + "/";
 
-            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno, mySqlTrans);
+            //int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(refno_new, mySqlTrans);
+            int maxappinfo = AppInfoRepo.GetMaxRefNoMySQL(mySqlTrans);
 
-            refno = refno + maxappinfo.ToString().PadLeft(5, '0');
+            refno_new = refno_new + maxappinfo.ToString().PadLeft(5, '0');
 
-            return refno;
+            return refno_new;
         }
 
         public static string GetFullMessage(this Exception ex)
@@ -201,6 +203,7 @@ namespace PortableApps.Common
             try
             {
                 IAppInfoRepo AppInfoRepo = new AppInfoRepo();
+                AppInfoRepo.ResetMySQLConnection(true);
                 IMakkebunRepo MakkebunRepo = new MakkebunRepo();
                 ISemakTapakRepo SemakTapakRepo = new SemakTapakRepo();
 
@@ -223,7 +226,7 @@ namespace PortableApps.Common
                                 // Update data local sqlite
                                 appinfoSqlite.syncdate = DateTime.Now;
                                 AppInfoRepo.UpdateSync(appinfoSqlite);
-                                WriteLog(string.Format("AppInfoRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, appinfoSqlite.refno, appinfoSqlite.newrefno));
+                                WriteLog(string.Format("AppInfoRepo.CreateMySQL & Update SQLite - {0} - {1} - {2}", appinfoSqlite.id, appinfoSqlite.refno_new, appinfoSqlite.newrefno));
 
                                 IList<makkebun> lstMakkebunSqlite = MakkebunRepo.GetAllByAppInfo(appinfoSqlite.id);
                                 for (int j = 0; j < lstMakkebunSqlite.Count; j++)
@@ -284,7 +287,7 @@ namespace PortableApps.Common
                         }
                         catch (Exception ex)
                         {
-                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-appinfo:{0}-refno:{1}-MESSAGE:{2}", appinfoSqlite.id, appinfoSqlite.refno, ex.GetFullMessage()));
+                            WriteLog(string.Format("ERROR-AppInfoRepo.CreateMySQL-appinfo:{0}-refno_new:{1}-MESSAGE:{2}", appinfoSqlite.id, appinfoSqlite.refno_new, ex.GetFullMessage()));
                         }
 
                         sqlTrans.Commit();
@@ -295,6 +298,26 @@ namespace PortableApps.Common
             catch (Exception ex)
             {
                 MessageBox.Show(ex.GetFullMessage());
+            }
+        }
+
+        private static void SetupConnection()
+        {
+            MySqlConnection newMySQLConn;
+            IVariableSettingRepo VariableSettingRepo = new VariableSettingRepo();
+            VariableSetting VariableSetting = VariableSettingRepo.GetBy("Status");
+            if (VariableSetting != null)
+            {
+                if (!string.IsNullOrEmpty(VariableSetting.Value) && VariableSetting.Value.ToUpper() == "PRODUCTION")
+                {
+                    VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
+                    //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
+                    newMySQLConn = new MySqlConnection(WFUtils.Decrypt(VariableSettingConStr.Value));
+                }
+                else
+                {
+                    newMySQLConn = new MySqlConnection("Server=127.0.0.1;Database=tsspk1511;Uid=root;Pwd=;");
+                }
             }
         }
 

@@ -81,6 +81,7 @@
             this.ribbon1.Tabs.Add(this.ribbonTab3);
             this.ribbon1.TabsMargin = new System.Windows.Forms.Padding(12, 2, 20, 0);
             this.ribbon1.Text = "ribbon1";
+            this.ribbon1.ThemeColor = System.Windows.Forms.RibbonTheme.Blue;
             // 
             // roobClose
             // 
@@ -261,7 +262,7 @@
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.Name = "MDIParent2";
-            this.Text = "Sistem Pengurusan Skim Tanam Semula Sawit Pekebun Kecil (TSSPK)";
+            this.Text = "Sistem Pengurusan Skim Tanam Baru Sawit Pekebun Kecil (TBSPK)";
             this.Load += new System.EventHandler(this.MDIParent2_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
