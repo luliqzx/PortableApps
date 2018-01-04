@@ -312,7 +312,6 @@ namespace PortableApps.Common
                 if (!string.IsNullOrEmpty(VariableSetting.Value) && VariableSetting.Value.ToUpper() == "PRODUCTION")
                 {
                     VariableSetting VariableSettingConStr = VariableSettingRepo.GetBy("MySQLConn");
-                    //MySqlConnection = new MySqlConnection("Server=128.199.195.92;Database=tsspk1511;Uid=oeuser3;Pwd=oe321;");
                     newMySQLConn = new MySqlConnection(WFUtils.Decrypt(VariableSettingConStr.Value));
                 }
                 else
