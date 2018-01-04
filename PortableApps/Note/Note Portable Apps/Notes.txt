@@ -1,7 +1,0 @@
-﻿Server=128.199.195.92;Database=tsspk1511;Uid=oeuser5;Pwd=oe321;
-
-Server=128.199.195.92;Database=tbspk1511;Uid=oeuser5;Pwd=oe321;
-
-
-Sistem Pengurusan Skim Tanam Semula Sawit Pekebun Kecil (TSSPK)
-Sistem Pengurusan Skim Tanam Baru Sawit Pekebun Kecil (TBSPK)

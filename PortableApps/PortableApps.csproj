@@ -289,7 +289,6 @@
     <None Include="Resources\mpob_small.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Note\Note Portable Apps\Notes.txt" />
     <Content Include="Resources\add.png" />
     <Content Include="Resources\mpob_small.png.ico" />
     <Content Include="Resources\paging.PNG" />
